@@ -1,0 +1,7 @@
+; TA_OnlinePrinterConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_OnlinePrinterConfigPlugin"
+DESCRIPTION  'TA_OnlinePrinterConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

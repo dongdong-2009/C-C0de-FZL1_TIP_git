@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6a19f18f-d227-4625-98f0-5a8e21eeac12}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AbstractSingleThreadBarrier.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Condition.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IProcessLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IThreadLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NonReEntrantProcessLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NonReEntrantThreadLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProcessGuard.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReadWriteThreadLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReEntrantThreadLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReEntrantThreadLockableWithMutex.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Semaphore.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SingleThreadBarrier.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThreadGuard.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThreadLockableHolderVerifier.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ThreadReadGuard.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WriteReadThreadLockable.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Condition.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\IThreadLockable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NonReEntrantProcessLockable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NonReEntrantThreadLockable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProcessGuard.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReadWriteThreadLockable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReEntrantThreadLockable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReEntrantThreadLockableWithMutex.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Semaphore.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SingleThreadBarrier.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThreadGuard.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ThreadReadGuard.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WriteReadThreadLockable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,181 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+4 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_SubsystemConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_SubsystemConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_SubsystemConfigPlugin.DLL\0"
+            VALUE "ProductName", "TA_SubsystemConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_SubsystemConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SUBSYSTEM_VIEW DIALOG DISCARDABLE  0, 0, 432, 126
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "Arial Bold"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,86,19,330,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,159,97,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,223,97,50,14
+    LTEXT           "名称:",IDC_STATIC_NAME,16,22,28,13
+    GROUPBOX        "类型",IDC_STATIC_TYPE,8,7,417,112
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,16,58,53,9
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,16,75,53,9
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,86,57,241,13
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,86,74,241,13
+    CONTROL         9005,IDC_NAME_BITMAP,"Static",SS_BITMAP,78,23,11,11
+    CONTROL         "",IDC_CHECK_EXCLUSIVE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,86,40,16,8
+    LTEXT           "专有控制:",IDC_STATIC_EXCLUSIVE,16,40,58,8
+    CONTROL         9005,IDC_EXCLUSIVE_BITMAP,"Static",SS_BITMAP,78,41,11,11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NOT_PHYSICAL_SUBSYSTEM "不是一个物理子系统"
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_SubsystemConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

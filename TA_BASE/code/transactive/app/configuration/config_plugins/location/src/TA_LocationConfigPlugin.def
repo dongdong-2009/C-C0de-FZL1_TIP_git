@@ -1,0 +1,7 @@
+; TA_LocationConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_LocationConfigPlugin"
+DESCRIPTION  'TA_LocationConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

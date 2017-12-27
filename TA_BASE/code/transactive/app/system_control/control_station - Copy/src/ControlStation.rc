@@ -1,0 +1,440 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ARIALBOLD_LOGIN_DIALOG DIALOGEX 0, 0, 195, 205
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "操作员登录"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_NAME_COMBO_AB,48,108,135,83,CBS_DROPDOWNLIST | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PROFILE_COMBO_AB,48,124,135,65,CBS_DROPDOWNLIST | CBS_SORT | CBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LOCATION_COMBO_AB,48,140,135,65,CBS_DROPDOWNLIST | CBS_NOINTEGRALHEIGHT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_PASSWORD_EDIT_AB,48,156,135,12,ES_PASSWORD | ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "登录(&L)",IDC_LOGIN_BUTTON_AB,5,183,42,14,WS_DISABLED
+    PUSHBUTTON      "退出(&X)",IDC_EXIT,54,183,42,14,WS_DISABLED
+    PUSHBUTTON      "重启(&R)",IDC_RESTART_BUTTON_AB,101,183,42,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "帮助(&H)",IDC_HELP_BUTTON_AB,148,183,42,14
+    CONTROL         "动画2",IDC_ANIMATE_AB,"SysAnimate32",ACS_CENTER | WS_BORDER | WS_TABSTOP,9,8,178,79
+    GROUPBOX        "",IDC_STATIC_GROUP,5,97,185,80
+    LTEXT           "名字(&N):",IDC_STATIC,12,110,34,10
+    LTEXT           "角色(&F):",IDC_STATIC_PROFILE,12,126,34,10
+    LTEXT           "位置(&C):",IDC_STATIC_LOCATION,12,142,34,10
+    LTEXT           "密码(&P):",IDC_STATIC_PASSWORD,12,158,34,10
+    CTEXT           "版本# 1.0",IDC_VERSION,10,90,175,8
+END
+
+IDD_TASK_MANAGER DIALOGEX 0, 0, 238, 252
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "控制站任务管理器"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_PROCESS,9,9,157,236,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "结束进程(&E)",IDC_BUTTON_TERMINATE,171,9,58,13,WS_DISABLED
+    CONTROL         "List1",IDC_LIST_PARAMETERS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | LVS_EDITLABELS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_DISABLED | WS_TABSTOP,9,26,219,199,WS_EX_CLIENTEDGE
+    GROUPBOX        "进程",IDC_PROCESS_FRAME,3,0,231,248
+    PUSHBUTTON      "添加参数(&A)",IDC_BUTTON_ADD_PARAM,171,228,58,13,WS_DISABLED
+    EDITTEXT        IDC_EDIT_ADD_PARAM,9,228,156,12,ES_AUTOHSCROLL | WS_DISABLED
+END
+
+IDD_CHANGE_PASSWORD_DIALOG DIALOGEX 0, 0, 195, 201
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "更改密码"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_PASSWORD_EDIT,48,122,136,12,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_NEW_PASSWORD_EDIT,48,138,136,12,ES_PASSWORD | ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_CONFIRM_PASSWORD_EDIT,48,154,136,12,ES_PASSWORD | ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "确定(&O)",IDOK,4,179,42,14,WS_DISABLED
+    PUSHBUTTON      "取消",IDCANCEL,76,179,42,14
+    PUSHBUTTON      "帮助(&H)",IDC_HELP_BUTTON,148,179,42,14
+    COMBOBOX        IDC_NAME_COMBO,48,106,136,83,CBS_DROPDOWNLIST | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_STATIC_GROUP,4,95,187,78
+    LTEXT           "名字(&N):",IDC_STATIC,9,106,22,8
+    LTEXT           "新密码(&W)",IDC_STATIC,9,138,35,8
+    LTEXT           "密码(&P):",IDC_STATIC,9,122,34,8
+    LTEXT           "确认(&C)",IDC_STATIC,9,154,26,8
+    CONTROL         "动画2",IDC_ANIMATE_AB,"SysAnimate32",WS_BORDER | WS_TABSTOP,6,7,182,79
+END
+
+IDD_ARIALBOLD_LOGOUT_DIALOG DIALOGEX 0, 0, 196, 119
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "操作员注销"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "注销(&L)",IDC_LOGOUT_BUTTON,5,99,35,14,NOT WS_VISIBLE
+    PUSHBUTTON      "退出(&X)",IDC_EXIT_BUTTON,43,99,35,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "重启(&R)",IDC_RESTART_BUTTON,81,99,35,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "取消(&C)",IDCANCEL,119,99,35,14
+    PUSHBUTTON      "帮助(&H)",IDC_HELP_BUTTON,157,99,35,14
+    CONTROL         "动画2",IDC_ANIMATE_AB,"SysAnimate32",WS_BORDER | WS_TABSTOP,7,8,182,79
+END
+
+IDD_DIALOG1 DIALOG  0, 0, 280, 239
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "对话框"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,78,216,50,14
+    PUSHBUTTON      "取消",IDCANCEL,134,216,50,14
+    CONTROL         "",IDC_EXCLUSIVE_DUTY_TEXT,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,11,29,241,144
+    LTEXT           "移除的角色将会丢失以下位置和子系统的任务:",IDC_STATIC,10,9,244,8
+    LTEXT           "请注意，一旦你点击了OK，移除的角色将会丢失子系统的任务，你是否要移除角色?",IDC_STATIC,14,177,232,26
+END
+
+IDD_LAUNCH_BAR DIALOG  0, 0, 84, 464
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "List1",IDC_LIST_APPLICATIONS,"SysListView32",LVS_SINGLESEL | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_TABSTOP,1,10,80,142
+    PUSHBUTTON      "",IDC_DISPLAY_BUTTON1,3,168,21,21
+    PUSHBUTTON      "",IDC_DISPLAY_BUTTON2,16,168,21,21
+    PUSHBUTTON      "",IDC_DISPLAY_BUTTON3,31,168,21,21
+    PUSHBUTTON      "",IDC_DISPLAY_BUTTON4,48,168,21,21
+    PUSHBUTTON      "",IDC_DISPLAY_BUTTON5,59,168,21,21
+    PUSHBUTTON      "帮助",IDC_HELP_BUTTON,43,274,36,28
+    PUSHBUTTON      "重载",IDC_OVERRIDE_BUTTON,4,208,36,28
+    PUSHBUTTON      "注销",IDC_LOGOUT_BUTTON,43,208,36,28
+    PUSHBUTTON      "简介",IDC_PROFILE_BUTTON,4,241,36,28
+    PUSHBUTTON      "操作者",IDC_OPERATOR_BUTTON,43,241,36,28
+    PUSHBUTTON      "密码",IDC_PASSWORD_BUTTON,4,274,36,28
+    CONTROL         "",IDC_DEVICE_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP,1,329,80,145
+    PUSHBUTTON      "",IDC_VIEW_CAMERA_BUTTON,19,346,17,15
+    PUSHBUTTON      "",IDC_DISPLAY_SCHEMATIC_BUTTON,48,346,17,15
+    GROUPBOX        "快速启动",IDC_STATIC,0,1,83,154,BS_CENTER
+    GROUPBOX        "快速工具",IDC_STATIC,0,196,83,116,BS_CENTER
+    GROUPBOX        "快速查找",IDC_STATIC,0,318,83,47,BS_CENTER
+    GROUPBOX        "偏好",IDC_STATIC,0,369,83,26,BS_CENTER
+    GROUPBOX        "当前详情",IDC_STATIC,0,397,83,60,BS_CENTER
+    CTEXT           "Joe Bloggs / Fred Smith\nDBI / OCI",IDC_USER_DETAILS,3,409,77,35
+    GROUPBOX        "查看显示于",IDC_STATIC,0,157,83,35,BS_CENTER
+    CTEXT           "2003年7月20日 10:30:00",IDC_DATE_TIME_DETAILS,3,444,76,9
+    COMBOBOX        IDC_FAVOURITES_COMBO,1,378,80,63,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DUMMY_DIALOG DIALOG  0, 0, 170, 137
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_DISABLED
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDD_EDIT_SHORTCUT_DIALOG DIALOG  0, 0, 375, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "编辑快捷方式"
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "List2",IDC_SHORTCUT_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_GROUP | WS_TABSTOP,14,17,288,87
+    EDITTEXT        IDC_NAME,47,124,255,14,ES_AUTOHSCROLL | WS_GROUP
+    COMBOBOX        IDC_DISPLAY_COMBO,47,143,255,139,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    DEFPUSHBUTTON   "设置(&S)",IDC_SET_SHORTCUT,309,124,50,14,WS_GROUP
+    PUSHBUTTON      "添加(&A)",IDC_ADD_SHORTCUT,309,19,50,14,WS_GROUP
+    PUSHBUTTON      "移除(&R)",IDC_REMOVE_SHORTCUT,309,35,50,14,WS_GROUP
+    PUSHBUTTON      "上移(&U)",IDC_MOVE_UP,309,70,50,14,WS_GROUP
+    PUSHBUTTON      "下移(&D)",IDC_MOVE_DOWN,309,86,50,14,WS_GROUP
+    PUSHBUTTON      "确定",IDOK,94,164,50,14
+    PUSHBUTTON      "取消",IDCANCEL,162,164,50,14
+    PUSHBUTTON      "帮助(&H)",IDC_HELP_BUTTON,230,164,50,14
+    GROUPBOX        "快捷方式",IDC_STATIC,7,7,361,102
+    GROUPBOX        "快捷方式详情",IDC_STATIC,7,112,361,48
+    LTEXT           "名称",IDC_STATIC,16,127,20,8
+    LTEXT           "显示",IDC_STATIC,16,145,24,8
+END
+
+IDD_DUTY_REQUEST_DIALOG DIALOG  0, 0, 244, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "任务请求"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "接受(&A)",IDOK,58,159,50,14
+    PUSHBUTTON      "拒绝(&D)",IDC_DENY,118,159,50,14
+    LTEXT           "保留时间: 10秒",IDC_DUTY_TIMEOUT,7,143,164,8
+    CONTROL         "",IDC_DUTY_TEXT,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,7,7,230,121
+    LTEXT           "(请求将会被自动接受如果没有在规定时间内答复)",IDC_STATIC,7,135,230,8
+END
+
+IDD_DUTY_POPUP_DIALOG DIALOG  0, 0, 708, 152
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "任务通知"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,241,132,50,14
+    CONTROL         "",IDC_DUTY_TEXT,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,7,5,163,117
+    CONTROL         "",IDC_DUTY_TEXT2,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,184,5,163,117
+    CONTROL         "",IDC_DUTY_TEXT3,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,361,5,163,117
+    CONTROL         "",IDC_LINE1,"Static",SS_BLACKFRAME | SS_SUNKEN | NOT WS_VISIBLE,177,5,1,141
+    CONTROL         "",IDC_LINE2,"Static",SS_BLACKFRAME | SS_SUNKEN | NOT WS_VISIBLE,354,5,1,141
+    CONTROL         "",IDC_LINE3,"Static",SS_BLACKFRAME | SS_SUNKEN | NOT WS_VISIBLE,531,5,1,141
+    CONTROL         "",IDC_DUTY_TEXT4,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,538,5,163,117
+END
+
+IDD_EXCLUSIVE_DUTY_DIALOG DIALOG  0, 0, 264, 238
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "专项任务"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,78,216,50,14
+    PUSHBUTTON      "取消",IDCANCEL,134,216,50,14
+    CONTROL         "",IDC_EXCLUSIVE_DUTY_TEXT,"RICHEDIT",TCS_RAGGEDRIGHT | TCS_MULTISELECT | WS_VSCROLL | WS_TABSTOP,11,29,241,144
+    LTEXT           "当前会话拥有以下位置和子系统的专项任务:",IDC_STATIC,10,9,244,8
+    LTEXT           "请注意，一旦注销，会话将不会拥有这些子系统的任务，是否仍然要从控制站注销?",IDC_STATIC,11,187,232,17
+END
+
+IDD_DIALOG_DUTY_CHANGE DIALOG  0, 0, 149, 43
+STYLE DS_SETFONT | DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "任务改变通知"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "详细",IDB_DETAIL,25,22,38,14
+    PUSHBUTTON      "关闭",IDB_CLOSE,87,22,38,14
+    LTEXT           "当前任务改变",IDC_STATIC,33,7,85,13
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,27,13,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "ControlStation MFC Application"
+            VALUE "FileVersion", "00, 27, 13, 01"
+            VALUE "InternalName", "ControlStation"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "ControlStation.EXE"
+            VALUE "ProductName", "ControlStation Application"
+            VALUE "ProductVersion", "00, 27, 13, 01"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ARIALBOLD_LOGIN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 190
+        VERTGUIDE, 48
+        VERTGUIDE, 183
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_TASK_MANAGER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 231
+        TOPMARGIN, 7
+    END
+
+    IDD_CHANGE_PASSWORD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 191
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_ARIALBOLD_LOGOUT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 191
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 113
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 273
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\ControlStation.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\..\\..\\..\\bus\\resources\\TransActiveResources.rc"" // Standard Transactive Resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\ControlStation.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_CONTROLSTATION2     REGISTRY                "ControlStation2.rgs"
+IDR_RippleControlStation REGISTRY                "RippleControlStation.rgs"
+IDR_SCHEMATICDISPLAY    REGISTRY                "SchematicDisplay.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 Control Station(&A)"
+    IDS_REQUESTED_APPLICATION "被请求的应用程序"
+    IDS_EXIT                "退出"
+    IDS_RESTART             "重启工作站"
+    IDS_CHANGE_PROFILE      "更换角色"
+    IDS_CHANGE_OPERATOR     "更换操作员"
+    IDS_OPERATOR_OVERRIDE   "重载操作员"
+    IDS_CHANGE_PASSWORD     "改变密码"
+    IDS_LOGOUT              "注销"
+    IDS_LOGIN               "登录"
+    IDS_ONLINE              "在线"
+    IDS_OFFLINE             "离线"
+    IDS_OPERATOR            "操作员"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PROFILE             "角色"
+    IDS_LOCATION            "位置"
+    IDS_DISPLAY             "显示"
+    IDS_APPNAME             "控制站"
+    IDS_BANNER              "banner"
+    IDS_REMOVE_OPERATOR_OVERRIDE "移除操作员重载"
+    IDS_TASK_MANAGER        "任务管理器"
+    IDS_SHORTCUT_NAME       "快捷方式名称"
+    IDS_SUBSYSTEM           "子系统"
+    IDS_AUTHENTICATION_AGENT "验证代理"
+    IDS_SUCC                "屏幕保护已成功安装"
+    IDS_FAIL                "安装失败. 你可以重启计算机再试一次."
+    IDS_SCRFILENAME         "TransactScreensaver.scr"
+    IDS_PASSWORD            "密码"
+    IDS_REQUEST_FORMAT_WITH_LOCATION "你是否接受一个移交 %s/%s's 请求"
+    IDS_LOCATION_AND_SUBSYSTEM_FORMAT "\t%1\n%2\n"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_SUBSYSTEM_FORMAT    "\t\t%1\n"
+    IDS_PRE_TIMEOUT_FORMAT  "剩余时间: %us"
+    IDS_POST_TIMEOUT_FORMAT "剩余时间: 超时"
+    IDS_REQUEST_FORMAT_WITHOUT_LOCATION "你是否接受一个移交 %s/%s's 请求"
+    IDS_ERROR_MESSAGE       "显示一个运行的消息框架时发生错误。这是一个不可恢复的错误。请检查日志文件以获得更多信息。控制站现在即将退出。"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\ControlStation.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\..\..\..\bus\resources\TransActiveResources.rc" // Standard Transactive Resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,158 @@
+#if !defined(ALARM_UPDATE_IDL)
+#define ALARM_UPDATE_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/alarm/IDL/src/AlarmUpdateCorbaDef.idl $
+  * @author:  Ross Tucker
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * Alarm Updates are sent when an alarms state is changed
+  */
+
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+    enum DecisionSupportStateType
+    {
+        NoRelatedPlan,
+        RelatedAutomaticPlanNotRun,
+		RelatedSemiAutomaticPlanNotRun,
+        RelatedPlanHasBeenRun,
+        RelatedPlanHasBeenPostponed
+    };
+
+    enum MmsStateType
+    {
+        MMS_NONE,
+        MMS_SEMI,
+        MMS_AUTO,
+        MMS_JR_SENT,
+        MMS_ALM_SENT,
+        MMS_INHIBIT,
+        MMS_FAILED
+    };
+
+	struct AlarmUpdateCorbaDef
+	{
+		/**
+		 * The MessageTypeKey as defined in the MESSAGETYPE table
+		 */			
+		unsigned long messageTypeKey;
+
+		/**
+		 * The MessageContext of this alarm
+		 */			
+		string messageContext;
+
+		/**
+		 * An entity associated with this Alarm
+		 */
+		unsigned long assocEntityKey;
+
+		/**
+		* the locationKey of the entity
+		*/
+		unsigned long locationKey;
+
+		/**
+		  * The UUID of this alarm, as a string
+		  */
+		string alarmID;
+
+		/**
+		 * The fully formatted description as taken 
+		 * from the alarm type table
+		 */
+		string alarmDescription;
+
+        /**
+          * The name of the asset associated with the alarm
+          */
+        string assetName;
+
+		/**
+		  * Alarm comments
+		  */
+		string alarmComments;
+
+        /**
+          * Alarm acknowledged by
+          */
+        string alarmAcknowledgedBy;
+
+		/**
+		 * Time the Message was acked, if at all
+		 */
+		TA_Base_Core::DateTime ackTime;
+
+		/**
+		 * Time the Message was closed, if at all
+		 */
+		TA_Base_Core::DateTime closeTime;
+
+		/**
+		 * Close value of the alarm, if any
+		 */
+		 string closeValue;
+
+        /**
+          * Session ID of the operator who initiated the action
+          */
+        string session;
+
+        /**
+         * Decision support state
+         */
+        DecisionSupportStateType decisionSupportState;
+
+        /**
+         * MMS state
+         */
+        MmsStateType mmsState;
+
+        /**
+          * The sequence number for the message (used to identify packet loss)
+          */
+        unsigned long messageSequenceNumber;
+
+		/**
+		  * if the alarm has been acknowledged
+		  */
+		boolean alarmHasBeenAcknowledged;
+
+		/**
+		  * is the alarm has been (re)opened
+		  */
+		boolean alarmHasBeenOpened;
+
+		/**
+		  * is the alarm has been closed
+		  */
+		boolean alarmHasBeenClosed;
+
+        /**
+          * have comments been added to the alarm
+          */
+        boolean commentsWereAdded;
+
+        /**
+          * has the decision support state changed
+          */
+        boolean decisionSupportStateHasChanged;
+
+        /**
+          * has the MMS state changed
+          */
+        boolean mmsStateHasChanged;
+	};
+}; // module TA_Base_Core
+
+#endif // !defined(ALARM_UPDATE_IDL)

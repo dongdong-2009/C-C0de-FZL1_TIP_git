@@ -1,0 +1,61 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/maintenance_management/mmsCorbaDef/idl/src/IMmsGlobalInhibitCorbaDef.idl $
+// @author:  C. DeWolfe
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Interface used to set and get the global MMS Inhibit state.
+//
+
+#if !defined(IMmsGlobalMmsInhibitCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)
+#define IMmsGlobalMmsInhibitCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+	module TA_Base_Bus
+	{
+		interface IMmsGlobalInhibitCorbaDef
+		{
+
+			/**
+			*
+			* get the pkey of the datapoint representing the 
+			* global MMS Inhibit state
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws TA_Base_Core::DatabaseErrorException
+			*/	
+			unsigned long getGlobalInhibitKey()
+				raises( TA_Base_Core::OperationModeException, TA_Base_Core::DatabaseErrorException);
+
+			/**
+			*
+			* get the global MMS Inhibit state
+			*
+			* @throws TA_Base_Core::OperationModeException
+			*/	
+			boolean getGlobalMmsInhibit()
+				raises( TA_Base_Core::OperationModeException);
+
+			/**
+			*
+			* set the global MMS Inhibit state
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws TA_Base_Core::AccessDeniedException
+			* @throws TA_Base_Core::DatabaseErrorException
+			*/	
+			void setGlobalMmsInhibit(in boolean applied, in string sessionID)
+				raises( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TA_Base_Core::DatabaseErrorException);
+
+
+		}; // end interface IMmsGlobalMmsInhibitCorbaDef
+	}; // end module TA_Base_Bus
+
+#endif // !defined(IMmsGlobalMmsInhibitCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)

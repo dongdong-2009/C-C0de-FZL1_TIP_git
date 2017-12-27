@@ -1,0 +1,7 @@
+; TA_AgentEntityConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_AgentEntityConfigPlugin"
+DESCRIPTION  'TA_AgentEntityConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

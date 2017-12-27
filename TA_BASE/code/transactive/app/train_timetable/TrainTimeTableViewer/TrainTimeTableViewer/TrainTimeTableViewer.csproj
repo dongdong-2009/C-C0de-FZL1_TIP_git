@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F99F38F-D6C2-4C47-B06E-9E9B25715CA8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TrainTimeTableViewer</RootNamespace>
+    <AssemblyName>TrainTimeTableViewer</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\bin\win32_nd\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DAO.TimeTable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">     
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bin\win32_nd\DAO.TimeTable.dll</HintPath>
+    </Reference>
+    <Reference Include="NET_ISCS_Bridge, Version=1.0.5197.27298, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bin\win32_nd\NET_ISCS_Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="STEE.ISCS.GenericGUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bin\win32_nd\STEE.ISCS.GenericGUI.dll</HintPath>
+    </Reference>
+    <Reference Include="STEE.ISCS.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\bin\win32_nd\STEE.ISCS.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\COTS\trendingviewer\System.Windows.Forms.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ConfigFileHelper.cs" />
+    <Compile Include="Common\TrainTimeTableConst.cs" />
+    <Compile Include="Controller\TimeTableViewController.cs" />
+    <Compile Include="Controller\TimeTableWindowController.cs" />
+    <Compile Include="Model\TimeTableViewModel.cs" />
+    <Compile Include="Model\TimeTableWindowModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TimeTableWindow.resx">
+      <DependentUpon>TimeTableWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TrainTimeTableView.resx">
+      <DependentUpon>TrainTimeTableView.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TrainTimeTableApp.cs" />
+    <Compile Include="View\TimeTableViewFactory.cs" />
+    <Compile Include="View\TimeTableWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TimeTableWindow.Designer.cs">
+      <DependentUpon>TimeTableWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TrainTimeTableView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TrainTimeTableView.Designer.cs">
+      <DependentUpon>TrainTimeTableView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrainTimeTableChartCtrl\TrainTimeTableChartCtrl.csproj">
+      <Project>{5569713C-0B34-4172-B12A-938475F2DE74}</Project>
+      <Name>TrainTimeTableChartCtrl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainTimeTable\TrainTimeTable.csproj">
+      <Project>{2D4AF136-1E29-465A-82AF-4BDE9B38BCBC}</Project>
+      <Name>TrainTimeTable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Cancel.gif" />
+    <Content Include="Resources\Chart.gif" />
+    <None Include="Resources\Save-icon.png" />
+    <None Include="Resources\Print.ico" />
+    <Content Include="Resources\Yes v3.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

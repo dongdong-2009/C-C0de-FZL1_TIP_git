@@ -1,0 +1,299 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "#include ""..\\..\\..\\..\\bus\\resources\\TransActiveResources.rc""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "0c0904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "banner\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "banner\0"
+            VALUE "LegalCopyright", "版权 ?2003"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "banner.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Ripple banner\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0xc09, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ALARMPLANASSOC DIALOG  0, 0, 239, 122
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "相关计划"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDC_ALARMLISTBOX_OK,7,103,50,14
+    PUSHBUTTON      "取消",IDC_ALARMLISTBOX_CANCEL,182,103,50,14
+    LISTBOX         IDC_ALARMPLANLISTBOX,7,7,225,91,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+END
+
+IDD_VIEW_COMMENT_DLG DIALOGEX 0, 0, 189, 102
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "报警注释"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "编辑...",ID_BTN_EDIT,7,82,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,132,82,50,14
+    EDITTEXT        IDC_EDIT_ALARM_COMMENT,7,7,175,68,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    DEFPUSHBUTTON   "删除",ID_BTN_DELETE,70,82,50,14
+END
+
+IDD_EDIT_ALARM_COMMENT_DLG DIALOG  0, 0, 189, 102
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "编辑报警注释"
+FONT 10, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_ALARM_COMMENT,7,7,175,68,ES_MULTILINE | ES_AUTOVSCROLL
+    PUSHBUTTON      "取消",IDCANCEL,132,82,50,14
+    DEFPUSHBUTTON   "确定",IDOK,70,82,50,14
+END
+
+IDD_SUPPRESS_ALARM DIALOGEX 0, 0, 444, 52
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "禁止系统报警/子系统非设备报警 - [设备名称].[警告类型]"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,387,7,50,14
+    PUSHBUTTON      "取消",IDCANCEL,387,29,50,14
+    CONTROL         "禁止全部与选定报警具有相同设备名及报警类型的系统和子系统非设备报警",IDC_RADIO_ALARM_TYPE,
+                    "Button",BS_AUTORADIOBUTTON,12,11,356,10
+    CONTROL         "禁止全部与选定报警具有相同设备名，报警类型，及报警描述的系统报警盒子系统非设备报警",IDC_RADIO_ALARM_DESCRIPTION,
+                    "Button",BS_AUTORADIOBUTTON,12,30,363,10
+END
+
+IDD_PRECONFLICT_ACK_DLG DIALOG  0, 0, 251, 59
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "选择使其无效"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,194,7,50,14
+    PUSHBUTTON      "取消",IDCANCEL,194,24,50,14
+    CONTROL         "选项1",IDC_TRAIN1RADIO,"Button",BS_AUTORADIOBUTTON,7,29,184,10
+    CONTROL         "选项2",IDC_TRAIN2RADIO,"Button",BS_AUTORADIOBUTTON,7,41,183,10
+    LTEXT           "你确认了一个CCTV pre conflict 警告，哪一辆列车将被列为无效?",IDC_STATIC,7,7,183,17
+END
+
+IDD_INHIBIT_ALARM_CONFIRMATION DIALOGEX 0, 0, 243, 79
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "抑制系统的/非物理子系统的警告确认"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "是",IDOK,7,59,50,14
+    PUSHBUTTON      "否",IDCANCEL,186,59,50,14
+    LTEXT           "根据类型或描述确认抑制该警告",IDC_STATIC_CONFIRM_TEXT,7,7,229,49
+END
+
+IDD_LOCATION_SELECTION DIALOG  0, 0, 115, 46
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "选择列车位置"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,7,26,43,13
+    PUSHBUTTON      "取消",IDCANCEL,64,26,43,13
+    LTEXT           "位置:",IDC_STATIC,7,9,31,8
+    COMBOBOX        IDC_LOCSEL_COMBOBOX_LOCATIONS,45,7,63,146,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ALARMPLANASSOC, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 117
+    END
+
+    IDD_VIEW_COMMENT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 182
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 96
+    END
+
+    IDD_EDIT_ALARM_COMMENT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+    END
+
+    IDD_SUPPRESS_ALARM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 437
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_PRECONFLICT_ACK_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 244
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 52
+    END
+
+    IDD_INHIBIT_ALARM_CONFIRMATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 236
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 73
+    END
+
+    IDD_LOCATION_SELECTION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "警告(&A)"
+    BEGIN
+        MENUITEM "位置标志符",                       ID_PLACEHOLDER
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DELETE_COMMENT_FOR_ALARMS "删除 %1 警告"
+    IDS_EDIT_COMMENT_FOR_ALARMS "编辑 %1 警告注释"
+    IDS_RUN_SELECTED_PLAN   "运行选中计划"
+    IDS_ACKNOWLEDGE_ALL_VIEWABLE_ALARMS "应答所有可见警报"
+    IDS_UPDATE_COMMENT      "更新注释"
+    IDS_RUN                 "运行"
+    IDS_POSTPONE            "推迟"
+    IDS_REQUEST_MANAGER     "任务请求管理器"
+    IDS_EVENT_VIEWER        "事件查看器"
+    IDS_INSPECTOR_PANEL     "检查面板"
+    IDS_SCHEMATIC           "设备状态图"
+    IDS_ACKNOWLEDGE         "应答"
+    IDS_ACKNOWLEDGE_AND_CLOSE "应答并关闭"
+    IDS_COMMENT             "注释"
+    IDS_TREND_VIEWER        "Trend 查看器"
+	IDS_INHIBIT_ALARM		"抑制告警"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#include "..\..\..\..\bus\resources\TransActiveResources.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

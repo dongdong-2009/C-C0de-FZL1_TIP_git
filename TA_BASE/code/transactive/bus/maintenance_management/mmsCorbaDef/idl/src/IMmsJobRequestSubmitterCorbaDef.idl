@@ -1,0 +1,141 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/maintenance_management/mmsCorbaDef/idl/src/IMmsJobRequestSubmitterCorbaDef.idl $
+// @author:  C. DeWolfe
+// @version: $Revision: #2 $
+//
+// Last modification: $DateTime: 2015/01/27 15:05:52 $
+// Last modified by:  $Author: qi.huang $
+//
+// Interface used to submit MMS Job Request Messages.
+//
+
+#if !defined(IMmsJobRequestSubmitterCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)
+#define IMmsJobRequestSubmitterCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+
+	#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+	#include "bus/maintenance_management/mmsCorbaDef/idl/src/IMmsConnectionCorbaDef.idl"
+
+	module TA_Base_Bus
+	{
+        enum ESubmissionDeniedError
+        {
+            SUBMISSIONDENIED_NO_PRIVILEGE,
+            SUBMISSIONDENIED_DATAPOINT_MMS_INHIBITED,
+            SUBMISSIONDENIED_GLOBAL_MMS_INHIBITED,
+            SUBMISSIONDENIED_ALARM_ALREADY_RAISED,
+            SUBMISSIONDENIED_ALARM_NORMALIZED,
+            SUBMISSIONDENIED_ALARM_SUPPRESSED,
+            SUBMISSIONDENIED_MMS_INHIBITED_APPLYED,
+            SUBMISSIONDENIED_GLOBAL_MMS_INHIBITED_APPLYED,
+            SUBMISSIONDENIED_NO_DETERMINE_INHIBITION_STATE
+        };
+
+        enum EDependencyFailureError
+        {
+            DEPENDENCYFAILURE_MMS_SERVER_NO_CONTACTED,
+            DEPENDENCYFAILURE_NO_OPERATOR_DETAIL,
+            DEPENDENCYFAILURE_ALARM_AGENT_NO_CONTACTED,
+            DEPENDENCYFAILURE_NO_SPECIFIED_ALARM,
+            DEPENDENCYFAILURE_NO_SPECIFIED_DATAPOINT,
+            DEPENDENCYFAILURE_NO_EQUIPMENT_DATA,
+            DEPENDENCYFAILURE_NO_ALARM_DATA,
+            DEPENDENCYFAILURE_NO_SESSION
+        };
+
+		//thrown if state changes make the submission invalid
+        exception SubmissionDenied
+        {
+            string reason;
+            boolean rights;
+            ESubmissionDeniedError eType;
+        };
+
+        //this indicates that we could not talk to some portion of 
+        //the system that we needed to get the job done
+        exception DependencyFailure
+        {
+            string reason;
+            EDependencyFailureError eType;
+        };
+
+        //this indicates a programming error in the GUI
+        exception InvalidArg
+        {
+            string reason;
+        };
+
+		
+		interface IMmsJobRequestSubmitterCorbaDef
+		{
+
+			/**
+			*
+			* Use this to get the data you need to populate the JRM when the JRM is
+			* opened via an alarm
+			*
+			* This method does not raise events - the JRM does that.
+			* This method does report MMS Server health based on result of call to server 
+			*
+			* @param alarmUID: the selected alarm
+			* @param alarmLocationKey: the location of the alarm agent that owns the
+			* alarm
+			* @param sessionID: The session on the MFT
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws DependencyFailure
+			* @throws InvalidArg exception for programatic error
+			*/	
+			JobRequestDetailCorbaDef getDataFromAlarm(in string alarmUID, 
+				in unsigned long alarmLocationKey, in string sessionID)
+				raises( TA_Base_Core::OperationModeException, InvalidArg, 
+				DependencyFailure);
+
+			/**
+			*
+			* Use this to get the data you need to populate the JRM when the JRM is
+			* opened via a schematic symbol
+			*
+			* This method does not raise events - the JRM does that.
+			* This method does report MMS Server health based on result of call to server 
+			*
+			* @param entityName: the location of the alarm agent that owns the
+			* alarm
+			* @param sessionID: The session on the MFT
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws DependencyFailure
+			* @throws InvalidArg exception for programatic error
+			*/	
+			JobRequestDetailCorbaDef getDataFromSymbol(in string entityName, 
+				in string sessionID)
+				raises( TA_Base_Core::OperationModeException, InvalidArg, DependencyFailure );
+
+
+			/**
+			*
+			* Submit a Job Request. Note that the data in the jobRequest param is used to determine
+			* if the JRM was opened via an alarm or schematic
+			*
+			* This method does not raise events - the JRM does that.
+			* This method does report MMS Server health based on result of call to server 
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws DependencyFailure
+			* @throw InvalidArg exception for programatic error
+			* @throw SubmissionDenied if the alarm has been normalized or closed, or
+			* a Job Request has already been submitted on this alarm. Or operator does
+			* not have sufficient rights
+			*/
+			void submitJobRequest(in TA_Base_Bus::JobRequestDetailCorbaDef jobRequest, in string sessionID)
+				raises( TA_Base_Core::OperationModeException, InvalidArg, 
+				DependencyFailure, SubmissionDenied );
+
+
+		}; // end interface IMmsJobRequestSubmitterCorbaDef
+	}; // end module TA_Base_Bus
+
+#endif // !defined(IMmsJobRequestSubmitterCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)

@@ -1,0 +1,410 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SYSTEMCONTROLLER_DIALOG DIALOGEX 0, 0, 220, 87
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "配置管理器"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    EDITTEXT        IDC_HOST_NAME,61,21,144,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PORT_NUMBER,61,39,144,13,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "确定",IDOK,53,66,50,14
+    PUSHBUTTON      "取消",IDCANCEL,115,66,50,14
+    LTEXT           "主机名:",IDC_STATIC,15,23,39,12
+    LTEXT           "端口号:",IDC_STATIC,15,41,44,12
+    GROUPBOX        "系统控制器详情",IDC_STATIC,7,7,206,53
+END
+
+IDD_LOGIN_DIALOG DIALOGEX 0, 0, 274, 126
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "配置管理器"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    COMBOBOX        IDC_NAME_COMBO,51,22,206,83,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PROFILE_COMBO,51,39,206,80,CBS_DROPDOWNLIST | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LOCATION_COMBO,51,55,206,74,CBS_DROPDOWNLIST | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_PASSWORD_EDIT,51,72,206,12,ES_PASSWORD | ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "确定",IDOK,82,105,50,14
+    PUSHBUTTON      "取消",IDCANCEL,142,105,50,14
+    LTEXT           "操作员:",IDC_STATIC,13,25,36,14
+    LTEXT           "操作角色:",IDC_STATIC,13,41,37,14
+    LTEXT           "站点:",IDC_STATIC,13,57,32,14
+    LTEXT           "密码:",IDC_STATIC,13,73,34,14
+    GROUPBOX        "登录",IDC_STATIC,7,7,260,88
+END
+
+IDD_DATABASELOGIN_DIALOG DIALOGEX 0, 0, 274, 117
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "配置管理器"
+FONT 10, "宋体", 400, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_DATABASE,56,36,201,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_USERNAME,56,52,201,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD,56,69,201,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,82,96,50,14
+    PUSHBUTTON      "取消",IDCANCEL,142,96,50,14
+    LTEXT           "用户名:",-1,13,54,36,14
+    LTEXT           "数据库:",-1,13,38,38,14
+    LTEXT           "密码:",-1,13,70,34,14
+    GROUPBOX        "数据库登录",-1,7,22,260,68
+    LTEXT           "登录数据库的原因:",IDC_REASON,7,7,260,11
+END
+
+IDD_LOADPROGRESS DIALOGEX 0, 0, 294, 35
+STYLE DS_SETFONT | DS_SETFOREGROUND | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "配置管理器正在加载..."
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    CONTROL         "Progress1",IDC_LOADPROGRESS,"msctls_progress32",PBS_SMOOTH | WS_BORDER,3,16,287,15
+    LTEXT           "加载插件:",IDC_PROGRESS_STATIC,4,3,209,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_SYSTEMCONTROLLER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 80
+    END
+
+    IDD_LOGIN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 119
+    END
+
+    IDD_DATABASELOGIN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 110
+    END
+
+    IDD_LOADPROGRESS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 293
+        BOTTOMMARGIN, 33
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "重新加载(&R)",                    ID_APP_RELOAD
+        MENUITEM SEPARATOR
+        MENUITEM "退出(&x)",                      ID_APP_EXIT
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "小图标(&m)",                     ID_VIEW_SMALLICONS
+        MENUITEM "大图标(&L)",                     ID_VIEW_LARGEICONS
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "帮助/索引(&H)?\tF1",              ID_HELP_INDEX
+        MENUITEM "关于(&A)",                      ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileVersion", "0, 0, 0, 0"
+            VALUE "ProductVersion", "0, 0, 0, 0"
+            VALUE "产品名称", "ConfigurationEditor Application"
+            VALUE "产品版本", "0, 0, 0, 0"
+            VALUE "公司名称", "Ripple"
+            VALUE "内部名称", "ConfigurationEditor"
+            VALUE "原始名称", "ConfigurationEditor.EXE"
+            VALUE "合法版本", "Copyright (C) 2003"
+            VALUE "文件描述", "ConfigurationEditor MFC Application"
+            VALUE "文件版本", "0, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR             BITMAP                  "..\\res\\toolbar1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR TOOLBAR  16, 17
+BEGIN
+    BUTTON      ID_APP_RELOAD
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F1,          ID_HELP_INDEX,          VIRTKEY, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示应用程序版本信息\n关于"
+    ID_APP_EXIT             "退出应用程序\n退出"
+    ID_HELP_INDEX           "显示上下文相关帮助"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "分割窗口成网格\n分割"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "改变窗口大小"
+    AFX_IDS_SCMOVE          "改变窗口位置"
+    AFX_IDS_SCMINIMIZE      "最小化窗口"
+    AFX_IDS_SCMAXIMIZE      "最大化窗口"
+    AFX_IDS_SCCLOSE         "关闭窗口"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "恢复窗口"
+    AFX_IDS_SCTASKLIST      "任务列表"
+    IDS_MENU_ITEM           "菜单项"
+    IDS_TOOLBAR             "工具栏"
+    IDS_PORT_NUMBER         "端口号"
+    IDS_INVALID_USER        " 无效操作员"
+    IDS_INVALID_PROFILE     " 无效操作角色"
+    IDS_INVALID_LOCATION    " 无效站点"
+    IDS_INVALID_PASSWORD    " 无效密码"
+    IDS_INVALID_WORKSTATION " 未授权工作站"
+    IDS_PROFILE_NOT_PERMITTED " 未授权操作角色"
+    IDS_LOCATION_NOT_PERMITTED " 未授权站点"
+    IDS_LOGIN               "登录"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_SMALLICONS      "在选择栏显示小图标\n小图标"
+    ID_VIEW_LARGEICONS      "在选择栏显示大图标\n大图标"
+    ID_APP_RELOAD           "从数据库重新加载所有数据\n重新加载"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ABOUTBOX            "显示应用程序版本信息\n关于"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_APPNAME             "配置管理器"
+    IDS_AUTHENTICATION_AGENT "Authentication Agent"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\ConfigurationEditor.ico"
+IDR_TESTDOTYPE          ICON                    "..\\res\\ConfigurationEditorDoc.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\ConfigurationEditor.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\..\\..\\bus\\resources\\TransActiveResources.rc"" // Standard Transactive Resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "..\res\ConfigurationEditor.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\..\..\bus\resources\TransActiveResources.rc" // Standard Transactive Resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

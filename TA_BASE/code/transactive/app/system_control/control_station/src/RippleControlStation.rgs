@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{7D9185A1-CF4B-4756-A29D-1292B1F17683} = s 'RippleControlStation'
+		'RippleControlStation.EXE'
+		{
+			val AppID = s {7D9185A1-CF4B-4756-A29D-1292B1F17683}
+		}
+	}
+}

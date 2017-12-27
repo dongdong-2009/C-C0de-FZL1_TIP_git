@@ -1,0 +1,168 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// 2110
+//
+
+RIPPLELOGO              2110    DISCARDABLE     "Html\\ripple_logo_180.gif"
+ABOUT_ICON              2110    DISCARDABLE     "Html\\about_icon.gif"
+ADD_MSG_ICON            2110    DISCARDABLE     "Html\\add_msg_icon.gif"
+BACK_ICON               2110    DISCARDABLE     "Html\\back_icon.gif"
+COLUMN_SELECTOR_ICON    2110    DISCARDABLE     "Html\\column_selector_icon.gif"
+COPY_ICON               2110    DISCARDABLE     "Html\\copy_icon.gif"
+CUT_ICON                2110    DISCARDABLE     "Html\\cut_icon.gif"
+DELETE_ICON             2110    DISCARDABLE     "Html\\delete_icon.gif"
+EXPORT_TO_RC_ICON       2110    DISCARDABLE     "Html\\export_to_rc_icon.gif"
+FORWARD_ICON            2110    DISCARDABLE     "Html\\forward_icon.gif"
+HOME_ICON               2110    DISCARDABLE     "Html\\home_icon.gif"
+NEXT_ERROR_ICON         2110    DISCARDABLE     "Html\\next_error_icon.gif"
+NEXT_WARNING_ICON       2110    DISCARDABLE     "Html\\next_warning_icon.gif"
+OPEN_ICON               2110    DISCARDABLE     "Html\\open_icon.gif"
+PARAM_INPUT_ICON        2110    DISCARDABLE     "Html\\param_input_icon.gif"
+PASTE_ICON              2110    DISCARDABLE     "Html\\paste_icon.gif"
+PRINT_ICON              2110    DISCARDABLE     "Html\\print_icon.gif"
+PROPERTIES_ICON         2110    DISCARDABLE     "Html\\properties_icon.gif"
+REFRESH_ICON            2110    DISCARDABLE     "Html\\refresh_icon.gif"
+SAVE_ICON               2110    DISCARDABLE     "Html\\save_icon.gif"
+SHOW_OBSOLETE_ICON      2110    DISCARDABLE     "Html\\show_obsolete_icon.gif"
+STOP_ICON               2110    DISCARDABLE     "Html\\stop_icon.gif"
+TEST_ICON               2110    DISCARDABLE     "Html\\test_icon.gif"
+ADD_LANG_DIALOG         2110    DISCARDABLE     "Html\\add_lang_dialog.png"
+EXPORT_TO_RC            2110    DISCARDABLE     "Html\\export_to_rc.png"
+MESSAGE_ATTRIBUTES      2110    DISCARDABLE     "Html\\message_attributes.png"
+MESSAGE_PARAMS          2110    DISCARDABLE     "Html\\message_params.png"
+MESSAGE_STRING          2110    DISCARDABLE     "Html\\message_string.png"
+MESSAGE_STYLE           2110    DISCARDABLE     "Html\\message_style.png"
+PARAMETER_INPUT         2110    DISCARDABLE     "Html\\parameter_input.png"
+RC_SETTINGS_CUSTOM      2110    DISCARDABLE     "Html\\rc_settings_custom.png"
+RC_SETTINGS_GENERAL     2110    DISCARDABLE     "Html\\rc_settings_general.png"
+ADD_MSG                 2110    DISCARDABLE     "Html\\add_msg.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+IDR_HTML_STRING_ERRORS  HTML    DISCARDABLE     "Html\\string_error.htm"
+IDR_HTML_MESSAGE_FMT    HTML    DISCARDABLE     "Html\\message_format.htm"
+IDR_HTML_EXTERNAL_START HTML    DISCARDABLE     "Html\\external_start.htm"
+IDR_HTML_INTERNAL_START HTML    DISCARDABLE     "Html\\internal_start.htm"
+IDR_HTML_ADD_MESSAGE    HTML    DISCARDABLE     "Html\\add_message.htm"
+IDR_HTML_REMOVE_MESSAGE HTML    DISCARDABLE     "Html\\remove_message.htm"
+IDR_HTML_INTERNAL_USING HTML    DISCARDABLE     "Html\\using.htm"
+IDR_HTML_ADD_NEW_LANGUAGE HTML    DISCARDABLE     "Html\\add_language.htm"
+IDR_HTML_COMMAND_LINE   HTML    DISCARDABLE     "Html\\command_line.htm"
+IDR_HTML_MESSAGE_PROPERTIES HTML    DISCARDABLE     "Html\\message_properties.htm"
+IDR_HTML_PARAMETER_INPUT HTML    DISCARDABLE     "Html\\parameter_input.htm"
+IDR_HTML_BUILD_INTEGRATION HTML    DISCARDABLE     "Html\\build_integration.htm"
+IDR_HTML_EXPORT_TO_RC   HTML    DISCARDABLE     "Html\\export_to_rc.htm"
+IDR_HTML_EXTERNAL_USING HTML    DISCARDABLE     "Html\\external_using.htm"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "0c0904b0"
+        BEGIN
+            VALUE "Comments", "Help files for the System Messages Dictionary editor\0"
+            VALUE "CompanyName", "Ripple Systems\0"
+            VALUE "FileDescription", "TA_MessageLibraryHelp.dll\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "TA_MessageLibrary\0"
+            VALUE "LegalCopyright", "Copyright © 2004 Ripple Systems\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_MessageLibraryHelp.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "System Messages Dictionary Editor\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0xc09, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

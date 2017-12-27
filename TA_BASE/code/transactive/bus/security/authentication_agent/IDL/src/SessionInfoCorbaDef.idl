@@ -1,0 +1,62 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/authentication_agent/IDL/src/SessionInfoCorbaDef.idl $
+// @author:  Nick Jardine
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Authentication Agent IDL Interface
+//
+
+module TA_Base_Bus
+{
+    module TA_Security
+    {
+        enum EUpdateType
+        {
+            SessionStart,
+            SessionEnd,
+            ProfileUpdate,
+            BeginOverride,
+            EndOverride
+        };
+    };
+
+
+    struct SessionInfoCorbaDef
+    {
+        // This struct contains session info as it is sent across the wire. It is used in a number of different situations,
+        // so the message contains ALL information about a session.
+
+        string SessionId;               // The session Id
+        unsigned long UserId;           // The user Id
+        unsigned long ProfileId;        // The profile Id
+        unsigned long LocationId;       // The location Id
+        unsigned long WorkstationId;    // The workstiaton Id
+		//the Change//
+		boolean isDisplayOnly;
+        TA_Security::EUpdateType updateType;         // This flag notifies the recieving agent whether or not this is a starting or 
+                                        // ending session. True if this is a session start message, false if a session end.
+
+        sequence<unsigned long> additionalOperators; // This sequence tracks the operators associated with the
+                                                     // the additional profiles.
+
+        sequence<unsigned long> additionalProfiles; // This sequence is used for profile updates, or to contain any profiles in addition
+                                                    // to the base profile for session starts.
+    };
+
+    typedef sequence<SessionInfoCorbaDef> SessionInfoSequence;
+
+    struct AuthentcationBatchUpdateCorbaDef
+    {
+        // This struct is used to bundle up two different sequences of session information in the one update.
+
+        SessionInfoSequence DatabaseQueue;  // This sequence contains the database queue
+        SessionInfoSequence SessionRegister; // This sequence contains the session register
+    };
+};

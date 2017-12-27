@@ -1,0 +1,7 @@
+; TA_OperatorConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_OperatorConfigPlugin"
+DESCRIPTION  'TA_OperatorConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

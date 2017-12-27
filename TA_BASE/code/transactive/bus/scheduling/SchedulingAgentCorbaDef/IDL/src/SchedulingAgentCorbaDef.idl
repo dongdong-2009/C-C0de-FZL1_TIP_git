@@ -1,0 +1,426 @@
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/scheduling/SchedulingAgentCorbaDef/IDL/src/SchedulingAgentCorbaDef.idl $
+  * @author:  Dirk McCormick
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * This is the interface to the Scheduling Agent
+  */
+
+
+#ifndef SCHEDULING_AGENT_CORBA_DEF
+#define SCHEDULING_AGENT_CORBA_DEF
+
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface SchedulingAgentCorbaDef
+    {
+
+        enum DayOfWeek
+        {
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sunday
+        };
+
+        typedef sequence< DayOfWeek > DayOfWeekSequence;
+
+
+        // January must be the first entry and December must be the last.
+        enum MonthOfYear
+        {
+            January,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December
+        };
+
+
+        enum ScheduleType
+        {
+            OnceOff,
+            Daily,
+            Weekly,
+            Monthly,
+            Yearly
+        };
+
+		
+		// bad schedule exception types
+		enum BadScheduleReason
+		{
+			InvalidMinute,
+			InvalidHour,
+			InvalidDate,
+			InvalidDayOfMonth,
+			InvalidMonth,
+			InvalidYear,
+			EndDateNotRequired,
+			MissingDayOfWeek
+		};
+
+		// bad job exception types
+		enum BadJobReason
+		{
+			MissingParameter,
+			BadParameterValue
+		};
+
+
+        ////////////////////////////////////////////
+        //             ScheduleCorbaDef           //
+        ////////////////////////////////////////////
+
+        struct ScheduleCorbaDef
+        {
+            ScheduleType      type;
+
+            unsigned short    minute;
+            unsigned short    hour;
+
+            // The day of month may be 0 for a ScheduleType of Monthly.
+            // This indicates that the job should be run on the last day
+            // of every month.
+            unsigned short    dayOfMonth;
+            MonthOfYear       month;
+
+            DayOfWeekSequence daysOfWeek;
+
+            // The year for a once off schedule entry
+            unsigned short    year;
+            
+
+            // The last day on which the job is run.
+            // If the endDay field is 0, the job is assumed to recur
+            // indefinitely. (For daily, weekly, monthly and yearly jobs)
+            unsigned short    endDay;
+            MonthOfYear       endMonth;
+            unsigned short    endYear;
+        };
+
+
+        ////////////////////////////////////////////
+        //             RunTimeCorbaDef            //
+        ////////////////////////////////////////////
+
+        struct RunTimeCorbaDef
+        {
+
+            unsigned short    minute;
+            unsigned short    hour;
+
+			// if zero the job is not scheduled
+            unsigned short    dayOfMonth;
+
+            MonthOfYear       month;
+            unsigned short    year;
+            
+        };
+
+
+
+
+        ///////////////////////////////////////
+        //             JobCorbaDef           //
+        ///////////////////////////////////////
+        struct NameValuePair
+        {
+            string name;
+            string value;
+        };
+
+        typedef sequence<NameValuePair> JobData;
+        typedef sequence<string> JobTypeSeq;
+
+        struct JobCorbaDef
+        {
+            // The ID is assigned by the agent when a job is first scheduled.
+            string identifier;
+
+            // The type of the job
+            string type;
+
+            // The type specific job data
+            JobData data;
+
+            // The ID of the profile and associated location used when
+            // executing the job (this is specified when the job is scheduled)
+            unsigned long  profileIdentifier;
+            unsigned long locationIdentifier;
+
+            // A description of the job
+            string description;
+
+            // The Schedule associated with this job
+            ScheduleCorbaDef schedule;
+
+			// The next scheduled run time.
+			// Should only be filled in by the agent
+			RunTimeCorbaDef runTime;
+
+
+            // Indicates whether the job is being inhibited.
+            // true  - the job is being inhibited
+            // false - the job is not being inhibited
+            boolean isInhibited;
+
+			//indicates wether the job is enabled
+        };
+
+        typedef sequence< JobCorbaDef > JobSequence;
+
+
+
+
+
+        ////////////////////////////////////////////////
+        //             JobTimeCorbaDef                //
+        ////////////////////////////////////////////////
+		struct JobTimeCorbaDef
+		{
+			string      jobIdentifer;
+			RunTimeCorbaDef	runTime;
+		};
+
+
+
+        ////////////////////////////////////////////////
+        //             JobInstanceCorbaDef            //
+        ////////////////////////////////////////////////
+
+        typedef unsigned long minuteT;
+
+        struct JobInstanceCorbaDef
+        {
+            string   jobIdentifier;
+            minuteT minuteStarted;
+        };
+
+        typedef sequence< JobInstanceCorbaDef > JobInstanceSequence;
+
+
+
+
+        ///////////////////////////////////////////////
+        //             BatchUpdateCorbaDef           //
+        ///////////////////////////////////////////////
+
+        struct BatchUpdateCorbaDef
+        {
+            // The collection of jobs that are currently scheduled
+            JobSequence jobs;
+            
+            // The collection of job instances that are currently running
+            JobInstanceSequence  jobInstances;
+        };
+
+
+
+
+        //////////////////////////////////////
+        //             Exceptions           //
+        //////////////////////////////////////
+
+        //
+        // Thrown when a badly formatted schedule is created or retrieved
+        // from the database.
+        // A badly formatted schedule is one that is inconsistent,
+        // eg the date is invalid.
+        //
+        exception BadScheduleException
+        {
+			BadScheduleReason reason;
+            string what;
+        };
+
+
+        //
+        // Thrown when there is a problem with a job that is scheduled
+        // or updated. eg a PlanRunnerJob is scheduled but the plan is
+        // not a batch plan.
+        //
+        exception BadJobException
+        {
+			BadJobReason reason;
+            string what;
+        };
+
+        
+        //
+        // Thrown if the data field of the JobCorbaDef object is unrecognised
+        // by the Agent. ie it cannot be cast to a specific type of Job eg a
+        // PlanRunnerJob
+        //
+        exception UnrecognisedJobTypeException
+        {
+            string what;
+        };
+
+
+        //
+        // Thrown if an operation is requested on a job that does
+        // not exist.
+        //
+        exception JobDoesNotExistException
+        {
+            string what;
+        };
+
+
+        //
+        // Thrown if a request is made to schedule a once-off job in the past.
+        //
+        exception JobInPastException
+        {
+            string what;
+        };
+
+        //
+        // Thrown if a request is made to schedule a once-off job in the past.
+        //
+        exception TooManyJobsException
+        {
+            string what;
+        };
+
+        //
+        // Thrown if the agent could not contact the Rights Agent
+        //
+        exception NoRightsAgentException
+        {
+            string what;
+        };
+
+		//TD16352++
+		//
+        // Thrown if job is being edited
+        //
+        exception EditLockException
+        {
+            string what;
+        };
+
+        ///////////////////////////////////
+        //             Methods           //
+        ///////////////////////////////////
+        /**
+        *   get the list of all supported job types
+        */
+        JobTypeSeq getSupportedJobTypes(in string sessionIdentifier)
+        raises( TA_Base_Core::OperationModeException,
+                TA_Base_Core::AccessDeniedException, 
+                NoRightsAgentException);
+
+        /**
+         *  Adds the given job to the queue of scheduled jobs.
+         */
+        string scheduleJob( in JobCorbaDef job,
+                           in string sessionIdentifier )
+        raises( TA_Base_Core::OperationModeException,
+                TA_Base_Core::AccessDeniedException,
+                TA_Base_Core::DatabaseErrorException,
+                UnrecognisedJobTypeException, JobInPastException,
+                BadScheduleException, BadJobException,
+                TooManyJobsException, NoRightsAgentException );
+
+
+		//TD16352++
+		//Add support for throwing edit lock exception
+
+        /**
+         *  Remove the job with the given ID from the queue of scheduled
+         *  jobs.
+         */
+        void removeJob( in string jobIdentifier,
+                        in string sessionIdentifier )
+        raises( TA_Base_Core::OperationModeException,
+                TA_Base_Core::AccessDeniedException,
+                TA_Base_Core::DatabaseErrorException,
+                JobDoesNotExistException, NoRightsAgentException,
+				EditLockException );
+
+
+
+        /**
+         *  Updates the details of the job.
+         */
+		
+        void updateJob( in JobCorbaDef job,
+                        in string sessionIdentifier,
+						in boolean changeEnabled,
+						in boolean checkIfInPast )
+        raises( TA_Base_Core::OperationModeException,
+                TA_Base_Core::AccessDeniedException,
+                TA_Base_Core::DatabaseErrorException,
+                UnrecognisedJobTypeException, JobInPastException,
+                BadScheduleException, BadJobException,
+                JobDoesNotExistException,
+                TooManyJobsException, NoRightsAgentException,
+				EditLockException );
+		
+		
+		/**
+         *  Interface for updating the edit lock
+         */
+		void updateEditLock(in string jobIdentifier,
+			in string sessionIdentifier,
+			in boolean bLock)
+		raises( JobDoesNotExistException,
+				TA_Base_Core::OperationModeException );//limin
+
+		/**
+         *  Interface for checking edit lock
+         */
+		boolean isJobLockedForEdit(in string jobIdentifier, in string sessionIdentifier)
+			raises( TA_Base_Core::OperationModeException );//limin
+
+		//++TD16352
+
+        
+        /**
+         *  Gets the job with the given ID from the queue of scheduled jobs.
+         */
+        JobCorbaDef getJob( in string jobIdentifier,
+                            in string sessionIdentifier )
+        raises( TA_Base_Core::OperationModeException,
+                TA_Base_Core::AccessDeniedException,
+                TA_Base_Core::DatabaseErrorException,
+                JobDoesNotExistException, BadScheduleException, 
+                NoRightsAgentException );
+
+
+        /**
+         *  Gets all scheduled jobs.
+         */
+        JobSequence getAllJobs( in string sessionIdentifier )
+        raises( TA_Base_Core::OperationModeException,
+                TA_Base_Core::AccessDeniedException,
+                TA_Base_Core::DatabaseErrorException,
+                BadScheduleException, NoRightsAgentException );
+
+    };
+};
+
+#endif // SCHEDULING_AGENT_CORBA_DEF
+

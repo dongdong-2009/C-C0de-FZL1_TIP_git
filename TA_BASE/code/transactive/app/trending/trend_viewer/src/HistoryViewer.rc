@@ -1,0 +1,750 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_HISTORYVIEWER_DIALOG DIALOGEX 0, 0, 444, 325
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Trend 查看器"
+MENU IDR_MAINMENU
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    LTEXT           "起始时间",IDC_START_STATIC,40,301,34,8
+    LTEXT           "终止时间",IDC_END_STATIC,314,301,29,8
+    LTEXT           "选项1",IDC_STATIC1,353,11,22,8
+    LTEXT           "选项2",IDC_STATIC2,353,42,21,8
+    LTEXT           "选项3",IDC_STATIC3,353,73,21,8
+    LTEXT           "选项4",IDC_STATIC4,353,104,22,8
+    LTEXT           "选项5",IDC_STATIC5,353,135,24,8
+    LTEXT           "选项6",IDC_STATIC6,353,166,21,8
+    LTEXT           "选项7",IDC_STATIC7,353,197,22,8
+    LTEXT           "选项8",IDC_STATIC8,353,228,23,8
+    LTEXT           "当前时间",IDC_CURSOR_TIME,353,261,40,8
+    LTEXT           "范围",IDC_RANGE1,353,20,22,8
+    LTEXT           "值:",IDC_VALUE1,353,29,22,8
+    LTEXT           "范围",IDC_RANGE2,353,51,22,8
+    LTEXT           "值:",IDC_VALUE2,353,60,22,8
+    LTEXT           "范围",IDC_RANGE3,353,82,22,8
+    LTEXT           "值:",IDC_VALUE3,353,91,22,8
+    LTEXT           "范围",IDC_RANGE4,353,112,22,8
+    LTEXT           "值:",IDC_VALUE4,353,121,22,8
+    LTEXT           "范围",IDC_RANGE5,353,143,22,8
+    LTEXT           "值:",IDC_VALUE5,353,152,22,8
+    LTEXT           "范围",IDC_RANGE6,353,175,22,8
+    LTEXT           "值:",IDC_VALUE6,353,184,22,8
+    LTEXT           "范围",IDC_RANGE7,353,205,22,8
+    LTEXT           "值:",IDC_VALUE7,353,214,22,8
+    LTEXT           "范围",IDC_RANGE8,353,236,22,8
+    LTEXT           "值:",IDC_VALUE8,353,245,22,8
+    GROUPBOX        "",IDC_DISPLAY_AREA,347,5,93,276
+    LTEXT           "偏移",IDC_OFFSET_TIME,353,270,19,8
+    CONTROL         "",IDC_TCHART1,"{FAB9B41C-87D6-474D-AB7E-F07D78F2422E}",
+                    WS_TABSTOP,3,9,342,285
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "HistoryViewer MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "HistoryViewer\0"
+            VALUE "LegalCopyright", "版权 (C) 2002\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "HistoryViewer.EXE\0"
+            VALUE "ProductName", "HistoryViewer Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_HISTORYVIEWER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 440
+        BOTTOMMARGIN, 321
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_HISTORYVIEWER_DIALOG DLGINIT
+BEGIN
+    IDC_TCHART1, 0x376, 1793, 0
+0x0000, 0x0000, 0x5054, 0x3046, 0x540b, 0x6843, 0x7261, 0x4374, 0x6168, 
+0x7472, 0x0400, 0x654c, 0x7466, 0x0002, 0x5403, 0x706f, 0x0002, 0x5705, 
+0x6469, 0x6874, 0xac03, 0x0602, 0x6548, 0x6769, 0x7468, 0x3a03, 0x1002, 
+0x6142, 0x6b63, 0x6d49, 0x6761, 0x2e65, 0x6e49, 0x6973, 0x6564, 0x0e09, 
+0x6142, 0x6b63, 0x6d49, 0x6761, 0x2e65, 0x6f4d, 0x6564, 0x0707, 0x6270, 
+0x546d, 0x6c69, 0x0e65, 0x6142, 0x6b63, 0x6d49, 0x6761, 0x2e65, 0x6144, 
+0x6174, 0x420a, 0x0003, 0x0700, 0x4254, 0x7469, 0x616d, 0x3670, 0x0003, 
+0x4200, 0x364d, 0x0003, 0x0000, 0x0000, 0x3600, 0x0000, 0x2800, 0x0000, 
+0x1000, 0x0000, 0x1000, 0x0000, 0x0100, 0x1800, 0x0000, 0x0000, 0x0000, 
+0x0003, 0xc400, 0x000e, 0xc400, 0x000e, 0x0000, 0x0000, 0x0000, 0x0000, 
+0xff00, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 
+0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0x0fff, 0x6142, 0x6b63, 
+0x6d49, 0x6761, 0x4965, 0x736e, 0x6469, 0x0965, 0x420d, 0x6361, 0x496b, 
+0x616d, 0x6567, 0x6f4d, 0x6564, 0x0707, 0x6270, 0x546d, 0x6c69, 0x0c65, 
+0x614d, 0x6772, 0x6e69, 0x6f42, 0x7474, 0x6d6f, 0x0002, 0x4d0a, 0x7261, 
+0x6967, 0x4c6e, 0x6665, 0x0274, 0x0b00, 0x614d, 0x6772, 0x6e69, 0x6952, 
+0x6867, 0x0274, 0x0901, 0x614d, 0x6772, 0x6e69, 0x6f54, 0x0270, 0x1102, 
+0x6954, 0x6c74, 0x2e65, 0x6f46, 0x746e, 0x482e, 0x6965, 0x6867, 0x0274, 
+0x10f3, 0x6954, 0x6c74, 0x2e65, 0x6f46, 0x746e, 0x532e, 0x7974, 0x656c, 
+0x060b, 0x7366, 0x6f42, 0x646c, 0x1200, 0x6954, 0x6c74, 0x2e65, 0x6554, 
+0x7478, 0x532e, 0x7274, 0x6e69, 0x7367, 0x0601, 0x5408, 0x6565, 0x6843, 
+0x7261, 0x0074, 0x540d, 0x7469, 0x656c, 0x562e, 0x7369, 0x6269, 0x656c, 
+0x1c08, 0x6f42, 0x7474, 0x6d6f, 0x7841, 0x7369, 0x4c2e, 0x6261, 0x6c65, 
+0x4673, 0x6e6f, 0x2e74, 0x6548, 0x6769, 0x7468, 0xf302, 0x421b, 0x746f, 
+0x6f74, 0x416d, 0x6978, 0x2e73, 0x614c, 0x6562, 0x736c, 0x6f46, 0x746e, 
+0x532e, 0x7974, 0x656c, 0x060b, 0x7366, 0x6f42, 0x646c, 0x1800, 0x6f42, 
+0x7474, 0x6d6f, 0x7841, 0x7369, 0x542e, 0x7469, 0x656c, 0x432e, 0x7061, 
+0x6974, 0x6e6f, 0x0406, 0x6954, 0x656d, 0x421c, 0x746f, 0x6f74, 0x416d, 
+0x6978, 0x2e73, 0x6954, 0x6c74, 0x2e65, 0x6f46, 0x746e, 0x482e, 0x6965, 
+0x6867, 0x0274, 0x1bf3, 0x6f42, 0x7474, 0x6d6f, 0x7841, 0x7369, 0x542e, 
+0x7469, 0x656c, 0x462e, 0x6e6f, 0x2e74, 0x7453, 0x6c79, 0x0b65, 0x6606, 
+0x4273, 0x6c6f, 0x0064, 0x4c12, 0x6665, 0x4174, 0x6978, 0x2e73, 0x7541, 
+0x6f74, 0x616d, 0x6974, 0x0863, 0x4c19, 0x6665, 0x4174, 0x6978, 0x2e73, 
+0x7541, 0x6f74, 0x616d, 0x6974, 0x4d63, 0x7861, 0x6d69, 0x6d75, 0x1908, 
+0x654c, 0x7466, 0x7841, 0x7369, 0x412e, 0x7475, 0x6d6f, 0x7461, 0x6369, 
+0x694d, 0x696e, 0x756d, 0x086d, 0x4c1a, 0x6665, 0x4174, 0x6978, 0x2e73, 
+0x614c, 0x6562, 0x736c, 0x6f46, 0x746e, 0x482e, 0x6965, 0x6867, 0x0274, 
+0x19f3, 0x654c, 0x7466, 0x7841, 0x7369, 0x4c2e, 0x6261, 0x6c65, 0x4673, 
+0x6e6f, 0x2e74, 0x7453, 0x6c79, 0x0b65, 0x6606, 0x4273, 0x6c6f, 0x0064, 
+0x4c16, 0x6665, 0x4174, 0x6978, 0x2e73, 0x6954, 0x6c74, 0x2e65, 0x6143, 
+0x7470, 0x6f69, 0x066e, 0x500a, 0x7265, 0x6563, 0x746e, 0x6761, 0x1a65, 
+0x654c, 0x7466, 0x7841, 0x7369, 0x542e, 0x7469, 0x656c, 0x462e, 0x6e6f, 
+0x2e74, 0x6548, 0x6769, 0x7468, 0xf302, 0x4c19, 0x6665, 0x4174, 0x6978, 
+0x2e73, 0x6954, 0x6c74, 0x2e65, 0x6f46, 0x746e, 0x532e, 0x7974, 0x656c, 
+0x060b, 0x7366, 0x6f42, 0x646c, 0x1000, 0x654c, 0x6567, 0x646e, 0x412e, 
+0x696c, 0x6e67, 0x656d, 0x746e, 0x0507, 0x616c, 0x6f54, 0x1170, 0x654c, 
+0x6567, 0x646e, 0x432e, 0x6568, 0x6b63, 0x6f42, 0x6578, 0x0973, 0x4c12, 
+0x6765, 0x6e65, 0x2e64, 0x654c, 0x6567, 0x646e, 0x7453, 0x6c79, 0x0765, 
+0x6c08, 0x5373, 0x7265, 0x6569, 0x1173, 0x6952, 0x6867, 0x4174, 0x6978, 
+0x2e73, 0x6956, 0x6973, 0x6c62, 0x0865, 0x540f, 0x706f, 0x7841, 0x7369, 
+0x562e, 0x7369, 0x6269, 0x656c, 0x0608, 0x6956, 0x7765, 0x4433, 0x1208, 
+0x6f5a, 0x6d6f, 0x4d2e, 0x6e69, 0x6d69, 0x6d75, 0x6950, 0x6578, 0x736c, 
+0x0a02, 0x5a0e, 0x6f6f, 0x2e6d, 0x6550, 0x2e6e, 0x6f43, 0x6f6c, 0x0772, 
+0x6306, 0x426c, 0x756c, 0x0a65, 0x6542, 0x6576, 0x4f6c, 0x7475, 0x7265, 
+0x0607, 0x7662, 0x6f4e, 0x656e, 0x500c, 0x6972, 0x746e, 0x614d, 0x6772, 
+0x6e69, 0x0173, 0x0f02, 0x1402, 0x0f02, 0x1402, 0x0000, 0x540e, 0x7841, 
+0x7369, 0x7241, 0x6f72, 0x5477, 0x6f6f, 0x0a6c, 0x6843, 0x7261, 0x5474, 
+0x6f6f, 0x316c, 0x4106, 0x6978, 0x4973, 0x0244, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0002, 0x0000, 0xff00, 0xffff, "\377" 
+    0
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ITEM_SELECT DIALOG DISCARDABLE  0, 0, 398, 288
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "添加选项"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,147,267,50,14
+    PUSHBUTTON      "取消",IDCANCEL,201,267,50,14
+    CONTROL         "列表3",IDC_ITEM_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,7,27,384,213
+    EDITTEXT        IDC_SEARCH_EDIT,25,7,274,14,ES_AUTOHSCROLL
+    LTEXT           "查找:",IDC_STATIC,6,10,19,8
+    PUSHBUTTON      "清空过滤器",IDC_CLEAR_BUTTON,349,7,42,14
+    PUSHBUTTON      "查找",IDC_FIND_BUTTON,303,7,42,14
+    LTEXT           "项目名称:",IDC_STATIC,7,250,38,8
+    EDITTEXT        IDC_ITEM_NAME,46,247,288,15,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "重设",IDC_RESET_BUTTON,338,247,50,15
+END
+
+IDD_MODIFY DIALOG DISCARDABLE  0, 0, 188, 110
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "修改图表"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,39,89,50,14
+    PUSHBUTTON      "取消",IDCANCEL,93,89,50,14
+    LTEXT           "表现:",IDC_STATIC,7,25,51,8
+    LTEXT           "开始日期/时间:",IDC_STATIC,7,45,54,8
+    LTEXT           "X轴范围:",IDC_STATIC,7,65,46,8
+    COMBOBOX        IDC_DATAPOINT_LIST,63,22,118,73,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "DateTimePicker1",IDC_STARTDATETIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,63,42,118,
+                    13
+    CONTROL         "生存模式:",IDC_NOWCHECK,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,6,7,63,10
+    CONTROL         "DateTimePicker1",IDC_RANGETIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,106,63,42,
+                    13
+    EDITTEXT        IDC_RANGEDAYS,63,63,6,12
+    LTEXT           "天",IDC_STATIC,87,65,16,8
+    LTEXT           "时：分",IDC_STATIC,153,66,28,8
+    CONTROL         "DateTimePicker1",IDC_RANGE_DAYS,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,63,63,23,
+                    13
+END
+
+IDD_PRINT_TITLE DIALOG DISCARDABLE  0, 0, 186, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "打印Trend"
+FONT 10, "Arial Bold"
+BEGIN
+    EDITTEXT        IDC_TITLE,7,18,172,21,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_WANTRETURN
+    CONTROL         "打印日期和时间",IDC_DATE_TIME_CHECKBOX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,44,147,10
+    CONTROL         "改变格式为黑白打印",
+                    IDC_CHANGE_PEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    56,147,10
+    DEFPUSHBUTTON   "确定",IDOK,36,72,50,14
+    PUSHBUTTON      "取消",IDCANCEL,96,72,50,14
+    LTEXT           "打印使用标题:",IDC_STATIC,7,7,74,8
+END
+
+IDD_DATA_POINT_ADD_DLG DIALOG DISCARDABLE  0, 0, 296, 277
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "添加选项"
+FONT 10, "Arial Bold"
+BEGIN
+    PUSHBUTTON      "关闭",IDCANCEL,235,57,54,14
+    CONTROL         "Tree1",IDC_EQUIPMENT_TREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,7,38,223,232
+    DEFPUSHBUTTON   "添加",IDOK,235,38,54,14,WS_DISABLED
+    LTEXT           "选项名称：",IDC_STATIC,7,9,47,11
+    EDITTEXT        IDC_DATAPOINT_EDIT,7,20,221,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "重设",IDC_RESET,235,19,54,14
+END
+
+IDD_TRENDS_DLG DIALOG DISCARDABLE  0, 0, 512, 274
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Trends"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "显示",IDOK,455,7,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,455,76,50,14
+    CONTROL         "列表一",IDC_TREND_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,7,7,438,260
+    PUSHBUTTON      "新建",IDC_NEW,455,30,50,14
+    PUSHBUTTON      "删除",IDC_DELETE,455,53,50,14
+END
+
+IDD_TREND_PROPERTIES DIALOG DISCARDABLE  0, 0, 400, 363
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Trend 属性"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "显示",IDOK,112,342,50,14
+    PUSHBUTTON      "取消",IDCANCEL,238,342,50,14
+    GROUPBOX        "Trend",IDC_STATIC,7,7,386,55
+    LTEXT           "名称:",IDC_STATIC,15,22,22,8
+    LTEXT           "说明:",IDC_STATIC,15,40,38,8
+    EDITTEXT        IDC_NAME_EDIT,57,20,177,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DESC_EDIT,57,38,325,13,ES_AUTOHSCROLL
+    LTEXT           "类型:",IDC_STATIC,247,22,19,8
+    COMBOBOX        IDC_TYPE_COMBO,274,20,108,54,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "时间范围",IDC_STATIC,7,70,386,94
+    LTEXT           "范围:",IDC_STATIC,213,143,24,8,NOT WS_VISIBLE
+    LTEXT           "从:",IDC_STATIC,23,99,20,8
+    EDITTEXT        IDC_RANGE_DAY_EDIT,255,141,24,13,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    LTEXT           "天",IDC_STATIC,286,143,17,8,NOT WS_VISIBLE
+    LTEXT           "时：分",IDC_STATIC,359,143,28,8,NOT WS_VISIBLE
+    LTEXT           "样本:",IDC_STATIC,238,90,26,8
+    COMBOBOX        IDC_SAMPLE_COMBO,274,88,108,64,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "存活",IDC_NOW_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,238,110,31,10
+    LTEXT           "偏移量:",IDC_STATIC,17,147,22,8
+    EDITTEXT        IDC_OFFSET_EDIT,59,144,24,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_OFFSET_COMBO,90,144,64,55,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "条目",IDC_STATIC,7,173,386,161
+    LTEXT           "1.",IDC_ITEM_STATIC1,15,201,8,8
+    LTEXT           "2.",IDC_ITEM_STATIC2,15,217,8,8
+    LTEXT           "3.",IDC_ITEM_STATIC3,15,233,8,8
+    LTEXT           "4.",IDC_ITEM_STATIC4,15,249,8,8
+    LTEXT           "5.",IDC_ITEM_STATIC5,15,265,8,8
+    LTEXT           "6.",IDC_ITEM_STATIC6,15,281,8,8
+    LTEXT           "7.",IDC_ITEM_STATIC7,15,297,8,8
+    LTEXT           "8.",IDC_ITEM_STATIC8,15,313,8,8
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON1,281,199,12,12
+    EDITTEXT        IDC_COLOUR1,263,199,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR2,263,215,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR3,263,231,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR4,263,247,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR5,263,263,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR6,263,279,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR7,263,295,16,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_COLOUR8,263,311,16,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON2,281,215,12,12
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON3,281,231,12,12
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON4,281,247,12,12
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON5,281,263,12,12
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON6,281,279,12,12
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON7,281,295,12,12
+    PUSHBUTTON      "...",IDC_COLOUR_BUTTON8,281,311,12,12
+    GROUPBOX        "静态",IDC_RANGE_PLACEHOLDER,308,141,44,13,NOT 
+                    WS_VISIBLE
+    GROUPBOX        "静态",IDC_DATETIME_PLACEHOLDER,113,97,48,13,NOT 
+                    WS_VISIBLE
+    EDITTEXT        IDC_ITEM1,31,199,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM2,31,215,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM3,31,231,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM4,31,247,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM6,31,279,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM5,31,263,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM7,31,295,208,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ITEM8,31,311,208,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON1,241,199,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON2,241,215,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON3,241,231,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON4,241,247,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON5,241,263,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON6,241,279,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON7,241,295,12,12
+    PUSHBUTTON      "...",IDC_ITEM_BUTTON8,241,311,12,12
+    EDITTEXT        IDC_DISPLAY1,303,199,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY2,303,215,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY3,303,231,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY4,303,247,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY5,303,263,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY6,303,279,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY7,303,295,79,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DISPLAY8,303,311,79,12,ES_AUTOHSCROLL
+    LTEXT           "项目名称",IDC_STATIC,31,187,36,8
+    LTEXT           "颜色",IDC_STATIC,263,187,22,8
+    LTEXT           "显示名称",IDC_STATIC,303,187,45,8
+    PUSHBUTTON      "保存",IDC_SAVE,175,342,50,14
+    GROUPBOX        "日期/时间",IDC_STATIC,16,86,152,49
+    LTEXT           "到:",IDC_STATIC,23,117,11,8
+    GROUPBOX        "静态",IDC_END_DATETIME_PLACEHOLDER,113,115,48,13,NOT 
+                    WS_VISIBLE
+    CONTROL         "DateTimePicker1",IDC_STARTDATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,57,97,48,13
+    CONTROL         "DateTimePicker1",IDC_ENDDATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,57,115,48,13
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ITEM_SELECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 391
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 281
+    END
+
+    IDD_MODIFY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        VERTGUIDE, 63
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 103
+    END
+
+    IDD_PRINT_TITLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_DATA_POINT_ADD_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 289
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 270
+        HORZGUIDE, 28
+    END
+
+    IDD_TRENDS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 505
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 267
+    END
+
+    IDD_TREND_PROPERTIES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 393
+        VERTGUIDE, 264
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 356
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\HistoryViewer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "#include ""../../../bus/resources/TransActiveResources.rc""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "..\\res\\TrendViewer.ico"
+IDI_ICONCOLOUR          ICON    DISCARDABLE     "..\\res\\lpiconcolour.ico"
+IDI_ICONBW              ICON    DISCARDABLE     "..\\res\\lpicon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "新建 Trend(&N)",                  ID_NEW
+        MENUITEM "打开 Trend(&O)",                 ID_TRENDS
+        MENUITEM SEPARATOR
+        MENUITEM "导出(&X)...",                  ID_EXPORT
+        MENUITEM "打印(&P)...",                   ID_PRINT_GRAPH
+        MENUITEM SEPARATOR
+        MENUITEM "退出(&E)",                       ID_APP_EXIT
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "光标(&C)",                     ID_CURSOR
+        MENUITEM SEPARATOR
+        MENUITEM "属性",                  ID_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "存活(&L)",                       ID_VIEW_NOW, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "刷新",                     ID_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏(&B)",                 ID_VIEW_STATUS_BAR, CHECKED
+        MENUITEM "工具栏(&T)",                    ID_VIEW_TOOLBAR, CHECKED
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "&Trend查看器帮助",          ID_HELP
+        MENUITEM "关于 Trend Viewer(&A)",         ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINTOOLBAR TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      ID_NEW
+    BUTTON      ID_TRENDS
+    BUTTON      ID_PROPERTIES
+    SEPARATOR
+    BUTTON      ID_EXPORT
+    BUTTON      ID_PRINT_GRAPH
+    SEPARATOR
+    BUTTON      ID_CURSOR
+    BUTTON      ID_NOW
+    BUTTON      ID_REFRESH
+    SEPARATOR
+    BUTTON      ID_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINTOOLBAR         BITMAP  DISCARDABLE     "..\\res\\MainToolbar.bmp"
+IDB_LEDON               BITMAP  DISCARDABLE     "..\\res\\ledon.bmp"
+IDB_LEDOFF              BITMAP  DISCARDABLE     "..\\res\\ledoff.bmp"
+IDB_BITMAP1             BITMAP  DISCARDABLE     "..\\res\\bitmap1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_BUTTON32773          "添加 Datapoint"
+    ID_DATAPOINT_ADD        "添加datapoint到图表中\n添加DataPoint"
+    ID_BUTTON32777          "删除Datapoint"
+    ID_DATAPOINT_DELETE     "从图表中删除datapoint\n删除DataPoint"
+    ID_EXPORT_XML           "导出到Excel"
+    ID_EXPORT_JPG           "导出到.JPG 文件"
+    ID_EXPORT_EXCEL         "导出到excel文件"
+    ID_PRINT_GRAPH          "打印图表\n打印"
+    ID_EXPORT               "导出到图表文件\n导出"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_SAVE            "保存文件\n保存"
+    ID_FILE_PRINT           "打印图表"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_EXPORT          "导出到图表文件"
+    ID_EDIT_ADDDATAPOINTS   "添加datapoint到图表中"
+    ID_EDIT_DELETE          "从图表中删除datapoint"
+    ID_VIEW_MODIFY          "修改图表数据类型、开始日期/时间或范围"
+    ID_VIEW_NOW             "触发生存模式开/关"
+    ID_STATUS               "准备"
+    ID_LOADING_DATA         "载入数据..."
+    ID_DATA_TYPE_HOLDER     "为图表选择数据类型\n数据类型"
+    ID_DURATION_PLACEHOLDER "进入图表范围\n范围"
+    ID_START_PLACEHOLDER    "进入图表开始日期/时间\n开始时期/时间"
+    ID_LIVE_MODE            "存活"
+    ID_START_TEXT_PLACEHOLDER 
+                            "进入图表开始日期/时间\n开始时期/时间"
+    ID_DURATION_TEXT_PLACEHOLDER "进入图表范围\n范围"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Trend查看器相关屏幕"
+    ID_APP_EXIT             "退出Trend查看器"
+    ID_HELP                 "Trend查看器帮助\nTrend查看器帮助"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "开关工具栏"
+    ID_VIEW_STATUS_BAR      "开关状态栏"
+    ID_SERVER_DOWN_STATUS_BAR "与服务器断开连接..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_IDLEMESSAGE     "准备"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APPLY_NOW            "应用变化到图表中\n应用变化"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NOW                  "开/关生存模式\n生存模式"
+    ID_REFRESH              "重新载入图表"
+    ID_NEW_TREND            "创建一个特定trend"
+    ID_OPEN_TREND           "从视图中选择一个trend"
+    ID_PRINT_PREVIEW        "打印预览\n预览"
+    ID_TRENDS               "从视图中选择一个trend"
+    ID_PROPERTIES           "显示trend属性"
+    ID_CURSOR               "开关光标显示"
+    ID_NEW                  "创建一个新的trend"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_PRINTPREVIEW    "打印预览\n预览"
+    ID_SAVE                 "保存trend\n保存"
+    ID_VIEW_CURSOR          "开关光标"
+    ID_VIEW_PROPERTIES      "显示trend属性"
+    ID_VIEW_REFRESH         "重新载入图表"
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "..\res\HistoryViewer.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+#include "../../../bus/resources/TransActiveResources.rc"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

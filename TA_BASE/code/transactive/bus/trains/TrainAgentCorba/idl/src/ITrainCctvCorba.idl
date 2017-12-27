@@ -1,0 +1,480 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainCctvCorba_Idl)
+#define ITrainCctvCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainExceptionsCorba.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands used by Trainborne CCTV operations
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:38 PM
+     */
+    interface ITrainCctvCorba
+    {
+        /**
+         * Cctv state update synchronisation
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        enum ECctvSwitchMode
+        {
+            CctvInactive,
+            CctvSequence,
+            CctvCamera,
+            CctvQuad
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        enum ECctvCamera
+        {
+			CameraNone,
+            CameraOne,
+            CameraTwo,
+            CameraThree,
+            CameraFour,
+            CameraFive,
+            CameraSix,
+            CameraSeven,
+            CameraEight
+        };
+
+        /**
+         * There are a fixed number of sequences, this reduces the choices to just those.
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        enum ECctvSequenceNumber
+        {
+            SequenceOne,
+            SequenceTwo,
+            SequenceThree,
+            SequenceFour,
+            SequenceFive,
+            SequenceSix
+        };
+
+        /**
+         * Represents the sequence mode
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        enum ECctvSequenceMode
+        {
+            SequenceHold,
+            SequenceForward,
+            SequenceReverse,
+            SequenceSkip
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        struct CctvSwitchState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // The train ID this train is in pre conflict with, 0 if no pre conflict
+            ITrainCommonCorba::TrainId preConflictTrain;
+            unsigned long stageId;
+            // The current state of the cctv
+            ECctvSwitchMode cctvState;
+            octet item1;
+            octet item2;
+            octet item3;
+            octet item4;
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        typedef sequence<ECctvCamera> TrainCameraSequence;
+
+        /**
+         * FlexibleTimeoutNamedObject calls this method to calculate the timoeut value
+         * based on the current configuration
+         */
+        unsigned short getFlexibleTimeOutValue()
+        	raises (TA_Base_Core::OperationModeException);
+
+        /**
+         * Activate the given train CCTV broadcast.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train to activate/deactivate
+         * @param sessionId    The operator performing the action
+         */
+        void setCarrierOn(in ITrainCommonCorba::TrainId trainId,
+						  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Activate the given train CCTV broadcast.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * This is to be used only on delocalised trains, if it is used on localised trains, it will cause an exception.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train to activate/deactivate
+         * @param trainLocation    This is the operator specified train location
+         * @param sessionId    The operator performing the action
+         */
+        void setCarrierOnDelocalisedTrain(in ITrainCommonCorba::TrainId trainId,
+										  in unsigned long trainLocation, 
+										  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Deactivate the given train CCTV broadcast.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train to activate/deactivate
+         * @param sessionId    The operator performing the action
+         */
+        void setCarrierOff(in ITrainCommonCorba::TrainId trainId,
+						   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Activate the given train CCTV broadcast and set the image to the given camera.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * Note that a carrier on message will not be sent to the train, just sending the camera will implicitly activate the train.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train to set the single camera on
+         * @param camera    The camera to set
+         * @param sessionId    The operator performing the action
+         */
+        void setSingleScreen(in ITrainCommonCorba::TrainId trainId,
+							 in ECctvCamera camera, 
+							 in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Activate the given train CCTV broadcast and set the image to the given quad.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * Note that a carrier on message will not be sent to the train, just sending the quad will implicitly activate the train.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train ID to set the quad screen on
+         * @param cameraW
+         * @param cameraX
+         * @param cameraY
+         * @param cameraZ
+         * @param sessionId    The operator setting the quad
+         */
+        void setQuadScreen(in ITrainCommonCorba::TrainId trainId,
+						   in ECctvCamera cameraW, 
+						   in ECctvCamera cameraX, 
+						   in ECctvCamera cameraY, 
+						   in ECctvCamera cameraZ, 
+						   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Activate the given train CCTV broadcast and set the image to the given sequence.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * Note that a carrier on message will not be sent to the train, just sending the sequence will implicitly activate the train.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train to set the sequence on
+         * @param sequenceNo    The predefined sequence to set
+         * @param sequenceMode    The mode of the sequence (SequenceForward should be used)
+         * @param sessionId    The operator performing the action
+         */
+        void setSequence(in ITrainCommonCorba::TrainId trainId, 
+						 in ECctvSequenceNumber sequenceNo,
+						 in ECctvSequenceMode sequenceMode, 
+						 in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Activate the given train CCTV broadcast and set the image to the given camera list.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * This builds a single or quad with the given alarm images, it adds to the already displayed images on the train if any.
+         * 
+         * Note that a carrier on message will not be sent to the train, just sending the images will implicitly activate the train.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train id to add the alarm image to
+         * @param cameraIds    The cameras to add
+         * @param sessionId    The operator performing the action
+         */
+        void addAlarmImage(in ITrainCommonCorba::TrainId trainId, 
+						   in TrainCameraSequence cameraIds, 
+						   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Activate the given train CCTV broadcast and set the image to the given camera list.
+         * If there are no conflicts, this will activate the train, and set the default broadcast state for the train.
+         * 
+         * This builds a single or quad with the given alarm images, it adds to the already displayed images on the train if any.
+         * 
+         * Note that a carrier on message will not be sent to the train, just sending the images will implicitly activate the train.
+         * 
+         * This is to be used only on delocalised trains, if it is used on localised trains, it will cause an exception.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train id to add the alarm image to
+         * @param cameraIds    The cameras to add
+         * @param trainLocation    The manually specified train location
+         * @param sessionId    The operator performing the action
+         */
+        void addAlarmImageDelocalisedTrain(in ITrainCommonCorba::TrainId trainId, 
+										   in TrainCameraSequence cameraIds, 
+										   in unsigned long trainLocation, 
+										   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * This will remove the given camera from the alarm images on the given train.
+         * 
+         * It will result in a new quad, single, or a carrier off being sent to the train (depending on what is already displaying)
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train ID
+         * @param cameraId    The camera to remove
+         * @param sessionId    The operator performing the action
+         */
+        void removeAlarmImage(in ITrainCommonCorba::TrainId trainId, 
+							  in ECctvCamera cameraId, 
+							  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Given a stage ID, get the train that is active for this stage, and its CCTV details.
+         * This is usually called be the video switch agent to determine the current state for each stage.
+         * 
+         * @return the train cctv details for the active train for the given stage. If none, the train ID will be 0.
+         * 
+         * @param stageID
+         */
+        CctvSwitchState getActiveTrainForStage(in unsigned long stageID)
+			raises ( TA_Base_Core::OperationModeException );//limin
+
+		CctvSwitchState getCctvState(in ITrainCommonCorba::TrainId trainId)
+			raises ( TA_Base_Core::OperationModeException );//limin
+
+    };
+
+};
+
+#endif

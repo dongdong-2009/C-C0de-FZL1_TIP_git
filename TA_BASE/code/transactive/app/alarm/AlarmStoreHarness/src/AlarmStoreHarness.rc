@@ -1,0 +1,393 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\AlarmStoreHarness.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "..\\res\\AlarmStoreHarness.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 AlarmStoreHarness"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "AlarmStoreHarness 版本 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "版权 (C) 2008",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_ALARMSTOREHARNESS_DIALOG DIALOGEX 0, 0, 571, 463
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "AlarmStoreHarness"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "更新警报",IDC_BTN_CFG,131,436,57,14
+    PUSHBUTTON      "载入",IDC_BTN_CFGFILE,538,7,26,14
+    EDITTEXT        IDC_EDIT_CFGFILE,7,7,524,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "开始测试",IDC_BTN_START,493,412,60,31
+    PUSHBUTTON      "重新载入",IDC_BTN_RELOAD,523,28,41,14
+    EDITTEXT        IDC_EDIT_MESSAGING_INTERVAL,412,376,51,14,ES_AUTOHSCROLL
+    LTEXT           "警报间隔（毫秒）",IDC_STATIC,329,379,73,8
+    PUSHBUTTON      "关闭全部",IDC_BTN_CLOSEALL,194,436,43,14
+    PUSHBUTTON      "输出",IDC_BTN_OUTPUT,250,412,60,17,NOT WS_VISIBLE
+    PUSHBUTTON      "输出全部",IDC_BTN_OUTPUT2,249,433,60,17,NOT WS_VISIBLE
+    COMBOBOX        IDC_COMBO_SORT,60,378,99,131,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_FILTER,60,397,98,110,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CTEXT           "排序",IDC_STATIC,28,378,22,11,SS_CENTERIMAGE
+    CTEXT           "过滤",IDC_STATIC,20,396,29,12,SS_CENTERIMAGE
+    CONTROL         "List2",IDC_ALARM_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | LVS_ALIGNLEFT | 
+                    LVS_OWNERDATA | WS_TABSTOP,7,49,557,303,WS_EX_CLIENTEDGE
+    LTEXT           "所有警报",IDC_STATIC,7,34,49,8
+    LTEXT           "未确认警报",IDC_STATIC,147,34,57,8
+    EDITTEXT        IDC_TOTAL_ALARMS,63,31,64,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    EDITTEXT        IDC_NOT_ACK_ALARMS,211,32,63,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "排序",IDC_BTN_SORT,163,378,50,14
+    PUSHBUTTON      "设置过滤",IDC_BTN_FILTER,163,395,50,14
+    PUSHBUTTON      "重建警报",IDC_BTN_REBUILD_ALARM,71,436,57,14
+    GROUPBOX        "手动测试",IDC_STATIC,7,366,236,90
+    EDITTEXT        IDC_EDIT_SORT_INTERVAL,412,394,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FILTER_INTERVAL,412,414,51,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_REBUILD_INTERVAL,412,433,51,14,ES_AUTOHSCROLL
+    LTEXT           "排序间隔",IDC_STATIC,337,399,65,8
+    LTEXT           "过滤间隔",IDC_STATIC,329,417,73,8
+    LTEXT           "重建间隔",IDC_STATIC,325,437,77,8
+    GROUPBOX        "自动测试",IDC_STATIC,314,365,250,91
+    PUSHBUTTON      "配置",IDC_BTN_CONFIG,252,372,52,31
+    PUSHBUTTON      "应用",IDC_BTN_APPLY,495,386,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Check Shmem",IDC_BTN_CHECK_SM,11,436,57,14
+    CONTROL         "",IDC_CHK_ALARM,"Button",BS_AUTOCHECKBOX | WS_DISABLED | 
+                    WS_TABSTOP,471,378,16,8
+    CONTROL         "",IDC_CHK_SORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    471,397,16,8
+    CONTROL         "",IDC_CHK_FILTER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    471,417,16,8
+    CONTROL         "",IDC_CHK_REBUILD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    471,436,16,8
+    COMBOBOX        IDC_COMBO_LOCATION,60,417,98,68,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "位置",IDC_STATIC,17,420,33,8
+    PUSHBUTTON      "移除",IDC_BTN_REMOVE_LA,163,415,50,14
+END
+
+IDD_CONFIG_DIALOG DIALOG DISCARDABLE  0, 0, 188, 97
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "设置过滤值"
+FONT 10, "System"
+BEGIN
+    PUSHBUTTON      "确定",IDC_BTN_OK,42,80,40,10
+    PUSHBUTTON      "取消",IDC_BTN_CANCEL,115,79,41,11
+    EDITTEXT        IDC_EDIT_SEVERITY,92,6,71,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_LOCATION,92,23,71,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ASSET,92,41,71,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DESCRIPTION,92,58,71,12,ES_AUTOHSCROLL
+    LTEXT           "严重级别过滤:",IDC_STATIC,22,8,63,8
+    LTEXT           "位置过滤值:",IDC_STATIC,18,25,68,8
+    LTEXT           "设备过滤值:",IDC_STATIC,28,43,59,8
+    LTEXT           "描述过滤值:",IDC_STATIC,10,60,77,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+3 VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "AlarmStoreHarness MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "AlarmStoreHarness\0"
+            VALUE "LegalCopyright", "版权 (C) 2008\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "AlarmStoreHarness.EXE\0"
+            VALUE "ProductName", "AlarmStoreHarness Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_ALARMSTOREHARNESS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 564
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 456
+    END
+
+    IDD_CONFIG_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 185
+        BOTTOMMARGIN, 90
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_ALARMSTOREHARNESS_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO_SORT, 0x403, 16, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4544, 0x4146, 0x4c55, 0x0054, 
+    IDC_COMBO_SORT, 0x403, 17, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4144, 0x4554, 0x4954, 0x454d, "\000" 
+    IDC_COMBO_SORT, 0x403, 17, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4553, 0x4556, 0x4952, 0x5954, "\000" 
+    IDC_COMBO_SORT, 0x403, 14, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x5341, 0x4553, 0x0054, 
+    IDC_COMBO_SORT, 0x403, 20, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4544, 0x4353, 0x4952, 0x5450, 0x4f49, 
+0x004e, 
+    IDC_COMBO_SORT, 0x403, 14, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4156, 0x554c, 0x0045, 
+    IDC_COMBO_SORT, 0x403, 12, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4d4d, 0x0053, 
+    IDC_COMBO_SORT, 0x403, 12, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x5344, 0x0053, 
+    IDC_COMBO_SORT, 0x403, 18, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x5641, 0x4c41, 0x4e41, 0x4843, 0x0045, 
+
+    IDC_COMBO_SORT, 0x403, 12, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4341, 0x004b, 
+    IDC_COMBO_SORT, 0x403, 17, 0
+0x4f53, 0x5452, 0x425f, 0x5f59, 0x4f43, 0x4d4d, 0x4e45, 0x5354, "\000" 
+    IDC_COMBO_FILTER, 0x403, 13, 0
+0xcfd1, 0xd8d6, 0xccb3, 0xc8b6, 0xe0cf, 0xaccd, "\000",         
+    IDC_COMBO_FILTER, 0x403, 9, 0
+0xbbce, 0xc3d6, 0xe0cf, 0xaccd, "\000",         
+    IDC_COMBO_FILTER, 0x403, 9, 0
+0xe9b9, 0xf4ca, 0xe0cf, 0xaccd, "\000",       
+    IDC_COMBO_FILTER, 0x403, 9, 0
+0xe8c3, 0xf6ca, 0xe0cf, 0xaccd, "\000",          
+
+    IDC_COMBO_FILTER, 0x403, 5, 0
+0xacc4, 0xcfc8, "\000",     
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0030, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0031, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0032, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0033, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0034, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0035, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0036, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0037, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO_LOCATION, 0x403, 2, 0
+0x0039, 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3331, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3431, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3531, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3731, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3831, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3931, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3032, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3132, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3232, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3332, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3432, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3532, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3632, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3732, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3832, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3932, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3033, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3133, "\000" 
+    IDC_COMBO_LOCATION, 0x403, 3, 0
+0x3233, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于 AlarmStoreHarness(&A)..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\AlarmStoreHarness.rc2"  // non-Microsoft Visual C++ edited resources
+#include "bus/alarm/alarm_list_control/src/AlarmListCtrl.rc"
+
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

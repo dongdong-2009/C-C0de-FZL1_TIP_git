@@ -1,0 +1,45 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: app.alarm.alarm_store_service.TA_AlarmStoreService - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP549.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "../../.." /I "../../../.." /I "../../../../../build/win32_n/transactive" /I "../../../../../build/win32_n/transactive/core/process_management/IDL/src" /I "../../../../../build/win32_n/transactive/core/exceptions/IDL/src" /I "../../../../../build/win32_n/transactive/core/alarm/IDL/src" /I "../../../../../build/win32_n/transactive/core/message/IDL/src" /I "../../../../../build/win32_n/transactive/bus/security/duty_agent/IDL/src" /I "../../../../../build/win32_n/transactive/bus/security/authentication_agent/IDL/src" /I "..\..\..\..\cots\omniORB\omniORB_4.0.5\include" /I "..\..\..\..\cots\ACE\5_3\ACE_wrappers" /I "../../../../cots/boost/boost_1_31_0" /I "E:\4669Tip\CODE_TA_BASE_DDB\code\transactive\bus\alarm\SharedAlarm\Debug" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "__WIN32__" /D "__x86__" /D "__NT__" /D __OSVERSION__=4 /FR"../../../../../build/win32_nd/transactive/app/alarm/alarm_store_service/" /Fo"../../../../../build/win32_nd/transactive/app/alarm/alarm_store_service/" /Fd"../../../../../build/win32_nd/transactive/app/alarm/alarm_store_service/" /FD /GZ /c 
+"D:\coderoot\PRIV_ALARM_STORE_ISSUE\transactive\app\alarm\alarm_store_service\src\AlarmStoreAgentUser.cpp"
+"D:\coderoot\PRIV_ALARM_STORE_ISSUE\transactive\app\alarm\alarm_store_service\src\AlarmStoreService.cpp"
+"D:\coderoot\PRIV_ALARM_STORE_ISSUE\transactive\app\alarm\alarm_store_service\src\StdAfx.cpp"
+"D:\coderoot\PRIV_ALARM_STORE_ISSUE\transactive\app\alarm\alarm_store_service\src\VersionGen.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP549.tmp" 
+Creating temporary file "C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP54A.tmp" with contents
+[
+omniORB405_rtd.lib omniDynamic405_rtd.lib omnithread30_rtd.lib COS405_rtd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib oci.lib Rpcrt4.lib ws2_32.lib acemfcd.lib TA_Base_Core_d.lib TA_Base_Bus_d.lib SharedAlarm.lib /nologo /subsystem:console /incremental:yes /pdb:"../../../../../bin/win32_nd/TA_AlarmStoreService.pdb" /debug /debugtype:both /machine:I386 /out:"../../../../../bin/win32_nd/TA_AlarmStoreService.exe" /pdbtype:sept /libpath:"../../../../../sdk/win32_nd" /libpath:"..\..\..\..\cots\omniOrb\omniORB_4.0.5\lib\x86_win32" /libpath:"..\..\..\..\cots\oracle\920\winnt\lib" /libpath:"..\..\..\..\cots\WinTech\OPCServerToolKit" /libpath:"..\..\..\..\cots/ACE/5_3/ACE_wrappers/ace" /libpath:"..\..\..\..\cots\boost\boost_1_31_0\libs\Winnt40" /libpath:"E:\perforce\Base\code\transactive\bus\alarm\shared_alarm\Debug" 
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_store_service\AlarmStoreAgentUser.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_store_service\AlarmStoreService.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_store_service\StdAfx.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_store_service\VersionGen.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP54A.tmp"
+<h3>Output Window</h3>
+Compiling...
+AlarmStoreAgentUser.cpp
+AlarmStoreService.cpp
+StdAfx.cpp
+VersionGen.cpp
+Generating Code...
+Linking...
+LINK : warning LNK4075: ignoring /INCREMENTAL due to /DEBUGTYPE specification
+   Creating library ../../../../../bin/win32_nd/TA_AlarmStoreService.lib and object ../../../../../bin/win32_nd/TA_AlarmStoreService.exp
+LINK : warning LNK4098: defaultlib "nafxcwd.lib" conflicts with use of other libs; use /NODEFAULTLIB:library
+
+
+
+<h3>Results</h3>
+TA_AlarmStoreService.exe - 0 error(s), 2 warning(s)
+</pre>
+</body>
+</html>

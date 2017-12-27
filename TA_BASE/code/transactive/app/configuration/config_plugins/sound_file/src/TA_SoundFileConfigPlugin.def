@@ -1,0 +1,7 @@
+; TA_SoundFileConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_SoundFileConfigPlugin"
+DESCRIPTION  'TA_SoundFileConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

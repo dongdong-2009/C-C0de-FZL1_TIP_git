@@ -1,0 +1,67 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/GZL6_TIP/TA_BASE/transactive/app/security/rights_service/src/RippleRights.idl $
+  * @author:  Ripple
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/06/12 13:35:44 $
+  * Last modified by:  $Author: builder $
+  *
+  */
+// RippleRights.idl : IDL source for RippleRights.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (RippleRights.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(8B7A567C-D60A-4711-A97A-FA2D9526284E),
+	version(1.0),
+	helpstring("TransActive Rights 1.0 Type Library")
+]
+library RippleRightsLib
+{
+    typedef
+    [
+        helpstring("The response types which can take the values of Permit, Deny, Indeterminate (there was a rule but all the necessary info wasn't available), Not Applicable (there was no rule not access controlled or invalid resource/action/subject combination) and Error")
+    ] 
+    enum
+    {
+        Permit,
+        Deny,
+        Indeterminate,
+        NotApplicable,
+        TAError
+    } ResponseEnum;
+
+
+	[
+		object,
+		uuid(1CCDCEB4-E0FD-4535-8FE0-183A87C0E899),
+		dual,
+		helpstring("IAccessRights Interface"),
+		pointer_default(unique)
+	]
+	interface IAccessRights : IDispatch
+	{
+		[id(1), helpstring("Request a decision from access control to allow or disallow an action on a resource")] HRESULT isActionPermittedOnResource(BSTR sessionId , long resourceKey, long actionKey, [out, retval] ResponseEnum* response);
+	};
+
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(30C7367C-DD21-4367-A85D-99BC0744DD1D),
+		helpstring("AccessRights Class")
+	]
+	coclass AccessRights
+	{
+		[default] interface IAccessRights;
+	};
+};

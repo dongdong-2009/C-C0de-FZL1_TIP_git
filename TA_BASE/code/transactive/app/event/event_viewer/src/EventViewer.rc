@@ -1,0 +1,391 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "EventListComponent_rc.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""EventListComponent_rc.h""\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\EventViewer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""EventListComponent.rc""\r\n"
+    "#endif\r\n"
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\res\\EventViewer.ico"
+IDI_PRINT_HOT           ICON                    "..\\res\\printhot.ico"
+IDI_PRINT               ICON                    "..\\res\\print.ico"
+IDI_SAVE_HOT            ICON                    "..\\res\\savehot.ico"
+IDI_SAVE                ICON                    "..\\res\\save.ico"
+IDI_FILTERS             ICON                    "..\\res\\filter.ico"
+IDI_FILTERS_HOT         ICON                    "..\\res\\filterhot.ico"
+IDI_NEXT                ICON                    "..\\res\\icon1.ico"
+IDI_PREVIOUS_HOT        ICON                    "..\\res\\ico00001.ico"
+IDI_PREVIOUS            ICON                    "..\\res\\east_arr.ico"
+IDI_NEXT_HOT            ICON                    "..\\res\\ico00002.ico"
+ID_NAMED_FILTER_COMBO   ICON                    "..\\res\\ico00005.ico"
+IDI_INCIDENT_HOT        ICON                    "..\\res\\Planhot.ico"
+IDI_INCIDENT            ICON                    "..\\res\\Plan.ico"
+IDI_PAGE_UP             ICON                    "..\\res\\pageup.ico"
+IDI_PAGE_DOWN           ICON                    "..\\res\\pagedown.ico"
+IDI_ALARMMANAGER_HOT    ICON                    "..\\res\\AlarmManager.ico"
+IDI_ALARMMANAGER        ICON                    "..\\res\\AlarmManagerHot.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EVENTVIEWER_DIALOG DIALOGEX 0, 0, 403, 253
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+MENU IDR_EV_MAIN_MENU
+FONT 10, "宋体", 0, 0, 0x1
+BEGIN
+    LTEXT           "静态",IDC_PAGER_CTRL,1,7,382,23,SS_CENTERIMAGE,WS_EX_DLGMODALFRAME
+    CONTROL         "列表一",IDC_EVENT_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | LVS_OWNERDATA | WS_TABSTOP,1,33,402,208,WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_MENU_LINE,"Static",SS_ETCHEDHORZ,1,2,402,1
+    PUSHBUTTON      "上",IDC_PAGE_UP,390,7,13,11,BS_ICON
+    PUSHBUTTON      "下",IDC_PAGE_DOWN,390,19,13,11,BS_ICON
+END
+
+IDD_MULTIPLE_LOAD DIALOG  0, 0, 186, 226
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "对话框"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,28,205,50,14
+    PUSHBUTTON      "取消",IDCANCEL,103,205,50,14
+    LISTBOX         IDC_LOAD_LIST,7,7,172,188,LBS_SORT | LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_COMBINED_EVENT_FILTER DIALOGEX 0, 0, 509, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "事件过滤器"
+FONT 10, "宋体", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,163,186,50,14
+    PUSHBUTTON      "取消",IDCANCEL,221,186,50,14
+    GROUPBOX        "子系统",IDC_STATIC,15,4,152,28
+    GROUPBOX        "位置",IDC_STATIC,178,4,151,28
+    GROUPBOX        "操作员",IDC_STATIC,15,39,152,28
+    GROUPBOX        "事件类型",IDC_STATIC,178,39,151,28
+    GROUPBOX        "警报类型",IDC_STATIC,339,139,162,28
+    GROUPBOX        "设备",IDC_STATIC,15,74,314,28
+    EDITTEXT        IDC_ASSET,21,83,304,14,ES_AUTOHSCROLL
+    GROUPBOX        "警报编号",IDC_STATIC,339,174,162,28
+    EDITTEXT        IDC_ALARM_ID,346,183,152,12,ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "描述",IDC_STATIC,15,109,314,28
+    EDITTEXT        IDC_DESCRIPTION,21,118,304,14,ES_AUTOHSCROLL
+    GROUPBOX        "日期/时间",IDC_STATIC,339,4,162,63
+    CONTROL         "到:",IDC_CURRENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,347,43,20,9
+    PUSHBUTTON      "应用",ID_APPLY,279,186,50,14
+    PUSHBUTTON      "缺省/清除",ID_DEFAULT_FILTER,15,186,50,14
+    EDITTEXT        IDC_SUBSYSTEM,21,14,125,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_SUBSYSTEM_EXT,151,14,11,12
+    EDITTEXT        IDC_LOCATION,183,14,127,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_LOCATION_EX,314,14,11,12
+    CONTROL         "DateTimePicker1",IDC_FROM_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,376,19,58,12
+    CONTROL         "DateTimePicker2",IDC_FROM_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,447,19,48,12
+    CONTROL         "DateTimePicker3",IDC_TO_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,377,41,58,12
+    CONTROL         "DateTimePicker4",IDC_TO_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,447,41,48,12
+    GROUPBOX        "级别",IDC_STATIC_SEVERITY,339,74,85,60
+    GROUPBOX        "静态",IDC_LIST_PLACEHOLDER,345,85,75,44
+    CONTROL         "从:",IDC_FROM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,347,21,18,10
+    PUSHBUTTON      "...",IDC_OPERATOR_EXT,151,49,11,12
+    PUSHBUTTON      "...",IDC_EVENTTYPE_EXT,314,49,11,12
+    PUSHBUTTON      "...",IDC_ALARMTYPE_EXT,486,150,11,12
+    EDITTEXT        IDC_OPERATOR,21,49,125,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_SYSTEM,21,15,127,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE
+    EDITTEXT        IDC_EVENT_TYPE,183,49,127,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ALARM_TYPE,344,150,137,12,ES_AUTOHSCROLL | ES_READONLY
+    GROUPBOX        "命名过滤器",IDC_STATIC,15,143,314,37
+    COMBOBOX        IDC_COMBO_NAMEDFILTER,20,158,150,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "保存",IDC_BUTTON_SAVEFILTER,193,156,48,15
+    PUSHBUTTON      "删除",IDC_BUTTON_DELETEFILTER,264,156,48,15
+    GROUPBOX        "Operation/Maintenance",IDC_STATIC_SEVERITY2,418,73,83,63,NOT WS_VISIBLE
+    CONTROL         "Operation",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE | WS_GROUP,426,85,48,10
+    CONTROL         "Maintenance",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,426,97,57,10
+    CONTROL         "Both",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,426,108,31,10
+    CONTROL         "All",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON | NOT WS_VISIBLE,426,121,25,10
+    GROUPBOX        "Alarm State",IDC_STATIC,339,150,162,28,NOT WS_VISIBLE
+    PUSHBUTTON      "...",IDC_ALARMTYPE_EXT2,486,161,11,12,NOT WS_VISIBLE
+    EDITTEXT        IDC_ALARM_STATE,344,161,137,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_VISIBLE
+END
+
+IDD_WAIT_FOR_CLOSE DIALOG  0, 0, 162, 53
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+FONT 10, "宋体"
+BEGIN
+    LTEXT           "事件查看器关闭中，请等待...",IDC_STATIC,34,18,93,18
+END
+
+IDD_SHOW_COMMENT DIALOG  0, 0, 189, 102
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "查看警报注释"
+FONT 10, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "关闭",IDOK,70,82,50,14
+    EDITTEXT        IDC_EDIT_ALARM_COMMENT,7,7,175,68,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "Event Viewer MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "事件查看器"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "Event Viewer.EXE"
+            VALUE "ProductName", "Event Viewer Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_EVENTVIEWER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 245
+    END
+
+    IDD_MULTIPLE_LOAD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 219
+    END
+
+    IDD_COMBINED_EVENT_FILTER, DIALOG
+    BEGIN
+        TOPMARGIN, 4
+    END
+
+    IDD_WAIT_FOR_CLOSE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 155
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 46
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_EV_MAIN_MENU MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "打印(&P)...",                   IDC_PRINT
+        MENUITEM "导出...",                       IDC_EXPORT
+        MENUITEM "退出(&X)",                      ID_FILE_EXIT
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "过滤器(&F)...",                  IDC_VIEW_FILTERS
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏(&T)",                     IDC_TOOL_BAR
+        MENUITEM "状态栏(&S)",                     IDC_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "显示所有事件",                      IDC_SHOW_ALL
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "事件查看器帮助(&E)",                 ID_HELP
+        MENUITEM "关于事件查看器(&A)",                 ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_CAP_ACTIVE          BITMAP                  "..\\res\\WarningDot.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_SIZE       "事件计数: 0"
+    ID_FILE_EXPORT          "导出事件到文件"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_EXIT            "关闭运行程序"
+    IDC_VIEW_FILTERS        "显示过滤器控制对话框"
+    ID_VIEW_TOOLBARS_STATUSBAR "禁止或允许状态栏"
+    ID_VIEW_TOOLBARS_TOOLBAR "禁止或允许事件工具栏"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_PRINT               "打印当前事件视图"
+    IDC_EXPORT              "导出当前事件视图到文件"
+    IDC_PREVIOUS            "查看从前事件时间片"
+    IDC_NEXT                "查看下一个事件时间片"
+    IDC_VIEW_INCIDENTS      "查看与事件相关事情"
+    IDC_ALARM_MANAGER       "关注警报管理器"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_LOAD_AUDIT_FILTER   "改变当前显示以查看应审核的警报"
+    IDC_LOAD_DATAPOINT_FILTER "改变当前显示以查看DataPoint状态及相关更新的事件"
+    IDC_COLUMNS             "禁止或允许列表"
+    IDC_STATUS_BAR          "禁止或允许状态栏"
+    IDC_TOOL_BAR            "禁止或允许工具栏"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示应用程序版本信息"
+    ID_APP_EXIT             "关闭活动窗口"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ABOUTBOX            "显示应用程序版本信息"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SYS_EXIT             "关闭应用程序"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_CAP        "事件显示覆盖"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\EventViewer.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "EventListComponent.rc"
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

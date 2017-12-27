@@ -1,0 +1,268 @@
+#if !defined(CameraCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)
+#define CameraCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/CameraCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that provides access to the 
+  * Camera state, supported features and control.
+  */
+
+#include "bus/cctv/video_switch_agent/IDL/src/VideoInputCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/MovementControlCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/FocusIrisControlCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/WashWipeControlCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface CameraCorbaDef : VideoInputCorbaDef
+    {
+        //
+        // A struct defining the features that are supported by this Camera.
+        //
+
+        struct SupportedCameraFeatures
+        {
+            boolean isMovementSupported;
+            boolean isProportionalMovementSupported;
+            boolean isAutoFocusSupported;
+            boolean isManualFocusSupported;
+            boolean isAutoIrisSupported;
+            boolean isManualIrisSupported;
+            boolean isIrisPeakWhiteInversionSupported;
+            boolean isWashSupported;
+            boolean isWipeSupported;
+            boolean arePresetsSupported;
+        };
+
+		enum PTZCtrlCmd
+		{
+			PAN_LEFT_WX,
+			PAN_RIGHT_WX,
+			TILT_UP_WX,
+			TILT_DOWN_WX,
+			ZOOM_IN_WX,
+			ZOOM_OUT_WX,
+			RETURN_DEFAULT_WX
+		};
+        //
+        // A struct defining the current state of this Camera.
+        //
+        
+        struct CameraState
+        {
+            boolean isAutoFocusOn;
+            boolean isAutoIrisOn;
+            boolean isIrisPeakWhiteInversionOn;
+            short activePresetIndex;        // The index of the preset this Camera is on or NO_PRESET if it is not on a preset.
+            boolean isInAlarmState;         // True if the Camera is in an alarm state (ie. the Video Signal has been lost).
+        };
+
+        /**
+          * getSupportedFeatures
+          *
+          * Gets the features that this Camera supports.
+          *
+          * @return     SupportedCameraFeatures
+          *             A struct detailing which camera features are supported.
+          *             If an error occurs while retrieving the information from
+          *             the database, it will be assumed that the feature is 
+          *             not supported.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if the agent is in Monitor mode.
+          */
+ 
+        SupportedCameraFeatures getSupportedFeatures()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getState
+          *
+          * Gets the current state of this Camera.
+          *
+          * @return     CameraState
+          *             A struct detailing the current Camera state. 
+          *             It is the caller's responsibility to clean up this struct.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The database cannot be accessed.
+          *             2. The data cannot be retrieved.
+          *             3. The retrieved data is invalid.
+          *             4. The agent is in Monitor mode.
+          */
+
+        CameraState getState()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /** 
+          * isMovementControllable
+          *
+          * Identifies if this Camera supports at least one of the movement controls. 
+          * It should only be used to determine if the MovementControl interface exists.
+          *
+          * @return     boolean
+          *             True if the MovementControl interface exists.
+          *             False otherwise.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if the agent is in Monitor mode.
+          */
+        
+        boolean isMovementControllable()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getMovementControl
+          *
+          * Gets the MovementControl interface.
+          *
+          * @return     MovementControlCorbaDef
+          *             The interface to the control for movement of this Camera.        
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if 
+          *             1. The agent is in Monitor mode.
+          *             2. !isMovementControllable()
+          */
+
+        MovementControlCorbaDef getMovementControl()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+        
+        /** 
+          * isFocusIrisControllable
+          *
+          * Identifies if this Camera supports at least one of the focus or iris controls. 
+          * It should only be used to determine if the FocusIrisControl interface exists.
+          *
+          * @return     boolean
+          *             True if the FocusIrisControl interface exists.
+          *             False otherwise.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if the agent is in Monitor mode.
+          */
+        
+        boolean isFocusIrisControllable()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getFocusIrisControl
+          *
+          * Gets the FocusIrisControl interface.
+          *
+          * @return     FocusIrisControlCorbaDef
+          *             The interface to the focus and iris control for this Camera.        
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if 
+          *             1. The agent is in Monitor mode.
+          *             2. !isFocusIrisControllable()
+          */
+
+        FocusIrisControlCorbaDef getFocusIrisControl()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /** 
+          * isWashWipeControllable
+          *
+          * Identifies if this Camera supports at least one of the wash or wipe controls. 
+          * It should only be used to determine if the WashWipeControl interface exists.
+          *
+          * @return     boolean
+          *             True if the WashWipeControl interface exists.
+          *             False otherwise.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if the agent is in Monitor mode.
+          */
+        
+        boolean isWashWipeControllable()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getWashWipeControl
+          *
+          * Gets the WashWipeControl interface.
+          *
+          * @return     WashWipeControlCorbaDef
+          *             The interface to the wash and wipe control for this Camera.        
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if 
+          *             1. The agent is in Monitor mode.
+          *             2. !isWashWipeControllable()
+          */
+
+        WashWipeControlCorbaDef getWashWipeControl()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+        /**
+          * isWiperOn
+          *
+          * Returns the current state of the wiper.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @return     boolean
+          *             The wiper status.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+          *             4. The agent is in Monitor mode.
+          *             5. The user does not have sufficient privileges for this operation.
+          */
+
+        boolean isWiperOn( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+        /**
+          * isWasherOn
+          *
+          * Returns the current state of the washer.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @return     boolean
+          *             The washer status.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+          *             4. The agent is in Monitor mode.
+          *             5. The user does not have sufficient privileges for this operation.
+          */
+
+        boolean isWasherOn( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+		void ptzRequest(in PTZCtrlCmd cmd, in string sessionId)
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+    
+    }; // CameraCorbaDef
+
+}; // TA_Base_Bus
+
+#endif // !defined(CameraCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)

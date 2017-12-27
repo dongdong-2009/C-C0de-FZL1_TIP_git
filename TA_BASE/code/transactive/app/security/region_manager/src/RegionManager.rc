@@ -1,0 +1,312 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_REGION_MANAGER_DLG DIALOGEX 0, 0, 96, 42
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "区域管理员"
+MENU IDR_REGIONMANAGER_MENU
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+END
+
+IDD_ALL_OPERATORS_DLG DIALOG  0, 0, 200, 130
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "全部操作员"
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "默认区域分配",IDC_DEF_RGN_ASSIGN_GRID,
+                    "MFCGridCtrl",WS_BORDER | WS_TABSTOP,5,5,190,121
+END
+
+IDD_ACTIVE_OPERATORS_DLG DIALOGEX 0, 0, 200, 130
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "活动的操作员"
+FONT 10, "Arial Bold", 0, 0, 0x0
+BEGIN
+    CONTROL         "活动的区域任务",IDC_RGN_DUTY_GRID,"MFCGridCtrl",WS_BORDER | WS_TABSTOP,5,5,190,99
+    PUSHBUTTON      "分配区域",IDC_ASSIGN_REGIONS_BTN,5,110,84,14
+    PUSHBUTTON      "解除分配区域",IDC_UNASSIGN_REGIONS_BTN,94,110,84,14
+END
+
+IDD_SUBSYSTEMS_DLG DIALOG  0, 0, 200, 130
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "子系统"
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "活动的子系统任务",IDC_SUB_DUTY_GRID,"MFCGridCtrl",WS_BORDER | WS_TABSTOP,5,5,190,121
+END
+
+IDD_REGION_DUTY_XFER_DLG DIALOG  0, 0, 230, 232
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "选中可转送区域"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "分配",IDC_ASSIGN_BTN,58,213,50,14
+    PUSHBUTTON      "取消",IDCANCEL,116,213,50,14
+    LTEXT           "目标操作员:",IDC_STATIC,6,5,53,8
+    LTEXT           "jblogg (SO@DBG)",IDC_TARGETOP_TEXT,63,5,154,8
+    CONTROL         "List1",IDC_TRANSFERRGN_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,5,18,220,190
+END
+
+IDD_REGION_DUTY_REMOVE_DLG DIALOG  0, 0, 230, 232
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "选择可移除区域"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "解除分配",IDC_UNASSIGN_BTN,58,213,50,14
+    PUSHBUTTON      "取消",IDCANCEL,116,213,50,14
+    LTEXT           "资源操作员:",IDC_STATIC,6,5,56,8
+    LTEXT           "jblogg (SO@DBG)",IDC_SOURCEOP_TEXT,65,5,152,8
+    CONTROL         "List1",IDC_REMOVERGN_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,5,18,220,190
+END
+
+IDD_REGION_DUTY_XFER_CONFIRM_DLG DIALOGEX 0, 0, 176, 168
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "区域管理员"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "是",IDYES,43,57,41,14
+    PUSHBUTTON      "否",IDNO,92,57,41,14
+    CONTROL         "Tree1",IDC_UNCONTROLLED_SUBSYSTEM_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | WS_BORDER | WS_TABSTOP,4,78,168,86,WS_EX_CLIENTEDGE
+    ICON            32515,IDC_STATIC,7,6,20,20
+    LTEXT           "分配选中区域给目标操作员会导致子系统失控.\r\n\r\n是否仍然进行下去?",IDC_STATIC,31,6,116,40
+END
+
+IDD_REGION_DUTY_REMOVE_CONFIRM_DLG DIALOGEX 0, 0, 176, 168
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "区域管理员"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "是",IDYES,43,57,41,14
+    PUSHBUTTON      "否",IDNO,92,57,41,14
+    CONTROL         "Tree1",IDC_UNCONTROLLED_SUBSYSTEM_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | WS_BORDER | WS_TABSTOP,4,78,168,86,WS_EX_CLIENTEDGE
+    ICON            32515,IDC_STATIC,7,6,20,20
+    LTEXT           "解除由资源操作员选中的区域会导致子系统失控.\r\n\r\n是否仍然进行下去?",IDC_STATIC,31,6,123,40
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "Region Manager MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "区域管理员"
+            VALUE "LegalCopyright", "版权 (C) 2004"
+            VALUE "OriginalFilename", "RegionManager.EXE"
+            VALUE "ProductName", "Region Manager Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_REGION_MANAGER_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 89
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 35
+    END
+
+    IDD_ACTIVE_OPERATORS_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+    END
+
+    IDD_REGION_DUTY_XFER_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 225
+    END
+
+    IDD_REGION_DUTY_REMOVE_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_REGION_DUTY_XFER_CONFIRM_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 161
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\RegionManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_REGIONMANAGER_ICON  ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\region-manager.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_REGIONMANAGER_MENU MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                       ID_APP_EXIT
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "索引(&I)...",                   ID_HELP_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "关于区域管理器(&A)...",    ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_GRID_IMAGES_BMP     BITMAP                  "..\\res\\grid_images.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息、版本号及版权\n关于"
+    ID_APP_EXIT             "退出应用程序\n退出"
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "..\res\RegionManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

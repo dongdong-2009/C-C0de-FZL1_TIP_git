@@ -1,0 +1,230 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "helperresource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "helperresource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""..\\res\\TA_ConfigPluginHelper.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\..\\..\\..\\..\\bus\\resources\\TransActiveResources.rc"" // Common TransActive Resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_MANDATORY    BITMAP                  "..\\..\\config_plugin_helper\\res\\Mandatory.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CHANGE_DIALOG DIALOGEX 0, 0, 186, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "改变"
+FONT 9, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,39,193,50,14
+    PUSHBUTTON      "取消",IDCANCEL,96,193,50,14
+    LISTBOX         IDC_ITEM_LIST,7,7,172,176,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_MULTIPLE_CHANGE_DIALOG DIALOGEX 0, 0, 278, 215
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "改变"
+FONT 9, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,86,194,50,14
+    PUSHBUTTON      "取消",IDCANCEL,143,194,50,14
+    CONTROL         "List1",IDC_SEL_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,264,176
+END
+
+IDD_CHANGE_ENTITY_DIALOG DIALOGEX 0, 0, 186, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "改变实体"
+FONT 9, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,39,193,50,14
+    PUSHBUTTON      "取消",IDCANCEL,96,193,50,14
+    CONTROL         "Tree1",IDC_ENTITY_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_HSCROLL | WS_TABSTOP,7,7,172,176,WS_EX_CLIENTEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CHANGE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+
+    IDD_MULTIPLE_CHANGE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 271
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 208
+    END
+
+    IDD_CHANGE_ENTITY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple"
+            VALUE "FileDescription", "TA_ConfigPluginHelper_d"
+            VALUE "FileVersion", "0, 0, 0, 0"
+            VALUE "InternalName", "TA_ConfigPluginHelper_d"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "TA_ConfigPluginHelper_d.lib"
+            VALUE "ProductName", "TA_ConfigPluginHelper_d"
+            VALUE "ProductVersion", "0, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_DELETE              "删除"
+    IDS_DATABASE_ERROR      "数据库错误的"
+    IDS_DATA_ERROR          "数据错误的"
+    IDS_RESET               "重置吗，将丢失所有更改"
+    IDS_SELECT              "选择"
+    IDS_UNKNOWN_ERROR       "一个错误的"
+    IDS_FIELD_MISSING       "以下属性不能为空：\n"
+    IDS_FIELD_NOT_UNIQUE    "以下属性不是唯一的：\n"
+    IDS_FIELD_INVALID       "以下属性无效：\n"
+    IDS_REMOVE_LINKED_ITEM  "删除之前，必须先更改或删除以下项：\n"
+    IDS_MORE                "... <更多>"
+    IDS_ITEMS_PREVENTING_ACTION "以下项止阻止了操作：\n"
+    IDS_LINKED_ITEM_EXISTS  "该项仍然与其它项关联. "
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_APPLY               "应用"
+    IDS_COPY                "复制"
+    IDS_CREATE              "创建"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "..\res\TA_ConfigPluginHelper.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\..\..\..\..\bus\resources\TransActiveResources.rc" // Common TransActive Resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

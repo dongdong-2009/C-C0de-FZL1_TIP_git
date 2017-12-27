@@ -1,0 +1,988 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "..\\res\\PlanViewer.ico"
+IDR_PLANEDTYPE          ICON    DISCARDABLE     "..\\res\\PlanViewerDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "..\\res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR DISCARDABLE  24, 24
+BEGIN
+    BUTTON      ID_CAT_NEW
+    BUTTON      ID_SEP_CAT
+    BUTTON      ID_SEP_PLAN1
+    BUTTON      ID_SEP_PLAN2
+    BUTTON      ID_SEP_PLAN3
+    BUTTON      ID_SEP_STEP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU PRELOAD DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                       ID_APP_EXIT
+    END
+    POPUP "查看(&V)"
+    BEGIN
+        MENUITEM "工具栏(&T)",                    ID_VIEW_TOOLBAR
+        MENUITEM "状态栏(&S)",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        MENUITEM "所有计划(&A)",                  ID_VIEW_ALLPLANS
+        MENUITEM "活动计划(&C)",               ID_VIEW_ACTIVEPLANS
+        MENUITEM "已通过计划(&P)",             ID_VIEW_APPROVEDPLANS
+        MENUITEM "未通过计划(&U)",           ID_VIEW_UNAPPROVEDPLANS
+    END
+    POPUP "类型(&C)"
+    BEGIN
+        MENUITEM "&新建类型 \t    Shift+Ctrl+N", ID_CAT_NEW
+        MENUITEM "&删除类型\t    Del",  ID_CAT_DELETE
+        MENUITEM "&编辑类型",              ID_CAT_EDIT
+    END
+    POPUP "计划(&P)"
+    BEGIN
+        MENUITEM "&新计划\t    Ctrl+N",      ID_PLAN_NEW
+        MENUITEM "&删除计划\t    Del",      ID_PLAN_DELETE
+        MENUITEM "剪切计划(&T)\t    Ctrl+X",      ID_PLAN_CUT
+        MENUITEM "拷贝计划(&C)\t    Ctrl+C",     ID_PLAN_COPY
+        MENUITEM "粘贴计划(&P)\t    Ctrl+V",    ID_PLAN_PASTE
+        MENUITEM "编辑计划(&E)",                  ID_PLAN_EDIT
+        MENUITEM SEPARATOR
+        MENUITEM "通过计划(&A)",               ID_PLAN_APPROVE
+        MENUITEM "未通过计划(&U)",             ID_PLAN_UNAPPROVE
+        MENUITEM SEPARATOR
+        MENUITEM "进度计划(&H)",              ID_PLAN_SCHEDULE
+        MENUITEM "控制计划(&R)",               ID_PLAN_CONTROL
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 Plan Manager...",       ID_HELP_ABOUTPLANMANAGER
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 Plan Manager"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Plan Manager 版本 1.0",IDC_STATIC,40,10,73,8,
+                    SS_NOPREFIX
+    LTEXT           "版权 (C) 2001",IDC_STATIC,40,25,71,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+    COMBOBOX        IDC_PARAM_SELECT_COMBO,121,21,107,13,CBS_DROPDOWNLIST | 
+                    CBS_SORT | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_PARAM_EDIT,121,36,107,12,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+END
+
+IDR_MAINFRAME DIALOG DISCARDABLE  0, 0, 95, 14
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "对话框条布局",IDC_STATIC,12,3,81,8
+END
+
+IDD_PLANVIEWER_DIALOG DIALOGEX 0, 0, 7, 6
+STYLE WS_POPUP | WS_VISIBLE
+EXSTYLE WS_EX_APPWINDOW
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "PlanViewer MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "PlanViewer\0"
+            VALUE "LegalCopyright", "版权 (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "PlanViewer.EXE\0"
+            VALUE "ProductName", "PlanViewer Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE PRELOAD DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "计划管理器"
+    AFX_IDS_IDLEMESSAGE     "准备"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "创建新的文档\nNew"
+    ID_FILE_OPEN            "打开已有文档\nOpen"
+    ID_FILE_CLOSE           "关闭活动文档\nClose"
+    ID_FILE_SAVE            "保存活动文档\nSave"
+    ID_FILE_SAVE_AS         "将活动文档另存为\nSave As"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息、版本号及版权\n关于"
+    ID_APP_EXIT             "退出应用程序并提示保存文档\n退出"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "打开这个文档"
+    ID_FILE_MRU_FILE2       "打开这个文档"
+    ID_FILE_MRU_FILE3       "打开这个文档"
+    ID_FILE_MRU_FILE4       "打开这个文档"
+    ID_FILE_MRU_FILE5       "打开这个文档"
+    ID_FILE_MRU_FILE6       "打开这个文档"
+    ID_FILE_MRU_FILE7       "打开这个文档"
+    ID_FILE_MRU_FILE8       "打开这个文档"
+    ID_FILE_MRU_FILE9       "打开这个文档"
+    ID_FILE_MRU_FILE10      "打开这个文档"
+    ID_FILE_MRU_FILE11      "打开这个文档"
+    ID_FILE_MRU_FILE12      "打开这个文档"
+    ID_FILE_MRU_FILE13      "打开这个文档"
+    ID_FILE_MRU_FILE14      "打开这个文档"
+    ID_FILE_MRU_FILE15      "打开这个文档"
+    ID_FILE_MRU_FILE16      "打开这个文档"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一个窗格"
+    ID_PREV_PANE            "切换到前一个窗格\n前一个窗格"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "分割活动窗口\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR           "去除选择\nErase"
+    ID_EDIT_CLEAR_ALL       "去除全部\nErase All"
+    ID_EDIT_COPY            "拷贝，并存入剪切板\nCopy"
+    ID_EDIT_CUT             "剪切，并存入剪切板\nCut"
+    ID_EDIT_FIND            "查找指定文本\nFind"
+    ID_EDIT_PASTE           "粘贴剪切板内容\nPaste"
+    ID_EDIT_REPEAT          "重复上一个动作\nRepeat"
+    ID_EDIT_REPLACE         "以其他文本替换指定文本\nReplace"
+    ID_EDIT_SELECT_ALL      "选中全部文档\nSelect All"
+    ID_EDIT_UNDO            "撤消上次操作\nUndo"
+    ID_EDIT_REDO            "重做上次撤消的操作\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\nToggle StatusBar"
+    ID_VIEW_AUTOARRANGE     "在格子中放置图标"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "改变窗口大小"
+    AFX_IDS_SCMOVE          "改变窗口位置"
+    AFX_IDS_SCMINIMIZE      "最小化窗口"
+    AFX_IDS_SCMAXIMIZE      "最大化窗口"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档视图"
+    AFX_IDS_SCPREVWINDOW    "切换到前一个文档视图"
+    AFX_IDS_SCCLOSE         "关闭活动窗口并提示保存文档"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "恢复窗口至正常大小"
+    AFX_IDS_SCTASKLIST      "活动作业列表"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_SMALLICON       "通过小图标显示所有项\n小图标"
+    ID_VIEW_LARGEICON       "通过大图标显示所有项\n大图标"
+    ID_VIEW_LIST            "在一个列表中显示项.\n列表"
+    ID_VIEW_DETAILS         "显示关于每一个项的详细信息.\n细节"
+    ID_VIEW_LINEUP          "在一个网格中放置图标."
+    ID_VIEW_BYNAME          "按字母顺序排列图标."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_CAT_DEL              "删除当前计划类型\n删除当前选中类型"
+    ID_CAT_NEW              "添加新的计划类型\n给选中类型添加新的子类型"
+    ID_CAT_SAVE             "保存当前计划类型详情\n保存类型详情"
+    ID_PLAN_NEW             "添加新的计划类型到当前类型\n添加新的计划类型到当前类型"
+    ID_PLAN_SAVE            "保存当前计划详情\n保存计划详情"
+    ID_PLAN_DELETE          "删除当前计划\n删除当前选中计划"
+    ID_PLAN_APPROVE         "通过当前计划\n通过当前执行计划"
+    ID_STEP_NEW             "添加新步骤到当前计划\n添加新步骤到计划.\r用户将步骤的目标位置."
+    ID_STEP_SAVE            "保存当前步骤细节\n保存步骤细节"
+    ID_STEP_DELETE          "删除当前步骤\n删除当前选中步骤"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PLAN_APPROVE_MENU    "通过当前计划\n通过计划"
+    ID_STEP_COPY            "拷贝当前选中步骤\n拷贝当前选中步骤到剪切板"
+    ID_STEP_PASTE           "粘贴当前步骤\n从以下剪切板粘贴或在当前选中步骤以上"
+    ID_PLAN_EXECUTE         "执行当前计划\n开始新的计划实例"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_STEP_MOVE_UP         "向上移动当前步骤一步\n向上移动步骤"
+    ID_STEP_MOVE_DOWN       "向下移动当前步骤一步\n向下移动步骤"
+    ID_PLAN_MOVE            "移动选中计划到一个指定类型\n移动计划到"
+    ID_PLAN_COPY            "拷贝选中计划到剪切板\n拷贝当前选中计划到剪切板d"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "Plan Manager\n\nPlanEd\n\n\nPlanManager.Document\nPlanEd Document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_STEP_MOVE_UP_MENU    "向上移动当前步骤一步\n向上移动步骤"
+    ID_STEP_MOVE_DOWN_MENU  "向下移动当前步骤一步\n向下移动步骤"
+    ID_CAT_DELETE           "删除当前计划类型\n删除当前选中类型"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_PLANCTRL            "Plan Controller\n\n\n\n.cplan"
+    IDR_PLANEDIT            "Plan Editor\n\n\n\n.eplan"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_STEPEDIT            "Step Editor\n\n\n\n.step"
+    IDR_CATEDIT             "Category Editor\n\n\n\n.cat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PLAN_EDIT            "编辑当前计划\n编辑当前选中计划"
+    ID_STEP_EDIT            "编辑当前步骤\n编辑当前选中步骤"
+    ID_CAT_EDIT             "编辑当前计划类型\n编辑当前选中类型"
+    ID_STEP_CUT             "剪切当前选中步骤\n剪切当前选中计划到剪切板"
+    ID_PLAN_CUT             "剪切当前计划到剪切板\n剪切当前选中计划到剪切板"
+    ID_PLAN_PASTE           "从剪切板粘贴一个计划\n从剪切板粘贴一个计划到当前类型.如果剪切板为空则禁止"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PLAN_VERIFY          "验证当前计划\n验证计划可运行"
+    ID_PLAN_UNAPPROVE       "未通过当前计划\n撤销计划执行通过"
+    ID_STEP_EDITPARAM       "编辑参数\n编辑当前选中步骤参数"
+    ID_STEP_CUSTOMOK        "接受对步骤进行的用户化改变\n接受变化并退出.在给定实例中应用变化但未保存"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_PLAN_STOP            "停止当前计划实例\n停止当前选中计划实例"
+    ID_PLAN_PAUSE           "暂停当前计划实例\n暂停当前选中计划实例"
+    ID_PLAN_RESUME          "恢复当前计划实例\n恢复当前选中计划实例"
+    ID_PLAN_TAKECONTROL     "获取当前计划实例的控制\n获取当前选中计划实例的控制"
+    ID_PLAN_RELEASECONTROL  "释放当前计划实例的控制\n释放当前计划实例的控制."
+    ID_STEP_CUSTOMISE       "用户化当前步骤\n在执行之前用户化当前选中步骤\r. 变化未保存."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_NEWCAT_ICON         ICON    DISCARDABLE     "..\\res\\new_cat.ico"
+IDI_SAVECAT_ICON        ICON    DISCARDABLE     "..\\res\\savecat_.ico"
+IDI_DELCAT_ICON         ICON    DISCARDABLE     "..\\res\\delcat_i.ico"
+IDI_SAVEPLAN_ICON       ICON    DISCARDABLE     "..\\res\\saveplan.ico"
+IDI_NEWPLAN_ICON        ICON    DISCARDABLE     "..\\res\\newplan_.ico"
+IDI_DELPLAN_ICON        ICON    DISCARDABLE     "..\\res\\delplan_.ico"
+IDI_MOVEPLAN_ICON       ICON    DISCARDABLE     "..\\res\\moveplan.ico"
+IDI_COPYPLAN_ICON       ICON    DISCARDABLE     "..\\res\\copyplan.ico"
+IDI_APPPLAN_ICON        ICON    DISCARDABLE     "..\\res\\appplan_.ico"
+IDI_SAVESTEP_ICON       ICON    DISCARDABLE     "..\\res\\savestep.ico"
+IDI_NEWSTEP_ICON        ICON    DISCARDABLE     "..\\res\\newstep_.ico"
+IDI_DELSTEP_ICON        ICON    DISCARDABLE     "..\\res\\delstep_.ico"
+IDI_STEPUP_ICON         ICON    DISCARDABLE     "..\\res\\stepup_i.ico"
+IDI_STEPDOWN_ICON       ICON    DISCARDABLE     "..\\res\\stepdown.ico"
+IDI_CATS_ICON           ICON    DISCARDABLE     "..\\res\\cats_ico.ico"
+IDI_CAT_ICON            ICON    DISCARDABLE     "..\\res\\category.ico"
+IDI_PLAN_ICON           ICON    DISCARDABLE     "..\\res\\cat_icon.ico"
+IDI_BLANK_ICON          ICON    DISCARDABLE     "..\\res\\blank.ico"
+IDI_COPY_STEP           ICON    DISCARDABLE     "..\\res\\copy_ste.ico"
+IDI_PASTE_STEP          ICON    DISCARDABLE     "..\\res\\paste_st.ico"
+IDI_EXECPLAN_ICON       ICON    DISCARDABLE     "..\\res\\execute_plan.ico"
+IDI_NEXT_STEP_ICON      ICON    DISCARDABLE     "..\\res\\next_step.ico"
+IDI_STEP_FAIL_ICON      ICON    DISCARDABLE     "..\\res\\step_fail.ico"
+IDI_STEP_OK_ICON        ICON    DISCARDABLE     "..\\res\\step_ok.ico"
+IDI_STEP_SKIP_ICON      ICON    DISCARDABLE     "..\\res\\step_skip.ico"
+IDI_FOLDERCLOSED_ICON   ICON    DISCARDABLE     "..\\res\\folder_closed.ico"
+IDI_FOLDEROPEN_ICON     ICON    DISCARDABLE     "..\\res\\folder_open.ico"
+IDI_TICK_ICON           ICON    DISCARDABLE     "..\\res\\tick.ico"
+IDI_NOTES_ICON          ICON    DISCARDABLE     "..\\res\\notes.ico"
+IDI_EDITPLAN_ICON       ICON    DISCARDABLE     "..\\res\\editplan.ico"
+IDI_CROSS_ICON          ICON    DISCARDABLE     "..\\res\\cross.ico"
+IDI_PAUSED_NEXT_STEP_ICON ICON    DISCARDABLE     "..\\res\\psd_next_step.ico"
+IDI_EDITCAT_ICON        ICON    DISCARDABLE     "..\\res\\editcat.ico"
+IDI_PASTEPLAN_ICON      ICON    DISCARDABLE     "..\\res\\pasteplan.ico"
+IDI_CUTPLAN_ICON        ICON    DISCARDABLE     "..\\res\\cutplan.ico"
+IDI_SCHEDULEPLAN_ICON   ICON    DISCARDABLE     "..\\res\\schedule_plan.ico"
+IDI_ROOT_ICON           ICON    DISCARDABLE     "..\\res\\root_icon.ico"
+IDI_UNAPPPLAN_ICON      ICON    DISCARDABLE     "..\\res\\unappplan.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_PLANCTRL            BITMAP  DISCARDABLE     "..\\res\\plan_ctrl.bmp"
+IDR_PLANEDIT            BITMAP  DISCARDABLE     "..\\res\\plan_edit.bmp"
+IDR_STEPEDIT            BITMAP  DISCARDABLE     "..\\res\\stepedit.bmp"
+IDR_CATEDIT             BITMAP  DISCARDABLE     "..\\res\\catedit.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_PLANCTRL TOOLBAR DISCARDABLE  24, 24
+BEGIN
+    BUTTON      ID_PLAN_EXECUTE
+    BUTTON      ID_PLAN_STOP
+    BUTTON      ID_PLAN_PAUSE
+    BUTTON      ID_PLAN_RESUME
+    BUTTON      ID_PLAN_TAKECONTROL
+    SEPARATOR
+    BUTTON      ID_PLAN_SCHEDULE
+    BUTTON      ID_STEP_CUSTOMISE
+END
+
+IDR_PLANEDIT TOOLBAR DISCARDABLE  24, 24
+BEGIN
+    BUTTON      ID_PLAN_SAVE
+    BUTTON      ID_PLAN_APPROVE
+    BUTTON      ID_PLAN_UNAPPROVE
+    SEPARATOR
+    BUTTON      ID_STEP_NEW
+    BUTTON      ID_STEP_DELETE
+    BUTTON      ID_STEP_CUT
+    BUTTON      ID_STEP_COPY
+    BUTTON      ID_STEP_PASTE
+    BUTTON      ID_STEP_EDIT
+END
+
+IDR_STEPEDIT TOOLBAR DISCARDABLE  24, 24
+BEGIN
+    BUTTON      ID_STEP_SAVE
+    BUTTON      ID_STEP_EDITPARAM
+    BUTTON      ID_STEP_CUSTOMOK
+END
+
+IDR_CATEDIT TOOLBAR DISCARDABLE  24, 24
+BEGIN
+    BUTTON      ID_CAT_SAVE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_PLANEDIT MENU DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                       ID_PLAN_EXIT
+    END
+    POPUP "计划(&P)"
+    BEGIN
+        MENUITEM "保存计划 (&S)\t    Ctrl+S",     ID_PLAN_SAVE
+        MENUITEM "通过计划(&A)\t    Ctrl+A",  ID_PLAN_APPROVE
+        MENUITEM "未通过计划(&U)\t    Ctrl+U", ID_PLAN_UNAPPROVE
+    END
+    POPUP "步骤(&S)"
+    BEGIN
+        MENUITEM "新步骤(&N)\t    Ctrl+N",      ID_STEP_NEW
+        MENUITEM "删除步骤(&D)\t    Del",      ID_STEP_DELETE
+        MENUITEM "剪切步骤(&T)\t    Ctrl+X",      ID_STEP_CUT
+        MENUITEM "拷贝步骤 (&C)\t    Ctrl+C",     ID_STEP_COPY
+        MENUITEM "粘贴步骤(&P)\t    Ctrl+V",    ID_STEP_PASTE
+        MENUITEM "编辑步骤(&E)",                  ID_STEP_EDIT
+    END
+END
+
+IDR_PLANCTRL MENU DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                       ID_PLAN_EXIT
+    END
+    POPUP "计划(&P)"
+    BEGIN
+        POPUP "启动(&T)"
+        BEGIN
+            MENUITEM "开始新实例(&S)\t    Ctrl +N", ID_PLAN_EXECUTE
+            MENUITEM "用户化新实例(&C)",     ID_PLAN_EXECUTE_CUSTOM
+        END
+        MENUITEM "停止实例(&S)\t    Ctrl+S", ID_PLAN_STOP
+        MENUITEM "暂停实例(&P)\t    Ctrl+P", ID_PLAN_PAUSE
+        MENUITEM "恢复实例(&R)\t    Ctrl+R", ID_PLAN_RESUME
+        MENUITEM "取得实例控制(&T)",  ID_PLAN_TAKECONTROL
+        MENUITEM SEPARATOR
+        MENUITEM "进度计划(&H)",              ID_PLAN_SCHEDULE
+    END
+    POPUP "步骤(&S)"
+    BEGIN
+        MENUITEM "用户化步骤(&C)",             ID_STEP_CUSTOMISE
+    END
+END
+
+IDR_STEPEDIT MENU DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                       ID_STEP_EXIT
+    END
+    POPUP "步骤(&S)"
+    BEGIN
+        MENUITEM "保存步骤 (&S)\t    Ctrl+S",     ID_STEP_SAVE
+        MENUITEM "编辑步骤参数(&E)",        ID_STEP_EDITPARAM
+    END
+END
+
+IDR_CATEDIT MENU DISCARDABLE 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                       ID_CAT_EXIT
+    END
+    POPUP "类型(&C)"
+    BEGIN
+        MENUITEM "&保存类型 \t    Ctrl+S", ID_CAT_SAVE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PLANCAT_FORM DIALOGEX 0, 0, 175, 88
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "计划类型 -",IDC_CATEGORY_HEADER,0,0,175,12,
+                    SS_CENTERIMAGE,WS_EX_DLGMODALFRAME
+    LTEXT           "名称:",IDC_NAME_LABEL,8,15,23,9
+    EDITTEXT        IDC_CATEGORY_NAME_EDIT,8,25,159,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "说明:",IDC_DESC_LABEL,8,41,41,10
+    EDITTEXT        IDC_CATEGORY_DESCRIPTION_EDIT,8,51,159,27,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,131,15,21,20,SS_NOTIFY | 
+                    WS_GROUP
+END
+
+IDD_PLAN_FORM DIALOG DISCARDABLE  0, 0, 273, 235
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tab1",IDC_PLANEDIT_TAB,"SysTabControl32",0x0,7,6,259,
+                    221
+END
+
+IDD_BLANK_FORM DIALOG DISCARDABLE  0, 0, 32, 22
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+IDD_PLANSTEP_FORM DIALOG DISCARDABLE  0, 0, 321, 275
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "名称:",IDC_NAME_LABEL,15,18,23,9
+    EDITTEXT        IDC_STEP_NAME_EDIT,15,28,289,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "延迟:",IDC_STEPDELAY_LABEL,113,153,59,10
+    EDITTEXT        IDC_MINUTE_EDIT,113,164,25,13,ES_READONLY | ES_NUMBER
+    CONTROL         "Spin1",IDC_MINUTE_SPIN,"msctls_updown32",UDS_WRAP | 
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | WS_DISABLED,127,164,11,13
+    EDITTEXT        IDC_SECOND_EDIT,154,164,25,13,ES_READONLY | ES_NUMBER
+    CONTROL         "Spin1",IDC_SECOND_SPIN,"msctls_updown32",UDS_WRAP | 
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | WS_DISABLED,167,164,11,13
+    LTEXT           "说明:",IDC_DESC_LABEL,15,72,41,10
+    EDITTEXT        IDC_STEP_DESCRIPTION_EDIT,15,82,289,42,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY
+    CONTROL         "List1",IDC_STEPPARAM_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,15,207,289,50
+    LTEXT           "步骤类型:",IDC_STEPTYPE_LABEL,15,44,36,10
+    GROUPBOX        "详细",IDC_STEPDETAILS_BOX,6,5,309,128
+    EDITTEXT        IDC_STEPTYPE_EDIT,15,55,80,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    GROUPBOX        "参数",IDC_STEPPARAM_BOX,6,192,309,75
+    GROUPBOX        "执行属性",IDC_STEPEXEC_BOX,6,139,309,
+                    47
+    CONTROL         "",IDC_STEPSKIPPABLE_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,15,152,9,10
+    CONTROL         "",IDC_STEPSKIP_CHECK,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,15,166,9,10
+    LTEXT           "最小",IDC_STATIC,139,166,13,10
+    LTEXT           "秒",IDC_STATIC,180,166,12,10
+    LTEXT           "步骤可跳过",IDC_STATIC,27,152,67,10,
+                    SS_CENTERIMAGE
+    LTEXT           "跳过步骤",IDC_STATIC,27,166,67,10,SS_CENTERIMAGE
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,116,52,21,20,SS_NOTIFY | 
+                    NOT WS_VISIBLE
+END
+
+IDD_STEPPARAM_DIALOG DIALOG DISCARDABLE  0, 0, 226, 85
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "指定参数值"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "参数名:",IDC_STATIC,7,10,54,12
+    EDITTEXT        IDC_PARAMNAME_EDIT,69,8,147,13,ES_READONLY | NOT 
+                    WS_TABSTOP
+    LTEXT           "参数值:",IDC_STATIC,7,30,58,11
+    EDITTEXT        IDC_PARAMVALUE_EDIT,69,29,147,22,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+    COMBOBOX        IDC_PARAMVALUE_COMBO,69,29,147,111,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "确定",IDOK,55,64,50,14
+    PUSHBUTTON      "取消",IDCANCEL,121,64,50,14
+END
+
+IDD_ALLPLANS_FORM DIALOG DISCARDABLE  0, 0, 269, 154
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,25,18,21,20,SS_NOTIFY
+END
+
+IDD_ACTIVEPLANS_FORM DIALOG DISCARDABLE  0, 0, 278, 182
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,98,2,20,20,SS_NOTIFY
+    CONTROL         "List1",IDC_ALLACTIVEPLANINST_LIST,"SysListView32",
+                    LVS_REPORT | WS_BORDER | WS_TABSTOP,7,7,264,168
+END
+
+IDD_UNAPPROVEDPLANS_FORM DIALOG DISCARDABLE  0, 0, 278, 159
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,25,18,21,20,SS_NOTIFY
+END
+
+IDD_PLAN_DETAILS_DIALOG DIALOGEX 0, 0, 369, 239
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "名称:",IDC_NAME_LABEL,16,20,73,9
+    EDITTEXT        IDC_PLAN_NAME_EDIT,16,30,336,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "执行模式:",IDC_STATIC,16,46,54,8
+    EDITTEXT        IDC_PLANEXECMODE_EDIT,16,57,58,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "批准状态:",IDC_STATIC,93,46,52,8
+    EDITTEXT        IDC_PLANAPPSTATUS_EDIT,93,57,58,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    LTEXT           "说明:",IDC_DESC_LABEL,16,73,41,10
+    EDITTEXT        IDC_PLAN_DESCRIPTION_EDIT,16,84,336,42,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY
+    CONTROL         "List1",IDC_ACTIVEPLAN_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,16,171,336,54
+    GROUPBOX        "详细",IDC_PLANDETAILS_BOX,6,6,357,128
+    GROUPBOX        "活动实例",IDC_ACTIVEPLANS_BOX,6,154,357,80
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,176,51,21,20,SS_NOTIFY
+    LTEXT           "",IDC_SPLITBAR,0,142,369,4,NOT WS_GROUP,
+                    WS_EX_DLGMODALFRAME
+END
+
+IDD_STEPLIST_DIALOG DIALOGEX 0, 0, 341, 238
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "计划状态",IDC_PLANSTATUS_BOX,6,6,329,46
+    LTEXT           "实例:",IDC_PLANINST_LABEL,17,17,31,13,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_PLANINST_COMBO,16,30,33,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "拥有者:",IDC_PLANOWNER_LABEL,68,17,24,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANOWNER_EDIT,67,30,55,12,ES_READONLY
+    LTEXT           "执行状态:",IDC_PLANEXECSTATE_LABEL,141,17,52,13,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANEXECSTATE_EDIT,141,30,55,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "执行模式:",IDC_PLANEXECMODE_LABEL,216,17,55,13,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANEXECMODE_EDIT,216,30,54,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "计划步骤",IDC_PLANSTEPS_BOX,6,59,329,80
+    CONTROL         "List1",IDC_PLANSTEP_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,16,75,307,54
+    LTEXT           "",IDC_SPLITBAR,0,145,341,4,NOT WS_GROUP,
+                    WS_EX_DLGMODALFRAME
+    GROUPBOX        "步骤参数",IDC_STEPPARAM_BOX,6,154,329,80
+    CONTROL         "List2",IDC_STEPPARAM_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,15,170,307,54
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,296,22,20,20,SS_NOTIFY
+END
+
+IDD_PLANFLOW_DIALOG DIALOG DISCARDABLE  0, 0, 341, 318
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_FLOW_PICT,"Static",SS_BLACKRECT,28,82,271,203
+    ICON            IDI_NOTES_ICON,IDC_NOTES_PICT,296,22,20,20,SS_NOTIFY
+    SCROLLBAR       IDC_FLOW_HOR_SBAR,6,301,318,10,NOT WS_VISIBLE
+    SCROLLBAR       IDC_FLOW_VER_SBAR,323,63,11,238,1  NOT 
+                    WS_VISIBLE
+    GROUPBOX        "计划状态",IDC_PLANSTATUS_BOX,6,6,329,46
+    LTEXT           "实例:",IDC_PLANINST_LABEL,17,17,31,13,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANINST_EDIT,16,30,32,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    COMBOBOX        IDC_PLANINST_COMBO,16,30,33,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "拥有者:",IDC_PLANOWNER_LABEL,68,17,24,13,SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANOWNER_EDIT,67,30,55,12,ES_READONLY
+    LTEXT           "执行状态:",IDC_PLANEXECSTATE_LABEL,141,17,52,13,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANEXECSTATE_EDIT,141,30,55,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "执行模式:",IDC_PLANEXECMODE_LABEL,216,17,55,13,
+                    SS_CENTERIMAGE
+    EDITTEXT        IDC_PLANEXECMODE_EDIT,216,30,54,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "计划流程",IDC_PLANFLOW_BOX,6,59,329,252
+END
+
+IDD_APPROVEDPLANS_FORM DIALOG DISCARDABLE  0, 0, 278, 151
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PLANCAT_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 172
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 85
+    END
+
+    IDD_PLAN_FORM, DIALOG
+    BEGIN
+        TOPMARGIN, 6
+    END
+
+    IDD_BLANK_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 25
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 15
+    END
+
+    IDD_STEPPARAM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 78
+    END
+
+    IDD_ALLPLANS_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 262
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+    IDD_ACTIVEPLANS_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 271
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 175
+    END
+
+    IDD_UNAPPROVEDPLANS_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 271
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 152
+    END
+
+    IDD_PLAN_DETAILS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 362
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
+    END
+
+    IDD_STEPLIST_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 334
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+    END
+
+    IDD_PLANFLOW_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 334
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 311
+    END
+
+    IDD_APPROVEDPLANS_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 271
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\PlanManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_STEPLIST_DIALOG DLGINIT
+BEGIN
+    IDC_PLANINST_COMBO, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    0
+END
+
+IDD_PLANFLOW_DIALOG DLGINIT
+BEGIN
+    IDC_PLANINST_COMBO, 0x403, 5, 0
+0x6f4e, 0x656e, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// JPG
+//
+
+IDR_STEPFLOW_ACTIVE_JPG JPG     DISCARDABLE     "..\\res\\step_flow_active.jpg"
+IDR_STEPFLOW_INACTIVE_JPG JPG     DISCARDABLE     "..\\res\\step_flow_inactive.jpg"
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "..\res\PlanManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

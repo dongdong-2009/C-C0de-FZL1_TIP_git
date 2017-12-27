@@ -1,0 +1,71 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert V
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainRadioGroupCorba_Idl)
+#define ITrainRadioGroupCorba_Idl
+
+#include <core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl>//limin
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands and notification related to Train Radio Group Coverage
+     * (a.k.a. Operating Areas). This is for ECP253.
+     * @author Robert V
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:43 PM
+     */
+    interface ITrainRadioGroupCorba
+    {
+		/**
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        typedef sequence<unsigned long> GroupLocationList;
+
+
+        /**
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        struct TrainRadioGroup
+        {
+            string groupName;
+            string groupTsi;
+            GroupLocationList locationCoverage;
+            boolean locked;
+            long lastUpdateTime;
+        };
+
+        /**
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        typedef sequence<TrainRadioGroup> TrainRadioGroupList;
+		
+        /**
+         * Gets the train radio groups available to choose from.
+         * They each indicate what areas they cover.
+         */
+        TrainRadioGroupList getTrainRadioGroups()
+			raises (TA_Base_Core::OperationModeException);//limin
+
+    };
+
+};
+
+#endif

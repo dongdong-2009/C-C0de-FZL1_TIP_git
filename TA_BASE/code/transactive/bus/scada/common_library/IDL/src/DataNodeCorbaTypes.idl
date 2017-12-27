@@ -1,0 +1,169 @@
+#ifndef DataNodeCorbaTypes_INCLUDED_
+#define DataNodeCorbaTypes_INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/scada/common_library/IDL/src/DataNodeCorbaTypes.idl $
+  * @author:  Darren Sampson
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * This is the interface to a DataNode
+  */
+
+#include "bus/scada/common_library/IDL/src/ScadaCorbaTypes.idl"
+
+module TA_Base_Bus
+{
+    module DataNodeCorbaTypes
+    {
+		//
+		// constants
+		//
+
+		const long ACTIVATION_REQUEST_TIMEOUT = (5 * 60);
+
+		//
+		// Exceptions
+		//
+
+	    exception ChildUpdateException
+		{
+			string							reason;
+		};
+
+		enum ETagState
+		{
+			NotTagged,
+			Tagged,
+			TaggedPtw
+		};
+
+		struct STagState
+		{
+			ETagState							tagState;
+			ScadaCorbaTypes::SInhibitState		tagInhibitState;
+			string								ptwId;
+			string								comment;
+		};
+
+		struct SCompleteDynamicSyncState
+		{
+			STagState						tagState;
+			ScadaCorbaTypes::SBooleanTag	alarmSummary;
+			ScadaCorbaTypes::SEnumTag		ackSummary;
+			ScadaCorbaTypes::SBooleanTag	scanInhibitSummary;
+			ScadaCorbaTypes::SBooleanTag	alarmInhibitSummary;
+			ScadaCorbaTypes::SBooleanTag	mmsAlarmInhibitSummary;
+			ScadaCorbaTypes::SBooleanTag	controlInhibitSummary;
+			ScadaCorbaTypes::SBooleanTag	overrideSummary;
+			ScadaCorbaTypes::SEnumTag		qualitySummary;
+			ScadaCorbaTypes::SBooleanTag	controlPendingSummary;
+			ScadaCorbaTypes::SBooleanTag	combinedInhibitMMSState;
+			string							notes;
+			boolean							inhibitMMSState;
+			ScadaCorbaTypes::SLastOperatorInfo	lastOperator;
+		};
+
+		enum ESyncUpdate
+		{
+			CompleteSyncState,
+			TagStateUpdate,
+			AlarmSummaryUpdate,
+			AlarmAckSummaryUpdate,
+			ScanInhibitSummaryUpdate,
+			AlarmInhibitSummaryUpdate,
+			MmsAlarmInhibitSummaryUpdate,
+			ControlInhibitSummaryUpdate,
+			OverrideSummaryUpdate,
+			QualitySummaryUpdate,
+			ControlPendingSummaryUpdate,
+			NotesUpdate,
+			InhibitMMSUpdate,
+			CombinedInhibitMMSUpdate,
+			LastOperatorUpdate
+		};
+
+		union USyncUpdate switch (ESyncUpdate)
+		{
+		case CompleteSyncState:
+			SCompleteDynamicSyncState		syncCompleteState;
+
+		case TagStateUpdate:
+			STagState						tagState;
+
+		case AlarmSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	alarmSummary;
+
+		case AlarmAckSummaryUpdate:
+			ScadaCorbaTypes::SEnumTag		ackSummary;
+		
+		case ScanInhibitSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	scanInhibitSummary;
+
+		case AlarmInhibitSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	alarmInhibitSummary;
+
+		case MmsAlarmInhibitSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	mmsAlarmInhibitSummary;
+
+		case ControlInhibitSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	controlInhibitSummary;
+
+		case OverrideSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	overrideSummary;
+	
+		case QualitySummaryUpdate:
+			ScadaCorbaTypes::SEnumTag		qualitySummary;
+		
+		case ControlPendingSummaryUpdate:
+			ScadaCorbaTypes::SBooleanTag	controlPendingSummary;
+
+		case CombinedInhibitMMSUpdate:
+			ScadaCorbaTypes::SBooleanTag	combinedInhibitMMSState;
+											
+		case NotesUpdate:
+			string							notes;
+
+		case InhibitMMSUpdate:
+			boolean							inhibitMMSState;
+
+		case LastOperatorUpdate:	
+			ScadaCorbaTypes::SLastOperatorInfo	lastOperator;
+		};
+
+		struct SSyncUpdate
+		{
+			unsigned long					dnKey;
+			USyncUpdate						syncUpdate;
+		};
+		
+		typedef sequence < SSyncUpdate >	SyncUpdateSequence;
+
+		
+		////////////////////////
+		// Structs and datatypes for Display only
+		////////////////////////
+		//todo: location key may required
+		struct DataNodeDisplayState
+		{
+			unsigned long					entityKey;			// current entitykey of DataPoint
+			string							ONITP;				//the 'Override', 'Note', 'Tag', 'Inhibit' and 'Ptw' statuses
+	        ScadaCorbaTypes::SBooleanTag	alarmState;			// alarm state boolean tag
+			ScadaCorbaTypes::SEnumTag		alarmAckState;		// alarm ack state tag
+			ScadaCorbaTypes::SEnumTag		quality;			// quality tag
+		};
+
+		// Update sequence
+		typedef sequence < DataNodeDisplayState > DataNodeDisplayStateSequence;
+
+	};	// module DataNodeCorbaTypes
+};	// module TA_Base_App
+
+#endif // #if !defined(DataNodeCorbaDef_INCLUDED_)
+

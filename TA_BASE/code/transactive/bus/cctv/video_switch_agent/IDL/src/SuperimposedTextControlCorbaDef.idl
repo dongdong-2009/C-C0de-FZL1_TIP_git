@@ -1,0 +1,182 @@
+#if !defined(SuperimposedTextControlCorbaDef_BB59CA3D_CE10_4f96_9F54_812C0C59A337__INCLUDED_)
+#define SuperimposedTextControlCorbaDef_BB59CA3D_CE10_4f96_9F54_812C0C59A337__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/SuperimposedTextControlCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that handles all the functions 
+  * involving superimposing text on a VideoInput.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+	interface SuperimposedTextControlCorbaDef
+	{
+        /**
+          * isDateSuperimposed
+          *
+          * Identifies if the date is superimposed on the VideoInput.
+          * This will return false if SuperimposeDate is not supported.
+          *
+          * @return     boolean
+          *             True if the date is superimposed on the input.
+          *             False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+        boolean isDateSuperimposed()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+
+        /**
+          * superimposeDate
+          * 
+          * Superimposes (or clears) the date on the VideoInput.
+          *
+          * @param      boolean isDateSuperimposed
+          *             True if the date should be superimposed on the VideoInput.
+          *             False if the date should be cleared from the VideoInput.
+          * @param      string sessionId
+		  *				Used to determine if the user has sufficient 
+		  *				privileges for this operation.
+          *             
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this VideoInput.
+          *             2. The VideoInput or the protocol does not support this operation.
+          *             3. The VideoInput is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+ 		  *				6. There is a communications failure with the hardware.
+          */
+
+	    void superimposeDate( in boolean isDateSuperimposed, in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+	    
+        /**
+          * isNameSuperimposed
+          *
+          * Identifies if the name of the VideoInput is superimposed on the VideoInput.
+          * This will return false if SuperimposeName is not supported.
+          *
+          * @return     boolean
+          *             True if the name is superimposed on the input.
+          *             False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+        boolean isNameSuperimposed()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+
+        /**
+          * superimposeName
+          * 
+          * Superimposes (or clears) the name of the VideoInput on the VideoInput.
+          *
+          * @param      boolean isNameSuperimposed
+          *             True if the name should be superimposed on the VideoInput.
+          *             False if the name should be cleared from the VideoInput.
+          * @param      string sessionId
+		  *				Used to determine if the user has sufficient 
+		  *				privileges for this operation.
+          *             
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this VideoInput.
+          *             2. The VideoInput or the protocol does not support this operation.
+          *             3. The VideoInput is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+ 		  *				6. There is a communications failure with the hardware.
+          */
+
+	    void superimposeName( in boolean isNameSuperimposed, in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+	   
+        /**
+          * getSuperimposedText
+          *
+          * This will return false if SuperimposeText is not supported.
+          *
+          * Gets the free text that is superimposed on the VideoInput.
+          *
+          * @return     string
+          *             The text superimposed on the VideoInput or
+          *             "" if nothing is displayed.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+ 	   
+        string getSuperimposedText()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+
+        /**
+          * superimposeText
+          * 
+          * Superimposes (or clears) free text on the VideoInput.
+          *
+          * @param      string text
+          *             The text to superimpose on the input or
+          *             "" to clear the text superimposed on the input.
+          * @param      string sessionId
+		  *				Used to determine if the user has sufficient 
+		  *				privileges for this operation.
+          * 
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this VideoInput.
+          *             2. The VideoInput or the protocol does not support this operation.
+          *             3. The text is too long.
+          *             4. The text contains inappropriate words.
+          *             5. The VideoInput is out of service.
+		  *				6. The agent is in Monitor mode.
+		  *				7. The user does not have sufficient privileges for this operation.
+ 		  *				8. There is a communications failure with the hardware.
+          */
+
+        void superimposeText( in string text, in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+
+        /**
+          * getMaximumTextLength
+          *
+          * Gets the maximum number length of the string that can be displayed.
+          *
+          * @return     unsigned short
+          *             The maximum number of characters that can be displayed as free text.
+          *             Returns 0 if text cannot be displayed.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+        
+        unsigned short getMaximumTextLength()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException,TA_Base_Core::OperationModeException);
+    };
+
+}; // TA_Base_Bus
+
+#endif // !defined(SuperimposedTextControlCorbaDef_BB59CA3D_CE10_4f96_9F54_812C0C59A337__INCLUDED_)

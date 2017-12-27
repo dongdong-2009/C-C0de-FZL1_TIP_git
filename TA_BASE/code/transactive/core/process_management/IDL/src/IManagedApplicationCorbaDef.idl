@@ -1,0 +1,45 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IManagedApplicationCorbaDef.idl $
+  * @author:   Karen Graham
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last mofified by:  $Author: CM $
+  *
+  * This interface is a generic interface above agent and GUI
+  * interfaces so that a generic object can be returned to a 
+  * process monitor. This will then narrow to the correct type
+  * of object.
+  */
+
+#ifndef IMANAGEDAPPLICATION_IDL_INCLUDED
+#define IMANAGEDAPPLICATION_IDL_INCLUDED
+
+module TA_Base_Core
+{
+	interface IManagedApplicationCorbaDef
+	{
+
+		enum EntityMessageType
+		{
+			All,
+			RadioAgent,
+			ControlStation
+		};
+
+		// Used for the Grahpworx targeted command comms messages
+		struct GXToTAMessage
+		{
+			EntityMessageType entityType;
+			string sourceSchematicID;
+			string sessionId;
+			string message;
+		};
+	};
+
+};
+
+#endif // IMANAGEDAPPLICATION_IDL_INCLUDED

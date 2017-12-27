@@ -1,0 +1,106 @@
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/scada/common_library/IDL/src/IDataNodeAccessCorbaDef.idl $
+  * @author:  Darren Sampson
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  */
+
+#if !defined(IDataNodeAccessCorbaDef_INCLUDED_)
+#define IDataNodeAccessCorbaDef_INCLUDED_
+
+#include "bus/scada/common_library/IDL/src/DataNodeCorbaTypes.idl"
+
+module TA_Base_Bus
+{
+    interface IDataNodeAccessCorbaDef
+    {
+
+		/**
+		 * changeDataNodeTag() changes the Tag  for the DataNode with the indicated entity
+		 * key.
+         *
+		 * @param dnKey    The entity key of the DataNode to change
+		 * @param sessionId    The operator session id
+		 * @param tagState    The new tag state for the DataNode
+		 * @param outputInhibitState    The output inhibit state associated with the Tag.
+		 * This is applied to all child DataNodes and DataPoints.
+		 * @param inputInhibitState    The input inhibit state associated with the Tag.
+		 * This is applied to all child DataNodes and DataPoints.
+		 * @param ptwId    The new PTW ID for the DataNode (only if the tag state is
+		 * TaggedPtw)
+		 * @param comment    The new Comment for the DataNode
+		 *
+         * @exception TA_Base_Core::BadParameterException raised if tag state is TAGGED_PTW and no PTW ID or Comment is provided.
+		 * @exception TA_Base_Core::BadParameterException raised if tag state is not TAGGED_PTW and PTW ID or Comment is provided.
+		 * @exception TA_Base_Core::AccessDeniedException raised if the operator does not have permission to tag.
+         */	
+		void changeDataNodeTag(	in unsigned long						dnKey,
+								in string								sessionId,
+								in DataNodeCorbaTypes::ETagState		tagState,
+								in ScadaCorbaTypes::EOutputInhibitState	outputInhibitState,
+								in ScadaCorbaTypes::EInputInhibitState	inputInhibitState,
+								in string								ptwId,
+								in string								comment)
+
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException, 
+					TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException, 
+					TA_Base_Core::AccessDeniedException, DataNodeCorbaTypes::ChildUpdateException);
+
+
+		/**
+		 * setNotes() sets the notes for the DatanNode with the indicated entity key.
+		 * 
+		 * @param dnKey    The entity key of the DataNode to use to set the notes
+		 * @param sessionId    The Session ID of the operator
+		 * @param notes    The new notes to set
+		 *
+		 * @exception TA_Base_Core::AccessDeniedException raised if the operator does not have permission to modify notes.
+         */
+		void setNotes(	in unsigned long dnKey,
+						in string sessionId,
+						in string notes)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException, 
+					TA_Base_Core::AccessDeniedException, TA_Base_Core::DatabaseErrorException);
+
+
+		/**
+		  * setInhibitMMS() sets the Inhibit MMS property of the DataNode with the
+		  * indicated entity key.
+		  * 
+		  * @param dnKey    The entity key of the DataNode to use to set MMS Inhibit
+		  * @param sessionId    The operator session id
+		  * @param inhibitMms    Indication (true/false) whether MMS functionality is
+		  * inhibited
+		  *
+		  * @exception TA_Base_Core::AccessDeniedException raised if the operator does not have permission to inhibit the MMS function.
+          */
+		void setInhibitMMS (	in unsigned long dnKey,
+								in string sessionId,
+								in boolean inhibitMms )
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException, 
+					TA_Base_Core::AccessDeniedException);
+
+		//wenching++ (TD13621)
+		/**
+          * getFlexibleTimeOutValue
+          *
+          * This method gets the flexible timeout value
+          *
+		  * @return The flexible timeout value
+          */
+		unsigned short getFlexibleTimeOutValue()
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException);
+		//++wenching (TD13621)
+
+    };		// interface IDataNodeAccessCorbaDef
+};		// module TA_Base_Bus
+
+#endif
+

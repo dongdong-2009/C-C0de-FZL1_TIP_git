@@ -1,0 +1,62 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: app.system_control.all_system_manager.AllSystemManager - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\System\Temp\RSP483.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\.." /I "../../../.." /I "../../../../../build/win32_n/transactive" /I "../../../../../build/win32_n/transactive/core/message/IDL/src" /I "../../../../../build/win32_n/transactive/core/exceptions/IDL/src" /I "../../../../../build/win32_n/transactive/core/process_management/IDL/src" /I "..\..\..\..\cots\omniORB\omniORB_4.0.5\include" /I "../../../../cots/ACE/5_3/ACE_wrappers" /I "../../../../cots/boost/boost_1_31_0" /D "_DEBUG" /D "__WIN32__" /D "__NT__" /D "__x86__" /D __OSVERSION__=4 /D TA_ASSERT_LOG=1 /D TA_ASSERT_FAIL=EXCEPTION /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fo"../../../../../build/win32_nd/transactive/app/system_control/all_system_manager/" /Fd"../../../../../build/win32_nd/transactive/app/system_control/all_system_manager/" /FD /GZ /c 
+"C:\WorkBuilding\4677_ALL_TIP\TA_BASE\transactive\app\system_control\all_system_manager\src\SubSystemControllerAccessFactory.cpp"
+"C:\WorkBuilding\4677_ALL_TIP\TA_BASE\transactive\app\system_control\all_system_manager\src\SystemControllerDlg.cpp"
+]
+Creating command line "cl.exe @C:\System\Temp\RSP483.tmp" 
+Creating temporary file "C:\System\Temp\RSP484.tmp" with contents
+[
+omnithread30_rtd.lib omniORB405_rtd.lib omniDynamic405_rtd.lib COS405_rtd.lib ws2_32.lib oci.lib htmlhelp.lib Rpcrt4.lib acemfcd.lib TA_Base_Core_d.lib TA_Base_Bus_d.lib /nologo /subsystem:windows /incremental:yes /pdb:"../../../../../bin/win32_nd/AllSystemManager.pdb" /debug /debugtype:both /machine:I386 /out:"../../../../../bin/win32_nd/AllSystemManager.exe" /pdbtype:sept /libpath:"../../../../../sdk/win32_nd" /libpath:"..\..\..\..\cots\omniORB\omniORB_4.0.5\lib\x86_win32" /libpath:"..\..\..\..\cots\oracle\920\winnt\lib" /libpath:"..\..\..\..\cots\HTMLHelp\lib" /libpath:"..\..\..\..\cots/ACE/5_3/ACE_wrappers/ace" /libpath:"..\..\..\..\cots\boost\boost_1_31_0\libs\Winnt40" 
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\AdminManager.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\AdminObserver.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\ChangeOperationModeDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\HostsTabCtrl.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\OptionsDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\ProcessListCtrl.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\ProcessParamsDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SessionHandler.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\ShutdownSystemControllerDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\StartProcessDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\StdAfx.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\StopProcessDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SubSystemControllerAccessFactory.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SystemControllerDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SystemControllerException.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SystemManager.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SystemManagerDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SystemManagerGUI.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\TransActiveLoginDlg.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\VersionGen.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\CannotUseSysControllerException.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\GenericGUIException.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\UserCancelException.obj
+\WorkBuilding\4677_ALL_TIP\build\win32_nd\transactive\app\system_control\all_system_manager\SystemManager.res
+]
+Creating command line "link.exe @C:\System\Temp\RSP484.tmp"
+<h3>Output Window</h3>
+Compiling...
+SubSystemControllerAccessFactory.cpp
+Generating Code...
+Compiling...
+SystemControllerDlg.cpp
+Generating Code...
+Linking...
+LINK : warning LNK4075: ignoring /INCREMENTAL due to /DEBUGTYPE specification
+   Creating library ../../../../../bin/win32_nd/AllSystemManager.lib and object ../../../../../bin/win32_nd/AllSystemManager.exp
+
+
+
+<h3>Results</h3>
+AllSystemManager.exe - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

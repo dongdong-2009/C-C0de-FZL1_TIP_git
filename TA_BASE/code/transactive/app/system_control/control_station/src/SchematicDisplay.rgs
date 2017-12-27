@@ -1,0 +1,24 @@
+HKCR
+{
+	RippleControlStation.SchematicDisplay.1 = s 'SchematicDisplay Class'
+	{
+		CLSID = s '{9F3187D4-5454-4C55-9A42-F0EEBCC5EA72}'
+	}
+	RippleControlStation.SchematicDisplay = s 'SchematicDisplay Class'
+	{
+		CLSID = s '{9F3187D4-5454-4C55-9A42-F0EEBCC5EA72}'
+		CurVer = s 'RippleControlStation.SchematicDisplay.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {9F3187D4-5454-4C55-9A42-F0EEBCC5EA72} = s 'SchematicDisplay Class'
+		{
+			ProgID = s 'RippleControlStation.SchematicDisplay.1'
+			VersionIndependentProgID = s 'RippleControlStation.SchematicDisplay'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{7D9185A1-CF4B-4756-A29D-1292B1F17683}'
+			'TypeLib' = s '{F6390CBC-4CFA-4208-85F8-6B780E2F41F7}'
+		}
+	}
+}

@@ -1,0 +1,223 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainInformationCorba_Idl)
+#define ITrainInformationCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainExceptionsCorba.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands and notifications used by GUIs
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:41 PM
+     */
+    interface ITrainInformationCorba
+    {
+        /**
+         * This is the operation mode of the agent and includes what areas it is in
+         * control of. It can be queried and is sent out as an update.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        struct AgentOperationMode
+        {
+            boolean fallbackMode;
+            boolean doubleAtsFailure;
+            boolean groupOffline;
+            boolean localDuty;
+            sequence<unsigned long> controlledLocations;
+            long lastUpdateTime;
+        };
+		
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        enum EChangeType
+        {
+            // A saved selection list has been added/updated
+            SelectionListUpdate,
+            // A saved selection list has been deleted
+            SelectionListDeletion
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        struct TrainSelectionUpdate
+        {
+            EChangeType change;
+            string selectionName;
+        };
+
+        /**
+         * Train selection list management
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        typedef sequence<string> TrainSelectionList;
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        enum EAtsTrack
+        {
+            TrackUnknown,
+            TrackInbound,
+            TrackOutbound
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        struct TrainDetails
+        {
+            // The physical train number
+            ITrainCommonCorba::TrainId trainId;
+            // Whether the train is sending OA1/ATC tables over radio
+            boolean communicationValid;
+            // This is where the train is currently sending OA1/ATC tables.
+            // If the communication is not valid, this is the last place they were sent, or 0 if they were never sent.
+            unsigned long communicatingLocation;
+            // The current primary ITSI of the train (the one currently communicating)
+            string primaryTsi;
+            // The current secondary ITSI of the train (the one not currently communicating)
+            string secondaryTsi;
+            // Whether the train is reported in ATS or not.
+            boolean atsValid;
+            // If the ATS is valid, is the localisation information held by ATS valid
+            boolean isLocalisationValid;
+            // The current location key of the train, or the last known location if the train
+            // is not valid.
+            unsigned long currentLocation;
+            // The CCTV zone of the train (not taking into acount pre conflict or conflict)
+            unsigned long currentCctvZone;
+            // The service number of the train, or the last known service number if ats is not
+            // valid.
+            string serviceNumber;
+            // Whether the train is mute or not (ATS flag)
+            boolean isMute;
+            // The track the train is on (from ATS)
+            EAtsTrack track;
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:41 PM
+         */
+        typedef sequence<TrainDetails> TrainDetailsList;
+
+
+        /**
+         * Get details about all known valid trains.
+         * 
+         * This will get the current details about all known trains, that are valid -
+         * meaning they are communicating either by radio, or they are present in ATS.
+         * 
+         * @return a list of all valid trains
+         */
+        TrainDetailsList getTrainList()
+			raises ( TA_Base_Core::OperationModeException );//limin
+
+        /**
+         * Given a train ID, get the current details for it.
+         * The train might not be valid or at a valid location, but the current known details will be given.
+         * 
+         * @return the details of the given train
+         * 
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known
+         * 
+         * @param trainId    The train to get the details for
+         */
+        TrainDetails getTrainDetails(in ITrainCommonCorba::TrainId trainId)
+        	raises ( ITrainExceptionsCorba::InvalidTrainException, TA_Base_Core::OperationModeException );//limin
+
+        /**
+         * Gets the names of all named selection lists.
+         * 
+         * @return a sequence of names of the existing selection lists
+         */
+        TrainSelectionList getTrainSelectionList()
+			raises ( TA_Base_Core::OperationModeException );//limin
+
+        /**
+         * Gets the trains involved in a single named train selection list.
+         * 
+         * @return a list of train IDs that comprise the selection list
+         * 
+         * @exception ITrainExceptionsCorba::InvalidSelectionListException if the given train list is not valid
+         * 
+         * @param selectionName
+         */
+        ITrainCommonCorba::TrainList getTrainSelection(in string selectionName)
+        	raises (ITrainExceptionsCorba::InvalidSelectionListException, TA_Base_Core::OperationModeException );//limin
+
+        /**
+         * Save a selection of trains into a named selection list.
+         * Creates a new list if there isnt already one by this name, otherwise overwrites
+         * any previously saved list with this name.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * 
+         * @param selectionName    The name of the selection to save
+         * @param trainIDs    The list of trains included in the train selection
+         * @param sessionId    The operator saving the selection list
+         */
+        void saveTrainSelection(in string selectionName, in ITrainCommonCorba::TrainList trainIDs, in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException);
+
+        /**
+         * Deletes an existing selection list. If none existed this has no effect.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * 
+         * @param selectionName    The named selection list to delete.
+         * @param sessionId    The operator deleting the selection
+         */
+        void deleteTrainSelection(in string selectionName, in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException);
+
+        /**
+         * This checks the current agent state to determine its operation mode.
+         * Updates are also sent when this changes, this allows the GUI to enable/disable train lists,
+         * and locations within train lists.
+         * 
+         * @return operation mode information about controlled locations, radio fallback, ats failure, group offline, and local duty.
+         */
+        AgentOperationMode getAgentOperationMode();
+
+    };
+
+};
+
+#endif

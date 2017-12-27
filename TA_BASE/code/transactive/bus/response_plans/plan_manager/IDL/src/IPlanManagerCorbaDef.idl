@@ -1,0 +1,58 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/response_plans/plan_manager/IDL/src/IPlanManagerCorbaDef.idl $
+// @author:  Bart Golab
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Plan Manager IDL interface.
+//
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+#include "core/data_access_interface/PlanAgent/IDL/src/PlanAgentDataCorbaDef.idl"
+
+
+module TA_Base_Bus
+{
+	interface IPlanManagerCorbaDef
+	{       	   
+	    // Constants
+		// ---------
+		// Number of seconds before the message prompting operator to
+		// okay the launch of Plan Controller for a Run Plan step is 
+		// auto-acknowledged and the result returned to the Plan Agent.
+		const unsigned long RUNPLAN_RESPONSE_TIMEOUT = 60;
+
+		// Number of seconds before the message prompting operator to
+		// okay the launch of an app for a Launch GUI Application step is 
+		// auto-acknowledged and the result returned to the Plan Agent.
+		const unsigned long LAUNCHGUIAPP_RESPONSE_TIMEOUT = 30; 
+
+		// Number of seconds before the message prompting operator to
+		// okay the launch of a display for a Launch Schematic step is 
+		// auto-acknowledged and the result returned to the Plan Agent.
+		const unsigned long LAUNCHSCHEMATIC_RESPONSE_TIMEOUT = 60; 
+
+
+	    // Exceptions
+		// ----------
+        exception InteractiveStepExecuteError
+		{
+			string reason;
+		};		
+
+
+		// Interactive plan step support
+		// -----------------------------
+        void executeInteractiveStep(in TA_Base_Core::CurrentPlanStepDetail stepDetail) raises(InteractiveStepExecuteError, TA_Base_Core::OperationModeException); 
+
+	}; // interface IPlanManagerCorbaDef
+
+}; // module TA_Base_Bus
+

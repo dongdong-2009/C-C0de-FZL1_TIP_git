@@ -1,0 +1,175 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "..\config_plugin_helper\src\helperresource.h"
+#include "..\..\..\..\bus\resources\resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+2 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple"
+            VALUE "FileDescription", "TA_DutyConfigPlugin DLL"
+            VALUE "FileVersion", "0, 0, 0, 0"
+            VALUE "InternalName", "TA_DutyConfigPlugin"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "TA_DutyConfigPlugin.DLL"
+            VALUE "ProductName", "TA_DutyConfigPlugin Dynamic Link Library"
+            VALUE "ProductVersion", "0, 0, 0, 0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""..\\config_plugin_helper\\src\\helperresource.h""\r\n"
+    "#include ""..\\..\\..\\..\\bus\\resources\\resource.h""\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\TA_DutyConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DUTY_VIEW DIALOGEX 0, 0, 432, 323
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 9, "宋体", 400, 0, 0x86
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,61,19,355,13,ES_AUTOHSCROLL
+    CONTROL         "",IDC_CHECK_CONTROL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,56,38,11,13
+    PUSHBUTTON      "添加选中",IDC_BUTTON_SELECT,56,72,70,14
+    PUSHBUTTON      "移除选中",IDC_BUTTON_UNSELECT,131,72,70,14
+    CONTROL         "List1",IDC_LIST_ACTIONS,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,16,89,400,167
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,159,297,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,223,297,50,14
+    LTEXT           "名称:",IDC_STATIC_NAME,16,22,21,8
+    GROUPBOX        "",IDC_STATIC_TYPE,5,6,421,310
+    LTEXT           "创建时间:",IDC_STATIC_DATE_CREATED,16,266,37,8
+    LTEXT           "修改时间:",IDC_STATIC_DATE_MODIFIED,16,283,37,8
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,69,266,241,8
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,69,283,241,8
+    CONTROL         9005,IDC_NAME_BITMAP,"Static",SS_BITMAP,46,21,11,11
+    LTEXT           "动作:",IDC_STATIC_ACTIONS,16,72,21,8
+    LTEXT           "控制:",IDC_STATIC_CONTROL,16,40,21,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DUTY_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 426
+        VERTGUIDE, 16
+        VERTGUIDE, 416
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 316
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\TA_DutyConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

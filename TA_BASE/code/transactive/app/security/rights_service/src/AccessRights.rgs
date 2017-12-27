@@ -1,0 +1,24 @@
+HKCR
+{
+	RippleRights.AccessRights.1 = s 'AccessRights Class'
+	{
+		CLSID = s '{30C7367C-DD21-4367-A85D-99BC0744DD1D}'
+	}
+	RippleRights.AccessRights = s 'AccessRights Class'
+	{
+		CLSID = s '{30C7367C-DD21-4367-A85D-99BC0744DD1D}'
+		CurVer = s 'RippleRights.AccessRights.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {30C7367C-DD21-4367-A85D-99BC0744DD1D} = s 'AccessRights Class'
+		{
+			ProgID = s 'RippleRights.AccessRights.1'
+			VersionIndependentProgID = s 'RippleRights.AccessRights'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{DE1AF323-C0D8-4E40-B027-53CE7C57B57E}'
+			'TypeLib' = s '{8B7A567C-D60A-4711-A97A-FA2D9526284E}'
+		}
+	}
+}

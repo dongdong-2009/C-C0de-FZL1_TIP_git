@@ -1,0 +1,268 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/signs/TisManagerCorbaDef/src/ISTISManagerCorbaDef.idl $
+// @author:  Rob Ashcroft
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Station Traveller Information System (STIS) Manager IDL interface.
+//
+
+#ifndef ISTISMANAGERCORBADEF_IDL_INCLUDED
+#define ISTISMANAGERCORBADEF_IDL_INCLUDED
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "core/data_access_interface/tis_agent/IDL/src/TISMessageDataDefinitions.idl"
+
+module TA_Base_Bus
+{
+
+    interface ISTISManagerCorbaDef
+    {
+		typedef sequence<octet> LibraryContentType;
+        /*
+        *  This exception is thrown when a client calls a method that requires the STISManager to send
+        *  a message to the STIS server, and the socket connection does not exist.
+        */
+        exception STISServerNotConnectedException
+        {
+        };
+
+		exception CCTNotConnectedException
+		{
+		};
+
+        /*
+        *  This exception is thrown when the reply from the STIS server is not received 
+        *  within the timeout period.
+        */
+        exception STISCommunicationTimeoutException
+        {
+        };
+
+        /*
+        *  This is a generic comms failure exception
+        */
+        exception STISCommunicationFailureException
+        {
+            string details;
+        };
+
+        /*
+        *  This exception is thrown when the client attempts to call a method containing functionality
+        *  that is not available at the agent's location.
+        */
+        exception STISFunctionalityNotAvailableException
+        {
+        };
+
+        exception STISInvalidParameterException
+        {
+            string details;
+        };
+
+        /*
+        *  This exception is thrown when the call fails due to the agent not being able
+        * to complete the call due to varying reasons
+        */
+        exception STISGeneralFailureException
+        {
+            string details;
+        };
+
+        struct RATISMessageDetails
+        {
+            long                         messageID;        // ID for the call
+            long                         sessionRef;
+            string                       startTime;
+            string                       endTime;
+            boolean                      requiresVetting;
+            boolean                      overridable;
+            TA_Base_Core::ERATISMessageType   type;
+            TA_Base_Core::ERATISMessageStatus status;
+            long                         timeCreated;
+            string                       destination;
+            string                       tag;
+            short                        priority;
+            string                       messageText;
+            boolean                      isTTIS;
+        };
+
+        struct IncomingRATISEvent
+        {
+            long                            messageID;
+            long                            sessionRef;
+            boolean                         requiresVetting;
+            TA_Base_Core::ERATISMessageType  type;
+        };
+
+        struct RATISMessageApprovalDetails
+        {
+            long                            messageID;
+            long                            sessionRef;
+            TA_Base_Core::ERATISMessageStatus status;
+        };
+
+
+        typedef sequence<RATISMessageDetails> RATISMessageList;
+
+        /**
+          * submitPredefinedDisplayRequest
+          *
+          * This method allows clients to initiate the display of a predefined message.
+          *
+          */
+		// Another version of submitPredefinedDisplayRequest, starttime and endtime mean seconds since 1970, Jan 1, 0hour, 0minute, 0second(UTC)
+        void submitPredefinedDisplayRequest2( in TA_Base_Core::STISDestinationList destinationList, in TA_Base_Core::ELibrarySection librarySection, 
+                                             in unsigned long libraryVersion,in unsigned short messageTag,
+                                             in unsigned long startTime, in unsigned long endTime, in unsigned short priority, in string sessionID)
+                        raises( STISServerNotConnectedException, STISCommunicationTimeoutException, STISInvalidParameterException ,TA_Base_Core::OperationModeException);
+
+        void submitPredefinedDisplayRequest( in TA_Base_Core::STISDestinationList destinationList, in TA_Base_Core::ELibrarySection librarySection, 
+                                             in unsigned long libraryVersion,in unsigned short messageTag,
+                                             in string startTime, in string endTime, in unsigned short priority, in string sessionID)
+                        raises( STISServerNotConnectedException, STISCommunicationTimeoutException, STISInvalidParameterException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * submitAdHocDisplayRequest
+          *
+          * This method allows clients to initiate the display of an ad hoc message.
+          *
+          */
+        void submitAdHocDisplayRequest( in TA_Base_Core::STISDestinationList destinationList, 
+                                        in string messageContent, in string startTime, in string endTime, 
+                                        in unsigned short priority, in TA_Base_Core::DisplayAttributes displayAttributes,
+										in TA_Base_Core::LCDAttributesSTIS lcdAttributes,
+                                        in TA_Base_Core::LEDAttributes ledAttributes, in string sessionID)
+                        raises( STISServerNotConnectedException, STISCommunicationTimeoutException,TA_Base_Core::OperationModeException);
+
+        /**
+          * submitClearRequest
+          *
+          * This method allows clients to initiate the clearing of a PID and its queue.
+          *
+          */
+        void submitClearRequest( in TA_Base_Core::STISDestinationList destinationList, in unsigned short upperPriority, in unsigned short lowerPriority,
+                                 in string sessionID )
+                        raises( STISServerNotConnectedException, STISCommunicationTimeoutException,TA_Base_Core::OperationModeException);
+
+        /**
+          * upgradePredefinedStationMessageLibrary
+          *
+          * This method allows the OCC to inform a station agent that it should switch
+          * to the new Predefined message library.
+          *
+          * Note: This functionality is only available in Station agents.
+          */
+        void upgradePredefinedStationMessageLibrary( in unsigned long newLibraryVersion, in string sessionID )
+                        raises( STISServerNotConnectedException, STISCommunicationTimeoutException, STISGeneralFailureException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * upgradePredefinedTrainMessageLibrary
+          *
+          * This method allows the OCC to inform a station agent that it should switch
+          * to the new Predefined message library.
+          *
+          * Note: This functionality is only available in Station agents.
+          */
+        void upgradePredefinedTrainMessageLibrary( in unsigned long newLibraryVersion, in string sessionID )
+                        raises( STISGeneralFailureException ,TA_Base_Core::OperationModeException);
+                        
+        /**
+          * getCurrentDisplayingMessage
+          *
+          * This method allows clients to retrieve the message content currently being displayed
+          * on a PID.
+          *
+          */
+        TA_Base_Core::CurrentDisplayingMessage getCurrentDisplayingMessage( in TA_Base_Core::STISDestination destination )
+                        raises( STISServerNotConnectedException, STISCommunicationTimeoutException,TA_Base_Core::OperationModeException);
+
+        /**
+          * reportNewStationLibraryVersion
+          *
+          * Used to check whether a station has received the new Station library
+          * version via Oracle data replication
+          * 
+          */
+        boolean reportStationLibraryVersionReceived( in unsigned long newVersion ) raises (TA_Base_Core::OperationModeException);
+
+        /**
+          * submitPIDControlRequest
+          *
+          * Used to turn a PID on or off
+          *
+          * @param    destination    The full PID name DBG.TIS.Platform.PDP02
+          * @param controlCommand    On or off
+          * @param sessionID    The users session
+          */
+        void submitPIDControlRequest( in string destination, in TA_Base_Core::EPIDControl controlCommand, in string sessionID )
+            raises( STISServerNotConnectedException, STISCommunicationTimeoutException, STISFunctionalityNotAvailableException, STISInvalidParameterException ,TA_Base_Core::OperationModeException);
+
+		void submitTimeScheduleDownloadRequest(in string sessionID) 
+			raises( STISServerNotConnectedException, STISGeneralFailureException, TA_Base_Core::OperationModeException, TA_Base_Core::DatabaseErrorException);
+
+        /**
+          * reportNewTrainLibraryVersion
+          *
+          * Used to check whether a station has received the new Train library
+          * version via Oracle data replication
+          * 
+          */
+        boolean reportTrainLibraryVersionReceived( in unsigned long newVersion )
+			raises (TA_Base_Core::OperationModeException);
+
+        boolean isStationLibrarySynchronisationComplete()
+			raises (TA_Base_Core::OperationModeException);
+
+        boolean isTrainLibrarySynchronisationComplete()
+			raises (TA_Base_Core::OperationModeException);
+
+        unsigned long getCurrentSTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+        unsigned long getCurrentTTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+        unsigned long getNextSTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+        unsigned long getNextTTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+		//hongran++ TD17500
+		unsigned long getCurrentCDBSTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+		unsigned long getCurrentCDBTTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+		unsigned long getNextCDBSTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+		unsigned long getNextCDBTTISMessageLibraryVersion()
+			raises (TA_Base_Core::OperationModeException);
+
+		boolean saveTTISLibraryToLocalDB(in unsigned long newversion, in LibraryContentType content)
+			raises (TA_Base_Core::OperationModeException);
+
+		boolean saveSTISLibraryToLocalDB(in unsigned long newversion, in LibraryContentType content)
+			raises (TA_Base_Core::OperationModeException);
+
+		LibraryContentType getSTISLibraryDBContent(in unsigned long version)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::DatabaseErrorException);
+
+		LibraryContentType getTTISLibraryDBContent(in unsigned long version)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::DatabaseErrorException);
+
+
+
+    }; // ISTISManagerCorbaDef
+}; // TA_Bus
+
+#endif

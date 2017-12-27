@@ -1,0 +1,411 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{15FF420F-F042-437E-A8F0-847682627FE1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TrendViewer</RootNamespace>
+    <AssemblyName>TrendViewer</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <StartupObject>TrendViewer.Program</StartupObject>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\bin\win32_nd\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\bin\win32_nd\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\TrendCache.cs" />
+    <Compile Include="Controller\ChangeTrendTitleController.cs" />
+    <Compile Include="Controller\DataNotificaitonConst.cs" />
+    <Compile Include="Controller\DataPointDataController.cs" />
+    <Compile Include="Controller\DataPointGroupController.cs" />
+    <Compile Include="Controller\DataPointListController.cs" />
+    <Compile Include="Controller\FormulaDataController.cs" />
+    <Compile Include="Controller\FormulaGroupController.cs" />
+    <Compile Include="Controller\FormulaListController.cs" />
+    <Compile Include="Controller\HistDataPointDataController.cs" />
+    <Compile Include="Controller\HistDataPointGroupController.cs" />
+    <Compile Include="Controller\HistDataPointListController.cs" />
+    <Compile Include="Controller\MarkerDataController.cs" />
+    <Compile Include="Controller\MarkerGroupController.cs" />
+    <Compile Include="Controller\MarkerListController.cs" />
+    <Compile Include="Controller\OPCDataSelectorController.cs" />
+    <Compile Include="Controller\TrendViewController.cs" />
+    <Compile Include="Common\LanguageHelper.cs" />
+    <Compile Include="Model\DataPointDataModel.cs" />
+    <Compile Include="Model\DataPointGroupModel.cs" />
+    <Compile Include="Model\FormulaDataModel.cs" />
+    <Compile Include="Model\FormulaGroupModel.cs" />
+    <Compile Include="Model\FormulaListModel.cs" />
+    <Compile Include="Model\HistDataPointDataModel.cs" />
+    <Compile Include="Model\HistDataPointGroupModel.cs" />
+    <Compile Include="Model\HistDataPointListModel.cs" />
+    <Compile Include="Model\MarkerDataModel.cs" />
+    <Compile Include="Model\MarkerGroupModel.cs" />
+    <Compile Include="Model\DataPointListModel.cs" />
+    <Compile Include="Model\MarkerListModel.cs" />
+    <Compile Include="Model\OPCDataSelectorModel.cs" />
+    <Compile Include="Model\TrendViewModel.cs" />
+    <Compile Include="View\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistDataPointData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HistDataPointData.designer.cs">
+      <DependentUpon>HistDataPointData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MarkerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MarkerList.designer.cs">
+      <DependentUpon>MarkerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormulaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormulaList.designer.cs">
+      <DependentUpon>FormulaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistDataPointList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HistDataPointList.designer.cs">
+      <DependentUpon>HistDataPointList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DataPointList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DataPointList.designer.cs">
+      <DependentUpon>DataPointList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditChartTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditChartTitle.designer.cs">
+      <DependentUpon>EditChartTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DataPointData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DataPointData.designer.cs">
+      <DependentUpon>DataPointData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormulaData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormulaData.designer.cs">
+      <DependentUpon>FormulaData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MarkerData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MarkerData.designer.cs">
+      <DependentUpon>MarkerData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DataPointGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DataPointGroup.designer.cs">
+      <DependentUpon>DataPointGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FormulaGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormulaGroup.designer.cs">
+      <DependentUpon>FormulaGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HistDataPointGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HistDataPointGroup.designer.cs">
+      <DependentUpon>HistDataPointGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MarkerGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MarkerGroup.designer.cs">
+      <DependentUpon>MarkerGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\OPCDataSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OPCDataSelector.Designer.cs">
+      <DependentUpon>OPCDataSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\TrendingHelper.cs" />
+    <Compile Include="View\TrendingViewFactory.cs" />
+    <Compile Include="View\TrendView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TrendView.Designer.cs">
+      <DependentUpon>TrendView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\About.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HistDataPointData.resx">
+      <DependentUpon>HistDataPointData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MarkerList.resx">
+      <DependentUpon>MarkerList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormulaList.resx">
+      <DependentUpon>FormulaList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HistDataPointList.resx">
+      <DependentUpon>HistDataPointList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DataPointList.resx">
+      <DependentUpon>DataPointList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditChartTitle.resx">
+      <DependentUpon>EditChartTitle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DataPointData.resx">
+      <DependentUpon>DataPointData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormulaData.resx">
+      <DependentUpon>FormulaData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MarkerData.resx">
+      <DependentUpon>MarkerData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DataPointGroup.resx">
+      <DependentUpon>DataPointGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormulaGroup.resx">
+      <DependentUpon>FormulaGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HistDataPointGroup.resx">
+      <DependentUpon>HistDataPointGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MarkerGroup.resx">
+      <DependentUpon>MarkerGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OPCDataSelector.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>OPCDataSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TrendView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TrendView.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Common\TrendViewConst.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blank.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_garbage.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chart.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Color profile.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Erase%2816%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Find in folder%2816%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Folder.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\img_checkmark.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_icon_detreport.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NextEnd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Notes%2816%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Previous.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviousEnd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yes v3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DAO.Trending\DAO.Trending.csproj">
+      <Project>{E3417E6D-7B59-41DC-AAEB-CB376FB5830F}</Project>
+      <Name>DAO.Trending</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Entity.Trending\Entity.Trending.csproj">
+      <Project>{4D60352D-4118-4DD8-8D9A-45EB585C3830}</Project>
+      <Name>Entity.Trending</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\OPCTrendLib\OPCTrendLib.csproj">
+      <Project>{6155A522-E174-4465-9201-6D162779A590}</Project>
+      <Name>OPCTrendLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.GenericGUI\STEE.ISCS.GenericGUI.csproj">
+      <Project>{6AEE1C9A-97BB-4D8B-B195-50AEF2F4D1EF}</Project>
+      <Name>STEE.ISCS.GenericGUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.LOG\STEE.ISCS.Log.csproj">
+      <Project>{1A02D3A3-31E6-4037-B769-8C311F468BAB}</Project>
+      <Name>STEE.ISCS.Log</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.MulLanguage\STEE.ISCS.MulLanguage.csproj">
+      <Project>{F5B95A85-BDE7-4F19-A6C5-C2AB8010B7BE}</Project>
+      <Name>STEE.ISCS.MulLanguage</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.MVC\STEE.ISCS.MVC.csproj">
+      <Project>{CE78950A-F16F-44D3-A52C-EB62ACECB33F}</Project>
+      <Name>STEE.ISCS.MVC</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.OPCProxy\STEE.ISCS.OPCProxy.csproj">
+      <Project>{2B0E79B6-0BEE-4AD3-84D3-5364996FCCC0}</Project>
+      <Name>STEE.ISCS.OPCProxy</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TrendingChartCtl\TrendingChartCtl.csproj">
+      <Project>{818B22DF-8752-42CA-A2E1-0D1BB2CA6C17}</Project>
+      <Name>TrendingChartCtl</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TrendingHelper\TrendingHelper.csproj">
+      <Project>{86898DA5-B846-4BC4-9AF2-51E9868B4A40}</Project>
+      <Name>TrendingHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

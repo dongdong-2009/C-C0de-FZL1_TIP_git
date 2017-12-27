@@ -1,0 +1,341 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/response_plans/plan_agent/IDL/src/IPlanAgentCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #3 $
+//
+// Last modification: $DateTime: 2015/01/23 16:51:17 $
+// Last modified by:  $Author: qi.huang $
+//
+// Plan Agent IDL interface.
+//
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/response_plans/plan_manager/IDL/src/IPlanManagerCorbaDef.idl"
+
+module TA_Base_Bus
+{
+	typedef IPlanManagerCorbaDef PlanManager;
+
+	interface IPlanAgentCorbaDef
+	{
+
+		exception PlanAgentError
+		{
+            TA_Base_Core::EPlanAgentError errorType;
+            unsigned long itemId;       // can be operator Id, plan Id etc.
+			string what;
+		};
+
+		exception PlanNotFoundError
+		{
+            TA_Base_Core::EPlanNotFoundError errorType;
+            TA_Base_Core::NodeId planId;
+            unsigned long instanceId;
+			string what;
+		};
+
+		exception PlanStepDetailError
+		{
+			TA_Base_Core::StepId stepId;
+            TA_Base_Core::EPlanStepDetailType detailType;
+            TA_Base_Core::EPlanStepDetailError errorType;
+			string what;
+		};
+
+		exception NoPermission
+		{
+			string what;
+		};
+
+		boolean isRegisteredManager ( in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId)
+			raises ( TA_Base_Core::OperationModeException);//limin
+		
+		// *** Register/Deregister PlanManager
+		void registerPlanManager( in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId, in PlanManager planManagerRef )
+			raises ( TA_Base_Core::OperationModeException);//limin
+
+		void deregisterPlanManager( in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId )
+			raises ( TA_Base_Core::OperationModeException);//limin
+
+		boolean isOwner(in TA_Base_Core::SessionId session, in TA_Base_Core::ActivePlanId plan)
+				raises ( PlanNotFoundError, PlanAgentError, TA_Base_Core::OperationModeException);//limin
+
+		// *** Plan Execution Control ***
+
+	        void processDecisionStepResponse(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processPromptStepResponse(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processLogStepResponse(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status, in string logMessage)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processRunPlanStepResult(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status,
+									in string error)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processLaunchGuiAppStepResult(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status,
+									in string error)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processLaunchSchematicStepResult(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status,
+									in string error)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processFailureSummaryStepResult(in TA_Base_Core::SessionId session,
+									in TA_Base_Core::ActivePlanId plan,
+									in TA_Base_Core::EPlanStepCompletionStatus status,
+									in string error)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processBackgroundDecisionStepResponse(in TA_Base_Core::CurrentPlanStepDetail currentStepDetail,
+						    in TA_Base_Core::EPlanStepCompletionStatus status)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processBackgroundLaunchGuiAppStepResponse(in TA_Base_Core::CurrentPlanStepDetail currentStepDetail,
+						    in TA_Base_Core::EPlanStepCompletionStatus status)
+			        raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processBackgroundLaunchSchematicStepResponse(in TA_Base_Core::CurrentPlanStepDetail currentStepDetail,
+				            in TA_Base_Core::EPlanStepCompletionStatus status)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processBackgroundLogStepResponse(in TA_Base_Core::CurrentPlanStepDetail currentStepDetail,
+						    in TA_Base_Core::EPlanStepCompletionStatus status,
+	                        in string logMessage)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void processBackgroundPromptStepResponse(in TA_Base_Core::CurrentPlanStepDetail currentStepDetail,
+						    in TA_Base_Core::EPlanStepCompletionStatus status)
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        void runPlan( in TA_Base_Core::SessionId session, inout TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	        // Returns the plan instance that is started as the result of this call.
+	        unsigned long runPlanByName( in TA_Base_Core::SessionId session, in string path, in string param )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+			// TD20368 Yanrong++
+	        unsigned long runPlanByNameWithoutActionPermittedCheck( in TA_Base_Core::SessionId session, in string path, in string param )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+		// ++Yanrong
+
+		
+		//marvin++
+		//TD13527
+		unsigned long runPlanByNameWithEntityRestriction( in TA_Base_Core::SessionId session, in string path, in unsigned long entitykey )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+		//++marvin
+		//TD13527
+				
+		void runOperatorTriggeredPlan(in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId, 
+								inout TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void customisePlan( in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId,				 
+				inout TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void pausePlan( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError, TA_Base_Core::OperationModeException);
+
+		void resumePlan( in TA_Base_Core::SessionId session, in TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void stopPlan( in TA_Base_Core::SessionId session, in TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void takeControl( in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId,
+				in TA_Base_Core::ActivePlanId plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void customiseStep( in TA_Base_Core::SessionId session, in TA_Base_Core::ActivePlanId plan,
+				in TA_Base_Core::StepCustomisableDetail detail )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getPlanExecutionHistory ( in TA_Base_Core::ActivePlanId plan,
+				out TA_Base_Core::ExecutionHistory history)
+				raises ( PlanAgentError, PlanNotFoundError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+			
+		void getPlanCustomisationHistory ( in TA_Base_Core::ActivePlanId plan,
+				out TA_Base_Core::CustomisationHistory history)
+				raises ( PlanAgentError, PlanNotFoundError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		// *** Data Retrieval ***
+		//      Nodes
+		void getRootNodeChildren( out TA_Base_Core::SiblingNodes children )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError, TA_Base_Core::OperationModeException );//limin
+
+		void getChildren( in TA_Base_Core::NodeId parent, out TA_Base_Core::SiblingNodes children )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getNodeDetail( in TA_Base_Core::NodeId node  , out TA_Base_Core::NodeDetail detail )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getNodePath  ( in TA_Base_Core::NodeId node , out TA_Base_Core::NodePath path )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getNodeSummary ( in TA_Base_Core::NodeId node, out TA_Base_Core::NodeSummary summary )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getNodeIdsInNodePath( in TA_Base_Core::NodeId plan, out TA_Base_Core::NodeIds plans )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		TA_Base_Core::NodeId getNodeId( in TA_Base_Core::NodePath path )
+				raises ( PlanNotFoundError, PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+		
+		//     Steps
+		void getStepNames           ( out TA_Base_Core::StepNames names )
+				raises ( PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getAllStepDetails      ( in TA_Base_Core::NodeId plan, out TA_Base_Core::StepDetails details )
+				raises ( PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getSpecifiedStepDetails( in TA_Base_Core::NodeId plan, in  TA_Base_Core::StepIds steps, out TA_Base_Core::StepDetails details )
+				raises ( PlanAgentError, PlanStepDetailError, TA_Base_Core::OperationModeException );//limin
+
+
+		void getStepNumber ( in TA_Base_Core::StepId step, out TA_Base_Core::StepNumber position)
+				raises ( PlanAgentError, PlanStepDetailError, TA_Base_Core::OperationModeException );//limin
+
+
+		//     Step parameters
+		void getParameterNames      ( in TA_Base_Core::EStep stepType   , out TA_Base_Core::ParameterNames names )
+				raises ( PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void getStepNumberParameters      ( in TA_Base_Core::NodeId plan      , in  TA_Base_Core::StepNumber position, out TA_Base_Core::StepParameters parameters )
+				raises ( PlanAgentError, PlanStepDetailError, TA_Base_Core::OperationModeException );
+
+		void getStepIdParameters      ( in  TA_Base_Core::StepId step	   , out TA_Base_Core::StepParameters parameters )
+				raises ( PlanAgentError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		// *** Active plans ***
+		void getActivePlanDetail( in TA_Base_Core::NodeId plan, out TA_Base_Core::ActivePlanDetails details )
+				raises( PlanAgentError, PlanNotFoundError ,TA_Base_Core::OperationModeException);
+		
+		void getAssocAlarmPlanDetail( in string assocAlarmId, out TA_Base_Core::ActivePlanDetail detail )
+				raises( PlanAgentError, PlanNotFoundError ,TA_Base_Core::OperationModeException);
+
+
+		void getActivePlanDetailByName( in string path, out TA_Base_Core::ActivePlanDetails details )
+				raises( PlanAgentError, PlanNotFoundError ,TA_Base_Core::OperationModeException);
+				
+		void getAllActivePlanDetails( out TA_Base_Core::ActivePlanDetails details )
+				raises( PlanAgentError, TA_Base_Core::OperationModeException);
+
+		// *** Data Editing ***
+		//		Plan Edit
+				//editPlan() returns the sessionId. If the returned 
+				//sessionId is the same as received sessionId, the 
+				//permission is granted. Otherwise the plan is already
+				//being edited by someone with the returned sessionId.
+		void getEditPlanLock( in TA_Base_Core::SessionId session, in TA_Base_Core::PlanManagerId pmId,
+				in TA_Base_Core::NodeId plan )
+				raises ( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		void releaseEditPlanLock( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId plan )
+				raises ( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		//		Plan Approval Control
+		void setPlanApprovalState( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId plan,
+				in TA_Base_Core::EApprovalState state )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+        	//		Plan type
+		void setPlanType( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId plan,
+				in TA_Base_Core::EPlanType state )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		//		Category
+		void updateCategoryDetail( in TA_Base_Core::SessionId session,				
+				in TA_Base_Core::CategoryDetail detail )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		void insertCategory( in TA_Base_Core::SessionId session,								
+				in TA_Base_Core::NodeId parent )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		void deleteCategory( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId category )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		//		Plan
+		void updatePlanDetail( in TA_Base_Core::SessionId session,				
+				in TA_Base_Core::PlanDetail detail )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void insertPlanIntoRoot(in TA_Base_Core::SessionId session) 
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void insertCategoryIntoRoot(in TA_Base_Core::SessionId session) 
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, TA_Base_Core::OperationModeException );
+
+		void insertPlan( in TA_Base_Core::SessionId session, in TA_Base_Core::NodeId parent)
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void updatePlan( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::Plan plan )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void deletePlans( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeIds plans )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission ,TA_Base_Core::OperationModeException);
+
+		void movePlanToRoot(in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId plan, in boolean useForce) 
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void movePlan( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId fromPlan,
+				in TA_Base_Core::NodeId toParent, in boolean useForce )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void copyPlanToRoot( in TA_Base_Core::SessionId session,
+						in TA_Base_Core::NodeId plan, in boolean useForce )
+ 				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+					
+		void copyPlan( in TA_Base_Core::SessionId session,
+				in TA_Base_Core::NodeId fromPlan,
+				in TA_Base_Core::NodeId toParent, in boolean useForce )
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError,TA_Base_Core::OperationModeException );
+
+		void exportPlan (in TA_Base_Core::SessionId session, 
+						 out TA_Base_Core::AuxPlanDetail plan, 
+						 in TA_Base_Core::NodeId planId)
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		void importPlan (in TA_Base_Core::SessionId session,
+						 in TA_Base_Core::AuxPlanDetail plan, 
+						 in TA_Base_Core::NodeId parentId)
+				raises( PlanAgentError, PlanNotFoundError, NoPermission, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+		//		Step
+
+		void getNextStepId(in TA_Base_Core::SessionId session,
+				out TA_Base_Core::StepId step)
+				raises( PlanAgentError, PlanNotFoundError, PlanStepDetailError ,TA_Base_Core::OperationModeException);
+
+	}; // IPlanAgentCorbaDef
+}; // TA_Base_App
+

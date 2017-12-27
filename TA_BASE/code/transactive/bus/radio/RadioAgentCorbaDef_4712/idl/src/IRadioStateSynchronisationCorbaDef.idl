@@ -1,0 +1,223 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/radio/RadioAgentCorbaDef_4712/idl/src/IRadioStateSynchronisationCorbaDef.idl $
+// @author:  John Dalin
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Radio State Synchronisation IDL interface.
+//
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/radio/RadioAgentCorbaDef_4712/idl/src/IRadioCorbaDef.idl"
+
+module TA_Base_Bus_4712
+{
+
+    interface IRadioStateSynchronisationCorbaDef
+    {
+
+        struct AuthorisationRequestType
+        {
+            IRadioCorbaDef::CallID              callID;
+            IRadioCorbaDef::SessionReference    sessionRef;
+            unsigned long                       consoleKey;
+            IRadioCorbaDef::ERadioUserType      sourceType;
+            IRadioCorbaDef::ERadioUserType      destinationType;
+            string                              callerName;
+            string                              calledName;
+        };
+
+        struct AudioEntry
+        {
+            IRadioCorbaDef::CallReference callRef;
+            boolean inUse;
+            long volume;
+        };
+
+        enum ESessionState
+        {
+            SessionUnassigned,
+            SessionAssigned,
+            SessionInitialised,
+            SessionLoggedIn
+        };
+
+        struct RadioSessionType
+        {
+            unsigned long audioLink;
+            IRadioCorbaDef::SessionReference sessionRef;
+            unsigned long                    consoleKey;
+            string sessionEntityName;
+            string loginName;
+            string subscriberTextRef;
+            string sessionDGNAITSI;
+            boolean sessionDGNAInUse;
+            ESessionState sessionStatus;
+            string sessionITSI;
+        };
+
+        struct RadioSessionServantType
+        {
+            unsigned long entityKey;
+            RadioSessionType radioSession;
+        };
+
+        typedef sequence<RadioSessionServantType> RadioSessionServantTypeList;
+
+
+
+        //******************************************
+        // Radio Tetra Agent State update messages *
+        //******************************************
+        struct RadioUpdateCallInRadioCallStack
+        {
+            IRadioCorbaDef::CallDetailsType callDetails;
+        };
+
+        struct RadioRemoveCallFromRadioCallStack
+        {
+            IRadioCorbaDef::CallID callID;
+        };
+
+        struct RadioUpdateRadioSession
+        {
+            unsigned long servantEntityKey;
+            RadioSessionType radioSession;
+        };
+
+        struct RadioUpdateMonitoredCallProgression
+        {
+            IRadioCorbaDef::MonitorReference monitorReference;
+        };
+
+        struct RadioRemoveMonitoredSubscriberDetails
+        {
+            IRadioCorbaDef::MonitorReference monitorReference;
+        };
+
+        struct RadioRemoveSessionFromAudioMap
+        {
+            IRadioCorbaDef::SessionReference sessionReference;
+        };
+
+        struct RadioUpdateAudioEntryInSessionAudioMap
+        {
+            IRadioCorbaDef::SessionReference sessionReference;
+            IRadioCorbaDef::AudioReference audioReference;
+            AudioEntry audio;
+        };
+
+        struct RadioUpdateRadioResourceManagerVars
+        {
+            IRadioCorbaDef::SessionReference sessionReference;
+            IRadioCorbaDef::CallReference callReference;
+            long currrentVolume;
+        };
+
+        struct RadioUpdateAuthorisationRequest
+        {
+            AuthorisationRequestType autorisationRequest;
+        };
+
+        struct RadioRemoveAuthorisationRequest
+        {
+            IRadioCorbaDef::CallID callID;
+        };
+
+
+        //***********************************************
+        // Radio Tetra Agent Full State synchronisation *
+        //***********************************************
+
+        struct MonitoredSubscriberDetailsType
+        {
+            unsigned long monitorReference;
+        };
+
+        struct MonitoredSubscriberDetailsTypeAndRef
+        {
+            unsigned long monitoredSubscriberDetailsRef;
+            MonitoredSubscriberDetailsType monitoredSubscriberDetails;
+        };
+
+        typedef sequence<MonitoredSubscriberDetailsTypeAndRef> MonitoredSubscriberDetailsTypeAndRefList;
+
+        struct RadioMonitorManagerType
+        {
+            MonitoredSubscriberDetailsTypeAndRefList monitoredSubscriberDetailsAndRefList;
+        };
+
+        struct AudioEntryMap
+        {
+            IRadioCorbaDef::AudioReference audioRef;
+            AudioEntry audio;
+        };
+
+        typedef sequence<AudioEntryMap> AudioEntryMapType;
+
+        struct SessionAudioMap
+        {
+            // IRadioCorbaDef::SessionReference sessionRef;
+            unsigned long consoleKey;
+            AudioEntryMapType audioEntryMap;
+        };
+
+        typedef sequence<SessionAudioMap> SessionAudioMapType;
+
+        struct RadioResourceManagerType
+        {
+            long currentAudioVolume;
+            SessionAudioMapType sessionAudioMap;
+        };
+
+
+        typedef sequence<AuthorisationRequestType> AuthorisationRequestTypeList;
+
+        struct RadioAuthorisationManagerType
+        {
+            AuthorisationRequestTypeList radioAuthorisationStack;
+        };
+
+        typedef sequence<IRadioCorbaDef::CallDetailsType> CallDetailsTypeList;
+
+        struct RadioType
+        {
+            CallDetailsTypeList radioCallStack;
+            RadioAuthorisationManagerType radioAuthorisationManager;
+            RadioResourceManagerType radioResourceManager;
+            RadioMonitorManagerType radioMonitorManager;
+
+        };
+
+        struct RadioServantType
+        {
+            unsigned long entityKey;
+            RadioType radio;
+        };
+
+        struct RadioTetraAgentType
+        {
+            RadioServantType radioServant;
+            RadioSessionServantTypeList radioSessionServants;
+        };
+
+        /* requestFullState
+         *
+         * This method will is used to request the Radio Tetra Agent's full state
+         */
+        RadioTetraAgentType requestFullState()
+			raises (TA_Base_Core::OperationModeException);//limin
+
+		// FlexibleTimeoutNamedObject calls this method to calculate the
+		// timoeut value based on the current configuration
+		unsigned short getFlexibleTimeOutValue()
+			raises (TA_Base_Core::OperationModeException);
+    }; // IRadioStateSynchronisatsionCorbaDef
+
+}; // TA_Base_Bus
+

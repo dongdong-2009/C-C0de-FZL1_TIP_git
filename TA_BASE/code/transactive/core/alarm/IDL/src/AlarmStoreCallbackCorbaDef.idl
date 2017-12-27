@@ -1,0 +1,85 @@
+#if !defined(ALARM_STORE_CALLBACK_IDL)
+#define ALARM_STORE_CALLBACK_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/alarm/IDL/src/AlarmStoreCallbackCorbaDef.idl $
+  * @author:  Andy Parker
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * This defines the interface used to callback a client application
+  * to advise of changes to the items in a filtered index.  It is
+  * used in preference to the notification service as the calls are 
+  * kept local to the client computer.  At the current time
+  * notification servers are only deployed at servers.
+  */
+
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+	// Methods
+	interface IAlarmStoreCallbackCorbaDef
+	{
+		/*
+		* indexCleared
+		*
+		* This method will be called when the alarms in the index are cleared.  This
+		* might occur if the connection to an agent is lost.
+		*/
+		void indexCleared();
+
+		/* 
+		* itemInserted
+		*
+		* This method is called when a new alarm is added to the index. 
+		*
+		* @param - alarmId - Unique alarm id being added
+		* @param - position - Position in index where alarm should be placed (zero based) 
+		*/
+		void itemInserted(in string alarmID,in long position);
+
+		/* 
+		* itemMoved
+		*
+		* This method is called when an item in the index should be moved. 
+		*
+		* @param - alarmId - Unique alarm id being deleted
+		* @param - oldPosition - Position in index where alarm was located (zero based) 
+		* @param - newPosition - Position in index where alarm should now be located (after delete,zero based) 
+		*/
+		void itemMoved(in string alarmID,in long oldPosition,in long newPosition);
+
+		/* 
+		* itemDeleted
+		*
+		* This method is called when a new alarm is added to the index. 
+		*
+		* @param - alarmId - Unique alarm id being deleted
+		* @param - position - Position in index where alarm was located (zero based) 
+		*/
+		void itemDeleted(in string alarmID,in long position);
+
+
+		/* 
+		* callbackCheck
+		*
+		* This method is called when the store wishes to validate a callback to
+		* see it is ok.  The method should return true to indicate that the
+		* store should retain the index.  Returning false, or not responding
+		* will result in the index being released. 
+		*
+		*/
+		boolean callbackCheck();
+
+	};
+
+}; // module TA_Base_Core
+
+#endif // !defined(ALARM_STORE_CALLBACK_IDL)

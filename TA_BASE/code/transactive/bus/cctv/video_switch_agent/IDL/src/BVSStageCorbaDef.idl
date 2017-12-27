@@ -1,0 +1,97 @@
+#if !defined(BVSStageCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)
+#define BVSStageCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/BVSStageCorbaDef.idl $
+  * @author:   Rob Young
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that provides access to the 
+  * BVSStage state and control.
+  */
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoInputCorbaDef.idl"
+
+module TA_Base_Bus
+{
+	interface BVSStageCorbaDef : VideoInputCorbaDef
+	{
+
+		enum ESwitchMode
+		{
+			Camera,          
+			Seq,        
+			Quad           
+		};
+
+		//
+		// Struct used to define current state of a BVSStage.
+		// 
+		struct BVSStageState
+		{
+            octet activeTrainID; // The ID of the actively broadcasting train 
+                                 // in this stage (0 if no currently active train).
+			long	numActiveMonitors;
+			boolean	preConflict;
+			ESwitchMode		switchMode;
+			long	item1;	//depends on switch mode (they all hold entity keys)
+									// camera - cam number
+									// sequence - sequ number 
+									// quad - segment 1
+			long	item2;	// items 2,3,4 for quad only segment 2,3,4
+			long	item3;
+			long	item4;
+		};
+
+		/**
+		  * getBVSStageState
+		  *
+		  * Gets the current state of this BVSStage.
+		  *
+		  * @return     BVSStageState
+		  *				The current state of this BVSStage
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+		  */
+
+		BVSStageState getBVSStageState()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+		/**
+		  * requestSwitchOfInputs
+		  * Requests switch of inputs for the four segments.
+		  *
+		  * @param      octet activeTrainID
+		  *				The ID of the actively broadcasting train 
+          *             in this stage (0 if no currently active train).
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The VideoInput or the protocol does not support this operation.
+		  *				2. The agent is in Monitor mode.
+		  */
+
+		void setActiveTrain( in octet activeTrainID )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		boolean isInAnAlarmStack()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+	}; // BVSStageCorbaDef
+
+}; // TA_Base_Bus
+
+#endif // !defined(BVSStageCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)

@@ -1,0 +1,7 @@
+; TA_MessageTypeConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_MessageTypeConfigPlugin"
+DESCRIPTION  'TA_MessageTypeConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

@@ -1,0 +1,51 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/GZL6_TIP/TA_BASE/transactive/app/system_control/banner/src/banner.idl $
+  * @author:  Ripple
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/06/12 13:35:44 $
+  * Last modified by:  $Author: builder $
+  *
+  */
+
+// RippleBanner.idl : IDL source for RippleBanner.exe
+//
+// This file will be processed by the MIDL tool to
+// produce the type library (RippleBanner.tlb) and marshalling code.
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(A8E00983-D070-433A-8320-CE1B870186C4),
+		dual,
+		helpstring("IIscsBanner Interface"),
+		pointer_default(unique)
+	]
+	interface IIscsBanner : IDispatch
+	{
+		[id(1), helpstring("method setAtsButtonState")] HRESULT setAtsButtonState(BOOL flash);
+	};
+[
+	uuid(C6EF9685-24B0-447E-913C-54F8FA456634),
+	version(1.0),
+	helpstring("TransActive Banner 1.0 Type Library")
+]
+library RippleBannerLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	[
+		uuid(FB4B1B7F-EBAB-40BE-9EF7-A2F77207937F),
+		helpstring("IscsBanner Class")
+	]
+	coclass IscsBanner
+	{
+		[default] interface IIscsBanner;
+	};
+};
+
+	

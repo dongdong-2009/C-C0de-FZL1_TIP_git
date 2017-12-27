@@ -1,0 +1,38 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/duty_agent/IDL/src/IDutyAgentCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Duty Agent IDL interface.
+//
+
+#ifndef IDUTYAGENTCORBADEF_H_INCLUDED
+#define IDUTYAGENTCORBADEF_H_INCLUDED
+
+#include <bus/security/duty_agent/IDL/src/IDutyAgentAuthCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/IDutyAgentMgrCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/IDutyAgentPeerCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/IDutyAgentQueryCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/IDutyAgentAutoDegradeCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/IDutyAgentRespCorbaDef.idl>
+
+module TA_Base_Bus
+{
+	interface IDutyAgentCorbaDef :	IDutyAgentAuthCorbaDef,
+			  						IDutyAgentMgrCorbaDef,
+									IDutyAgentPeerCorbaDef,
+									IDutyAgentQueryCorbaDef,
+									IDutyAgentAutoDegradeCorbaDef,
+									IDutyAgentRespCorbaDef
+	{
+	}; 
+};
+
+#endif //IDUTYAGENTCORBADEF

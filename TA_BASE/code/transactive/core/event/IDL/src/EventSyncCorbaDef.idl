@@ -1,0 +1,40 @@
+/**
+  * The source code in this file is the property of 
+  * Combuilder PTE LTD and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/3001_TIP_NEW/TA_BASE/transactive/core/event/IDL/src/EventAgentCorbaDef.idl $
+  * @author:  Noel R. Tajanlangit
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/10/04 14:20:17 $
+  * Last modified by:  $Author: lu.xiangmei $
+  * 
+  * This is the interface definition for Event Agent
+  */
+
+
+#if !defined(__EVENT_SYNC_CORBA_DEF_INCLUDED__)
+#define __EVENT_SYNC_CORBA_DEF_INCLUDED__
+
+#include "core/event/IDL/src/EventDetailCorbaDef.idl"
+
+module TA_Base_Core
+{
+	struct EventSyncCorbaDef
+	{
+		/**
+		 * latest synchronization 
+		 */
+		unsigned long lastestDbSeqNumber;
+
+		/** 
+		 * Create time the same with the source table
+		 */
+		EvDataPkgCorbaDef eventDetailSeq;
+
+	}; //end interface
+
+}; //end module
+
+#endif //__EVENT_SYNC_CORBA_DEF_INCLUDED__

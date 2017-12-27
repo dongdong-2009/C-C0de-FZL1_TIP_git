@@ -1,0 +1,249 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/radio/RadioAgentCorbaDef_4669/idl/src/IRadioSessionCorbaDef.idl $
+// @author:  Andy Parker
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Radio Session IDL interface.
+//
+
+
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+module TA_Base_Bus
+{
+
+	interface IRadioSessionCorbaDef
+	{
+		// Error from Radio API
+		exception radioAPIException
+		{
+			string  what;
+			//long    errorNo;
+		};
+
+        exception radioFallbackException
+        {
+        };
+
+		exception sessionNotInitialiseException
+		{
+		};
+
+		exception invalidCallIDException
+		{
+		};
+
+		exception invalidRequestException
+		{
+		};
+
+		exception accessDeniedException
+		{
+			string what;
+		};
+
+		enum ECallType
+		{
+			SingleCall,
+        	        GroupUnacknowledgeCall,
+			GroupAcknowledgeCall,
+			GroupBroadcastCall,
+		        CircuitModeDataCall
+
+		};
+		
+		// TD14696  
+		// Radio Priorities
+		enum ECallPriority
+		{
+			Priority0,
+			Priority1,
+			Priority2,
+			Priority3,				
+			Priority4,	
+			Priority5,	
+			Priority6,	
+			Priority7,	
+			Priority8,	
+			Priority9,	
+			Priority10,	
+			Priority11,	
+			Priority12,	
+			Priority13,	
+			Priority14,	
+			Priority15,	
+			DefaultNormalPriority,	  // Indicates the default normal call priority
+			DefaultEmergencyPriority  // Indicates the default emergency call priority
+		};
+		enum EForwardingType
+		{
+		    NeverForward,
+			ForwardNotReachable,
+			ForwardAlways
+		};
+
+		struct CallForwardDetails
+		{
+			EForwardingType   forwardAction;
+			string			  destinationTSI;	
+		};
+
+		// *** Get session reference to identify our calls ***
+		long getSessionReference(in string sessionID) 
+		        raises (radioAPIException,sessionNotInitialiseException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void sessionLogin(in string radioUserName,in string sessionID)
+		        raises (radioAPIException,sessionNotInitialiseException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void sessionLogout(in string sessionID)
+		        raises (radioAPIException,sessionNotInitialiseException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		// *** Call Control ***
+		void answerCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		long makeCall(in string destinationTSI,in ECallType callType,in boolean fullDuplex,in ECallPriority callPriority,in boolean hook,in string sessionId,in boolean isInvisibleToGUIApps, in long locationkey) //19783
+				raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void releaseCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+				
+		void holdCall(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void resumeCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		long includeSubscriber(in long callID, in string destinationTSI,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void demandTX(in short priority,in string sessionID,out unsigned long queuedID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void ceaseTX(in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void selectCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void deselectCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void adjustCallVolume(in long callID,in boolean increaseVol,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		// Dynamic Groups
+		typedef sequence<string>            DestinationTSIList;
+
+		// Returns the dynamic group GTSI
+		string makeDynamicGroup(in DestinationTSIList destTSIs, in string sessionID)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+
+		// Text messaging
+		void sendTextMessage(in string destinationTSI,in string message,in string sessionId)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		// Call monitoring functions
+		long startListening(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+		
+		void stopListening(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		long joinCall(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void terminateCall(in long callID,in string sessionID, in boolean bIsMonitored)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException,TA_Base_Core::OperationModeException);
+	
+		void getActiveCalls(in string TSI,in string sessionID)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		long startMonitoring(in string TSI,in string sessionID)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void stopMonitoring(in string TSI,in string sessionID)
+		        raises (radioAPIException,invalidRequestException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		// Call Forwarding
+		void setCallForwarding(in CallForwardDetails details,in string sessionID)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		CallForwardDetails getCallForwarding()
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		// Patch management
+		typedef sequence<string>            PatchList;
+
+		void createPatch(in PatchList patchSubscribers,in string patchName,in string SessionId)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+
+		void deletePatch(in string patchName,in string SessionId)
+		        raises (radioAPIException,accessDeniedException,TA_Base_Core::OperationModeException);
+		string getPatchOwnerITSI()
+				raises (TA_Base_Core::OperationModeException);
+		//*********************
+		// Call authorisation *
+		//*********************
+
+		enum ERadioUserType {PORTABLE,OPERATOR,STATION};
+
+		struct CallAuthorisationRequest
+		{
+			long				callID;
+			long				sessionRef;
+			ERadioUserType		sourceType;
+			ERadioUserType		destinationType;
+
+			string				callerName;
+			string				callerTSI;
+			string				callerLocation;
+
+			string              calledName;
+			string				calledTSI;
+			string				calledLocation;
+						
+			unsigned long		time;
+		};
+
+		// Call authorisation request notification
+		enum EAction {NEW_AUTHORISATION,ACCEPTED_AUTHORISATION,REJECTED_AUTHORISATION,CANCELLED_AUTHORISATION};
+		struct CallAuthorisationNotification
+		{
+			EAction						action;
+			CallAuthorisationRequest	request;
+		};
+
+		typedef sequence<CallAuthorisationRequest> CallAuthorisationList;
+
+		/*
+		* getCallAuthorisations
+		*
+		* This method will return all the current authorisation requests
+		*/
+		CallAuthorisationList getCallAuthorisations()
+			raises (TA_Base_Core::OperationModeException);
+
+		// Call Authorisation
+		/*
+		*
+		* This method will authorise a call
+		* @param - callID - Radio call ID
+		* @param - accept - accept (true) or reject (false)
+		* @param - sessionID - Transactive session ID - used for audit event
+		*/
+		void authoriseCall(in long callID,in boolean accept,in string sessionID)
+			raises (invalidCallIDException,TA_Base_Core::OperationModeException);
+
+
+	}; // IRadioSessionCorbaDef
+}; // TA_Base_Bus
+

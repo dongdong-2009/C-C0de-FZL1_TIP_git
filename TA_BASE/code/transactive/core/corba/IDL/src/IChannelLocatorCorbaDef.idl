@@ -1,0 +1,193 @@
+
+/**
+ * The source code in this file is the property of 
+ * Ripple Systems and is not for redistribution
+ * in any form.
+ *
+ * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/corba/IDL/src/IChannelLocatorCorbaDef.idl $
+ * @author:  Jade Welton
+ * @version: $Revision: #1 $
+ *
+ * Last modification: $DateTime: 2015/01/19 17:43:23 $
+ * Last modified by:  $Author: CM $
+ * 
+ * Channel Locator IDL interface.
+ *
+ */
+
+module CosNotifyChannelAdmin
+{
+	interface EventChannel;
+};
+
+module TA_Base_Core
+{
+		// The notification channels provided by an implementor of IChannelLocator are identified
+		// by a string name. IChannelLocator::getChannels() returns both the channel names and corresponding 
+		// Corba notification channel object references (ie. similar to pair<string, EventChannel>).
+		struct ChannelMapping
+		{
+			string channelName;
+			CosNotifyChannelAdmin::EventChannel channel;
+		};
+
+		typedef sequence<ChannelMapping> ChannelMappingSeq;
+
+		exception FederationFailed
+		{
+			string reason;
+		};
+
+		exception RunParamFailed
+		{
+			string reason;
+		};
+
+        interface ISCSInteractive 
+        {
+            string  processCommand(in string cmd, in string args, out boolean success, out boolean targetChanged, out ISCSInteractive nextTarget);
+        };
+
+		// Allows the notification channels provided by the implementor to be enumerated and
+		// provides direct access to the Corba notification channel objects (which allows 
+		// consumers to publish or subscribe to the notification channel).
+		// For example, this interface is implemented by Notification Service Agents.
+
+		// TODO: This interface embodies three distinct concepts, only one of which is related
+		// to 'locating' channels.
+		// 1. Enumerating ('locating') the channels
+		// 2. Allowing a consumer to establish federation between IChannelLocators
+		// 3. Allowing a consumer-side IChannelLocator to federate with a remote (supplier-side) IChannelLocator
+        interface IChannelLocator: ISCSInteractive
+		{
+			// The omniNotify notification service implementation provides the AttNotification::Interactive
+			// interface on all objects.  This interface provides information about the state of the
+			// objects.
+			// do_command executes cmd and returns the result description as a string.  For more information
+			// see the description in AttNotification.idl.
+			// Commands that must be supported: go, children, help, 
+			// TODO LPP: We haven't implemented AttNotification::Interactive here, because compiling 
+			// AttNotification.idl was not straightforward.
+//			string do_command(in string cmd, out boolean success, out boolean target_change, out AttNotification::Interactive next_target);
+
+			const unsigned short DEFAULT_LOCATOR_PORT = 6667;
+			const string DEFAULT_LOCATOR_NAME = "ChannelLocator";
+
+			/**
+			 * getID()
+			 *
+			 * This will return a UUID representing an instance of the NotificationServiceAgent
+			 */
+			 string getID();
+
+			// 1. Enumerating the channels
+
+			/**
+			 * getChannels
+			 *
+			 * Returns the set of all channel names and the corresponding Corba channel objects
+			 * provided by an instance of IChannelLocator.  Allows consumers to determine which 
+			 * channels are available and to interact with the channels.
+			 */
+			ChannelMappingSeq getChannels();
+
+
+			// 2. Allowing a consumer to establish federation between IChannelLocators
+			// The consumer will cause federation to be established if it is interested in receiving
+			// notifications from a remote (supplier-side) notification service (providing federation
+			// has not already been established).
+			 
+			// Federation:
+			// The notification service uses Corba remote calls to notify consumers of events that occur.
+			// If consumers are running on a different host to the notification service, a remote call
+			// is made for every notification that needs to be made.  This can be quite inefficient.
+			// An alternative is for a notification service to be running on each host, for consumers
+			// to connect to the service on the same host, and for the notification services on different
+			// hosts to connect to each other so that a single event is sent between hosts.
+			// 
+			// The federation mechanism is consumer-driven, so that notification services are only connected
+			// if a consumer of one service needs events from another service.  Federation is established
+			// between notification services at different locations, where location is a virtual concept
+			// (two IChannelLocator instances can be at the same physical location (ie. on the same host) 
+			// but have different locationKeys).
+
+            /**
+              * federateIfRemoteSource
+              * 
+              * Consumers must call this method so that federation between notification services can be 
+			  * established if necessary (ie. when the supplier location is different to the local location).
+			  * Federation with remote notification services is reference counted.  No-op if the
+			  * supplierLocationKey of interest is the same as the notification service's location.
+              *
+              * @return none.
+              *
+              * @param	supplierLocationKey - the location supplying the messages that the consumer is interested in.
+			  *         LOCAL_LOCATION indicates the location we are at (in which case no federation occurs).
+			  *			ANY_LOCATION establishes federation with ALL locations.
+			  *			channelName - the name of the Channel we are interested in.
+              *
+              * @exception FederationFailed is thrown if something went wrong in the Federation setup.
+              */
+			void federateIfRemoteSource(in unsigned long supplierLocationKey, in string channelName)
+					raises(FederationFailed);
+
+            /**
+              * unfederateIfRemoteSource
+              * 
+			  * Consumers must call this method once for each call to federateIfRemoteSource.
+              *
+              * @return none.
+              *
+              * @param	supplierLocationKey - the location that the client specified when requesting federation.
+			  *			channelName - the name of the Channel we were interested in.
+              *
+              * @exception FederationFailed is thrown if something went wrong in the Federation disconnection.
+              */
+			void unfederateIfRemoteSource(in unsigned long supplierLocationKey, in string channelName);
+
+			
+			// 3. Allowing a consumer-side IChannelLocator to federate with a remote (supplier-side) IChannelLocator.
+
+			// Service Address (typically 'serviceAddr')
+			// A string of the form "host:port" that identifies the hostname and port that a particular
+			// IChannelLocator can be accessed on.  A Corba object reference can be formed from the
+			// hostname, port and object key by converting a corbaloc-style URI string to an object reference.
+			// For example, "corbaloc::192.168.140.101:6668/ChannelLocator" identifies the object "ChannelLocator"
+			// on service address 192.168.140.101:6668.
+
+            /**
+              * federateWithRemoteIChannelLocator
+              * 
+              * Allows a consumer-side IChannelLocator implementor to establish federation with
+			  * a supplier (remote) IChannelLocator instance.
+              *
+              * @return none.
+              *
+              * @param	consumerServiceAddr - the <host:port> of the consumer IChannelLocator that 
+			  *         requested federation.
+			  *			consumerLocationKey - the location of the consumer IChannelLocator.
+			  *			Location key must not be LOCAL_LOCATION or ANY_LOCATION.
+			  *			channelName - the name of the Channel we are interested in.
+              *
+              * @exception FederationFailed is thrown if something went wrong in the Federation setup.
+              */
+			void federateWithRemoteIChannelLocator(in string consumerServiceAddr, in unsigned long consumerLocationKey, in string channelName)
+					raises(FederationFailed);
+
+            /**
+              * unfederateWithRemoteIChannelLocator
+              * 
+              * Consumer-side IChannelLocator implementors must call this once for each call to
+			  * federateWithRemoteIChannelLocator.
+              *
+              * @return none.
+              *
+              * @param	consumerLocationKey - the location of the consumer IChannelLocator that requested federation.
+			  *			Location key must not be LOCAL_LOCATION or ANY_LOCATION.
+			  *			channelName the name of the Channel we were interested in.
+              *
+              * @exception FederationFailed is thrown if something went wrong in the Federation disconnection.
+              */
+			void unfederateWithRemoteIChannelLocator(in unsigned long consumerLocationKey, in string channelName);
+		};
+};

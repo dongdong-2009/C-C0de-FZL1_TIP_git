@@ -1,0 +1,288 @@
+#if !defined(VideoOutputCorbaDef_6D856C3B_635C_4e91_8C91_072E38E337FD__INCLUDED_)
+#define VideoOutputCorbaDef_6D856C3B_635C_4e91_8C91_072E38E337FD__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/VideoOutputCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * Handles all the common functions of VideoOutputs.
+  */
+
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoSwitchResourceCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface VideoOutputCorbaDef : VideoSwitchResourceCorbaDef
+    {
+		enum PlayBackCtrlCmd
+		{
+            FAST_FORWARD_1_STEP,
+            FAST_BACKWARD_1_STEP,
+            RESUME_PLAYBACK,
+            PAUSE_PLAYBACK
+		};
+
+		struct Time
+		{
+            unsigned short year;
+            octet month;
+            octet day;
+            octet hour;
+            octet minute;
+            octet second;
+		};
+
+		struct MonitorAlarmState
+        {
+            unsigned long	stationId;
+			unsigned long	eventId;
+		};
+
+        typedef sequence< MonitorAlarmState >					MonitorAlarmStack;
+
+        	
+        //
+        // A struct defining the current state of this VideoOutput.
+		// This is sent in the VideoOutputStateUpdate messages.
+        //
+        struct VideoOutputState
+        {
+            unsigned long currentVideoInputKey;		// The key of the current input switched to this output
+													// or 0 if there is no current input.
+			MonitorAlarmStack alarmStack;
+			boolean isInAlarmMode;
+			boolean isShowingAckAlarm;
+			MonitorAlarmStack removedAlarmStack;
+        };
+
+
+       	/**
+          * getVideoOutputState
+          *
+          * Gets the current state of this VideoOutput.
+          *
+          * @return     VideoOutputState
+          *             A struct detailing the current VideoOutput state. 
+		  *				It is the caller's responsibility to clean up this struct.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+		VideoOutputState getVideoOutputState()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getVideoOutputGroupName
+          *
+          * @return     string
+          *             The unique name of the group that this VideoOutput belongs to.
+          *             The group name is used for grouping the outputs when
+          *             they are displayed.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        string getVideoOutputGroupName()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getCurrentVideoInputKey
+          *
+          * Get the database (entity) key of the VideoInput currently switched to this VideoOutput.  
+          * 0 indicates no VideoInput is siwtched to this VideoOutput.
+          *
+          * @return     unsigned long
+          *             The database (entity) key of the VideoInput for this VideoOutput device or
+          *             0 if there is no associated input.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+        unsigned long getCurrentVideoInputKey()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * requestSwitchOfInput
+          *
+          * Requests that the hardware switches the named VideoInput to this VideoOutput.
+          *
+          * @param      unsigned long videoInputEntityKey
+          *             The entity key of the VideoInput to switch.
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          * @param      boolean isDemand = false
+          *             If false => If the VideoInput is locked (hardware locking), the 
+          *                         switch will not occur. Also known as a polite request.
+          *             If true  => The switch will occur even if the hardware is locked.
+          * 
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The VideoInput or the protocol does not support this operation.
+          *             2. A polite request was made and the VideoInput is switch (hardware) locked.
+          *             3. The VideoInput key is not recognised.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          */
+
+        void requestSwitchOfInput( in unsigned long videoInputEntityKey, 
+            in string sessionId, in boolean isDemand )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		void assignQuad( in unsigned long cameraW, in unsigned long cameraX, in unsigned long cameraY, in unsigned long cameraZ, 
+            in string sessionId, in boolean isDemand )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+       /**
+          * mappingTrainBorneMonitor
+          *
+          *Inform VSS this monitor will be mapping as TrainBone monitor
+          *
+          * @return     boolean
+          *             true if success
+          *             otherwise false
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+        boolean mappingTrainBorneMonitor(in string sessionId, in boolean isDemand)
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * cycleToNextVideoInput
+		  *
+		  * Manually cycles sequence playback to next VideoInput.
+		  *
+		  * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void cycleToNextVideoInput( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * cycleToPreviousVideoInput
+		  *
+		  * Manually cycles sequence playback to previous VideoInput.
+		  *
+		  * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void cycleToPreviousVideoInput( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * pauses
+		  *
+		  * Pauses playback of sequence.
+		  *
+		  * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void pause( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * play
+		  *
+		  * Begin/Resume Playback of sequence.
+		  *
+		  * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void play( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * stop
+		  *
+		  * Stop playback of sequence (can be same behaviour as pause depending on hardware).
+		  *
+		  * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void stop( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		void requestRecordingPlayBack(in unsigned long cameraKey, in Time startTime, in Time endTime, in string sessionId)
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		void playBackCtrl(in PlayBackCtrlCmd cmd, in string sessionId)
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+    }; // VideoOutputCorbaDef
+
+}; // TA_Base_Bus
+    
+#endif // !defined(VideoOutputCorbaDef_6D856C3B_635C_4e91_8C91_072E38E337FD__INCLUDED_)

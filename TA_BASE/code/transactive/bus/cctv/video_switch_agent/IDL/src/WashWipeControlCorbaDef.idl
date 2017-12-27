@@ -1,0 +1,183 @@
+#if !defined(WashWipeControlCorbaDef_6FADFBB2_10B7_4ee8_AAFB_4BE601F07D48__INCLUDED_)
+#define WashWipeControlCorbaDef_6FADFBB2_10B7_4ee8_AAFB_4BE601F07D48__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/WashWipeControlCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that handles washing and wiping control for a Camera.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface WashWipeControlCorbaDef
+    {
+        ///////////////////////////////////////////////////////////////////////
+        //
+        // Wash Controls
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        /**
+          * startWashing
+          *
+          * Starts washing the Camera.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				5. The agent is in Monitor mode.
+		  *				6. The user does not have sufficient privileges for this operation.
+		  *				7. There is a communications failure with the hardware.
+          *             8. The Camera address cannot be retrieved from the database.
+          */
+
+    	void startWashing( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * stopWashing
+          *
+          * Stops washing the Camera
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				5. The agent is in Monitor mode.
+		  *				6. The user does not have sufficient privileges for this operation.
+		  *				7. There is a communications failure with the hardware.
+          *             8. The Camera address cannot be retrieved from the database.
+          */
+
+    	void stopWashing( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+        
+        ///////////////////////////////////////////////////////////////////////
+        //
+        // Wipe Controls
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        /**
+          * startWiping
+          *
+          * Starts wiping the Camera.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				5. The agent is in Monitor mode.
+		  *				6. The user does not have sufficient privileges for this operation.
+		  *				7. There is a communications failure with the hardware.
+          *             8. The Camera address cannot be retrieved from the database.
+          */
+
+    	void startWiping( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * stopWiping
+          *
+          * Stops wiping the Camera.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				5. The agent is in Monitor mode.
+		  *				6. The user does not have sufficient privileges for this operation.
+		  *				7. There is a communications failure with the hardware.
+          *             8. The Camera address cannot be retrieved from the database.
+          */
+
+    	void stopWiping( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+        /**
+          * isWiperOn
+          *
+          * Returns the current state of the wiper.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @return     boolean
+          *             The wiper status.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+          */
+
+    	boolean isWiperOn( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+        /**
+          * isWasherOn
+          *
+          * Returns the current state of the washer.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @return     boolean
+          *             The washer status.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+          */
+
+    	boolean isWasherOn( in string sessionId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+    
+    }; // WashWipeControlCorbaDef
+
+}; // TA_Base_Bus
+    
+#endif // !defined(WashWipeControlCorbaDef_6FADFBB2_10B7_4ee8_AAFB_4BE601F07D48__INCLUDED_)

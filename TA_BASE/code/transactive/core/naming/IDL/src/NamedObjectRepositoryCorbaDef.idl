@@ -1,0 +1,60 @@
+#ifndef NAMED_OBJECT_REPOSITORY_CORBA_DEF_IDL
+#define NAMED_OBJECT_REPOSITORY_CORBA_DEF_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/naming/IDL/src/NamedObjectRepositoryCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  *
+  * This interface is implemented by the BindingRequestListener. Objects
+  * can be retrieved via the getObject method
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Core
+{
+        interface NamedObjectRepositoryCorbaDef
+        {
+			/**
+			 * Thrown if the object name is not found
+			 */
+			exception NameNotFound
+			{
+				string reason;
+			};
+
+	        /**
+			* getObject
+			*
+    	    * this method is called by the NamedObject library when trying to get the 
+			* object pointer
+			*
+			* @param	objectName the name of the object required
+			* @return	Object	the request object
+			* @exception NameNotFound thrown when the agent does not hold the object
+			* @exception IncorrectMode	throw when the agent is not in control mode
+	        */
+    	    Object getObject( in string objectName)
+				raises ( NameNotFound, OperationModeException );
+
+			/**
+			 * poll
+			 *
+			 * This function will be periodically called on the agent. If it fails, or throws
+			 * an OperationModeException, the repository will be invalidated
+			 */
+			void poll( )
+				raises ( OperationModeException );
+        };
+    
+}; // TA_Base_Core
+
+#endif //NAMED_OBJECT_REPOSITORY_CORBA_DEF_IDL

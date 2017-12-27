@@ -1,0 +1,220 @@
+#if !defined(ALARM_MESSAGE_IDL)
+#define ALARM_MESSAGE_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/alarm/IDL/src/AlarmMessageCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * Alarm Messages are used to track alarming
+  * events in the transactive system
+  */
+
+#include "core/alarm/IDL/src/AlarmUpdateCorbaDef.idl"
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+	// The type of Alarm Message being received
+	enum AlarmMessageType
+	{
+		NewAlarm,
+		UpdateAlarm,
+        AlarmsLoadedNotificationMessage
+	};
+
+	enum AlarmState
+	{
+		AlarmClosed,
+		AlarmOpen,
+		AlarmSuppressed
+	};
+
+	// New Alarm Details
+	struct AlarmDetailCorbaDef
+	{
+		/**
+		 * Time the Message was first generated
+		 */
+		TA_Base_Core::MillisecondTime sourceTime;
+
+		/**
+		 * Time the Message was logged, if at all
+		 */
+		TA_Base_Core::MillisecondTime transactiveTime;
+		
+		/**
+		 * Time the Message was acked, if at all
+		 */
+		TA_Base_Core::DateTime ackTime;
+
+		/**
+		 * Time the Message was closed, if at all
+		 */
+		TA_Base_Core::DateTime closeTime;
+
+		/**
+		 * Time that is displayed in the AlarmManager and used for sorting
+		 * This time can be the sourceTime, ackTime and closeTime depending on user's requirements
+		 */
+		TA_Base_Core::MillisecondTime displayTime;
+
+		/**
+		 * The MessageTypeKey as defined in the MESSAGETYPE table
+		 */			
+		unsigned long messageTypeKey;
+
+		/**
+		 * The MessageContext of this alarm
+		 */			
+		string messageContext;
+
+		/**
+		 * An entity associated with this Alarm
+		 */
+		unsigned long assocEntityKey;
+
+		/**
+		 * The entityType of the Entitiy associated with this Alarm
+		 */
+		unsigned long assocEntityTypeKey;
+
+        /**
+          * The name of the asset associated with the alarm
+          */
+        string assetName;
+
+		/**
+		* The UUID of this alarm, as a string
+		*/
+		string alarmID;
+
+		/**
+		* The alarm severity
+		*/
+		unsigned long alarmSeverity;
+		
+		/**
+		 * The fully formatted description as taken 
+		 * from the alarm type table
+		 */
+		string alarmDescription;
+
+		/**
+		 * list of parameters for the description
+		 */
+		string alarmParameterList;
+
+		/**
+		 * if the alarm is acknowledged, and who acknoweldged it
+		 */
+		string alarmAcknowledgedBy;
+
+		/**
+		 * if the alarm is acknowledged, and the session that acknowledged it
+		 */
+		string alarmAcknowledgedSession;
+
+		/**
+		 * the alarm state (closed, open, suppressed)
+		 */
+		AlarmState state;
+
+		/**
+		* additional comments about the alarm
+		*/
+		string alarmComments;
+
+		/**
+		* the name of the entity raising the alarm
+		*/
+		string entityName;
+
+		/**
+		* the locationKey of the entity
+		*/
+		unsigned long locationKey;
+
+		/**
+		* the subsystemkey of the entity
+		*/
+		unsigned long subsystemKey;
+
+		/**
+		 * This is to relate the event to a parent event
+		 * ie: Plan steps
+		 */
+		string parentAlarmID;
+
+		/**
+		 * This is relate the alarm to its avalanche head
+		 * if applicable
+		 */
+		string avalancheHeadID;
+
+        /**
+         * Is this alarm the head of an avalanche?
+         */
+        boolean isHeadOfAvalanche;
+
+		/**
+         * Is this alarm the child of an avalanche?
+         */
+        boolean isChildOfAvalanche;
+
+        /**
+         * Is this alarm a unique alarm?
+         */
+        boolean isUniqueAlarm;
+
+        /**
+         * Decision support state
+         */
+        DecisionSupportStateType decisionSupportState;
+
+        /**
+         * MMS state
+         */
+        MmsStateType mmsState;
+
+        /**
+          * The sequence number for the message (used to identify packet loss)
+          */
+        unsigned long messageSequenceNumber;
+		
+        /**
+          * The datapoint value to be displayed under the value column
+          */
+		string alarmValue;
+	};
+
+    typedef boolean AlarmsLoadedNotification;
+
+	// Switch on the type
+	union AlarmMessageCorbaDef switch ( AlarmMessageType )
+	{
+		case NewAlarm:
+			AlarmDetailCorbaDef alarm;
+
+		case UpdateAlarm:
+			AlarmUpdateCorbaDef update;
+
+        case AlarmsLoadedNotificationMessage:
+            AlarmsLoadedNotification notification;
+	};
+
+    typedef sequence<AlarmDetailCorbaDef> AlarmSequence;
+    //chenlei++
+	typedef sequence<AlarmMessageCorbaDef> AlarmMsgSequence;
+	//chenlei++
+
+}; // module TA_Base_Core
+
+#endif // !defined(ALARM_MESSAGE_IDL)

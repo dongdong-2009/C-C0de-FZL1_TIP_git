@@ -1,0 +1,199 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/GZL6_TIP/TA_BASE/transactive/app/system_control/control_station/src/ControlStation.idl $
+  * @author:  Ripple
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/06/12 13:35:44 $
+  * Last modified by:  $Author: builder $
+  *
+  */
+
+    // Atltest1.idl : IDL source for Atltest1.exe
+//
+// This file will be processed by the MIDL tool to
+// produce the type library (Atltest1.tlb) and marshalling code.
+
+
+// Disable the following warning, which is safe to ignore:
+// interface is not automation marshaling conformant, requires Windows NT 4.0 SP4 or greater 
+midl_pragma warning(disable: 2039)
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+    uuid(037EDEC4-80F2-11D7-B177-0050BAB1D931),
+    version(1.0),
+    helpstring("ControlStation 1.0 Type Library")
+]
+library ControlStationLib
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+
+    typedef
+    [
+        helpstring("Use this to specify a screen on the MFT")
+    ] 
+    enum
+    {
+        SCREEN_CURRENT,         // Area within the current monitor that currentX lies on 
+        SCREEN_PREVIOUS,        // Area within the monitor on the left of the one that currentX lies on.  If there is no screen on the left of this, it will just use the current monitor.
+        SCREEN_NEXT,            // Area within the monitor on the right of the one that currentX lies on.  If there is no screen on the right of this, it will just use the current monitor.
+        SCREEN_SPECIFIC,        // Area within the specified monitor
+        SCREEN_FIRST,           // Area within the first monitor (ignores val)
+        SCREEN_LAST,            // Area within the last monitor (ignores val)
+        SCREEN_ALL              // Area within all screens
+    } EScreen;
+
+
+    typedef
+    [
+        helpstring("Use this to specify a screen on the screen")
+    ] 
+    enum
+    {
+        AREA_SCREEN,            // The entire screen area
+        AREA_BANNER,            // The banner area
+        AREA_LAUNCHPAD,         // The launch pad area 
+        AREA_MAINNAVIGATOR,     // The main navigator area
+        AREA_SCHEMATIC,         // The display area within the main navigator
+    } EArea;
+
+
+    typedef
+    [
+        helpstring("Postioning flags - Used to indicate how the application will be positioned, can use a combination")
+    ] 
+    enum
+    {
+        POS_RELATIVE = 0x1,     // Relative to the 'objectDim'.  
+        POS_BOUNDED = 0x2,      // Bounded within the rectangle area of 'boundaryDim'.
+        POS_NOOVERLAP = 0x4,    // Relative to the edges of 'objectDim'
+        POS_RESIZABLE = 0x8     // If POS_BOUNDED is defined, it will resize to fit within the boundary
+    } EPosition;
+
+
+    typedef
+    [
+        helpstring("Alignment flags - Used to indicate how the application will be aligned relative to a point, can use a combination")
+    ] 
+    enum
+    {
+        ALIGN_FIT = 0x1,        // Fit into the specified area
+        ALIGN_LEFT = 0x2,       // Leftmost position at left coordinate of 'objectDim' or 'boundaryDim'
+        ALIGN_VERTICAL = 0x4,   // Vertically centred
+        ALIGN_RIGHT = 0x8,      // Rightmost position at right coordinate of 'objectDim' or 'boundaryDim'
+        ALIGN_TOP = 0x10,       // Topmost position at top coordinate of 'objectDim' or 'boundaryDim'
+        ALIGN_HORIZONTAL = 0x20,// Horizontally centred
+        ALIGN_BOTTOM = 0x40,    // Bottommost position at bottom coordinate of 'objectDim' or 'boundaryDim'
+    } EAlignment;
+
+
+    typedef
+    [
+        helpstring("The response types which can take the values of Permit, Deny, Indeterminate and TAError")
+    ] 
+    enum
+    {
+        Permit,
+        Deny,
+        Indeterminate,
+        TAError
+    } ResponseEnum;
+
+
+    typedef
+    [
+        helpstring("The entity message types which can be used to target a message to a TransActive entity")
+    ] 
+    enum
+    {
+        All,
+        RadioAgent,
+		ControlStation
+    } EntityMessageType;
+
+    [
+        object,
+        uuid(037EDEC6-80F2-11D7-B177-0050BAB1D931),
+        dual,
+        helpstring("IControlStation2 Interface"),
+        pointer_default(unique)
+    ]
+    interface IControlStation2 : IDispatch
+    {   
+        [id(1), helpstring("Logout of the Control Station")]                                                                                                                                                                                                     HRESULT logout();
+        [id(2), helpstring("Give an application focus on the screen. Pass in the process id of the running application")]                                                                                                                                        HRESULT giveApplicationFocus(long processId);
+        [id(3), helpstring("Returns the current logged in operator. Returns 'None' if no operator is logged in or 'Unknown' if an error has occurred.")]                                                                                                         HRESULT getOperator([out, retval] BSTR*);
+        [id(4), helpstring("Returns the current physical site where the operator is logged in. Returns 'None' if no site is specified. Returns 'Unknown' if an error has occurred.")]                                                                            HRESULT getSite([out, retval] BSTR*);
+        [id(5), helpstring("Returns the current profile the operator is using. Returns 'None' if no profile is specified. Returns 'Unknown' if an error has occurred.")]                                                                                         HRESULT getProfile([out, retval] BSTR*);
+        [id(6), helpstring("Launches an application based on the application type passed in. Top left corner and size must also be passed as well as any extra commandline to be sent to the application.")]                                                     HRESULT launchApplication(long appType, long leftPosition, long topPosition, long width, long height, BSTR* addtionalCommands);
+        [id(7), helpstring("Launches an application based on the application type passed in. Any extra commandline, positioning and alignment options could be specified optionally.")]                                                                          HRESULT launchApplicationEx(long appType, BSTR* extraCommandLine, long posType, long alignType, RECT* objectDim, RECT* boundaryDim);
+        [id(8), helpstring("Get a list of every possible application the user can launch. This will return a 2D array with the application type and display name of each application.")]                                                                         HRESULT getAllApplications([out, retval] VARIANT*);
+        [id(9), helpstring("Get a list of every currently running application. This will return a 2D array with the process id and display name of each running application.")]                                                                                  HRESULT getRunningApplications([out, retval] VARIANT*);
+        [id(10), helpstring("Returns the current logical location where the operator is logged in. Returns 'None' if no location is specified. Returns 'Unknown' if an error has occurred.")]                                                                    HRESULT getLocation([out, retval] BSTR*);
+        [id(11), helpstring("This will set alarm highlighting in the banner at the top of the screen. As well as the asset string the x value of the left side of the GraphWorX screen that calls this method must be passed.")]                                 HRESULT setSelectedAlarms(BSTR* asset, long leftPosition);
+        [id(12), helpstring("This will retrieve the display to be used for a specific profile on a specific screen. The x co-ordinate of the left side of the display should be passed so it can be determined which display to return. ie screen 1,2 or 3.")]   HRESULT getProfileDisplay(long leftPosition,[out, retval] BSTR*);
+        [id(13), helpstring("This method will cause the 'Change Profile' dialogue to appear so the user can change the profile they are logged in as. It returns straight away and the caller must wait for an event for notification of the update")]           HRESULT changeProfile();
+        [id(14), helpstring("This is called to determine if the server is functioning. This only needs to be called on startup and after that all changes will be sent as events. This will return false if the server is down.")]                               HRESULT isServerContactable([out, retval] BOOL* isContactable);
+        [id(15), helpstring("method displayTaskManager. This is a test method and should NOT be used in the real system at this stage.")]                                                                                                                        HRESULT displayTaskManager();
+        [id(16), helpstring("Used to add or remove an operator override. Will return straight away and an event will sent when action is complete.")]                                                                                                             HRESULT changeOperatorOverride();
+        [id(17), helpstring("Used to determine whether or not we are in operator override mode. Returns true if in operator override mode, and false otherwise.")]                                                                                                 HRESULT isOperatorOverridden([out, retval]BOOL* pRet);
+        [id(18), helpstring("This method will cause the 'Change Password' dialogue to appear so the user can change the password they are logged in as. It returns straight away and the caller must wait for an event for notification of the update")]         HRESULT changePassword();
+        [id(19), helpstring("This launches the specified display with specified asset centred on the screen where leftPosition is located")]                                                                                                                     HRESULT launchDisplayEx(BSTR display, BSTR asset, long leftPosition);
+        [id(20), helpstring("This has to be called by GraphWorX to inform the ControlStation of the display area within the main navigator on the first screen.")]                                                                                               HRESULT setDisplayDimension(RECT* dim);
+        [id(21), helpstring("This gets the rectangular dimension on the area of the specified screen")]                                                                                                                                                          HRESULT getRect(EScreen targetScreen, EArea targetArea, long val, [out, retval] RECT* dim);
+        [id(22), helpstring("This gets the name of the current display showing on the first screen")]                                                                                                                                                            HRESULT getCurrentDisplayName([out, retval] BSTR* display);
+        [id(23), helpstring("This launches the specified display on the screen where leftPosition is located")]                                                                                                                                                  HRESULT launchDisplay(BSTR display, long leftPosition);
+        [id(24), helpstring("This method should be called by GraphWorX to inform the Control Station that the display or subdisplay has been loaded.")]                                                                                                          HRESULT loadComplete(long leftPosition);
+        [id(25), helpstring("This method returns the session Id of the current operator")]                                                                                                                                                                       HRESULT getSessionId([out, retval] BSTR* sessionId);
+        [id(26), helpstring("This method launches the context sensitive help dialog for graphworx")]                                                                                                                                                             HRESULT launchHelp();
+        [id(27), helpstring("This method launches the plan controller with the associated plan already selected.")]                                                                                                                                              HRESULT launchPlan(long planId);
+        [id(28), helpstring("Request a decision from access control to allow or disallow an action on an entity")]                                                                                                                                               HRESULT isActionPermittedOnEntity(BSTR entityName, long actionKey, [out, retval] ResponseEnum* response);    
+        [id(29), helpstring("This method launches the plan controller with the associated plan already selected.")]                                                                                                                                              HRESULT launchPlanByName(BSTR planPath);  // plan path format: "[/category1/categoryN/]/planName"
+        [id(30), helpstring("Requests a decision to verify correct password with the associated operator name.")]                                                                                                                                                HRESULT isLoginAllowed(BSTR bstrOperator, BSTR bstrPassword, [out, retval]BOOL* bLogin);
+        [id(31), helpstring("This method passes a command message to the specified entity")]                                                                                                                                                                     HRESULT entityCommand(EntityMessageType entityType, BSTR location, BSTR sourceSchematicID, BSTR message);
+	[id(32), helpstring("This will retrieve the display to be used for a specific profile on a specific screen. The x co-ordinate of the left side of the display should be passed so it can be determined which display to return. ie screen 1,2 or 3.")]   HRESULT getProfileDisplayAtLocation(long leftPosition, BSTR locationName, [out, retval] BSTR*);
+    };
+
+
+    [
+        uuid(553D8699-9A66-4CDB-9D95-77EAA2C86929),
+        helpstring("_IControlStation3Events Interface")
+    ]
+    dispinterface _IControlStation2Events
+    {
+        properties:
+        methods:
+        [id(1), helpstring("This indicates a new display should be loaded on the screen containing the x co-ordinate specified in the parameter with the specified asset centred on the screen.")]                                                              HRESULT loadDisplayEx(BSTR filepath, BSTR asset, long leftPosition);
+        [id(2), helpstring("This indicates a new display should be loaded on the screen containing the x co-ordinate specified in the parameter.")]                                                                                                             HRESULT loadDisplay(BSTR filepath, long leftPosition);
+        [id(3), helpstring("This indicates that the network status has changed. The boolean argument will contain true if the server is functioning correctly and false otherwise.")]                                                                           HRESULT networkStatusChanged(BOOL isOk);
+        [id(4), helpstring("This indicates the login details have changed. It contains the new name of the profile and operator for the display.")]                                                                                                             HRESULT loginDetailsChanged(BSTR operatorName, BSTR profileName);
+        [id(5), helpstring("This indicates that GraphWorx should hide any displays that it is controlling")]                                                                                                                                                    HRESULT hideDisplays();
+        [id(6), helpstring("This is use to fire a short message to the GraphWorx dsiplays")]                                                                                                                                                                    HRESULT shortMessage(BSTR mesg);
+        [id(7), helpstring("This indicates the session duties have changed.")]                                                                                                                                                                                  HRESULT dutyChanged();
+        [id(8), helpstring("This is used to fire any message to GraphWorx. This would normally be a command targeted at a specific schematic or can be directed based on the source entity")]                                                                   HRESULT gxMessage(BSTR targetSchematicID, BSTR sourceEntityName, BSTR message);
+    };
+
+
+    [
+        uuid(037EDEC7-80F2-11D7-B177-0050BAB1D931),
+        helpstring("ControlStation2 Class")
+    ]
+    coclass ControlStation2
+    {
+        [default] interface IControlStation2;
+        [default, source] dispinterface _IControlStation2Events;
+    };
+
+
+};
+
+    
+
+

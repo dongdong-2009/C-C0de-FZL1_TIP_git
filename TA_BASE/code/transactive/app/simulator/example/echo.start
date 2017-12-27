@@ -1,0 +1,2 @@
+addmod echo ECHO 192.168.70.141 2345,3456,4567
+start

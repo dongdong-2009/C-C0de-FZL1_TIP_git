@@ -1,0 +1,225 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#ifndef _TRANSACTIVE_RESOURCES_HEADER_
+#define _TRANSACTIVE_RESOURCES_HEADER_
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_APP_TREND_VIEWER    ICON    DISCARDABLE     "icons/TrendViewer.ico"
+IDI_APP_CONFIGURATION_EDITOR ICON    DISCARDABLE     "icons/ConfigurationEditor.ico"
+IDI_APP_CONTROL_STATION ICON    DISCARDABLE     "icons/ControlStation.ico"
+IDI_APP_DISPLAY_MANAGER ICON    DISCARDABLE     "icons/DisplayManager.ico"
+IDI_APP_EVENT_VIEWER    ICON    DISCARDABLE     "icons/EventViewer.ico"
+IDI_APP_PLAN_MANAGER    ICON    DISCARDABLE     "icons/PlanManager.ico"
+IDI_APP_RADIO_MANAGER   ICON    DISCARDABLE     "icons/RadioManager.ico"
+IDI_APP_SIGN_VIEWER     ICON    DISCARDABLE     "icons/SignViewer.ico"
+IDI_APP_SYSTEM_MANAGER  ICON    DISCARDABLE     "icons/SystemManager.ico"
+IDI_APP_TELEPHONE_MANAGER ICON    DISCARDABLE     "icons/TelephoneManager.ico"
+IDI_APP_ALARM_MANAGER   ICON    DISCARDABLE     "icons/AlarmManager.ico"
+IDI_CONFIGURATION       ICON    DISCARDABLE     "icons/ConfigurationEditor.ico"
+IDI_HELP                ICON    DISCARDABLE     "icons/TransActiveHelp.ico"
+IDI_APP_MAP_VIEWER      ICON    DISCARDABLE     "icons/MapViewer.ico"
+IDI_APP_ARCHIVE_MANAGER ICON    DISCARDABLE     "icons/ArchiveManager.ico"
+IDI_APP_CAMERA          ICON    DISCARDABLE     "icons/camera.ico"
+IDI_APP_DUTY_MANAGER    ICON    DISCARDABLE     "icons/DutyManager.ico"
+IDI_APP_EQUIP_CONTROLLER ICON    DISCARDABLE     "icons/EquipmentController.ico"
+IDI_APP_INCIDENT        ICON    DISCARDABLE     "icons/Incident.ico"
+IDI_APP_PUBLIC_ADDRESS  ICON    DISCARDABLE     "icons/PublicAddress.ico"
+IDI_REPORT_MANAGER      ICON    DISCARDABLE     "icons/ReportManager.ico"
+IDI_CONFIG_AGENT        ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config agent.ico"
+IDI_CONFIG_ALARM_COMBO  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config alarm combo.ico"
+IDI_CONFIG_ALARM_PLANS  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config alarm plans.ico"
+IDI_CONFIG_ALARM_RULES  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config alarm rules.ico"
+IDI_CONFIG_ALARM_SEVERITY ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config alarm severity.ico"
+IDI_CONFIG_ALARM_TYPE   ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config alarm type.ico"
+IDI_CONFIG_APPLICATION  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config application.ico"
+IDI_CONFIG_CENTRAL_PROFILE ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config central profile.ico"
+IDI_CONFIG_DATAPOINT    ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config datapoint.ico"
+IDI_CONFIG_DUTIES       ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config duties.ico"
+IDI_CONFIG_MENU_RELOAD  ICON    DISCARDABLE     "icons\\Toolbar\\reload config.ico"
+IDI_CONFIG_ENTITY       ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config entity.ico"
+IDI_CONFIG_INTERLOCKING ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config interlocking.ico"
+IDI_CONFIG_LOCAL_PROFILE ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config local profile.ico"
+IDI_CONFIG_LOCATION     ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config location.ico"
+IDI_CONFIG_MESSAGE_TYPE ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config message type.ico"
+IDI_CONFIG_OPERATOR     ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config operator.ico"
+IDI_CONFIG_PROFILE      ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config profile.ico"
+IDI_CONFIG_RIGHTS       ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config rights.ico"
+IDI_CONFIG_SCADA_DISPLAY ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config scada display.ico"
+IDI_CONFIG_SUBSYSTEM    ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config subsystem.ico"
+IDI_CONFIG_SYS_CONTROLLER_GROUP ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config system controller group.ico"
+IDI_CONFIG_SYS_CONTROLLER ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config system controller.ico"
+IDI_CONFIG_WORKSTATION  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config workstation.ico"
+IDI_CONFIG_SERVER       ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config server.ico"
+IDI_CONFIG_ECS_ZONES    ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config ecs zones.ico"
+IDI_CONFIG_ECS_STATION_MODES ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config ecs station modes.ico"
+IDI_CONFIG_ECS_MASTER_MODES ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config ecs master modes.ico"
+IDI_CONFIG_ATS          ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config ats.ico"
+IDI_CONFIG_PA_STATIONS  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa stations.ico"
+IDI_CONFIG_PA_ATS_TRIGGERED_BROADCASTS ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa ats triggered broadcasts.ico"
+IDI_CONFIG_PA_FAS_TRIGGERED_BROADCASTS ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa fas triggered broadcasts.ico"
+IDI_CONFIG_PA_STATION_DVA_MESSAGES ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa station dva messages.ico"
+IDI_CONFIG_PA_TRAIN_DVA_MESSAGES ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa train dva messages.ico"
+IDI_CONFIG_PA_ZONE_GROUPS ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa zone groups.ico"
+IDI_CONFIG_PA_ZONES     ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config pa zones.ico"
+IDI_MONITOR_CENTER      ICON    DISCARDABLE     "icons\\ControlStation\\centremonitor.ico"
+IDI_MONITOR_LEFT        ICON    DISCARDABLE     "icons\\ControlStation\\leftmonitor.ico"
+IDI_MONITOR_RIGHT       ICON    DISCARDABLE     "icons\\ControlStation\\rightmonitor.ico"
+IDI_LOGOUT              ICON    DISCARDABLE     "icons\\ControlStation\\Logout.ico"
+IDI_OPERATOR_OVERRIDE   ICON    DISCARDABLE     "icons\\ControlStation\\OperatorOverride.ico"
+IDI_OPERATOR_PASSWORD   ICON    DISCARDABLE     "icons\\ControlStation\\OperatorPassword.ico"
+IDI_OPERATOR_PROFILE_CHANGE ICON    DISCARDABLE     "icons\\ControlStation\\OperatorProfileChange.ico"
+IDI_OPERATOR_SHIFT_CHANGE ICON    DISCARDABLE     "icons\\ControlStation\\OperatorShiftChange.ico"
+IDI_DEFAULT_HOT         ICON    DISCARDABLE     "icons\\ControlStation\\DefaultHot.ico"
+IDI_VIEW_SCHEMATIC      ICON    DISCARDABLE     "icons\\ControlStation\\ViewSchematic.ico"
+IDI_VIEW_SHORTCUT       ICON    DISCARDABLE     "icons\\ControlStation\\ViewShortcut.ico"
+IDI_EDIT_SHORTCUT       ICON    DISCARDABLE     "icons\\ControlStation\\EditShortcut.ico"
+IDI_VIEW_CAMERA         ICON    DISCARDABLE     "icons\\ControlStation\\ViewCamera.ico"
+IDI_CONFIG_MENU_COPY    ICON    DISCARDABLE     "icons\\Toolbar\\copy config.ico"
+IDI_CONFIG_MENU_DELETE  ICON    DISCARDABLE     "icons\\Toolbar\\delete config.ico"
+IDI_CONFIG_MENU_NEW     ICON    DISCARDABLE     "icons\\Toolbar\\new config.ico"
+IDI_ALARM_COMMENT       ICON    DISCARDABLE     "icons\\Toolbar\\alarm_comment.ico"
+IDI_CONFIG_MMS          ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config mms scheduling.ico"
+IDI_TOOLBAR_ADD         ICON    DISCARDABLE     "icons\\Toolbar\\add.ico"
+IDI_TOOLBAR_DELETE      ICON    DISCARDABLE     "icons\\Toolbar\\delete.ico"
+IDI_TOOLBAR_DISABLE     ICON    DISCARDABLE     "icons\\Toolbar\\disable.ico"
+IDI_TOOLBAR_EDIT        ICON    DISCARDABLE     "icons\\Toolbar\\edit.ico"
+IDI_TOOLBAR_ENABLE      ICON    DISCARDABLE     "icons\\Toolbar\\enable.ico"
+IDI_TOOLBAR_PRINT       ICON    DISCARDABLE     "icons\\Toolbar\\print.ico"
+IDI_TOOLBAR_VIEW        ICON    DISCARDABLE     "icons\\Toolbar\\view.ico"
+IDI_APP_SCHEDULING_MANAGER ICON    DISCARDABLE     "icons\\SchedulingManager.ico"
+IDI_TOOLBAR_FILTER      ICON    DISCARDABLE     "icons\\Toolbar\\filter.ico"
+IDI_SILENCE_ICON        ICON    DISCARDABLE     "icons/silence.ico"
+IDI_UNSILENCE_ICON      ICON    DISCARDABLE     "icons/unsilence.ico"
+IDI_CONFIG_SOUND_FILE   ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config sound file.ico"
+IDI_CONFIG_EVENT_PLANS  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config message type.ico"
+IDI_CONFIG_ECS_STATION_COLOR ICON    DISCARDABLE     "icons\\configurationeditor\\ECSStationColor.ico"
+IDI_CONFIG_TIS_RATIS_TAGS ICON  DISCARDABLE     "icons\\ConfigurationEditor\\config tis ratis tag.ico"
+IDI_CONFIG_TIS_RATIS_DESTINATIONS ICON DISCARDABLE   "icons\\ConfigurationEditor\\config tis ratis destination.ico"
+IDI_CONFIG_SI_TRAIN ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config si train.ico"
+IDI_CONFIG_SI_REGION_TALKGOUP  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config si region talkgroup.ico"
+IDI_CONFIG_SI_ELEMENT_LOCATION ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config si element location.ico"
+IDI_CONFIG_ONLINE_PRINTER  ICON    DISCARDABLE     "icons\\ConfigurationEditor\\config online printer.ico"
+IDI_CONFIG_NEWTDSLOG    ICON    DISCARDABLE     "icons\\Toolbar\\tdslog config.ico"
+IDI_BANNER_PRINT_ICON	ICON	DISCARDABLE		"icons\\BannerPrint.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ASCENDING           BITMAP  DISCARDABLE     "bitmaps\\sort_ascending.bmp"
+IDB_DESCENDING          BITMAP  DISCARDABLE     "bitmaps\\sort_descending.bmp"
+IDB_ALARM_COMMENT       BITMAP  DISCARDABLE     "bitmaps\\alarm_comment.bmp"
+IDB_ALARM               BITMAP  DISCARDABLE     "bitmaps\\iscs.bmp"
+IDB_ALARMD              BITMAP  DISCARDABLE     "bitmaps\\iscsd.bmp"
+IDB_ALARMDG             BITMAP  DISCARDABLE     "bitmaps\\iscsdg.bmp"
+IDB_ALARMG              BITMAP  DISCARDABLE     "bitmaps\\iscsg.bmp"
+IDB_PLAN                BITMAP  DISCARDABLE     "bitmaps\\plan.bmp"
+IDB_PLAND               BITMAP  DISCARDABLE     "bitmaps\\pland.bmp"
+IDB_PLANDG              BITMAP  DISCARDABLE     "bitmaps\\plandg.bmp"
+IDB_PLANG               BITMAP  DISCARDABLE     "bitmaps\\plang.bmp"
+IDB_CALLG               BITMAP  DISCARDABLE     "bitmaps\\callg.bmp"
+IDB_CALLD               BITMAP  DISCARDABLE     "bitmaps\\calld.bmp"
+IDB_CALLDG              BITMAP  DISCARDABLE     "bitmaps\\calldg.bmp"
+IDB_CALL                BITMAP  DISCARDABLE     "bitmaps\\call.bmp"
+IDB_ATSG                BITMAP  DISCARDABLE     "bitmaps\\atsg.bmp"
+IDB_ATSD                BITMAP  DISCARDABLE     "bitmaps\\atsd.bmp"
+IDB_ATSDG               BITMAP  DISCARDABLE     "bitmaps\\atsdg.bmp"
+IDB_ATS                 BITMAP  DISCARDABLE     "bitmaps\\ats.bmp"
+IDB_ALARM_KRTC          BITMAP  DISCARDABLE     "bitmaps\\iscskrtc.bmp"
+IDB_ALARMD_KRTC         BITMAP  DISCARDABLE     "bitmaps\\iscsdkrtc.bmp"
+IDB_ALARMDG_KRTC        BITMAP  DISCARDABLE     "bitmaps\\iscsdgkrtc.bmp"
+IDB_ALARMG_KRTC         BITMAP  DISCARDABLE     "bitmaps\\iscsgkrtc.bmp"
+IDB_EVENT_KRTC          BITMAP  DISCARDABLE     "bitmaps\\event.bmp"
+IDB_EVENTD_KRTC         BITMAP  DISCARDABLE     "bitmaps\\eventd.bmp"
+IDB_EVENTDG_KRTC        BITMAP  DISCARDABLE     "bitmaps\\eventdg.bmp"
+IDB_EVENTG_KRTC         BITMAP  DISCARDABLE     "bitmaps\\eventg.bmp"
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
+
+#endif   // _TRANSACTIVE_RESOURCES_HEADER_ (guard)

@@ -1,0 +1,291 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "..\..\..\..\..\bus\response_plans\plan_tree\src\PlanTree_resource.h" // Resources for the Plan Tree
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+3 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_AlarmRulesConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_AlarmRulesConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_AlarmRulesConfigPlugin.DLL\0"
+            VALUE "ProductName", "TA_AlarmRulesConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_NOT_BATCH_PLAN      "这不是一个批处理计划"
+    IDS_TIMEOUT_NOT_SPECIFIED "未指定超时值"
+    IDS_PLAN_NOT_SPECIFIED  "未指定计划"
+    IDS_INVALID_NAME        "无效名称仍存在于字段中"
+    IDS_ENTITY_DETAIL_NOT_SPECIFIED 
+                            "到少有一个实体，实体类型和警报类型必须指定"
+    IDS_EXIST_CIRCLE   "配置中有闭合环,请检查"
+    IDS_TIMEIN_NOT_SPECIFIED "未指定timeIn值"
+    IDS_MINALARMS_NOT_SPECIFIED "未指定最小警报值"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""..\\..\\..\\..\\..\\bus\\response_plans\\plan_tree\\src\\PlanTree_resource.h"" // Resources for the Plan Tree\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_AlarmRulesConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#include ""..\\..\\..\\..\\..\\bus\\response_plans\\plan_tree\\src\\PlanTree.rc"" // Resources for the Plan Tree\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ALARMPLAN_VIEW DIALOG DISCARDABLE  0, 0, 528, 328
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_ENTITYTYPE,85,30,401,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_ENTITYTYPE,493,30,12,13
+    EDITTEXT        IDC_EDIT_ENTITY,85,48,401,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ALARM,85,73,401,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_ALARMTYPE,493,73,12,13
+    COMBOBOX        IDC_COMBO_TRIGGER,85,93,420,45,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_PLAN,85,112,401,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_PLAN,493,112,12,13
+    EDITTEXT        IDC_EDIT_TIMEOUT,85,113,36,13,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "List2",IDC_LIST_AV_SUPP,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,25,150,433,100
+    DEFPUSHBUTTON   "移除(&R)",IDC_BUTTON_REMOVE,465,191,40,14
+    DEFPUSHBUTTON   "添加(&D)",IDC_BUTTON_ADD_DATA_NODE,465,168,40,14
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,207,147,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,271,147,50,14
+    CONTROL         "实体类型:",IDC_RADIO_ENTITYTYPE,"Button",
+                    BS_AUTORADIOBUTTON,25,32,47,9
+    CONTROL         "实体:",IDC_RADIO_ENTITY,"Button",BS_AUTORADIOBUTTON,
+                    25,50,35,9
+    LTEXT           "警报类型:",IDC_STATIC_ALARM,16,76,43,11
+    GROUPBOX        "类型",IDC_STATIC_TYPE,8,7,512,314
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,16,113,69,9
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,16,130,69,9
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,85,113,241,13
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,85,130,241,13
+    LTEXT           "规则触发:",IDC_STATIC_TRIGGER,16,94,43,11
+    CONTROL         9005,IDC_TRIGGER_BITMAP,"Static",SS_BITMAP,80,95,11,11
+    GROUPBOX        "实体",IDC_STATIC_ENTITY_GROUP,16,19,497,48
+    LTEXT           "计划:",IDC_STATIC_PLAN,16,115,43,11
+    CONTROL         9005,IDC_PLAN_BITMAP,"Static",SS_BITMAP,80,116,11,11
+    LTEXT           "超时:",IDC_STATIC_TIMEOUT,16,115,43,11
+    CONTROL         9005,IDC_TIMEOUT_BITMAP,"Static",SS_BITMAP,80,116,11,11
+    GROUPBOX        "雪崩子规则",
+                    IDC_STATIC_GROUP_AV_SUPP,16,135,497,123
+    LTEXT           "毫秒",IDC_STATIC_TIMEOUT_SECONDS,124,115,19,9
+    LTEXT           "TimeIn:",IDC_STATIC_TIMEIN,146,115,25,11
+    EDITTEXT        IDC_EDIT_TIMEIN,176,113,40,13,ES_AUTOHSCROLL
+    LTEXT           "毫秒",IDC_STATIC_TIMEIN_MSECONDS,219,115,19,9
+    LTEXT           "最低警报:",IDC_STATIC_MINALARMS,261,116,41,9
+    EDITTEXT        IDC_EDIT_MINALARMS,304,114,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_ENTITY,493,48,12,13
+    CONTROL         9005,IDC_ALARMTYPE_BITMAP,"Static",SS_BITMAP,80,76,11,11
+    CONTROL         9005,IDC_ENTITY_BITMAP,"Static",SS_BITMAP,80,50,11,11
+    CONTROL         9005,IDC_ENTITYTYPE_BITMAP,"Static",SS_BITMAP,80,32,11,
+                    11
+END
+
+IDD_CHANGE_PLAN_DIALOG DIALOG DISCARDABLE  0, 0, 186, 214
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "改变计划"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,39,193,50,14
+    PUSHBUTTON      "取消",IDCANCEL,96,193,50,14
+    CONTROL         "Tree1",IDC_PLAN_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | 
+                    WS_BORDER | WS_TABSTOP,7,7,172,175
+END
+
+IDD_SELECTDATANODE_DIALOG DIALOG DISCARDABLE  0, 0, 281, 243
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "选择数据节点"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,88,222,50,14
+    PUSHBUTTON      "取消",IDCANCEL,145,222,50,14
+    CONTROL         "Tree1",IDC_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,7,267,176
+    LTEXT           "警报类型:",IDC_STATIC_DN_ALARM_TYPE,10,198,43,11
+    COMBOBOX        IDC_COMBO_DN_ALARM_TYPE,55,196,219,45,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ALARMPLAN_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 8
+        RIGHTMARGIN, 520
+        VERTGUIDE, 16
+        VERTGUIDE, 25
+        VERTGUIDE, 85
+        VERTGUIDE, 486
+        VERTGUIDE, 505
+        VERTGUIDE, 513
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 321
+    END
+
+    IDD_CHANGE_PLAN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+
+    IDD_SELECTDATANODE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 236
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_AlarmRulesConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#include "..\..\..\..\..\bus\response_plans\plan_tree\src\PlanTree.rc" // Resources for the Plan Tree
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

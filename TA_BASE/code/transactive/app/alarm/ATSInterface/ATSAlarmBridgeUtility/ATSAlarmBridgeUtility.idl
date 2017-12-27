@@ -1,0 +1,75 @@
+// ATSAlarmBridgeUtility.idl : IDL source for ATSAlarmBridgeUtility
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ATSAlarmBridgeUtility.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+typedef
+[
+	uuid(FC367CFD-7C1F-494e-BA1E-BAB0B59CA16E),
+	version(1.0),
+	helpstring("Alarm Action Information structure")
+]
+struct AlarmActionInfo
+{
+	[helpstring("Alarm ID")]			BSTR  bstrAlarmID;
+    [helpstring("The x co-ordinated")]	LONG  lLeftPosition;
+}AlarmActionInfo;
+
+typedef
+[
+	uuid(F5534AA7-F739-4aca-872E-BFE95315C94A),
+	version(1.0),
+	helpstring("Schematic Display Information structure")
+]
+struct SchematicDisplayInfo
+{
+	[helpstring("Graphic element")]		BSTR  bstrSchematic;
+	[helpstring("The x co-ordinated")]	LONG  lLeftPosition;
+}SchematicDisplayInfo;
+
+[
+	object,
+	uuid(4FE13D05-55DA-4320-BC06-6A4FA6148AB7),
+	dual,
+	nonextensible,
+	helpstring("IATSAlarmActionManager Interface"),
+	pointer_default(unique)
+]
+interface IATSAlarmActionManager : IDispatch{
+	[id(1), helpstring("method showIP")] HRESULT showIP([in] AlarmActionInfo* pAlarmActionInfo, [out,retval] SHORT* nRetVal);
+	[id(2), helpstring("method showSchematic")] HRESULT showSchematic([in] AlarmActionInfo* pAlarmActionInfo, [out,retval] SHORT* nRetVal);
+};
+[
+	uuid(90318F9E-3C96-497E-BB7C-BC5D7247B881),
+	version(1.0),
+	helpstring("ATSAlarmBridgeUtility 1.0 Type Library")
+]
+library ATSAlarmBridgeUtilityLib
+{
+	importlib("stdole2.tlb");
+	struct AlarmActionInfo;
+	struct SchematicDisplayInfo;
+
+	[
+		uuid(B13691A1-614C-4B5F-B821-EAF15C706B66),
+		helpstring("_IATSAlarmActionManagerEvents Interface")
+	]
+	dispinterface _IATSAlarmActionManagerEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method DisplaySchematic")] SHORT DisplaySchematic([in] BSTR bstrAlarmID, [in] BSTR bstrSchematic, [in] SHORT leftPosition);
+	};
+	[
+		uuid(E8A7F762-8797-4E89-81E3-11C080642387),
+		helpstring("ATSAlarmActionManager Class")
+	]
+	coclass ATSAlarmActionManager
+	{
+		[default] interface IATSAlarmActionManager;
+		[default, source] dispinterface _IATSAlarmActionManagerEvents;
+	};
+};

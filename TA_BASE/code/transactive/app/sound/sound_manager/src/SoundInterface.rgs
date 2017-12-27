@@ -1,0 +1,24 @@
+HKCR
+{
+	SoundManager.SoundInterface.1 = s 'SoundInterface Class'
+	{
+		CLSID = s '{0F20771A-E29B-412C-B81E-147B97E32321}'
+	}
+	SoundManager.SoundInterface = s 'SoundInterface Class'
+	{
+		CLSID = s '{0F20771A-E29B-412C-B81E-147B97E32321}'
+		CurVer = s 'SoundManager.SoundInterface.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {0F20771A-E29B-412C-B81E-147B97E32321} = s 'SoundInterface Class'
+		{
+			ProgID = s 'SoundManager.SoundInterface.1'
+			VersionIndependentProgID = s 'SoundManager.SoundInterface'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{833DEE1C-D5FC-4868-9C8B-07C22F54A216}'
+			'TypeLib' = s '{FCA8CFA0-9E85-4924-A778-4563FEB7F841}'
+		}
+	}
+}

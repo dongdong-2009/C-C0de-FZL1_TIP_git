@@ -1,0 +1,306 @@
+#if !defined(FocusIrisControlCorbaDef_5BC56742_3AA4_4284_9CC5_674B72EB3610__INCLUDED_)
+#define FocusIrisControlCorbaDef_5BC56742_3AA4_4284_9CC5_674B72EB3610__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv_gzl9/video_switch_agent/IDL/src/FocusIrisControlCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that handles the focus and iris control for an Camera.
+  */
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv_gzl9/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+
+module TA_Base_Bus_GZL9
+{
+    interface FocusIrisControlCorbaDef
+    {
+        ///////////////////////////////////////////////////////////////////////
+        //
+        // Focus Controls
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        /**
+          * isAutoFocusOn
+          *
+          * Identifies if the Camera is in auto focus mode.
+          *
+          * @return     boolean
+          *             True if the Camera is in auto focus mode.
+          *             False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+    	boolean isAutoFocusOn()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * setAutoFocusOn
+          *
+          * Turns auto focus on (or off).
+          *
+          * @param      boolean isAutoFocusOn
+          *             True  => turn auto focus on.
+          *             False => turn auto focus off.
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          */
+
+    	void setAutoFocusOn( in boolean isAutoFocusOn, in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * focusNear
+          *
+          * Starts focusing the Camera nearer.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The Camera address cannot be retrieved from the database.
+          */
+
+    	void focusNear( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException,TA_Base_Core::OperationModeException );
+
+        /**
+          * focusFar
+          *
+          * Starts focusing the Camera farther away.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The Camera address cannot be retrieved from the database.
+          */
+
+    	void focusFar( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException,TA_Base_Core::OperationModeException );
+
+        /**
+          * focusHalt
+          *
+          * Stops changing the focus.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The Camera address cannot be retrieved from the database.
+          */
+
+    	void focusHalt( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        // Iris Controls
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        /**
+          * isAutoIrisOn
+          *
+          * Identifies if the Camera is in auto iris mode.
+          *
+          * @return     boolean
+          *             True if the Camera is in auto iris mode.
+          *             False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+    	boolean isAutoIrisOn()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException,TA_Base_Core::OperationModeException );
+
+        /**
+          * setAutoIrisOn
+          *
+          * Turns auto iris on (or off).
+          *
+          * @param      boolean isAutoIrisOn
+          *             True  => turn auto iris on.
+          *             False => turn auto iris off.
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          */
+
+    	void setAutoIrisOn( in boolean isAutoIrisOn, in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException,TA_Base_Core::OperationModeException );
+
+        /**
+          * openIris
+          *
+          * Starts opening the Camera iris.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The Camera address cannot be retrieved from the database.
+          */
+
+    	void openIris( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * closeIris
+          *
+          * Starts closing the Camera iris.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The Camera address cannot be retrieved from the database.
+          */
+
+    	void closeIris( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * irisHalt
+          *
+          * Stops changing the iris width.
+          *
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The Camera address cannot be retrieved from the database.
+          */
+
+    	void irisHalt( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * isIrisPeakWhiteInversionOn
+          *
+          * Identifies if Peak White Inversion is turned on.
+          *
+          * @return     boolean
+          *             True if peak white inversion is on.
+          *             False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. There is a communications failure with the hardware.
+          */
+
+    	boolean isIrisPeakWhiteInversionOn()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * setIrisPeakWhiteInversionOn
+          *
+          * Turns Peak White Inversion on (or off).
+          *
+          * @param      boolean isIrisPeakWhiteInversionOn
+          *             True =>
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this Camera.
+          *             2. The Camera or the protocol does not support this operation.
+          *             3. The Camera is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          */
+
+    	void setIrisPeakWhiteInversionOn( in boolean isIrisPeakWhiteInversionOn, in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+    }; // FocusIrisControlCorbaDef
+
+}; // TA_Base_Bus
+    
+#endif // !defined(FocusIrisControlCorbaDef_5BC56742_3AA4_4284_9CC5_674B72EB3610__INCLUDED_)

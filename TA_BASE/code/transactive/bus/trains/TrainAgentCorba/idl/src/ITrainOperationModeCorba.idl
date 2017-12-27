@@ -1,0 +1,94 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainOperationModeCorba_Idl)
+#define ITrainOperationModeCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainExceptionsCorba.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands used during Degraded Mode
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:41 PM
+     */
+    interface ITrainOperationModeCorba
+    {
+
+
+
+        /**
+         * Called by the radio agent to notify the local train agent that it has entered or left radio fallback mode.
+         * If not already in local duty mode, entering fallback will trigger local duty mode.
+         * 
+         * @param fallback    Whether the radio system is in fallback or not (true is fallback, false is normal)
+         */
+        oneway void inFallback(in boolean fallback);
+
+        /**
+         * Called by the ATS agent to notify the local train agent that it has entered or left double OCC ATS failure mode.
+         * If not already in local duty mode, entering fallback will trigger local duty mode.
+         * 
+         * @param doubleAtsFailure
+         */
+        oneway void inDoubleAtsFailure(in boolean doubleAtsFailure);
+
+        /**
+         * Checks whether the agent is in local control due to radio fallback or local duty.
+         * This is only applicable at station locations.
+         * 
+         * This is called by the ATS agent to determine if it should be exchanging ATS data locally, or using OCC ATS to do the data exchange.
+         * 
+         * @return true if ATS should be in local mode
+         */
+        boolean radioInFallback()
+			raises ( TA_Base_Core::OperationModeException );//limin
+
+        /**
+         * This will manually force train communications over to this train agent.
+         * It is only to be used in failure scenarios, and incorrect use could result
+         * in the situation automatically normalising (or attempting to normalise)
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * 
+         * @param trainId    The train ID to manually take
+         * @param sessionId    The operator taking control
+         */
+        void manuallyTakeTrainControl(in ITrainCommonCorba::TrainId trainId, 
+									  in string sessionId)
+            raises ( TA_Base_Core::OperationModeException,
+                     TA_Base_Core::AccessDeniedException,
+                     ITrainExceptionsCorba::InvalidTrainException,
+                     ITrainExceptionsCorba::TransmissionFailureException,
+                     ITrainExceptionsCorba::TransactionTimeoutException,
+                     ITrainExceptionsCorba::TransactionCancelledException,
+                     ITrainExceptionsCorba::MpuChangeoverException,
+                     ITrainExceptionsCorba::BadCommandException );
+
+    };
+
+};
+
+#endif

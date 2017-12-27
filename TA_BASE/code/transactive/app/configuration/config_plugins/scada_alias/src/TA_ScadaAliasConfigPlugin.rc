@@ -1,0 +1,178 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+2 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_ScadaAliasConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_ScadaAliasConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_ScadaAliasConfigPlugin.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "TA_ScadaAliasConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_ScadaDisplayConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SCADAALIAS_VIEW DIALOG DISCARDABLE  0, 0, 432, 144
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "Arial Bold"
+BEGIN
+    EDITTEXT        IDC_EDIT_OPC_ALIAS,69,19,348,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ENTITY_NAME,69,37,348,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_ATTRIBUTE,405,55,12,13
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,159,113,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,223,113,50,14
+    LTEXT           "OPC 别名:",IDC_STATIC_OPC_ALIAS,16,22,36,8
+    LTEXT           "实体:",IDC_STATIC_ENTITY_NAME,16,39,43,13
+    GROUPBOX        "类型",IDC_STATIC_TYPE,8,7,416,128
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,16,77,53,9
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,16,94,53,9
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,69,76,348,13
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,69,93,348,13
+    CONTROL         9005,IDC_OPC_ALIAS_BITMAP,"Static",SS_BITMAP,63,23,11,11
+    CONTROL         9005,IDC_ENTITY_NAME_BITMAP,"Static",SS_BITMAP,63,41,11,
+                    11
+    LTEXT           "属性:",IDC_STATIC_ATTRIBUTE,16,56,40,13
+    EDITTEXT        IDC_EDIT_ATTRIBUTE,69,55,331,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CONTROL         9005,IDC_ATTRIBUTE_BITMAP,"Static",SS_BITMAP,63,59,11,11
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_ScadaAliasConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

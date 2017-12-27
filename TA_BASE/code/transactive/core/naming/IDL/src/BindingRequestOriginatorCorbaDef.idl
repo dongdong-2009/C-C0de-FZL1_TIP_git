@@ -1,0 +1,43 @@
+#ifndef BINDING_REQUEST_ORIGINATOR_CORBA_DEF_IDL
+#define BINDING_REQUEST_ORIGINATOR_CORBA_DEF_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/naming/IDL/src/BindingRequestOriginatorCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  *
+  * This interface is implemented by anything that needs to resolve names to object. 
+  * The BindingRequestListener that has the requested name calls back the
+  * originator using this interface. It will be queried by waiting threads to see
+  * if the callback has been received.
+  */
+
+module TA_Base_Core
+{
+	interface NamedObjectRepositoryCorbaDef;
+
+    interface BindingRequestOriginatorCorbaDef
+    {
+	    /**
+		* callback
+		*
+    	* this method is called by a binding request listener to deliver the requested
+        * object reference
+		*
+		* @param	requestedObject	the resolved object
+		* @param	timeToLive	The length of time the object will remain valid
+		*				 in the cache (default 600 secs)
+	    */
+    	oneway void callback( in NamedObjectRepositoryCorbaDef requestedObject, in unsigned long timeToLive );
+    };
+    
+}; // TA_Base_Core
+
+#endif //BINDING_REQUEST_ORIGINATOR_CORBA_DEF_IDL

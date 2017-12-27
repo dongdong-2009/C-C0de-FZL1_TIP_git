@@ -1,0 +1,7 @@
+; TA_AlarmRulesConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_AlarmRulesConfigPlugin"
+DESCRIPTION  'TA_AlarmRulesConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

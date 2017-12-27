@@ -1,0 +1,7 @@
+; TA_PlanJobDetailsPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_PlanJobDetailsPlugin"
+DESCRIPTION  'TA_PlanJobDetailsPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

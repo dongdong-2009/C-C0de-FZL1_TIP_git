@@ -1,0 +1,42 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/maintenance_management/mmsCorbaDef/idl/src/IMmsAlarmSubmitterCorbaDef.idl $
+// @author:  C. DeWolfe
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Interface used to submit MMS Alarm Messages.
+//
+
+#if !defined(IMmsAlarmSubmitterCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)
+#define IMmsAlarmSubmitterCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+
+#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/maintenance_management/mmsCorbaDef/idl/src/IMmsConnectionCorbaDef.idl"
+
+module TA_Base_Bus
+{
+
+	interface IMmsAlarmSubmitterCorbaDef
+	{
+		/**
+		 * Submit a MMS alarm message for the specified alarm.
+		 *
+		 * Note that no confirmation of success or failure is returned by this
+		 * method. Hence, the class that impliments this interface is responcible
+		 * for approriate failure handling, e.g. raising alarm
+		 */
+		void submitMmsAlarmMessage(in TA_Base_Core::AlarmDetailCorbaDef p_alarm)
+			raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+
+	}; // end interface IMmsAlarmSubmitterCorbaDef
+}; // end module TA_Base_Bus
+
+#endif // !defined(IMmsAlarmSubmitterCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)

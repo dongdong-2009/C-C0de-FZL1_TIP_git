@@ -1,0 +1,60 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IProcessSubjectCorbaDef.idl $
+  * @author:  Justin Ebedes
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  *
+  * This interface is implemented by System Controllers
+  * to inform observers that process data on a System 
+  * Controller has changed.
+  *
+  */
+
+#ifndef IPROCESSSUBJECTCORBADEF_IDL_INCLUDED
+#define IPROCESSSUBJECTCORBADEF_IDL_INCLUDED
+
+#include "core/process_management/IDL/src/IProcessObserverCorbaDef.idl"
+
+module TA_Base_Core
+{
+        interface IProcessSubjectCorbaDef
+        {
+		    /**
+			  * registerProcessObserver
+			  *
+			  * Called by a System Controller that wishes to observe
+			  * a peer. Also allows the peer to observe it.
+			  *
+			  * @param host      The hostname of the System Controller registering.
+			  * @param observer  An object reference that the peer can call back
+			  *					 on to send process updates to the System Controller
+			  *					 that is registering.
+			  *
+			  * @return An object that the registering System Controller can use 
+			  *			to send process updates to the peer.
+			  * 
+			  */
+			IProcessObserverCorbaDef registerProcessObserver(in string host, 
+										in IProcessObserverCorbaDef observer);
+
+			/**
+			  * deregisterProcessObserver
+			  *
+			  * Called by an observer that no longer wishes to
+			  * observe this System Controller.
+			  *
+			  * @param host  The hostname of the System Controller deregistering.
+			  */
+			void deregisterProcessObserver(in string host);
+
+        };
+};
+
+#endif // IPROCESSSUBJECTCORBADEF_IDL_INCLUDED
+

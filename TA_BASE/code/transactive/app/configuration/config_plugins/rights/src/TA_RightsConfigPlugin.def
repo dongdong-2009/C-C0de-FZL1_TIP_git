@@ -1,0 +1,7 @@
+; TA_RightsConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_RightsConfigPlugin"
+DESCRIPTION  'TA_RightsConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

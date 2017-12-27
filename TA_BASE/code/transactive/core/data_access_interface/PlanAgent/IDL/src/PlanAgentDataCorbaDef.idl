@@ -1,0 +1,1341 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/data_access_interface/PlanAgent/IDL/src/PlanAgentDataCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #4 $
+//
+// Last modification: $DateTime: 2015/12/04 19:03:49 $
+// Last modified by:  $Author: hongzhi.zhang $
+//
+// Plan Agent data.
+//
+
+module TA_Base_Bus
+{
+    interface IPlanManagerCorbaDef;
+};
+
+module TA_Base_Core
+{
+        // Basic types
+		typedef unsigned long ParameterNumber;
+        typedef unsigned long StepNumber;
+        typedef unsigned long StepId;
+        typedef unsigned long Seconds;
+        typedef unsigned long Minutes;
+        typedef unsigned long UpdateId;
+        typedef string SessionId;
+        typedef string PlanManagerId;
+
+        typedef unsigned long NodeId;
+        typedef sequence <NodeId> NodeIds;
+                    
+        // Step parameter types
+        typedef string NodePath;
+        typedef sequence<string> StepNames;
+        typedef sequence<string> ParameterNames;
+
+        // Constrained step parameter types
+        typedef string        CameraName;
+        
+        typedef unsigned long CameraPreset;
+        
+        typedef unsigned long CameraMode;
+
+        typedef string        MonitorName;
+        
+        typedef string        RecordingUnitName;
+        
+        typedef string        DataPointName;
+
+        typedef unsigned long ParameterKey;
+        typedef string        VmsSign;
+
+        typedef unsigned long VmsScene;
+
+        typedef unsigned long AppType;
+        typedef string CommandLine;
+
+        typedef string SchematicName;
+        
+        typedef string ExpressionValue;
+
+        typedef sequence<string> TISPidList;
+
+        typedef unsigned long ProfileNumber;
+
+	typedef unsigned long ActionType;
+
+        // Constants
+        const NodeId ROOT_NODE_ID = 1;
+        const unsigned long MAX_UPDATE_ID = 0xFFFFFFFF;
+        const unsigned long MIN_UPDATE_ID = 1;
+        const unsigned short TIS_UNDEFINED_MESSAGE_ID = 0xFFFF;
+        const unsigned short TIS_UNDEFINED_TRAIN_ID = 0xFFFF;
+        const unsigned long PA_UNDEFINED_MESSAGE_ID = 0;
+        // enums
+        enum ENode
+        { 
+            PLAN_NODE     ,
+            CATEGORY_NODE ,
+            UNDEFINED_NODE
+        };
+        
+        enum EApprovalState
+        {
+            APPROVED_APPROVAL_STATE  ,
+            UNAPPROVED_APPROVAL_STATE,
+            UNDEFINED_APPROVAL_STATE
+        };
+        
+        enum EPlanType
+        {
+            UNDEFINED_TYPE,
+            VISIBLE_TYPE,
+            INVISIBLE_TYPE
+        };
+        //Note: Please do not change the order of step when a new step is added.
+        //      Add the Step just before UNDEFINED_STEP, even if it resembles to
+        //      an existing step. Please follow this strictly otherwise it makes
+        //      the existing plans unusable. - MP 02-June-2004
+        enum EStep
+        {
+            END_STEP                 ,
+            ABORT_STEP               ,
+            ACTIVE_PLAN_CHECK_STEP   ,
+            ASSIGN_CAMERA_TO_MONITOR_STEP,             
+            DATA_POINT_CHECK_STEP    ,
+            DATA_POINT_SET_STEP      ,
+            DECISION_STEP            ,
+            JUMP_STEP                ,
+            LOG_STEP                 ,
+            ACTIVATE_CAMERA_PRESET_STEP,
+            PROMPT_STEP              ,
+            RUN_PLAN_STEP            ,
+            TERMINATE_PLAN_STEP      ,
+            STATION_TRAVELLER_INFO_SYSTEM_STEP,
+            VMS_SET_SCENE_STEP       ,
+            LAUNCH_GUI_APP_STEP         ,
+            VMS_BLANKOUT_STEP         ,
+            VMS_RESTORE_SCHEDULE_STEP,
+            VIDEO_WALL_STEP             ,
+            STATION_PUBLIC_ADDRESS_STEP    ,
+            TRAIN_PUBLIC_ADDRESS_STEP    ,
+            MITSIM_GENERATE_INCIDENT_IMAGES_STEP,
+            GENERATE_REPORT_STEP,
+            LIVE_PROPERTY_CHECK_STEP,
+            LAUNCH_MAP_VIEWER_STEP,
+            START_RECORDING_STEP,
+            STOP_RECORDING_STEP,
+            ASSIGN_VIDEO_INPUT_TO_RECORDING_UNIT_STEP,        
+            CLEAR_VIDEO_WALL_STEP,
+            SEND_SMS_MESSAGE_STEP,
+            LAUNCH_SCHEMATIC_STEP,
+            EVALUATE_EXPRESSION_STEP,
+            TRAIN_TRAVELLER_INFO_SYSTEM_STEP,
+            FAILURE_SUMMARY_STEP, //DP-changes
+            PLAN_CHECK_TIMER_STEP,
+            PLAN_SET_TIMER_STEP,
+            EXECUTE_SCRIPT_STEP,
+            DATA_POINT_TIME_CHECK_STEP,
+            POPUP_MFT_MESSAGE_STEP,
+            SHUTDOWN_SYSTEM_STEP,
+            STATION_PUBLIC_ADDRESS_STEP_BY_ALARM,
+            BACKGROUND_LAUNCH_SCHEMATIC_STEP,
+            BACKGROUND_LAUNCH_GUI_APP_STEP,
+            BACKGROUND_DECISION_STEP,
+            BACKGROUND_LOG_STEP,
+            BACKGROUND_PROMPT_STEP,
+            UNDEFINED_STEP
+        };
+
+        enum EActivePlanState
+        {
+            EXECUTING_ACTIVE_PLAN_STATE,
+            PAUSED_ACTIVE_PLAN_STATE   ,
+            DELAYED_ACTIVE_PLAN_STATE  ,
+            STOPPED_ACTIVE_PLAN_STATE  ,
+            COMPLETED_ACTIVE_PLAN_STATE,
+            ABORTED_ACTIVE_PLAN_STATE  ,
+            FAILED_ACTIVE_PLAN_STATE   ,
+            PENDING_ACTIVE_PLAN_STATE  ,
+            UNDEFINED_ACTIVE_PLAN_STATE,
+            OPERATOR_PAUSED_ACTIVE_PLAN_STATE,
+            EXPIRED_ACTIVE_PLAN_STATE,
+            NEW_OWNER_ACTIVE_PLAN_STATE
+        };
+
+        enum EActiveStepState
+        {
+            EXECUTED_ACTIVE_STEP_STATE  ,
+            SKIPPED_ACTIVE_STEP_STATE   ,
+            UNEXECUTED_ACTIVE_STEP_STATE,
+            FAILED_ACTIVE_STEP_STATE    ,
+            LOADED_ACTIVE_STEP_STATE    ,
+            PAUSED_ACTIVE_STEP_STATE    ,
+            DELAYED_ACTIVE_STEP_STATE    ,
+            UNDEFINED_ACTIVE_STEP_STATE
+        };
+
+        enum EDataPoint
+        {
+            BOOLEAN_DATA_POINT   ,
+            NUMERIC_DATA_POINT   ,
+            TEXT_DATA_POINT      ,
+            UNDEFINED_DATA_POINT
+        };
+
+        enum EDataPointTest
+        {
+            EQUAL_TO_TEST                ,
+            NOT_EQUAL_TO_TEST            ,
+            LESS_THAN_TEST               ,
+            GREATER_THAN_TEST            ,
+            LESS_THAN_OR_EQUAL_TO_TEST   ,
+            GREATER_THAN_OR_EQUAL_TO_TEST,
+            UNDEFINED_TEST
+        };
+
+        // Possible targets for a train TIS/PA message.
+        // Note well: new TG types should be inserted just before TG_UNDEFINED so as 
+        //            not to upset already configured Train TIS/PA step parameters.
+        enum ETrainGroup
+        {
+            TG_INBOUND_TRAINS,
+            TG_OUTBOUND_TRAINS,
+            TG_ALL_TRAINS,
+            TG_UNDEFINED
+        };
+
+        enum EPlanStepCompletionStatus
+        {
+            PSCS_FAILURE        ,
+            PSCS_SUCCESS        ,
+            PSCS_TIMEOUT        ,
+            PSCS_ACKNOWLEDGEMENT,
+            PSCS_YES_RESPONSE   ,
+            PSCS_NO_RESPONSE    ,
+            PSCS_PAUSE_RESPONSE , // DP changes
+            PSCS_ABORT_RESPONSE ,
+            PSCS_RETRY_RESPONSE ,
+            PSCS_IGNORE_RESPONSE,
+            PSCS_OK_RESPONSE    ,
+            PSCS_CANCEL_RESPONSE,
+            PSCS_UNDEFINED
+        };
+
+        //enum for Plan Config Update Message Types
+        enum EPlanConfigUpdateType
+        {
+            PCUT_APPROVAL_STATE,
+            PCUT_UPDATE_CATEGORY,
+            PCUT_INSERT_CATEGORY,
+            PCUT_INSERT_CATEGORY_INTO_ROOT,
+            PCUT_DELETE_CATEGORY,
+            PCUT_UPDATE_PLAN,
+            PCUT_INSERT_PLAN,
+            PCUT_INSERT_PLAN_INTO_ROOT,
+            PCUT_DELETE_PLANS,
+            PCUT_MOVE_PLAN,
+            PCUT_COPY_PLAN,
+            PCUT_COPY_PLAN_TO_ROOT,
+            PCUT_MOVE_PLAN_TO_ROOT,
+            PCUT_MOVE_PLAN_FROM_ROOT,
+            PCUT_DELETE_CATEGORY_FROM_ROOT,
+            PCUT_DELETE_PLANS_FROM_ROOT,
+            PCUT_PLAN_TYPE
+        };
+
+        //enum for PlanAgent State Updtae Message Types
+        enum EPlanAgentStateUpdateType
+        {
+            PASUT_PLAN_EXECUTION_HISTORY,
+            PASUT_PLAN_CUSTOMISATION_HISTORY,
+            PASUT_REGISTERED_PLAN_MANAGER,                
+            PASUT_DEREGISTERED_PLAN_MANAGER,
+            PASUT_RUN_PLAN,
+            PASUT_CUSTOMISE_PLAN,
+            PASUT_TAKE_CONTROL,
+            PASUT_PAUSE_PLAN,
+            PASUT_RESUME_PLAN,
+            PASUT_STOP_PLAN,
+            PASUT_CUSTOMISE_STEP,
+            PASUT_GET_EDIT_PLAN_LOCK,
+            PASUT_RELEASE_EDIT_PLAN_LOCK,
+            PASUT_ACTIVE_PLAN_UPDATE,
+            PASUT_PAUSED_FOR_OPERATOR_UPDATE,
+            PASUT_ACTIVE_PLANS,
+            PASUT_UPDATE_ID,
+            PASUT_ACTIVE_STEP_COMPLETION_STATUS_UPDATE,
+            PASUT_MAX
+        };
+
+        // enum to indicate which step detail is not filled in 
+        enum EPlanStepDetailType
+        {
+            PSDT_NAME,
+            PSDT_TYPE,
+            PSDT_SKIP,
+            PSDT_POSITION,
+            PSDT_PLAN_PATH,
+            PSDT_YES,
+            PSDT_NO,
+            PSDT_DATA_POINT_NAME,
+            PSDT_DATA_POINT_VALUE,
+            PSDT_DATA_POINT_TEST_TYPE,
+            PSDT_SUCCESS,
+            PSDT_FAILURE,
+            PSDT_DECISION_MESSAGE,
+            PSDT_JUMP,
+            PSDT_PROMPT_MESSAGE,
+            PSDT_APPLICATION,
+            PSDT_WIDTH,
+            PSDT_HEIGHT,
+            PSDT_CAMERA_NAME,
+            PSDT_MONITOR_NAME,
+            PSDT_CAMERA_PRESET,
+            PSDT_VMS_SIGN,
+            PSDT_VMS_SCENE,
+            PSDT_WALLBOARD,
+            PSDT_VIDEO_LAYOUT,
+            PSDT_SMS_RECIPIENT,
+            PSDT_SMS_MESSAGE,
+            PSDT_SCHEMATIC_NAME,
+            PSDT_SCREEN_NUMBER,
+            PSDT_EXPRESSION_VALUE,
+            PSDT_STATION_NAME,
+            PSDT_STATION_MESSAGE,
+            PSDT_STATION_ZONE,
+            PSDT_TRAIN_ID,
+            PSDT_TIS_MESSAGE,
+            PSDT_TIS_PRIORITY,
+            PSDT_TIS_DURATION,
+            PSDT_YES_LABEL,
+            PSDT_NO_LABEL,
+            PSDT_PAUSE_LABEL,
+            PSDT_FAILURE_SUMMARY,
+            PSDT_TIME,
+            PSDT_STATION_DESITINATIONLIST,
+            PSDT_STATION_MESSAGECONTENT,
+            PSDT_PROFILE,
+            PSDT_MAX
+        };
+        // Possible types of errors in step details
+        enum EPlanStepDetailError
+        {
+            PSDE_UNSPECIFIED,
+            PSDE_INVALID
+        };
+        // Plan Agent errors 
+        enum EPlanAgentError
+        {
+            PAE_EDIT_LOCKED_BY_OPERATOR,
+            PAE_CANNOT_RELEASE_EDIT_LOCK,
+            PAE_NO_PLAN_NAME,
+			PAE_INVALID_PLAN_NAME,
+            PAE_NAME_NOT_UNIQUE,
+            PAE_CANNOT_SAVE_APPROVED_PLAN,
+            PAE_CANNOT_DELETE_APPROVED_PLAN,
+            PAE_CANNOT_OVERWRITE_APPROVED_PLAN,
+            PAE_CANNOT_OVERWRITE_EDITED_PLAN,
+            PAE_CANNOT_OVERWRITE_CATEGORY,
+            PAE_NOT_APPROVED,
+            PAE_CANNOT_SKIP_UNSKIPPABLE,
+            PAE_NOT_PLAN,
+            PAE_NOT_CATEGORY,
+            PAE_PARENT_NOT_CATEGORY,
+            PAE_EXCEED_MAX_CATAGORY_LEVEL,
+            PAE_CANNOT_DELETE_NON_EMPTY_CATAGORY,
+            PAE_PLAN_HAS_ACTIVE_INSTANCE,
+            PAE_CANNOT_CREATE_PLAN,
+            PAE_CANNOT_DELETE_REFERENCED_PLAN,
+            PAE_DATABASE_ERROR,
+            PAE_DATA_ERROR,
+            PAE_WRONG_STATE_TO_CUSTOMISE_ACTIVE_PLAN, 
+            PAE_INITIALISATION_FAILURE,
+            PAE_NO_RESOURCE, 
+            PAE_STEP_TYPE_AND_PARAMETER_MISMATCH,
+            PAE_UNKNOWN_ERROR,
+            PAE_EXCEEDED_RUNNING_PLANS_FOR_ENTITY,
+            PAE_PLAN_PAUSE_ERROR, 
+            PAE_PLAN_RESUME_ERROR, 
+            PAE_PLAN_STOP_ERROR, 
+            PAE_PLAN_UNAPPROVE_ERROR,
+            PAE_PLAN_EXEC_ERROR,
+            PAE_PLAN_APPROVE_ERROR
+        };
+        // Possible causes of PlanNotFound exception
+        enum EPlanNotFoundError
+        {
+            PNFE_FAIL_FETCH_ACTIVE_LIST_STEP,
+            PNFE_INSTANCE_NOT_IN_BULLETIN_BOARD,
+            PNFE_INSTANCE_NOT_FOUND,
+            PNFE_MESSAGE_FOR_UNKNOWN_PLAN_DISCARDED,
+            PNFE_NODE_NOT_EXIST
+        };
+        // Handle data point values
+        struct NumericDataPoint
+        {
+            double value;
+            unsigned long precision;
+        };
+
+        union DataPointValue switch( EDataPoint )
+        {
+            case BOOLEAN_DATA_POINT:
+                boolean booleanValue;
+
+            case NUMERIC_DATA_POINT:
+                NumericDataPoint numericValue;
+
+            case TEXT_DATA_POINT:
+                string textValue;
+        };
+
+        // Handle nodes (they can be plans or categories)
+        struct NodeSummary
+        {
+            NodeId         node;
+            NodeId           parent;
+            string         name;
+            ENode          type;
+            EApprovalState approvalState;
+            boolean        hasChildren;
+            boolean        hasApprovedDescendant;
+            boolean        hasUnapprovedDescendant;
+        };
+
+        struct PlanDetail
+        {
+            NodeId parent;
+            NodeId plan;
+            string name;
+            string description;
+            EApprovalState approvalState;
+            string modifiedBy;
+            string modifiedTime;
+            string approvalChangedBy;
+            string approvalChangedTime;
+        };
+
+        struct CategoryDetail
+        {
+            NodeId parent;
+            NodeId category;
+            string name;
+            string description;
+        };
+
+        union NodeDetail switch (ENode)
+        {
+            case PLAN_NODE:
+                PlanDetail plan;
+
+            case CATEGORY_NODE:
+                CategoryDetail category;
+        };
+
+        typedef sequence<NodeSummary> SiblingNodes;
+
+        struct ActiveStepDetail
+        {
+            StepNumber position;
+            EActiveStepState state;
+            string name;
+            string remark;
+        };
+
+        typedef sequence<ActiveStepDetail> ActiveStepDetails;
+
+        struct ExecutionHistory
+        {
+            UpdateId activeUpdateId;
+            ActiveStepDetails details;
+        };
+
+        struct StepCustomisableDetail
+        {
+            StepNumber position;
+            boolean    skip;
+            boolean    ignoreFailure;
+			boolean    nowait;
+            Seconds    delay;
+        };
+
+        typedef sequence<StepCustomisableDetail> StepCustomisableDetails;
+
+        struct CustomisationHistory
+        {
+            UpdateId customUpdateId;
+            StepCustomisableDetails details;
+        };
+
+        struct StepDetail
+        {
+            StepNumber position;
+            StepId     step;
+            string     name;
+            string     description;
+            EStep      type;
+            boolean    skip;
+            boolean    skippable;
+            boolean    ignoreFailure;
+			boolean    nowait;
+            Seconds    delay;
+        };
+
+        typedef sequence<StepDetail> StepDetails; 
+        typedef sequence<StepNumber> StepNumbers;
+        typedef sequence<StepNumber> StepIds;
+
+        struct ActivePlanId
+        {
+            NodeId plan;
+            unsigned long instance;
+            unsigned long location;
+            unsigned long triggerEntity;
+            unsigned long entitykey; // CL-13527
+        };
+
+        struct PlanCustomisationUpdate
+        {
+            ActivePlanId plan;
+            UpdateId customUpdateId;
+            StepCustomisableDetail detail;    
+        };
+
+        struct ActivePlanDetail
+        {
+            ActivePlanId plan;
+            NodePath path;
+            EActivePlanState activePlanState;
+            ActiveStepDetail currentStepDetail;
+            UpdateId activeUpdateId;
+            boolean manuallyExecuted;
+            unsigned long timer;
+            unsigned long lastStateTransitionTime;
+            unsigned long instantiationTime;
+            string remark;
+            string owner;
+            string assocAlarmId;
+        };
+
+		////////////////////////////////////////////////////
+		//to support import/export of Plans
+        typedef sequence<ActivePlanDetail> ActivePlanDetails;
+
+        struct ActiveStepCompletionStatus
+        {
+            NodeId plan;
+            unsigned long instance;
+            StepNumber stepPosition;
+            EPlanStepCompletionStatus completionStatus;
+        };
+
+        typedef sequence<ActiveStepCompletionStatus> ActiveStepCompletionStatusSeq;
+
+		struct 	AuxStepParam
+		{
+			ParameterNumber position;
+			string value;
+		};
+
+		typedef sequence<AuxStepParam> AuxStepParameters;
+
+		struct AuxStepDetail
+		{
+			string				name;
+			EStep				type;
+			string				description;
+			StepNumber			position;
+			boolean				skip;
+            boolean				skippable;
+            boolean				ignoreFailure;
+			boolean				nowait;
+            Seconds				delay;
+			AuxStepParameters	stepParams;
+		};
+
+		typedef sequence<AuxStepDetail> AuxSteps;
+
+		struct AuxPlanDetail
+		{
+			string			name;
+			string			description;
+			AuxSteps		steps;
+		};
+
+
+		//DP-changes (Failed Step Summary)
+		struct FailedStepDetail
+        {
+            StepNumber       position;
+            string           name;
+            string			 error;
+        };
+
+        typedef sequence<FailedStepDetail> FailedStepDetails;
+		//DP-changes ++lizettejl
+
+		/////////////////////////////////////////////////
+
+        // Steps
+
+        // "unsigned long" is the default type for steps
+        // that do not have any parameters.
+        typedef unsigned long EndParameters;
+
+        typedef unsigned long AbortParameters;
+
+        struct ActivePlanCheckParameters
+        {
+            NodeId     plan;
+            StepId yesStep;
+            StepId noStep;
+        };
+        
+        struct AssignCameraToMonitorParameters
+        {
+            ParameterKey        camera;
+            ParameterKey       monitor;
+        };
+
+        struct ActivateCameraPresetParameters
+        {
+            ParameterKey      camera;
+            ParameterKey      preset;
+        };
+
+        struct DataPointCheckParameters
+        {
+            DataPointName      dataPoint;
+            DataPointValue     value;
+            EDataPointTest testType;
+            StepId         successStep;
+            StepId         failureStep;
+        };
+
+        struct DataPointSetParameters
+        {
+            DataPointName  dataPoint;
+            DataPointValue newValue;
+        };
+
+        struct DecisionParameters
+        {
+            string     decisionMessage;
+            Seconds    responseTimeout;
+            StepId yesStep;
+            StepId noStep;
+			// DP-changes 
+			string  yesButtonLabel;
+			string  noButtonLabel;
+			string  pauseButtonLabel;
+			boolean noButtonEnabled;
+			boolean pauseButtonEnabled;
+			//DP-changes ++lizettejl
+
+        };
+
+        struct JumpParameters
+        {
+            StepId step;
+        };
+
+        struct LogParameters
+        {
+            string message;
+            boolean logRequired;
+            Seconds responseTimeout;
+        };
+
+
+        struct PromptParameters
+        {
+            string  message;
+            Seconds dismissTimeout;
+        };
+
+        struct RunPlanParameters
+        {
+            NodeId   plan;
+            boolean  manualLaunch;
+            boolean  waitForCompletion;
+        };
+
+        struct TerminatePlanParameters
+        {
+            NodeId   plan;
+        };
+
+        struct VmsSetSceneParameters
+        {
+            ParameterKey  vmsSign;
+            ParameterKey  scene;
+        };
+
+        struct VmsRestoreScheduleParameters
+        {
+            ParameterKey  vmsSign;
+        };
+
+        struct VmsBlankoutParameters
+        {
+            ParameterKey  vmsSign;
+        };
+
+        struct WindowPosition
+        {
+            unsigned long top;
+            unsigned long left;
+            unsigned long width;
+            unsigned long height; 
+        };
+        struct LaunchGuiAppParameters
+        {
+            AppType app;
+            CommandLine args;
+            WindowPosition pos;
+        };
+
+        struct VideoWallParameters
+        {
+            ParameterKey wallBoard;
+            ParameterKey layout;
+        };
+		
+        struct PlanCheckTimerParameters
+        {
+            Seconds timeSpan;
+            StepId successStep;
+            StepId failureStep;
+        };
+
+        struct PlanSetTimerParameters
+        {
+            Seconds time;
+        };
+
+        struct ExecuteScriptParameters
+        {
+            CommandLine commands;
+        };
+
+        struct DataPointTimeCheckParameters
+        {
+            DataPointName      dataPoint;
+            Seconds        timeSpan;
+            StepId         successStep;
+            StepId         failureStep;
+        };
+
+        struct PopupMFTMessageParameters
+        {
+            string     decisionMessage;
+            unsigned long messageBoxType;   
+            StepId     abortStep;
+            StepId     retryStep;
+            StepId     ignoreStep;
+            StepId     okStep;
+            StepId     cancelStep;
+            StepId     yesStep;
+            StepId     noStep;
+            StepId     pendingStep;
+            ProfileNumber operatorProfileNumber;
+            unsigned long timeSpan;
+        };
+
+        struct ShutdownSystemParameters
+        {
+            boolean notifyPeer;
+        };
+
+        struct StationDestination
+        {
+            unsigned long locationKey;
+            string station;         // empty if allStations == true
+            boolean allStations;    // false if station not empty
+        };
+
+       typedef sequence<unsigned long> StationZones;
+
+		struct PAMessage
+		{
+			unsigned short libVersion;
+            unsigned short libSection;
+            unsigned long  messageId;
+		};
+
+		
+        struct StationPublicAddressParameters
+        {
+            StationDestination  station;
+            StationZones	    zones;
+            PAMessage		    message;	
+            boolean				chime;
+            boolean				cyclic;
+            boolean				TISSynch;
+            Seconds				duration;
+            Seconds				interval;	
+            unsigned long      cyclicTimes;
+        };
+
+        struct SendSmsMessageParameters
+        {
+            string recipientIdentifier;
+            string textMessage;
+        };
+            
+        struct LaunchSchematicParameters
+        {
+            SchematicName schematic;
+            unsigned long screen;
+            CommandLine commands;
+        };
+
+        struct BackgroundLaunchSchematicParameters
+        {
+            SchematicName schematic;
+            unsigned long screen;
+            CommandLine commands;
+            ActionType actionTypeKey;
+            unsigned long dataPoint;
+            unsigned long profile;
+        };
+
+        struct BackgroundLaunchGuiAppParameters
+        {
+            AppType app;
+            CommandLine args;
+            WindowPosition pos;
+            boolean	 bAddTriggerEntity;
+            ActionType actionTypeKey;
+            unsigned long dataPoint;
+            boolean	 bTriggerEntityCheckAction;
+            unsigned long profile;
+        };
+
+        struct BackgroundDecisionParameters
+        {
+            string     decisionMessage;
+            Seconds    responseTimeout;
+            StepId yesStep;
+            StepId noStep;
+            string  yesButtonLabel;
+            string  noButtonLabel;
+            string  pauseButtonLabel;
+            boolean noButtonEnabled;
+            boolean pauseButtonEnabled;
+            unsigned long profile;
+        };
+
+        struct BackgroundLogParameters
+        {
+            string message;
+            boolean logRequired;
+            Seconds responseTimeout;
+            unsigned long profile;
+        };
+
+        struct BackgroundPromptParameters
+        {
+            string  message;
+            Seconds dismissTimeout;
+            unsigned long profile;
+        };
+
+        struct TrainDestination
+        {
+            unsigned short trainId; // TIS_UNDEFINED_TRAIN_ID if trainGroup != TG_UNDEFINED
+            ETrainGroup trainGroup; // TG_UNDEFINED if trainId != TIS_UNDEFINED_TRAIN_ID
+        };
+        
+        struct TISMessage
+        {
+            unsigned short libraryVersion;
+            unsigned short librarySection;
+            unsigned short messageId;
+        };
+
+        struct EvaluateExpressionParameters
+        {
+            ExpressionValue expression;
+            StepId         successStep;
+            StepId         failureStep;
+        };
+
+       typedef sequence<octet> PidsMessage;	//for Chinese character
+       struct PidsDestination
+       {
+			short station;   // station ID, e.g 1,2,...40
+			boolean gateway; //indicate Station Pids zone for Gateway
+			boolean downTrack; //indicate Station Pids zone for DownTrack
+			boolean upTrack; //indicate Station Pids zone for DownTrack
+            boolean concourse; //indicate Station Pids zone for DownTrack
+       };
+
+	typedef sequence<PidsDestination> PidsDestinationList;
+	struct MessageTime
+        {
+	    long year;
+	    long month;
+	    long day;
+            long hour;
+            long minute;
+            long second;
+        };
+
+	struct StationTravellerInfoSystemParameters
+	{
+	    TISPidList pidList;
+	    PidsDestinationList destinationList;
+	    PidsMessage messageContent;
+	    boolean msgType;			// 0 = Low priority message, 1 = High priority message
+	    boolean showType;		// 0 = bottom scrolling text message, 1 = whole pids screen message
+	    boolean isTrain;			// 0 = display normal, 1 = display on all trains
+	    MessageTime startTime;      //not use
+	    MessageTime endTime;	//not use
+	    long interval;		//not use
+	    boolean isCyclic;		//0
+	};
+
+        struct TrainTravellerInfoSystemParameters
+        {
+            TrainDestination destination;
+            TISMessage message;
+            unsigned short priority;
+            Minutes duration;
+        };
+        
+        struct TrainPublicAddressParameters
+	{
+		TrainDestination	destination;
+		PAMessage		    message;
+		boolean				cyclic;
+		Minutes				duration;
+	};
+
+	//DP-changes (Failure summary step)
+	enum EStepFailureCategory
+	{
+		SFC_ALL_STEPS,			  // all failed steps included
+		SFC_SET_DATA_POINT_STEPS, // only failed BRC Steps included
+		SFC_UNDEFINED
+	};
+
+	struct FailureSummaryParameters
+	{
+		EStepFailureCategory failureCategory;
+	};
+
+	struct StationPublicAddressByAlarmParameters 
+	{
+		string message;
+	};
+		//DP-changes ++lizettejl
+        union StepParameters switch( EStep )
+        {
+            case END_STEP:
+                EndParameters end;
+
+            case ABORT_STEP:
+                AbortParameters abort;
+
+            case ACTIVE_PLAN_CHECK_STEP:
+                ActivePlanCheckParameters activePlanCheck;
+                
+            case ASSIGN_CAMERA_TO_MONITOR_STEP:
+                AssignCameraToMonitorParameters cameraMonitor;
+
+            case ACTIVATE_CAMERA_PRESET_STEP:
+                ActivateCameraPresetParameters cameraPreset;
+
+            case DATA_POINT_CHECK_STEP:
+                DataPointCheckParameters dataPointCheck;
+
+            case DATA_POINT_SET_STEP:
+                DataPointSetParameters dataPointSet;
+
+            case DECISION_STEP:
+                DecisionParameters decision;
+
+            case JUMP_STEP:
+                JumpParameters jump;
+
+            case LOG_STEP:
+                LogParameters log;
+
+            case PROMPT_STEP:
+                PromptParameters prompt;
+
+            case RUN_PLAN_STEP:
+                RunPlanParameters runPlan;
+            
+            case TERMINATE_PLAN_STEP:
+                TerminatePlanParameters terminatePlan;
+
+            case VMS_SET_SCENE_STEP:
+                VmsSetSceneParameters vmsSetScene;
+
+            case LAUNCH_GUI_APP_STEP:
+                LaunchGuiAppParameters guiAppParameters;
+
+            case VMS_BLANKOUT_STEP:
+                VmsBlankoutParameters vmsBlankout;
+
+            case VMS_RESTORE_SCHEDULE_STEP:
+                VmsRestoreScheduleParameters vmsRestoreSchedule;
+
+            case VIDEO_WALL_STEP:
+                VideoWallParameters videoWallParams;
+
+            case STATION_PUBLIC_ADDRESS_STEP:
+                StationPublicAddressParameters stationPublicAddress;
+
+            case TRAIN_PUBLIC_ADDRESS_STEP:
+                TrainPublicAddressParameters trainPublicAddress;
+
+            case SEND_SMS_MESSAGE_STEP:
+                SendSmsMessageParameters sendSmsMessage;
+
+            case LAUNCH_SCHEMATIC_STEP:
+                LaunchSchematicParameters launchSchematic;
+
+            case EVALUATE_EXPRESSION_STEP:
+                EvaluateExpressionParameters evaluateExpression;
+
+            case STATION_TRAVELLER_INFO_SYSTEM_STEP:
+                StationTravellerInfoSystemParameters stationTravellerInfoSystem;
+
+            case TRAIN_TRAVELLER_INFO_SYSTEM_STEP:
+                TrainTravellerInfoSystemParameters trainTravellerInfoSystem;
+
+	    //DP-changes
+	    case FAILURE_SUMMARY_STEP:
+	    	FailureSummaryParameters failureSummary;
+	    //DP-changes ++lizettejl
+	    
+            case PLAN_CHECK_TIMER_STEP:
+                PlanCheckTimerParameters planCheckTimer;
+
+            case PLAN_SET_TIMER_STEP:
+                PlanSetTimerParameters planSetTimer;
+
+            case EXECUTE_SCRIPT_STEP:
+                ExecuteScriptParameters executeScript; 
+
+            case DATA_POINT_TIME_CHECK_STEP:
+                DataPointTimeCheckParameters dataPointTimeCheck;
+
+            case POPUP_MFT_MESSAGE_STEP:
+                PopupMFTMessageParameters popupMFTMessage;
+
+            case SHUTDOWN_SYSTEM_STEP:
+                ShutdownSystemParameters shutdownSystem;
+
+	    case STATION_PUBLIC_ADDRESS_STEP_BY_ALARM:
+		StationPublicAddressByAlarmParameters stationPublicAddrssByAlarm;
+
+            case BACKGROUND_LAUNCH_SCHEMATIC_STEP:
+                BackgroundLaunchSchematicParameters bgLaunchSchematic;
+
+            case BACKGROUND_LAUNCH_GUI_APP_STEP:
+		BackgroundLaunchGuiAppParameters bgLaunchGuiApp;
+
+            case BACKGROUND_DECISION_STEP:
+		BackgroundDecisionParameters bgDecision;
+
+            case BACKGROUND_LOG_STEP:
+		BackgroundLogParameters bgLog;
+
+            case BACKGROUND_PROMPT_STEP:
+		BackgroundPromptParameters bgPrompt;
+        };
+
+        typedef sequence<StepParameters> MultipleStepParameters;
+
+        struct Step
+        {
+            StepDetail detail;
+            StepParameters parameters;
+        };
+
+        typedef sequence <Step> Steps;
+
+        struct Plan
+        {
+            PlanDetail detail;
+            Steps stepseq;
+        };
+
+
+        //PlanConfigUpdate Structures
+
+
+        //Struct for Update Plan Detail Message
+
+        struct TransferNodeUpdate
+        {            
+            NodeId oldParent;
+            NodeSummary summary;
+        };
+
+        struct DeleteNodeUpdate
+        {            
+            NodeId parent;
+            NodeIds nodes;
+        };
+
+        struct ApprovalStateUpdate
+        {            
+            NodeId plan;
+            EApprovalState approvalState;
+        };
+
+        struct PlanTypeUpdate
+        {
+            NodeId plan;
+            EPlanType planType;
+        };
+
+        typedef sequence<PlanTypeUpdate> PlanTypeUpdates;
+
+        union PlanConfigUpdate switch ( EPlanConfigUpdateType )
+        {
+
+            case PCUT_APPROVAL_STATE:
+                ApprovalStateUpdate approvalState;
+
+            case PCUT_PLAN_TYPE:
+                PlanTypeUpdate planType;
+
+            case PCUT_UPDATE_CATEGORY:
+                NodeSummary updateCategory;
+                                            
+            case PCUT_INSERT_CATEGORY:
+                NodeSummary insertCategory;                
+
+            case PCUT_INSERT_CATEGORY_INTO_ROOT:
+                NodeSummary insertCategoryIntoRoot;
+
+            case PCUT_DELETE_CATEGORY:
+                DeleteNodeUpdate deleteCategory;
+                                
+            case PCUT_UPDATE_PLAN:
+                NodeSummary updatePlan;
+
+            case PCUT_INSERT_PLAN:
+                NodeSummary insertPlan;
+
+            case PCUT_INSERT_PLAN_INTO_ROOT:
+                NodeSummary insertPlanIntoRoot;
+
+            case PCUT_DELETE_PLANS:
+                DeleteNodeUpdate deletePlans;
+
+            case PCUT_MOVE_PLAN:
+                TransferNodeUpdate movePlan;
+
+            case PCUT_COPY_PLAN:
+                NodeSummary copyPlan;
+
+            case PCUT_COPY_PLAN_TO_ROOT:
+                NodeSummary copyPlanToRoot;
+
+            case PCUT_MOVE_PLAN_TO_ROOT:
+                TransferNodeUpdate movePlanToRoot;
+
+            case PCUT_MOVE_PLAN_FROM_ROOT:
+                TransferNodeUpdate movePlanFromRoot;
+
+            case PCUT_DELETE_CATEGORY_FROM_ROOT:
+                NodeId deleteCategoryFromRoot;
+                                
+            case PCUT_DELETE_PLANS_FROM_ROOT:
+                NodeIds deletePlansFromRoot;
+        };
+
+        struct PlanConfigUpdateData
+        {
+            SessionId session;
+            PlanConfigUpdate configUpdate;
+        };
+
+//Additional Update for PlanAgent State Update for Agent Synchronisation
+        struct ExecutionHistoryUpdate
+        {
+            ActivePlanId plan;
+            ExecutionHistory history;
+        };
+
+        struct CustomisationHistoryUpdate
+        {
+            ActivePlanId plan;
+            CustomisationHistory history;
+        };
+
+        struct RegisterPlanManagerUpdate
+        {
+            SessionId session;
+            PlanManagerId pmId;
+            TA_Base_Bus::IPlanManagerCorbaDef planManager;
+        };
+
+        struct DeregisterPlanManagerUpdate
+        {
+            SessionId session;
+            PlanManagerId pmId;
+        };
+
+        struct PlanStateUpdate
+        {
+            SessionId session;
+            PlanManagerId pmId;
+            ActivePlanId plan;
+            string remark;
+            boolean manuExec;
+        };
+
+        struct PlanCustomiseStepUpdate
+        {
+            SessionId session;
+            ActivePlanId plan;
+            StepCustomisableDetail detail;
+        };
+
+        struct EditLockUpdate
+        {
+            SessionId session;
+            PlanManagerId pmId;
+            NodeId plan;
+        };
+
+        union PASUpdate switch ( EPlanAgentStateUpdateType )
+        {
+            case PASUT_REGISTERED_PLAN_MANAGER:
+                RegisterPlanManagerUpdate planManager;
+                
+            case PASUT_DEREGISTERED_PLAN_MANAGER:
+                DeregisterPlanManagerUpdate deregisterPlanManager;
+
+            case PASUT_RUN_PLAN:
+                PlanStateUpdate runPlanUpdate;
+
+            case PASUT_CUSTOMISE_PLAN:
+                PlanStateUpdate customisePlanUpdate;
+
+            case PASUT_TAKE_CONTROL:
+                PlanStateUpdate takeControl;
+
+            case PASUT_PAUSE_PLAN:
+                PlanStateUpdate pausePlan;
+
+            case PASUT_RESUME_PLAN:
+                PlanStateUpdate resumePlan;
+
+            case PASUT_STOP_PLAN:
+                PlanStateUpdate stopPlan;
+
+            case PASUT_CUSTOMISE_STEP:
+                PlanCustomiseStepUpdate customisedStep;
+
+            case PASUT_GET_EDIT_PLAN_LOCK:
+                EditLockUpdate getLockUpdate;
+
+            case PASUT_RELEASE_EDIT_PLAN_LOCK:
+                EditLockUpdate releaseLockUpdate;
+
+            case PASUT_ACTIVE_PLAN_UPDATE:
+                ActivePlanDetail planDetail;
+
+            case PASUT_PAUSED_FOR_OPERATOR_UPDATE:
+                ActivePlanDetail operatorPausedPlanDetail;
+
+            case PASUT_PLAN_EXECUTION_HISTORY:
+                ExecutionHistoryUpdate executionHistory;
+
+            case PASUT_PLAN_CUSTOMISATION_HISTORY:
+                CustomisationHistoryUpdate customisationHistory;
+
+            case PASUT_ACTIVE_PLANS:
+                ActivePlanDetails planDetails;
+
+            case PASUT_UPDATE_ID:
+                UpdateId activeUpdateId;
+
+            case PASUT_ACTIVE_STEP_COMPLETION_STATUS_UPDATE:
+                ActiveStepCompletionStatusSeq stepCompletionStatusSeq;
+        };
+
+        struct PASUpdateData
+        {
+            UpdateId pasUpdateId;
+            PASUpdate update;
+        };
+
+        typedef sequence<PASUpdateData> PASUpdateDataSeq;
+
+        struct PASUpdateRequest
+        {
+            UpdateId pasRequestId;
+            string entityName;
+        };
+
+		// Structures
+		// ----------
+	union InteractiveStepData switch(TA_Base_Core::EStep)
+	{
+		case TA_Base_Core::PROMPT_STEP:
+			TA_Base_Core::PromptParameters prompt;
+
+		case TA_Base_Core::DECISION_STEP:
+			TA_Base_Core::DecisionParameters decision;
+
+		case TA_Base_Core::LOG_STEP:
+			TA_Base_Core::LogParameters log;
+
+		case TA_Base_Core::RUN_PLAN_STEP:
+			TA_Base_Core::ActivePlanId runPlan; // ID and instance of child plan to be controlled
+
+		case TA_Base_Core::LAUNCH_GUI_APP_STEP:
+			TA_Base_Core::LaunchGuiAppParameters launchGuiApp;	
+
+		case TA_Base_Core::LAUNCH_SCHEMATIC_STEP:
+			TA_Base_Core::LaunchSchematicParameters launchSchematic;		    
+
+		//lizettejl++ (DP-changes)
+		case TA_Base_Core::FAILURE_SUMMARY_STEP:		    
+			TA_Base_Core::FailedStepDetails failedSteps;
+		//++lizettejl
+
+		case TA_Base_Core::POPUP_MFT_MESSAGE_STEP:
+			TA_Base_Core::PopupMFTMessageParameters popupMFTMessage;
+
+	        case TA_Base_Core::BACKGROUND_LAUNCH_SCHEMATIC_STEP:
+	            TA_Base_Core::BackgroundLaunchSchematicParameters bgLaunchSchematic;
+
+	        case TA_Base_Core::BACKGROUND_LAUNCH_GUI_APP_STEP:
+	             TA_Base_Core::BackgroundLaunchGuiAppParameters bgLaunchGuiApp;
+
+		case TA_Base_Core::BACKGROUND_DECISION_STEP:
+			TA_Base_Core::BackgroundDecisionParameters bgDecision;
+
+		case TA_Base_Core::BACKGROUND_LOG_STEP:
+			TA_Base_Core::BackgroundLogParameters bgLog;
+
+        	case TA_Base_Core::BACKGROUND_PROMPT_STEP:
+            		TA_Base_Core::BackgroundPromptParameters bgPrompt;
+        };
+
+        struct CurrentPlanStepDetail
+        {
+            TA_Base_Core::ActivePlanId activePlan; // ID and instance of plan executing the interactive step
+			TA_Base_Core::StepNumber   step;       // interactive step number
+			InteractiveStepData        data;       // additional step-specific info needed to execute the step
+        };
+
+}; // TA_Base_Core
+

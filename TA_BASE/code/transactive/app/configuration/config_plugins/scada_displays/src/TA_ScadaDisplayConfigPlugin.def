@@ -1,0 +1,7 @@
+; TA_ScadaDisplayConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_ScadaDisplayConfigPlugin"
+DESCRIPTION  'TA_ScadaDisplayConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

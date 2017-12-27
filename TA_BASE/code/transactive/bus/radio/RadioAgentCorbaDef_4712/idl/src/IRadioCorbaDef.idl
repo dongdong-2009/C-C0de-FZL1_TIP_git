@@ -1,0 +1,449 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/radio/RadioAgentCorbaDef_4712/idl/src/IRadioCorbaDef.idl $
+// @author:  Andy Parker
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Radio Session IDL interface.
+//
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus_4712
+{
+
+    interface IRadioCorbaDef
+    {
+        typedef long CallID;
+        typedef long SessionReference;
+        typedef long AudioReference;
+        typedef long CallReference;
+        typedef long MonitorReference;
+
+        exception radioException
+        {
+            string what;
+        };
+
+        // Exception Types
+        exception invalidCallIDException {};
+
+        // Radio types ***
+        enum ECallStatusType
+        {
+            Ringing,
+            Connected,
+            ConnectedGroup,   // Group details now available.
+            Disconnected,
+            OnHold,
+            Deleted,          // Only sent by status updates
+            SessionUpdate     //    "   "   "   "   "   "   . Used for notifying that the radio session is re-initialised and must be re-fetched
+        };
+
+        enum ECallCategory
+        {
+            HalfDuplex,
+            FullDuplex,
+            TextMessage,
+            CallDriver
+        };
+
+        enum EMonitorStatusType
+        {
+            Monitoring,
+            Listening,
+            Included,
+            Joined,
+            Stopped
+        };
+
+        enum ECallSource
+        {
+            IncomingCall,
+            OutgoingCall
+        };
+
+        enum ECallType
+        {
+            SingleCall,
+            GroupUnacknowledgeCall,
+            GroupAcknowledgeCall,
+            GroupBroadcastCall,
+            CircuitModeDataCall
+        };
+
+        enum EPTTState {PTT_GRANTED,PTT_QUEUE,PTT_CEASE,PTT_TIMEOUT};
+
+        struct CallParticipant
+        {
+            string        name;
+            string        TSI;
+            string        location;
+
+            boolean       isAcknowledged;    // Defines 'Not Connected' state, if false
+            EPTTState     pttState;        // Current ptt state, if available (only required if isAcknowledged is true)
+        };
+
+        typedef sequence<CallParticipant> CallParticipantList;
+
+        struct CallDetailsType
+        {
+            long             callID;
+            long             sessionRef;
+            unsigned long    consoleKey;
+            long             time;
+            string           callTime;
+            string           callerName;
+            string           callerTSI;
+            string           callerLocation;
+            string           calledName;
+            string           calledTSI;
+            string           calledLocation;
+            ECallStatusType  callStatus;
+            ECallCategory    callCategory;
+            ECallSource      callSource;
+            ECallType        callType;
+            string           callText;
+            boolean          isEmergency;
+            boolean          isInvisibleToGUIApps;
+
+            CallParticipantList participants;
+        };
+
+
+        struct MonitoredCallDetailsType
+        {
+            long            callID;
+            long            sessionRef;
+            unsigned long   consoleKey;
+            long            monitorID;
+            string          callTime;
+            string          callerName;
+            string          callerTSI;
+            string          callerLocation;
+            string          calledName;
+            string          calledTSI;
+            string          calledLocation;
+            EMonitorStatusType callStatus;
+            ECallCategory   callCategory;
+            ECallType       callType;
+
+            sequence<CallParticipant> participants;
+        };
+
+
+        // *** Call Notifications ***
+        struct CallStatusEvent
+        {
+            long             callID;        // ID for the call
+            long             sessionRef;
+            unsigned long    consoleKey;
+            ECallStatusType  callStatus;
+            ECallCategory    callCategory;
+            boolean          isInvisibleToGUIApps;
+        };
+
+        enum ESessionUpdateReason
+        {
+            SessionLoggedIn,
+            SessionLoggedOut,
+            SessionLost
+        };
+        
+        struct SessionUpdateNotification
+        {
+            unsigned long           consoleKey;
+            long                    sessionRef;
+            ESessionUpdateReason    reason;
+        };
+
+        typedef sequence<CallStatusEvent> CallList;
+
+        // *** Call information methods ***
+        CallList        getCallList();
+        CallDetailsType getCallDetails(in long callID) raises (invalidCallIDException);
+        ECallCategory   getCallCategory(in long callID) raises (invalidCallIDException);
+        string          getCallText(in long callID) raises (invalidCallIDException);
+
+        //*********************
+        // Call authorisation *
+        //*********************
+
+        enum ERadioUserType {PORTABLE,OPERATOR,STATION};
+
+        struct CallAuthorisationRequest
+        {
+            long                callID;
+            long                sessionRef;
+            unsigned long       consoleKey;
+            ERadioUserType      sourceType;
+            ERadioUserType      destinationType;
+
+            string              callerName;
+            string              callerTSI;
+            string              callerLocation;
+
+            string              calledName;
+            string              calledTSI;
+            string              calledLocation;
+
+            unsigned long       time;
+        };
+
+        // --- TD14596
+        //*********************
+        // Emergency Re-group *
+        //*********************
+        enum EmergencyRegroupSDSType
+        {
+            SDS_Cancellation,  //0, in the database
+	    SDS_Activation     //1, in the database 
+        };
+        
+
+        struct EmergencyRegroupSDSData
+        {
+            //long SDSID; //not neccessary
+            string short_Name;
+            EmergencyRegroupSDSType SDSType; 
+        };
+
+        enum EmergencyRegroupGroupStatus
+        {
+            inactive,
+            pending,
+            active
+        };
+
+        struct EmergencyRegroupData
+        {
+            long group;
+            string name;
+            string tsi;
+            string activationSDS;      //short name
+            string cancellationSDS;    //short name
+            EmergencyRegroupGroupStatus status;
+        };
+
+        struct EmergencyRegroupMemberData
+        {
+            long group; 
+            string name; //seem not necessary
+            string tsi;
+        };
+
+        typedef sequence<EmergencyRegroupMemberData> EmergencyRegroupMemberDataList;
+        typedef sequence<EmergencyRegroupData> EmergencyRegroupDataList;
+
+        enum EmergencyRegroupStatus
+        {
+            emergency_regroup_inactive,
+            emergency_regroup_active
+        };
+
+        // Emergency notifications
+        struct EmergencyRegroupGroupStatusEvent
+        {
+            long group;
+            EmergencyRegroupGroupStatus status;
+        };
+
+        struct EmergencyRegroupStatusEvent
+        {
+            long group;
+            EmergencyRegroupStatus status;
+        };
+
+        typedef sequence<EmergencyRegroupSDSData> EmergencyRegroupSDSDataList;
+
+        EmergencyRegroupDataList getEmergencyRegroupList();
+        EmergencyRegroupMemberDataList getEmergencyRegroupMemberList(in long group);
+        EmergencyRegroupSDSDataList getEmergencyRegroupSDSDefaults();
+        void setEmergencyRegroupSDSDefault(in EmergencyRegroupSDSData sds, in string session);
+        void setEmergencyRegroupSDSMessage(in long group, in EmergencyRegroupSDSData sds, in string session);
+
+	// --- TD14614 (add corba exceptions)
+        void addEmergencyRegroupMembers(in long group, in EmergencyRegroupMemberDataList list, in string session) raises (radioException);
+        void deleteEmergencyRegroupMembers(in long group, in EmergencyRegroupMemberDataList list, in string session) raises (radioException);
+        void addEmergencyRegroup(in string name, in string tsi, in string session) raises (radioException);
+        void editEmergencyRegroup(in long group, in string name, in string tsi, in string session) raises (radioException);
+	void editEmergencyRegroupStatus(in long group, in EmergencyRegroupGroupStatus status ) raises (radioException);
+        void deleteEmergencyRegroup(in long group, in string session) raises (radioException);
+        void activateEmergencyRegroup(in string session) raises (radioException);
+        void cancelEmergencyRegroup(in string session) raises (radioException);
+
+
+        //TD14980 Haipeng added
+	enum EForwardingType
+	{
+	    NeverForward,
+	    ForwardNotReachable,
+	    ForwardAlways
+	};
+
+	struct CallForwardDetails
+	{
+	    EForwardingType   forwardAction;
+	    string            destinationTSI;	
+	};
+
+        typedef sequence<CallForwardDetails> CallForwardDetailsList;
+
+        void setCallForward(in string sourceTSI, in CallForwardDetailsList forwarders);
+        //TD14980 Haipeng added
+
+        // Call authorisation request notification
+        enum EAction {NEW_AUTHORISATION,ACCEPTED_AUTHORISATION,REJECTED_AUTHORISATION,CANCELLED_AUTHORISATION};
+        struct CallAuthorisationNotification
+        {
+            EAction                     action;
+            CallAuthorisationRequest    request;
+        };
+
+        typedef sequence<CallAuthorisationRequest> CallAuthorisationList;
+
+        /*
+        * getCallAuthorisations
+        *
+        * This method will return all the current authorisation requests
+        */
+        CallAuthorisationList getCallAuthorisations();
+
+        // Call Authorisation
+        /*
+        *
+        * This method will authorise a call
+        * @param - callID - Radio call ID
+        * @param - accept - accept (true) or reject (false)
+        * @param - sessionID - Transactive session ID - used for audit event
+        */
+        void authoriseCall(in long callID,in boolean accept,in string sessionID) raises (invalidCallIDException);
+
+
+        //****************
+        // SDS Messaging *
+        //****************
+
+        // **** SDS notifications (typically train messages, not text based ones) *****
+        typedef sequence<octet> MessageDataType;
+        struct SDSNotificationEvent
+        {
+            string           sendingITSI;
+            MessageDataType  messageData;
+        };
+
+        // Send SDS message method - uses dedicated radio session.
+
+        // TD10791
+        //void sendSDSMessage(in string trainITSI, in MessageDataType messageData);
+        void sendSDSMessage(in string trainITSI, in MessageDataType messageData, in boolean prependHeadersForMultiPage);
+
+        //TD14851 Haipeng added
+        boolean sendTLSDSMessage(in string trainITSI, in MessageDataType messageData, in boolean prependHeadersForMultiPage, out string status);
+        //
+
+        //*********************
+        //* PTT Notifications *
+        //*********************
+
+        // These notifications will be sent out when unsolicited PTT events are received.
+        // It will also be used to send out the granted PTT following a PTT request that
+        // has been queued.  We can't wait synchronously for this as it may take some time.
+
+        struct PTTStatusNotification
+        {
+            EPTTState       state;
+            long            callID;         // ID for the call
+            long            sessionRef;     // Session associated with notification
+            unsigned long   consoleKey;     // uniquely identifies the affected mft
+            unsigned long   transactionID;  // O if unsolicited.
+            string          userITSI;       // Source ITSI (Individual Tetra Subscriber Identity)
+            string          tpiITSI;        // Talking Party Identification ITSI
+        };
+
+        //*************************
+        // Circuit Data transfers *
+        //*************************
+
+        // This exception is thrown if a call is already in progress for the ITSI
+        exception dataCallInProgressException {};
+
+        // This exception is thrown if a call is not in progress for the ITSI
+        exception dataCallNotInProgressException {};
+
+        // These functions permit larger volumes of data to be transferred to other subscribers.
+        // This is typically used for downloading libraries to trains
+        typedef sequence<octet> CircuitDataType;
+
+        /*
+         * Send data will create a new data call to the destination and transfer the
+         * data to that location.  If useXON is specified, the function will monitor the
+         * incoming data for XON/OFF characters and modify the transmission flow accordingly.
+         * A time out fron XOFF to XON will be used to ensure that flow is not stopped
+         * indefinitely.
+         * The radio will use the ISCS session to perform the circuit data call as it
+         * can keep going even if the scheduling MFT logs out.
+         */
+        void sendData(in string ITSI,in CircuitDataType data,in boolean useXON, in string sessionID)
+                     raises (dataCallInProgressException,radioException);
+
+        /*
+        * Cancel data will allow the transfer to a specified ITSI to be stopped.
+        */
+        void cancelSendData(in string ITSI)
+                    raises (dataCallNotInProgressException);
+
+        // Notification sent to advise clients of progress
+        struct SendDataNotification
+        {
+            string   ITSI;
+            boolean  isSuccessful;
+            string   failReason;
+        };
+
+
+        // Call Stack Maintenance
+
+        /*
+        * Add a call driver request to the incoming call stack
+        * (Used by train agent)
+        */
+        void addCallDriverRequest(in octet trainID,in string trainTSI);
+
+        /*
+        * Remove a call driver request from the incoming call stack
+        * (Used by train agent)
+        */
+        void removeCallDriverRequest(in octet trainID);
+
+
+        // *************************
+        // Degraded and Fallback support
+        // *************************
+
+        /**
+         * Called by the train agent
+         */
+        boolean inFallback();
+
+
+        /**
+          * Causes the RadioTetraAgent to disconnect from and reconnect to the
+          * Radio System.  Intended to be used when a station operator requests
+          * the trainborne comms duty to go back to Normal (mainline) operation
+          */
+        void resetConnection();
+
+		// FlexibleTimeoutNamedObject calls this method to calculate the
+		// timoeut value based on the current configuration
+		unsigned short getFlexibleTimeOutValue() raises (TA_Base_Core::OperationModeException);
+
+    }; // IRadioCorbaDef
+}; // TA_Base_Bus
+

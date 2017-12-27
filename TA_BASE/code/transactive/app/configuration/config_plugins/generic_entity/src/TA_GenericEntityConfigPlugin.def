@@ -1,0 +1,7 @@
+; TA_GenericEntityConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_GenericEntityConfigPlugin"
+DESCRIPTION  'TA_GenericEntityConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

@@ -1,0 +1,7 @@
+; TA_PlanDssRuleConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_PlanDssRuleConfigPlugin"
+DESCRIPTION  'TA_PlanDssRuleConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

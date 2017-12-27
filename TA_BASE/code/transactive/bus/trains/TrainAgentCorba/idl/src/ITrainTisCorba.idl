@@ -1,0 +1,601 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainTisCorba_Idl)
+#define ITrainTisCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainExceptionsCorba.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands used by Trainborne TIS operations
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:46 PM
+     */
+    interface ITrainTisCorba
+    {
+        /**
+         * This is a global update, sent out to all agents when the TTIS predefined library or schedule version changes.
+         * It only updates on the current in use version, it does not update the recently downloaded, but not upgraded version.
+         * 
+         * It is sent as the result of a train wakeup, or a successful upgrade command.
+         * @author adamr
+         * @version 1.0
+         * @created 18-Mar-2008 3:18:14 PM
+         */
+        struct TisLibraryVersionUpdate
+        {
+            // The train the update is for
+            ITrainCommonCorba::TrainId trainId;
+            // This is the current library version on the train.
+            unsigned short libraryVersion;
+            // This is the current schedule version on the train.
+            unsigned short scheduleVersion;
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:46 PM
+         */
+        typedef sequence<TisLibraryVersionUpdate> TisLibraryVersionList;
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:46 PM
+         */
+        typedef sequence<octet> LibraryDataType;
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:46 PM
+         */
+        enum ETisUpdateType
+        {
+            // A library download has started
+            LibraryDownloadStart,
+            // A library download has completed
+            LibraryDownloadComplete,
+            // The result of a library upgrade command
+            LibraryUpgradeResult,
+            // A schedule download has started
+            ScheduleDownloadStart,
+            // A schedule download has completed
+            ScheduleDownloadComplete,
+            // The result of a schedule upgrade command
+            ScheduleUpgradeResult
+        };        
+
+        /**
+         * Result of a TTIS command
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:46 PM
+         */
+        enum ETtisCommandResult
+        {
+            // The operation was successful
+            TtisSuccess,
+            TtisInUse,
+            TtisReset,
+            TtisFailed,
+            TtisDifferentVersion,
+            // A bad command response was received, with a bad checksum error.
+            BadCommandBadChecksum,
+            // A bad command response was received, with an unknown command error.
+            BadCommandUnknownCommand,
+            // A bad command response was received, with a bad parameter error.
+            BadCommandBadParameter,
+            // A bad command response was received, with an unexpected command error.
+            BadCommandUnexpectedCommand,
+            InvalidTrainError,
+            TransmissionFailureError,
+            TransactionTimeoutError,
+            TransactionCancelledError,
+            MpuChangeoverError
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:46 PM
+         */
+        enum EDownloadResult
+        {
+            // The download completed successfully
+            Success,
+            // The download failed due to a circuit mode failure
+            TransferFailed,
+            // The download failed according to the train
+            TimsFailed,
+            // The transfer completed, but the TIMS response was not received in the timeout
+            // period
+            TimedOut,
+            // An MPU changeover occurred during the transfer, it is considered failed
+            MpuChangeover
+        };
+
+        /**
+         * This is the update sent when a library/schedule download or upgrade is
+         * performed.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:46 PM
+         */
+        struct TisLibraryUpdate
+        {
+            // The train this update is for
+            ITrainCommonCorba::TrainId trainId;
+            // The type of update this update carries
+            ETisUpdateType updateType;
+            // This is applicable to all update types except LibraryDownloadComplete and
+            // ScheduleDownloadComplete.
+            // It indicates the result of the TIMS message that was sent to trigger the given
+            // action.
+            // If the update type is a download start - this indicates whether the download
+            // started, and if not, which error.
+            // If the update type is an upgradet - this indicates whether the upgrade was
+            // successful, and if not, which error.
+            ETtisCommandResult commandStatus;
+            // The result of the download, this is applicable to the LibraryDownloadComplete
+            // and ScheduleDownloadComplete update types. It is sent only after the transfer
+            // was successfully started, and has since completed. This is the result of the
+            // download process.
+            EDownloadResult downloadResult;
+            // This is applicable to the *DownloadComplete update types, if the download is
+            // successful it indicates the version successfully downloaded to the train.
+            // This is also applicable to the *Upgrade update types, if the upgrade is
+            // successful it indicates the new current version on the train.
+            unsigned short version;
+        };
+
+        /**
+         * This is the original TTIS command. It caters only for the display/reset
+         * operations.
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisOriginalCommand
+        {
+            TtisFreeTextCommand,
+            TtisPredefinedCommand,
+            TtisResetCommand
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisFontSize
+        {
+            TtisFontSmall,
+            TtisFontLarge
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisJustification
+        {
+            TtisJustificationLeft,
+            TtisJustificationCentre,
+            TtisJustificationRight
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisIntensity
+        {
+            TtisIntensityNormal,
+            TtisIntensityHigh
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisDisplayMode
+        {
+            TtisDisplayModeScrollLeft,
+            TtisDisplayModeScrollRight,
+            TtisDisplayModeScrollUp,
+            TtisDisplayModeScrollDown,
+            TtisDisplayModeInstantOn,
+            TtisDisplayModeBlinking,
+            TtisDisplayModeWiping,
+            TtisDisplayModeLikeSnow
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisPriority
+        {
+            ETtisPriorityOne,
+            ETtisPriorityTwo,
+            ETtisPriorityThree,
+            ETtisPriorityFour,
+            ETtisPriorityFive,
+            ETtisPrioritySix,
+            ETtisPrioritySeven,
+            ETtisPriorityEight
+        };
+
+        /**
+         * The type of message to reset
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisResetMessageType
+        {
+            TtisResetAll,
+            TtisResetEmergency,
+            TtisResetNormal,
+            TtisResetPriority6
+        };
+
+        /**
+         * Represents TTIS PID selection
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        enum ETtisPid
+        {
+            TtisPidAllTrain,
+            TtisPidCar1,
+            TtisPidCar2,
+            TtisPidCar3,
+            TtisPidCar1Pid1,
+            TtisPidCar1Pid2,
+            TtisPidCar1Pid3,
+            TtisPidCar1Pid4,
+            TtisPidCar2Pid1,
+            TtisPidCar2Pid2,
+            TtisPidCar2Pid3,
+            TtisPidCar2Pid4,
+            TtisPidCar3Pid1,
+            TtisPidCar3Pid2,
+            TtisPidCar3Pid3,
+            TtisPidCar3Pid4
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        typedef sequence<ETtisPid> TtisPidList;
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        struct TimeInterval
+        {
+            octet startHour;
+            octet startMin;
+            octet stopHour;
+            octet stopMin;
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        struct TtisFreeTextDisplayParameters
+        {
+            // The list of PIDs to display on. Multiple PIDs will result in multiple messages
+            // to each train.
+            TtisPidList pidList;
+            // The font size on the PID
+            ETtisFontSize fontSize;
+            // The justification display attribute
+            ETtisJustification justification;
+            // The intensity display attribute
+            ETtisIntensity intensity;
+            // The display mode display attribute
+            ETtisDisplayMode displayMode;
+            // The message priority
+            ETtisPriority priority;
+            // The start and stop time of the message
+            TimeInterval displayPeriod;
+            // How often to repeat the message during the scheduled time
+            octet repeatInterval;
+            // The actual message text, maximum 125 characters
+            string message;
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        struct TtisPredefinedDisplayParameters
+        {
+            // The list of PIDs to display on. Multiple PIDs will result in multiple messages
+            // to each train.
+            TtisPidList pidList;
+            // The TTIS library version the message came from
+            unsigned short libraryVersion;
+            // The section in the predefined message library
+            octet identifierType;
+            // The message number in the secion of the predefined message library
+            octet identifierOffset;
+            // The message priority
+            ETtisPriority priority;
+            // The start and stop time of the message
+            TimeInterval displayPeriod;
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        struct TtisResetParameters
+        {
+            // The list of PIDs to display on. Multiple PIDs will result in multiple messages
+            // to each train.
+            TtisPidList pidList;
+            // The types of messages to reset
+            ETtisResetMessageType messageType;
+        };
+
+        /**
+         * A container that holds the display parameters for any type of display request
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        union DisplayParameters switch (ETtisOriginalCommand)
+        {
+            // Parameters used for a free text message
+            case TtisFreeTextCommand: 
+                 TtisFreeTextDisplayParameters freetextParameters;
+
+            // Parameters used for a predefined message
+            case TtisPredefinedCommand: 
+                 TtisPredefinedDisplayParameters predefinedParameters;
+
+            // Parameters used for a reset message
+            case TtisResetCommand: 
+                 TtisResetParameters resetParameters;
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:47 PM
+         */
+        struct TisReturnStatus
+        {
+            // The train the request was for
+            ITrainCommonCorba::TrainId trainId;
+            // The operator who submitted the message
+            string sessionId;
+            // the time_t of the time the message was sent. This coupled with the session ID
+            // can provide a type of transaction ID for the GUI.
+            long timestamp;
+            // The result of the command, inidicating success/failure and the failure type
+            ETtisCommandResult result;
+            // These are the original display parameters (for auditing purposes etc).
+            // The union type will tell the original request type (_d is an
+            // ETtisOriginalCommand)
+            DisplayParameters originalParameters;
+        };
+
+
+        /**
+         * FlexibleTimeoutNamedObject calls this method to calculate the timoeut value based on the current configuration
+         */
+        unsigned short getFlexibleTimeOutValue()
+        	raises (TA_Base_Core::OperationModeException);
+
+        /**
+         * Gets the library versions for all known trains
+         * 
+         * @return the library versions for all kown trains
+         */
+        TisLibraryVersionList getLibraryVersions()
+			raises (TA_Base_Core::OperationModeException);//limin
+
+        /**
+         * Gets the library versions for the given train.
+         * 
+         * @return the library version for the train specified
+         * 
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * 
+         * @param trainId    The train to get the library versions for
+         */
+        TisLibraryVersionUpdate getLibraryVersionsForTrain(in ITrainCommonCorba::TrainId trainId)
+        	raises (ITrainExceptionsCorba::InvalidTrainException, TA_Base_Core::OperationModeException);//limin
+
+        /**
+         * Displays a free text message to the given PIDs on the given trains.
+         * 
+         * The result will be sent asynchronously back in a TisReturnStatus message
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The list of trains to display the message on
+         * @param displayParameters    The parameters required to display the message
+         * @param timestamp    The time of the request submission. This will be set along with the session ID in the result message
+         * @param sessionId    The operator submitting the message
+         */
+        void displayFreeTextMessage(in ITrainCommonCorba::TrainList trains, 
+									in TtisFreeTextDisplayParameters displayParameters, 
+									in long timestamp, 
+									in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+        /**
+         * Displays a pre defined text message to the given PIDs on the given trains.
+         * 
+         * The result will be sent asynchronously back in a TisReturnStatus message
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The list of trains to display the message on
+         * @param displayParameters    The predefined display parameters
+         * @param timestamp    The time of the request submission. This will be set along with the session ID in the result message
+         * @param sessionId    The operator submitting the message
+         */
+        void displayStoredMessage(in ITrainCommonCorba::TrainList trains, 
+								  in TtisPredefinedDisplayParameters displayParameters, 
+								  in long timestamp, 
+								  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+        /**
+         * Sends a reset/clear request for messages of a certain priority on the given PIDs on the given trains.
+         * 
+         * The result will be sent asynchronously back in a TisReturnStatus message
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The list of trains to clear the message on
+         * @param displayParameters    The parameters for the reset message
+         * @param timestamp    The time of the request submission. This will be set along with the session ID in the result message
+         * @param sessionId    The operator submitting the message
+         */
+        void resetMessage(in ITrainCommonCorba::TrainList trains, 
+						  in TtisResetParameters displayParameters, 
+						  in long timestamp, 
+						  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+        /**
+         * This will start a predefined message library download to the given trains.
+         * 
+         * The result will be returned via a TisLibraryUpdate message.
+         * It will indicate the download start action, and whether it was successful or failed, and give a failure reason.
+         * If the download started, once the download completes another one of these messages will be sent indicating the status.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The trains to download the given library to
+         * @param libraryData    The message library data to download to the train
+         * @param libraryVersion    The library version of the library Data
+         * @param sessionId    The operator initiating the download
+         */
+        void libraryDownload(in ITrainCommonCorba::TrainList trains, 
+							 in LibraryDataType libraryData, 
+							 in unsigned short libraryVersion, 
+							 in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+        /**
+         * This will upgrade the predefined message library on the given trains.
+         * 
+         * The result will be returned via a TisLibraryUpdate message.
+         * It will indicate whether the upgrade was successful or failed, and give a failure reason.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The trains to send a library upgrade command to
+         * @param sessionId    The operator initiating the upgrade
+         */
+        void libraryUpgrade(in ITrainCommonCorba::TrainList trains, 
+							in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+        /**
+         * This will start a time schedule download to the given trains.
+         * 
+         * The result will be returned via a TisLibraryUpdate message.
+         * It will indicate the download start action, and whether it was successful or failed, and give a failure reason.
+         * If the download started, once the download completes another one of these messages will be sent indicating the status.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The trains to download the given schedule to
+         * @param scheduleData    The time schedule data to download to the train
+         * @param scheduleVersion    The version of the time schedule data
+         * @param sessionId    The operator initiating the download
+         */
+        void scheduleDownload(in ITrainCommonCorba::TrainList trains, 
+							  in LibraryDataType scheduleData, 
+							  in unsigned short scheduleVersion, 
+							  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+        /**
+         * This will upgrade the predefined message library on the given trains.
+         * 
+         * The result will be returned via a TisLibraryUpdate message.
+         * It will indicate whether the upgrade was successful or failed, and give a failure reason.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * 
+         * @param trains    The trains to send a schedule upgrade command to
+         * @param sessionId    the operator initiating the upgrade
+         */
+        void scheduleUpgrade(in ITrainCommonCorba::TrainList trains, 
+							 in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException);
+
+    };
+
+};
+
+#endif

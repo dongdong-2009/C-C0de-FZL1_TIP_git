@@ -1,0 +1,505 @@
+#if !defined SWITCH_MANAGER_CORBA_DEF_H
+#define SWITCH_MANAGER_CORBA_DEF_H
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/bus/cctv/video_switch_agent/IDL/src/SwitchManagerCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #2 $
+  *
+  * Last modification: $DateTime: 2015/01/22 18:30:59 $
+  * Last modified by:  $Author: hongzhi.zhang $
+  *
+  * Manages access to the entities (Cameras, VideoMonitors, 
+  * RecordingUnits, Sequences, Quads, ...) handled by the VideoSwitchAgent.
+  *
+  * Design Note: Access to the entities is by entity key because 
+  * entity names can be changed.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoOutputGroupCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoOutputCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoInputCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoMonitorCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/RecordingUnitCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/CameraCorbaDef.idl"
+//#include "bus/cctv/video_switch_agent/IDL/src/QuadCorbaDef.idl"
+//#include "bus/cctv/video_switch_agent/IDL/src/BVSStageCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/SequenceCorbaDef.idl"
+#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+
+
+module TA_Base_Bus
+{
+    interface SwitchManagerCorbaDef
+    {
+        typedef sequence< VideoOutputGroupCorbaDef >    VideoOutputGroupSequence;
+        typedef sequence< VideoMonitorCorbaDef >        VideoMonitorSequence;
+        typedef sequence< RecordingUnitCorbaDef >       RecordingUnitSequence;
+        typedef sequence< CameraCorbaDef >              CameraSequence;
+     //   typedef sequence< QuadCorbaDef >                QuadSequence;
+     //   typedef sequence< BVSStageCorbaDef >            BVSStageSequence;
+        typedef sequence< SequenceCorbaDef >            SequenceSequence;
+        typedef sequence< VideoOutputCorbaDef >         VideoOutputSequence;
+        typedef sequence< VideoInputCorbaDef >          VideoInputSequence;
+		typedef sequence< unsigned long >				TrainCameraSequence;
+		struct TriggerAlarm
+		{
+			unsigned long stationId;
+			unsigned long eventId;
+		};
+		
+		typedef sequence<TriggerAlarm>	TriggerAlarmSequence;
+		struct AlarmState
+        {
+            unsigned long	stationId;
+			unsigned long	eventId;
+			string			alarmType;
+			unsigned long   entityKey;
+			string          alarmID;
+            unsigned long   alarmLocationKey;
+        };
+
+        typedef sequence< AlarmState >					AlarmStack;
+
+		// To advance performance
+		struct CameraInfo
+		{
+			unsigned long key;
+			string name;
+			string description;
+			string groupName;
+			string address;
+		};
+
+		struct SequenceInfo
+		{
+			unsigned long key;
+			string name;
+			string description;
+			string groupName;
+			boolean isReadOnly;
+			string sequenceDescription;
+			SequenceCorbaDef::SequenceConfig sequenceConfig;
+		};
+
+		struct MonitorInfo
+		{
+			unsigned long key;
+			string name;
+			string description;
+			string address;
+			unsigned long displayOrder;
+			unsigned long consoleKey;
+			boolean isOverall;
+			VideoOutputCorbaDef::VideoOutputState outputState;
+		};
+
+        typedef sequence< CameraInfo >    CameraInfoSequence;
+        typedef sequence< SequenceInfo >  SequenceInfoSequence;
+        typedef sequence< MonitorInfo >   MonitorInfoSequence;
+
+		struct VideoObjectsInfo
+		{
+			CameraInfoSequence camerasInfo;
+			SequenceInfoSequence sequencesInfo;
+			MonitorInfoSequence monitorsInfo;
+		};
+
+		VideoObjectsInfo getVideoObjectsInfo()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+        /**
+          * getVideoMonitors
+          *
+	      * Retrieves the list of VideoMonitorsCorbaDef. 
+          *
+          * @return     VideoMonitorSequence 
+          *             The list of VideoMonitors.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+        VideoMonitorSequence getVideoMonitors()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getVideoMonitor
+          *
+	      * Retrieves an VideoMonitorCorbaDef by entity key.
+          *
+          * @return     VideoMonitorCorbaDef
+          *             The requested VideoMonitorCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the VideoMonitorCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+        VideoMonitorCorbaDef getVideoMonitor( in unsigned long entityKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getAllConsoleMonitors
+          *
+	      * Retrieves the list of VideoMonitors that are workstation monitors. 
+          *
+          * @return     VideoMonitorSequence 
+          *             The list of workstation VideoMonitors.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+          *             1. The agent is in Monitor mode.
+          *             2. The workstation name for a VideoMonitor cannot be determined.
+	      */
+
+        VideoMonitorSequence getAllConsoleMonitors()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getConsoleMonitors
+          *
+	      * Retrieves the list of VideoMonitors that are connected to the specified console. 
+          *
+          * @return     TA_Base_Bus::SwitchManagerCorbaDef::VideoMonitorSequence*
+          *             The list of workstation VideoMonitors or
+          *             0 if the list could not be created.
+		  *
+          * @param      unsigned long consoleKey
+          *             The key of the console. This must match the VideoMonitor entity
+          *             parameter value for the Console parameter.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+          *             1. The agent is in Monitor mode.
+          *             2. The console key for a VideoMonitor cannot be determined.
+	      */
+
+        VideoMonitorSequence getConsoleMonitors( in unsigned long consoleKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getCameras
+          *
+	      * Retrieves the list of Cameras. 
+          *
+          * @return     CameraSequence 
+          *             The list of Cameras.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+        CameraSequence getCameras()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getCamera
+          *
+	      * Retrieves an CameraCorbaDef by entity key.
+          *
+          * @return     CameraCorbaDef
+          *             The requested CameraCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the CameraCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+        CameraCorbaDef getCamera( in unsigned long entityKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getQuads
+          *
+	      * Retrieves the list of Quads. 
+          *
+          * @return     QuadSequence 
+          *             The list of Quads.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+       // QuadSequence getQuads()
+       //     raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getQuad
+          *
+	      * Retrieves an QuadCorbaDef by entity key.
+          *
+          * @return     QuadCorbaDef
+          *             The requested QuadCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the QuadCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+      //  QuadCorbaDef getQuad( in unsigned long entityKey )
+      //      raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getBVSStages
+          *
+	      * Retrieves the list of BVSStages. 
+          *
+          * @return     BVSStageSequence 
+          *             The list of BVSStages.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+     //   BVSStageSequence getBVSStages()
+     //       raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getBVSStage
+          *
+	      * Retrieves an BVSStageCorbaDef by entity key.
+          *
+          * @return     BVSStageCorbaDef
+          *             The requested BVSStageCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the BVSStageCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+     //   BVSStageCorbaDef getBVSStage( in unsigned long entityKey )
+     //       raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+        /**
+          * getSequences
+          *
+	      * Retrieves the list of Sequences. 
+          *
+          * @return     SequenceSequence 
+          *             The list of Sequences.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+        SequenceSequence getSequences()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getSequence
+          *
+	      * Retrieves an SequenceCorbaDef by entity key.
+          *
+          * @return     SequenceCorbaDef
+          *             The requested SequenceCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the SequenceCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+        SequenceCorbaDef getSequence( in unsigned long entityKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getVideoOutputs
+          *
+	      * Retrieves the list of all VideoOutputs. 
+          *
+          * @return     VideoOutputSequence 
+          *             The list of VideoOutputs.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+        VideoOutputSequence getVideoOutputs()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getVideoOutput
+          *
+	      * Retrieves an VideoOutputCorbaDef by entity key.
+          *
+          * @return     VideoOutputCorbaDef
+          *             The requested VideoOutputCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the VideoOutputCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+        VideoOutputCorbaDef getVideoOutput( in unsigned long entityKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getVideoInputs
+          *
+	      * Retrieves the list of all VideoInputs. 
+          *
+          * @return     VideoInputSequence 
+          *             The list of VideoInputs.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+	      */
+
+        VideoInputSequence getVideoInputs()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	    /**
+          * getVideoInput
+          *
+	      * Retrieves an VideoInputCorbaDef by entity key.
+          *
+          * @return     VideoInputCorbaDef
+          *             The requested VideoInputCorbaDef.
+          *
+          * @param      unsigned long entityKey
+          *             The entity key of the VideoInputCorbaDef to retrieve.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The object with the given key is not found.
+	      */
+
+        VideoInputCorbaDef getVideoInput( in unsigned long entityKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+          * processTriggerEventAlarm (station to OCC version) //deprecated
+          *
+	      * from station call occ process trigger event alarm 
+          *
+          * @param      TriggerAlarmSequence alarms the triggeringEvent to process
+		  *				
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The alarm with the given station id and event id is not found.
+	      */
+
+        void processAlarmStack( in TriggerAlarmSequence alarms,in boolean bOpen)
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+		/**
+          * acknowledgeAlarm
+          *
+	      * acknowledges an alarm on the videoswitch alarm stack
+          *
+          * @param      AlarmDetailCorbaDef pAlarmDetail
+          *             the transactive alarm Id associated with the alarm to be Acked
+		  *				unsigned long monitorId the workstationId for the console that acked the alarm
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The alarm with the given iD is not found.
+	      */
+
+        void acknowledgeAlarm( in TA_Base_Core::AlarmDetailCorbaDef pAlarmDetail, in unsigned long consoleId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+          * acknowledgeAlarm (station to OCC version) //deprecated
+          *
+	      * acknowledges an alarm on the videoswitch alarm stack
+          *
+          * @param      unsigned long stationId, unsigned long eventId
+          *				the triggeringEvent to close
+		  *				unsigned long monitorId the workstationId for the console that acked the alarm
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The alarm with the given iD is not found.
+	      */
+
+        void acknowledgeTrainCameraAlarm( in unsigned long locationId, in unsigned long trainId, in TrainCameraSequence cameraIds, in unsigned long consoleId )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+         * This will allow or disallow automatic stage switching between 2 stages.
+         * 
+         * @param originatingStage    The stage ID the switch will be made from
+         * @param destinationStage    The stage ID the switch will be made to
+         * @param allowSwitch    Whether the video switch can automatically make the switch.
+         *
+         * @exception VideoSwitchAgentException Thrown if:
+         *            1. The agent is in Monitor mode.
+         *            2. This is not the OCC agent
+         *            3. Either of the given stage IDs are not known
+         */
+        void setStageSwitchMode( in unsigned long originatingStage, in unsigned long destinationStage, in boolean allowSwitch )
+            raises( TA_Base_Bus::VideoSwitchAgentException, TA_Base_Core::OperationModeException );
+
+		/**
+          * closeAlarm
+          *
+	      * closed an alarm on the videoswitch alarm stack that the switch cant close itself
+          *
+          * @param      AlarmDetailCorbaDef pAlarmDetail
+          *             the transactive alarm Id associated with the alarm to be closed
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The alarm with the given iD is not found.
+		  *				3. The alarm not configured to be manually closed
+	      */
+
+        void closeAlarm( in TA_Base_Core::AlarmDetailCorbaDef pAlarmDetail/*, in unsigned long consoleId*/  )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+          * clearAllMonitorsWithInput
+          *
+	      * clears all monitors that have the specified input as an assignment
+          *
+          * @param      unsigned long inputEntityKey
+          *             the entity of the input entity to be removed from all monitors
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The agent is in Monitor mode.
+		  *				2. The alarm with the given iD is not found.
+		  *				3. The alarm not configured to be manually closed
+	      */
+		void clearAllMonitorsWithInput( in unsigned long inputEntityKey, in string sessionId )
+			raises( TA_Base_Core::OperationModeException);//limin
+    };
+
+}; // TA_Base_Bus
+
+#endif // SWITCH_MANAGER_CORBA_DEF_H

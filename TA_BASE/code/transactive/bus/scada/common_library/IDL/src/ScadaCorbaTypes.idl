@@ -1,0 +1,199 @@
+#ifndef ScadaCorbaTypes_INCLUDED_
+#define ScadaCorbaTypes_INCLUDED_
+
+/**
+  * The source code in this file is the property of Ripple Systems and is not for redistribution in
+  * any form.
+  *
+  * Source:	$File: //depot/TA_Common_V1_TIP/transactive/bus/scada/common_library/IDL/src/ScadaCorbaTypes.idl $
+  * @author:	Bavo De Pauw
+  * @version:	$Revision: #2 $
+  *
+  * Last modification:	$DateTime: 2015/01/21 14:56:06 $
+  * Last modified by:	$Author: haijun.li $
+  *
+  * Description:
+  *
+  *	SCADA CORBA interface, common definitions used in SCADA
+  *
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+
+    module ScadaCorbaTypes
+    {
+		//
+		// constants
+		//
+		
+		const unsigned long BULK_POLLED_MAX_IDLE_TIME_MSECS = 120*1000;
+
+		//
+		//exceptions
+		//
+	    exception NotWriteable
+		{
+			string reason;
+		};
+
+	    exception PersistenceFailed
+		{
+			string reason;
+		};
+
+		////////////////////////
+		// Structs and datatypes
+		////////////////////////
+
+		//
+		// The timeStamp records the last time that the value changed
+        //
+		struct STimeStamp
+		{
+			long				seconds;
+			unsigned short		milliseconds;
+		};
+
+		// 
+		// IEC 104 Protocol Control Operation
+		// 
+		enum EControlOperation
+		{
+			ControlNoOperation,
+			ControlSelect,
+			ControlExecute,
+			ControlCancel
+		};
+		// Possible Quality values for a DataPoint (taken from the OPC Standard)
+		// 
+		enum EQuality
+		{
+			QualityBadNoSpecificReason,				// 00000000 00000000
+			QualityBadConfigurationError,			// 00000000 00000100
+			QualityBadNotConnected,					// 00000000 00001000
+			QualityBadDeviceFailure,				// 00000000 00001100
+			QualityBadSensorFailure,				// 00000000 00010000
+			QualityBadLastKnownValue,				// 00000000 00010100
+			QualityBadCommFailure,					// 00000000 00011000
+			QualityBadOutOfService,					// 00000000 00011100
+			QualityUncertainNoSpecificReason,		// 00000000 01000000
+			QualityUncertainLastUsableValue,		// 00000000 01000100
+			QualityUncertainSensorNotAccurate,		// 00000000 01010000
+			QualityUncertainEngUnitExceeded,		// 00000000 01010100
+			QualityUncertainSubNormal,				// 00000000 01011000
+			QualityGoodNoSpecificReason,			// 00000000 11000000
+			QualityGoodLocalOverride				// 00000000 11011000
+		};
+
+		//
+		// Tag types supported in SCADA
+		//
+		enum ETagType
+        {
+            AnalogueTagType,	// Float is widely used within SCADA systems for analog values
+			BooleanTagType,		// A bool flag, digital value
+            EnumTagType,		// An integer value, representing an enum
+			TextTagType			// A value in binary or ASCII string format
+        };
+
+		struct SAnalogueTag
+		{
+			double						value;
+			EQuality					quality;
+			STimeStamp					timeStamp;
+			EControlOperation			controlOperation;
+		};
+
+		struct SBooleanTag
+		{
+			boolean						value;
+			EQuality					quality;
+			STimeStamp					timeStamp;
+			EControlOperation			controlOperation;
+		};
+
+		struct SEnumTag
+		{
+			unsigned long				value;
+			EQuality					quality;
+			STimeStamp					timeStamp;
+			EControlOperation			controlOperation;
+		};
+
+		// The array of characters making up a string
+		typedef sequence < octet > ByteSequence;
+
+		struct STextTag
+		{
+			ByteSequence				value;
+			EQuality					quality;
+			STimeStamp					timeStamp;
+			EControlOperation			controlOperation;
+		};
+
+		union UTag switch (ETagType)
+		{
+		case AnalogueTagType:
+			SAnalogueTag					analogueTag;
+
+		case BooleanTagType:
+			SBooleanTag						booleanTag;
+
+		case EnumTagType:
+			SEnumTag						enumTag;
+
+		case TextTagType:
+			STextTag						textTag;
+		};
+
+		enum EInputInhibitState
+		{
+			NoInputInhibit,
+			InhibitScan,
+			InhibitAlarm,
+			InhibitMmsAlarm
+		};
+
+		enum EOutputInhibitState
+		{
+			NoOutputInhibit,
+			InhibitControl
+		};
+
+		struct SInhibitState
+		{
+			ScadaCorbaTypes::EInputInhibitState		inputInhibit;
+			ScadaCorbaTypes::EOutputInhibitState	outputInhibit;
+		};
+
+		// Represents the session ID of the operator and the timestamp
+		// when the internal state of the datapoint was last modified by
+		// the operator
+		struct SLastOperatorInfo
+        {
+			string						sessionID;		// the operator session ID
+			ScadaCorbaTypes::STimeStamp	timeStamp;		// the timestamp when this datapoint was
+														// last changed by the operator
+        };	
+
+		// Key sequence
+		typedef sequence < unsigned long > KeySequence;
+
+		struct SCorbaName
+		{
+			unsigned long	entityKey;
+			unsigned long	locationKey;
+			string			objectName;
+			string			agentName;
+		};
+
+		typedef sequence < SCorbaName > CorbaNameSequence;
+    };
+};
+
+#endif
+
+

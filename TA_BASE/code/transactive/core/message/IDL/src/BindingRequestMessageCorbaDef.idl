@@ -1,0 +1,79 @@
+#if !defined(BindingRequestMessage_6257BEC1_1102_4108_8852_B38C67A63217__INCLUDED_)
+#define BindingRequestMessage_6257BEC1_1102_4108_8852_B38C67A63217__INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/message/IDL/src/BindingRequestMessageCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * The BindingRequestMessage is used by the Transactive Distributed Naming
+  * Service
+  * 
+  * The BindingRequestListener that has the requested name calls back the
+  * originator using this interface. It will be queried by waiting threads to see
+  * if the callback has been received.
+  */
+
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+		struct BindingRequestMessageCorbaDef
+		{
+			/**
+			 * Time the Message was first generated
+			 */
+			DateTime createTime;
+
+			/**
+			 * The MessageTypeKey as defined in the MESSAGETYPE table
+			 */			
+			string messageTypeKey;
+
+			/**
+			* The context that the name resides within. This is generally the subsystem.
+			*/
+			string nameContext;
+
+			/**
+			* The name of the object within the given context. This is generally the Entity Name.
+			*/
+			string name;
+
+			/**
+			* This is the actual object reference of the object that wants to resolve the name.
+			*/
+			Object originator;
+
+		}; // interface BindingRequestMessageCorbaDef
+
+        struct MonitorCommandCorbaDef
+        {
+            MillisecondTime sendDateTime;
+            unsigned long   commandType;
+            unsigned long  commandID;
+            string   commandLine;
+            string   optionData;
+        };
+
+        struct MonitorResponseCorbaDef
+        {
+            unsigned long locationKey;
+            string hostName;
+            string entityName; 
+
+            MonitorCommandCorbaDef commandInfo;
+            string response;
+        };
+
+
+}; // module TA_Base_Core
+
+#endif // !defined(BindingRequestMessage_6257BEC1_1102_4108_8852_B38C67A63217__INCLUDED_)

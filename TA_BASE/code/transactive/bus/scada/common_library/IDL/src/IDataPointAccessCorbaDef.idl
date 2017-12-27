@@ -1,0 +1,250 @@
+/**
+ * The source code in this file is the property of 
+ * Ripple Systems and is not for redistribution
+ * in any form.
+ *
+ * Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/scada/common_library/IDL/src/IDataPointAccessCorbaDef.idl $
+ * @author:  Darren Sampson
+ * @version: $Revision: #1 $
+ *
+ * Last modification: $DateTime: 2015/01/19 17:43:23 $
+ * Last modified by:  $Author: CM $
+ * 
+ */
+
+#ifndef IDataPointAccessCorbaDef_INCLUDED_
+#define IDataPointAccessCorbaDef_INCLUDED_
+
+#include "bus/scada/common_library/IDL/src/DataPointCorbaTypes.idl"
+#include "bus/scada/common_library/IDL/src/IDataPointStateUpdateCorbaDef.idl"
+
+module TA_Base_Bus
+{
+
+    interface IDataPointAccessCorbaDef
+    {
+		/**
+		 * registerMonitorAgentForStateUpdate(in string uniqueId) is used by the monitoring
+		 * agent to register itself with uuid. The same method is used to let the controlling
+		 * agent know that it is still alive. The controlling agent will check the uniqueId received
+		 * with the one currently stored and if both are not the same, a complete state update will occur
+		 * and the current uuid will be replaced by the new one. If any corba call to monitoring agent
+		 * fails, the registration will be invalid and no further updates will be sent till new registration
+		 * is done by the monitor agent.
+		 */
+
+		void registerMonitorAgentForStateUpdate(in string uniqueId, in IDataPointStateUpdateCorbaDef dpStateUpdateServantRef);
+
+		/**
+		 * setAlarmProperties() sets the Alarm Properties for a particular alarm for the
+		 * DataPoint indicated by the entity key.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to set the alarm
+		 * properties.
+		 * @param sessionId    The session ID of the operator
+		 * @param newAlarmProperties    The Alarm Properties for a specific alarm
+		 */
+		void setAlarmProperty (in unsigned long dpKey, in string sessionId, 
+								 in DataPointCorbaTypes::SAlarmProperty newAlarmProperty)
+			raises ( ScadaCorbaTypes::PersistenceFailed, TA_Base_Core::OperationModeException, 
+					 TA_Base_Core::NotAvailableException, TA_Base_Core::BadParameterException );
+
+		//
+		// Values
+		//
+
+		/**
+		 * getFieldValue()  returns the current field value of the DataPoint indicated by
+		 * the entity key.  This is useful when the DataPoint is overridden.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to retrieve the field
+		 * value.
+		 */
+		ScadaCorbaTypes::UTag getFieldValue(in unsigned long dpKey)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException);
+
+
+		/**
+		 * getRawValue() reads the raw formatted current value of the DataPoint indicated
+		 * by the entity key
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to retrieve the raw value.
+		 */
+        ScadaCorbaTypes::UTag getRawValue(in unsigned long dpKey)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException);
+
+
+		//
+		// Controls
+		//
+
+		/**
+		 * writeDataPointValue() changes the value associated with the DataPoint.  For an
+		 * output DataPoint, this is the method used to perform a control. An event will
+		 * be logged.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used for the write.
+		 * @param sessionId    The session ID of the operator
+		 * @param value    The value to write to the DataPoint
+		 * @param triggeringEntity    The DataPoint that triggered the write
+		 * @param triggeringEntityValue    The value of the DataPoint that triggered the
+		 * write
+		 */
+		void writeDataPointValue (in unsigned long dpKey, in string sessionId, in ScadaCorbaTypes::UTag value, 
+								  in unsigned long triggeringEntity, in string triggeringEntityValue)
+			raises ( ScadaCorbaTypes::NotWriteable, TA_Base_Core::OperationModeException, 
+					 TA_Base_Core::NotAvailableException, TA_Base_Core::BadParameterException, 
+					 TA_Base_Core::AccessDeniedException);
+
+
+		/**
+		 * writeDataPointValueWithoutLoggingEvent() changes the value associated with the
+		 * DataPoint.  For an output DataPoint, this is the method used to perform a
+		 * control. An event will NOT be logged.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used for the write.
+		 * @param sessionId    The session ID of the operator
+		 * @param value    The value to be written to the DataPoint
+		 * @param triggeringEntity    The DataPoint that triggered the write
+		 * @param triggeringEntityValue    The value of the DataPoint that triggered the
+		 * write
+		 */
+        void writeDataPointValueWithoutLoggingEvent (in unsigned long dpKey, in string sessionId, 
+													 in ScadaCorbaTypes::UTag value, in unsigned long triggeringEntity, 
+													 in string triggeringEntityValue)
+			raises ( ScadaCorbaTypes::NotWriteable, TA_Base_Core::OperationModeException, 
+					 TA_Base_Core::NotAvailableException, TA_Base_Core::BadParameterException, 
+					 TA_Base_Core::AccessDeniedException);
+
+
+		//
+		// Override
+		//
+
+		/**
+		 * setOverride()  changes the override state of the DataPoint and updates the
+		 * DataPoint's override value with the specified manually entered value.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to set the override state.
+		 * @param sessionId    The session ID of the operator
+		 * @param value    The manually entered value to be written to the DataPoint
+		 */
+		void setOverride (in unsigned long dpKey, in string sessionId, in ScadaCorbaTypes::UTag value)
+			raises ( ScadaCorbaTypes::NotWriteable, TA_Base_Core::OperationModeException, 
+					 TA_Base_Core::NotAvailableException, TA_Base_Core::BadParameterException, 
+					 TA_Base_Core::AccessDeniedException);
+
+		void removeOverride (in unsigned long dpKey, in string sessionId)
+			raises ( ScadaCorbaTypes::NotWriteable, TA_Base_Core::OperationModeException, 
+					 TA_Base_Core::NotAvailableException, TA_Base_Core::AccessDeniedException);
+
+		/**
+		 * setMeteredCorrectionValue()  sets the correction value of a Metered DataPoint
+		 * indicated by the entity key.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to set the correction
+		 * value.
+		 * @param sessionId    The session ID of the operator
+		 * @param correctionValue    The new correction value
+		 */
+		void setMeterCorrectionValue (in unsigned long dpKey, in string sessionId, in double correctionValue)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException );
+
+		
+		//
+		// Inhibit
+		//
+
+		/**
+		 * setInputInhibitState() sets the Input Inhibit state (Scan, Alarm, MMS Alarm)
+		 * for a DataPoint indicated by the entity key.
+		 * 
+		 * @param dpKey			The entity key of the DataPoint used to set the inhibit state.
+		 * @param sessionId
+		 * @param inhibit		The input inhibit state
+		 */
+		void setInputInhibitState (in unsigned long dpKey, in string sessionId, 
+								   in ScadaCorbaTypes::EInputInhibitState inhibit)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException, 
+					 TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException );
+
+
+		/**
+		 * setOutputInhibitState() sets the Output Inhibit state (Control) for a DataPoint
+		 * indicated by the entity key.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to set the inhibit state.
+		 * @param sessionId
+		 * @param inhibit    The new output inhibit state
+		 */
+		void setOutputInhibitState (in unsigned long dpKey, in string sessionId, 
+									in ScadaCorbaTypes::EOutputInhibitState inhibit)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException, 
+					 TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException );
+
+
+		//
+		// Operator Info
+		//
+
+		/**
+		 * getLastOperatorInfo()  returns the session ID of the operator and timestamp for
+		 * the last change in the DataPoint's state changed by an operator.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to retrieve the Last
+		 * Operator information.
+		 */
+		ScadaCorbaTypes::SLastOperatorInfo getLastOperatorInfo(in unsigned long dpKey)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException);
+
+		//
+		// MMS use
+		//
+		/**
+		 *
+		 * GetIsMMSAlarmInhibited
+		 *
+		 * Returns a boolean true to indicate that the data point's MMS alarm function
+		 * is inhibited, false otherwise
+		 *
+		 */
+		boolean getIsMMSAlarmInhibited(in unsigned long dpKey)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException );
+
+		/**
+		 * getInputInhibitState() gets the Input Inhibit state (Scan, Alarm, MMS Alarm)
+		 * for a DataPoint indicated by the entity key.
+		 * 
+		 * @param dpKey			The entity key of the DataPoint used to set the inhibit state.
+		 *
+		 */
+		ScadaCorbaTypes::EInputInhibitState getInputInhibitState (in unsigned long dpKey)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException);
+
+
+		/**
+		 * getOutputInhibitState() gets the Output Inhibit state (Control) for a DataPoint
+		 * indicated by the entity key.
+		 * 
+		 * @param dpKey    The entity key of the DataPoint used to set the inhibit state.
+		 *
+		 */
+		ScadaCorbaTypes::EOutputInhibitState getOutputInhibitState (in unsigned long dpKey)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException);
+
+		
+	    /**
+	      * isWriteable
+	      * 
+	      * return whether the datapoint is writable
+	      * 
+		  * @param dpKey    The entity key of the DataPoint used to set the inhibit state.
+	      * 
+	      */
+		boolean isWriteable(in unsigned long dpKey)
+			raises ( TA_Base_Core::OperationModeException, TA_Base_Core::NotAvailableException );
+
+    };
+};
+
+#endif

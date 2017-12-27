@@ -1,0 +1,26 @@
+HKCR
+{
+	ATSBridgeUtil.ATSFilterCriteria.1 = s 'ATSFilterCriteria Class'
+	{
+		CLSID = s '{45A9A577-30B8-4DC1-B3F0-737CCD0E6557}'
+	}
+	ATSBridgeUtil.ATSFilterCriteria = s 'ATSFilterCriteria Class'
+	{
+		CLSID = s '{45A9A577-30B8-4DC1-B3F0-737CCD0E6557}'
+		CurVer = s 'ATSBridgeUtil.ATSFilterCriteria.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {45A9A577-30B8-4DC1-B3F0-737CCD0E6557} = s 'ATSFilterCriteria Class'
+		{
+			ProgID = s 'ATSBridgeUtil.ATSFilterCriteria.1'
+			VersionIndependentProgID = s 'ATSBridgeUtil.ATSFilterCriteria'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{56D26B63-492F-46F9-B16F-04C3503A9376}'
+		}
+	}
+}

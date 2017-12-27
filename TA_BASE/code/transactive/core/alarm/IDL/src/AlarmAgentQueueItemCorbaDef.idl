@@ -1,0 +1,57 @@
+#if !defined(ALARM_QUEUE_ITEM_IDL)
+#define ALARM_QUEUE_ITEM_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/alarm/IDL/src/AlarmAgentQueueItemCorbaDef.idl $
+  * @author:  Ross Tucker
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * These are sent within state update messages to synchronise the update queues
+  * in the controlling and monitoring Alarm Agent
+  */
+
+#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+#include "core/alarm/IDL/src/AlarmUpdateCorbaDef.idl"
+
+module TA_Base_Core
+{
+    struct AlarmAgentQueueItemCorbaDef
+    {
+        /**
+          * Does this contain an Alarm Message
+          */
+        boolean containsAlarmDetailCorbaDef;
+
+        /**
+          * Does this contain an Alarm Update
+          */
+        boolean containsAlarmUpdateCorbaDef;
+
+        /**
+          * Does this contain an Alarm Rule
+          */
+        boolean containsAlarmDetailForPrintingCorbaDef;
+
+		/**
+		  * Is this system/subsystem or operator triggered?
+		  * True if operator, false if system/subsystem/others
+		  */
+		boolean isOperatorTriggered;
+
+        AlarmDetailCorbaDef theMessage;
+
+        AlarmUpdateCorbaDef theUpdate;
+    };
+    
+    typedef sequence<AlarmAgentQueueItemCorbaDef> AlarmAgentQueueItemSequence;
+
+}; // module TA_Base_Core
+
+#endif // !defined(ALARM_QUEUE_ITEM_IDL)

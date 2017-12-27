@@ -1,0 +1,33 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/duty_agent/IDL/src/IDutyAgentAutoDegradeCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Duty Agent IDL interface for automatically degrading subsystems.
+//
+
+#ifndef IDUTYAGENTAUTODEGRADECORBADEF_H_INCLUDED
+#define IDUTYAGENTAUTODEGRADECORBADEF_H_INCLUDED
+
+#include <core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/DutyAgentTypeCorbaDef.idl>
+
+module TA_Base_Bus
+{
+	interface IDutyAgentAutoDegradeCorbaDef
+	{
+		void autoDegradeSubsystems(in DutyAgentTypeCorbaDef::SessionId session,
+			in DutyAgentTypeCorbaDef::KeySequence subsystems )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+	};
+};
+
+#endif //IDUTYAGENTAUTODEGRADECORBADEF

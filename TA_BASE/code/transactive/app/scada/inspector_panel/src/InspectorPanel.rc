@@ -1,0 +1,424 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral (Sys. Default) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEUSD)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_SYS_DEFAULT
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "关于监控面板(&A)"
+    IDS_ENABLE_DATAPOINT    "启用 %1 为 %2"
+    IDS_DISABLE_DATAPOINT   "禁用 %1 为 %2"
+    IDS_APPLY_TAG_CHANGES   "应用标签变更"
+    IDS_SCAN_INHIBIT        "扫描禁止"
+    IDS_ALARM_INHIBIT       "禁止警报"
+    IDS_MMS_INHIBIT         "MMS禁止"
+    IDS_CONTROL_INHIBIT     "控制禁止"
+    IDS_OVERRIDE            "覆盖"
+    IDS_REMOVE_EQUIPMENT_STATUS "移除设备状态"
+    IDS_UPDATE_EQUIPMENT_STATUS "更新设备状态"
+    IDS_REMOVE_EQUIPMENT_NOTES "移除设备记录"
+    IDS_UPDATE_EQUIPMENT_NOTES "更新设备记录"
+    IDS_OVERRIDE_ALARM_ENABLED "%1"
+    IDS_OVERRIDE_ALARM_THRESHOLD "%1"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_LOADING_DATA_NODE   "正在加载设备"
+    IDS_LOADING_DATA_POINT  "正在加载设备数据"
+    IDS_LOADING_COMPLETE    "加载完成"
+END
+
+#endif    // Neutral (Sys. Default) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_INSPECTOR_PANEL_DIALOG DIALOGEX 0, 0, 318, 365
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "监控面板"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_STATUS,11,297,296,37,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+    PUSHBUTTON      "帮助",ID_HELP_IP,6,341,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,261,341,50,14
+    CONTROL         "Tab1",IDC_MAINTAB,"SysTabControl32",NOT WS_VISIBLE | WS_TABSTOP,7,15,305,267
+    LTEXT           "",IDC_EQUIPMENT_DESCRIPTION,7,3,308,10
+    GROUPBOX        "状态",IDC_STATUS_GROUP_BOX,6,287,305,51
+    LTEXT           "",IDC_COUNT,274,14,23,12,NOT WS_VISIBLE
+END
+
+IDD_INFORMATION DIALOGEX 0, 0, 309, 278
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_INFO_DATAPOINTLIST,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,0,300,252,WS_EX_ACCEPTFILES
+END
+
+IDD_CONTROL DIALOGEX 0, 0, 318, 280
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    CONTROL         "List1",IDC_CONTROLLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,0,0,301,252
+END
+
+IDD_TAG DIALOGEX 0, 0, 300, 164
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "标记",IDC_TAG,5,0,290,126
+    RADIOBUTTON     "未标记",IDC_RADIO_NOT_TAGGED,11,10,47,11,WS_DISABLED
+    RADIOBUTTON     "标记",IDC_RADIO_TAG,11,22,45,11,WS_DISABLED
+    RADIOBUTTON     "加PTW标记",IDC_RADIO_TAG_PTW,11,34,57,11,WS_DISABLED
+    LTEXT           "PTW ID",IDC_STATIC,83,11,33,9
+    EDITTEXT        IDC_PTW_ID,83,20,110,31,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "注释",IDC_STATIC,12,47,33,9
+    EDITTEXT        IDC_COMMENT,12,56,275,64,ES_AUTOHSCROLL | WS_DISABLED
+    GROUPBOX        "禁止",IDC_INHIBIT,204,0,91,52
+    PUSHBUTTON      "应用",IDC_APPLY_TAG,246,138,50,14,WS_DISABLED
+    CONTROL         "禁止扫描",IDC_SCANINHIBIT_CHECK,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,213,12,54,10
+    CONTROL         "禁止控制",IDC_CONTROLINHIBIT_CHECK,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,213,40,61,10
+    CONTROL         "禁止警报",IDC_ALARMINHIBIT_CHECK,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,222,26,57,10
+END
+
+IDD_CONFIRM_CONTROL_DIALOG DIALOGEX 0, 0, 269, 103
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "命令确认"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确认",IDOK,157,86,50,14
+    DEFPUSHBUTTON   "取消",IDCANCEL,212,86,50,14
+    PUSHBUTTON      "帮助",ID_HELP_CC,5,86,50,14
+    GROUPBOX        "请确认命令...",IDC_STATIC1,5,7,257,76
+    LTEXT           "设备",IDC_STATIC2,14,22,43,8
+    LTEXT           "属性",IDC_STATIC3,14,47,40,13
+    LTEXT           "命令",IDC_STATIC4,14,64,41,13
+    LTEXT           "",IDC_EQUIPMENT,62,22,176,19,SS_SUNKEN
+    LTEXT           "",IDC_DATA_POINT,62,47,176,11,SS_SUNKEN
+    LTEXT           "",IDC_NEW_VALUE,62,64,176,11,SS_SUNKEN
+END
+
+IDD_INPUT_VALUE_DIALOG DIALOGEX 0, 0, 269, 103
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "输入设置值"
+FONT 9, "宋体", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "确认",IDOK,157,86,50,14
+    DEFPUSHBUTTON   "取消",IDCANCEL,212,86,50,14
+    PUSHBUTTON      "帮助",ID_HELP_CC,5,86,50,14
+    GROUPBOX        "请输入设置值...",IDC_STATIC1,5,7,257,76
+    LTEXT           "设备",IDC_STATIC2,14,22,43,8
+    LTEXT           "属性",IDC_STATIC3,14,47,40,13
+    LTEXT           "设置值",IDC_STATIC4,14,67,41,13
+    LTEXT           "",IDC_EQUIPMENT,62,22,176,19,SS_SUNKEN
+    LTEXT           "",IDC_DATA_POINT,62,47,176,11,SS_SUNKEN
+    LTEXT           "",IDC_VALUE_UNIT,188,65,49,11,SS_SUNKEN
+    EDITTEXT        IDC_INPUT_NEW_VALUE,61,65,120,11,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    COMBOBOX        IDC_COMBOBOX_VALUE,61,65,117,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CONFIRM_TAG_DIALOG DIALOG  0, 0, 269, 104
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "标签确认"
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "确认",IDOK,157,86,50,14
+    DEFPUSHBUTTON   "取消",IDCANCEL,212,86,50,14
+    PUSHBUTTON      "帮助",ID_HELP_CT,5,86,50,14
+    GROUPBOX        "请确认标签...",IDC_STATIC,5,7,257,75
+    LTEXT           "设备",IDC_STATIC,15,22,43,13
+    LTEXT           "标签",IDC_STATIC,15,47,40,13
+    LTEXT           "禁止",IDC_STATIC,15,64,41,13
+    LTEXT           "",IDC_EQUIPMENT,61,22,176,19,SS_SUNKEN
+    LTEXT           "",IDC_TAG,61,47,176,11,SS_SUNKEN
+    LTEXT           "",IDC_INHIBIT,61,64,176,11,SS_SUNKEN
+END
+
+IDD_MAINTENANCE DIALOG  0, 0, 474, 101
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "List1",IDC_INFO_MAINTENANCELIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,25,460,77
+    LTEXT           "描述",IDC_STATIC,10,7,40,17
+    LTEXT           "类型",IDC_STATIC,110,7,28,17
+    LTEXT           "控制禁止",IDC_STATIC,170,7,28,17
+    LTEXT           "扫描禁止",IDC_STATIC,200,7,28,17
+    LTEXT           "禁止警报",IDC_STATIC,230,7,28,17
+    LTEXT           "重载允许",IDC_STATIC,260,7,28,17
+    LTEXT           "重载值",IDC_STATIC,290,7,28,17
+    LTEXT           "当前值",IDC_STATIC,378,7,28,17
+END
+
+IDD_NOTES DIALOG  0, 0, 309, 278
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDITNOTES,1,2,297,76,ES_MULTILINE | ES_WANTRETURN | WS_DISABLED | WS_VSCROLL
+    PUSHBUTTON      "更新",IDC_UPDATE,32,83,50,14,WS_DISABLED
+    PUSHBUTTON      "清除",IDC_REMOVE,222,83,50,14,WS_DISABLED
+END
+
+IDD_CONFIRM_OVERRIDE_DIALOG DIALOGEX 0, 0, 269, 96
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "超驰确认"
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "超驰",IDOK,157,79,50,14
+    PUSHBUTTON      "取消",IDCANCEL,212,79,50,14
+    PUSHBUTTON      "帮助",ID_HELP_CO,5,79,50,14
+    GROUPBOX        "请输入超驰值...",IDC_STATIC,5,7,257,68
+    LTEXT           "设备",IDC_STATIC,15,22,43,13
+    LTEXT           "属性",IDC_STATIC,15,44,40,13
+    LTEXT           "值",IDC_STATIC,15,59,41,13
+    LTEXT           "",IDC_EQUIPMENT,61,22,176,19,SS_SUNKEN
+    LTEXT           "",IDC_DATA_POINT,61,44,176,11,SS_SUNKEN
+    LTEXT           "",IDC_NEW_VALUE,61,58,176,13,SS_SUNKEN
+END
+
+IDD_LIMITS DIALOGEX 0, 0, 309, 278
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体", 0, 0, 0x0
+BEGIN
+    CONTROL         "List1",IDC_INFO_DATAPOINTLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,1,2,107,244
+    EDITTEXT        IDC_LIMIT_INFO,113,2,184,22,ES_MULTILINE | ES_READONLY | ES_WANTRETURN | NOT WS_TABSTOP
+    CONTROL         "List1",IDC_LIMITS_DETAILSLIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,113,23,184,223
+END
+
+IDD_STATUS DIALOG  0, 0, 300, 101
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    EDITTEXT        IDC_STATUS_INFO,1,2,297,97,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+END
+
+IDD_INHIBIT DIALOG  0, 0, 309, 278
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "List1",IDC_INHIBIT_DATAPOINTLIST,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,0,300,252
+END
+
+IDD_OVERRIDE DIALOG  0, 0, 309, 278
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "List1",IDC_OVERRIDE_DATAPOINTLIST,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,0,300,252
+END
+
+IDD_METER DIALOG  0, 0, 309, 278
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    CONTROL         "List1",IDC_METER_DATAPOINTLIST,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,0,0,300,252
+END
+
+IDD_CONFIRM_ADJUST_DIALOG DIALOG  0, 0, 269, 103
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "命令确认"
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "确认",IDOK,157,86,50,14
+    DEFPUSHBUTTON   "取消",IDCANCEL,212,86,50,14
+    PUSHBUTTON      "帮助",ID_HELP_CA,5,86,50,14
+    GROUPBOX        "请确认调节...",IDC_STATIC,5,7,257,76
+    LTEXT           "设备",IDC_STATIC,14,22,43,8
+    LTEXT           "测量",IDC_STATIC,14,47,40,13
+    LTEXT           "调节",IDC_STATIC,14,64,41,13
+    LTEXT           "",IDC_EQUIPMENT,62,22,176,19,SS_SUNKEN
+    LTEXT           "",IDC_DATA_POINT,62,47,176,11,SS_SUNKEN
+    LTEXT           "",IDC_NEW_VALUE,62,64,176,11,SS_SUNKEN
+END
+
+IDD_CONFIRM_DIRECT_CONTROL_DIALOG DIALOG  0, 0, 307, 121
+STYLE DS_SETFONT | WS_CHILD
+FONT 9, "宋体"
+BEGIN
+    PUSHBUTTON      "确认",IDCONFIRM,250,97,50,14
+    GROUPBOX        "请确认命令...",IDC_STATIC,0,0,307,118
+    LTEXT           "设备",IDC_STATIC,14,22,43,8
+    LTEXT           "属性",IDC_STATIC,14,47,40,13
+    LTEXT           "命令",IDC_STATIC,14,64,41,13
+    LTEXT           "",IDC_EQUIPMENT,57,22,243,19,SS_SUNKEN
+    LTEXT           "",IDC_DATA_POINT,57,47,243,11,SS_SUNKEN
+    LTEXT           "",IDC_NEW_VALUE,57,64,243,11,SS_SUNKEN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "InspectorPanel MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "InspectorPanel"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "InspectorPanel.EXE"
+            VALUE "ProductName", "InspectorPanel Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_INSPECTOR_PANEL_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 354
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\InspectorPanel.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\res\\InspectorPanel.ico"
+IDI_GREEN               ICON                    "..\\res\\blank.ico"
+IDI_ORANGE              ICON                    "..\\res\\green1.ico"
+IDI_BLUE                ICON                    "..\\res\\green2.ico"
+IDI_RED                 ICON                    "..\\res\\green3.ico"
+IDI_GREY                ICON                    "..\\res\\grey.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_GREEN               BITMAP                  "..\\res\\bitmap1.bmp"
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\InspectorPanel.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

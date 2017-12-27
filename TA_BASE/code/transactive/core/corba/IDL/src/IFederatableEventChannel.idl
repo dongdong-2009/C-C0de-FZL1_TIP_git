@@ -1,0 +1,81 @@
+/**
+ * The source code in this file is the property of 
+ * Ripple Systems and is not for redistribution
+ * in any form.
+ *
+ * Source:   $Source: /cvs/1TS-9999-T/code/transactive/core/corba/IDL/src/Attic/IFederatableEventChannel.idl,v $
+ * @author:  Jade Welton
+ * @version: $Revision: #1 $
+ *
+ * Last modification: $DateTime: 2015/01/19 17:43:23 $
+ * Last modified by:  $Author: CM $
+ * 
+ * Channel Locator IDL interface.
+ *
+ */
+
+#include <AttNotification.idl>
+
+module TA_Base_Core
+{
+	// CosNotifyChannelAdmin::EventChannel sends subscription_change notifications to suppliers
+	// when the set of event types that consumers have subscribed to changes.  The event channel
+	// only notifies of CHANGES to the aggregate list of event types that have been subscribed to,
+	// as described in section 2.6.3 Subscription Change of the Corba Notification Service specification.
+
+    // TODO LPP: More detail required here.
+    
+    // Dual event channels can be used as a workaround for this problem with federation,
+    // with suppliers and federated consumers connecting to one channel, and consumers and
+    // federated suppliers connecting to the other channel.  
+    //
+    //                o   default_supplier_admin
+    //                |   federated_consumer_admin
+    //      __________|________
+    //     |          |        |                 REMOTE (federated)
+    //     |      SUPPLIER     |                 CONSUMER
+    // S --|----> CHANNEL  ----|--> FF --------> CHANNEL
+    //     |    s     | c  c   |                   
+    //     |          |        |
+    //     |          |        |
+    //     |          v        | 
+    //     |         ECF       |  
+    //     |          |        |
+    //     |          |        |
+    //     |          v s      |                REMOTE (federated)
+    //     |      CONSUMER     |                SUPPLIER
+    // C <-|----- CHANNEL  <------------ FF <-- CHANNEL
+    //     |    c     |    s   |                  
+    //     |__________|________|
+    //                |
+    //                o   default_consumer_admin
+    //                    federated_supplier_admin
+    //
+    //  FederatableEventChannel_impl
+    //
+    // S, C : suppliers and consumers at the local location
+    // FF   : federation forwarder
+    // ECF  : event channel forwarder
+	// ---> : direction for events (subscription_change is in opposite direction)
+	// s, c : proxy supplier, proxy consumer
+
+    // The assembly consisting of the two channels and EventChannelForwarder is
+    // an implementation of CosNotifyChannelAdmin::EventChannel, so it can be
+    // used in place of the OmniNotify implementation.
+
+    // TODO LPP: This means that the CosNotifyChannelAdmin::EventChannelFactory
+    // won't know about our instances.  The parent-child relation won't be symmetric.
+    // TODO LPP: Some of the other methods in CNCA::EventChannel are difficult to
+    // implement sensibly - such as default_filter_factory().
+
+    // TODO LPP: Derivation of AttNotification::EventChannel means that AttNotification.idl
+    // must be included.  It might be better if FederatableEventChannel was a separate
+    // interface - but we were unable to work out how to implement multiple interfaces.
+    
+	interface IFederatableEventChannel : AttNotification::EventChannel
+	{
+		CosNotifyChannelAdmin::SupplierAdmin federated_supplier_admin();
+		CosNotifyChannelAdmin::ConsumerAdmin federated_consumer_admin();
+	};
+
+};

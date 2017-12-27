@@ -1,0 +1,50 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/duty_agent/IDL/src/IDutyAgentAuthCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Duty Agent IDL interface for the Authentication Agent.
+//
+
+#ifndef IDUTYAGENTAUTHCORBADEF_H_INCLUDED
+#define IDUTYAGENTAUTHCORBADEF_H_INCLUDED
+
+#include <core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/DutyAgentTypeCorbaDef.idl>
+#include <bus/security/authentication_agent/IDL/src/IAuthenticationAgentCorbaDef.idl>
+
+module TA_Base_Bus
+{
+	interface IDutyAgentAuthCorbaDef
+	{
+		// Called by the Authentication Agent when an operator logs on.
+		void authAllocateDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Called by the Authentication Agent when operator-override occurs.
+		//void authReallocateDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+		//	raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+		//			TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Called by the Authentication Agent when operator-override occurs. Use the version in KRTC.
+		void authReallocateDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef b4Session,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef aftSession)
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Called by the Authentication Agent when an operator logs off.
+		void authFreeDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+	};
+};
+
+#endif //IDUTYAGENTAUTHCORBADEF_H_INCLUDED

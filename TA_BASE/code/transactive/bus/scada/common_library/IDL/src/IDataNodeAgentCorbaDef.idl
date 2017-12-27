@@ -1,0 +1,154 @@
+/**
+ * The source code in this file is the property of 
+ * Ripple Systems and is not for redistribution
+ * in any form.
+ *
+ * Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/scada/common_library/IDL/src/IDataNodeAgentCorbaDef.idl $
+ * @author:  Darren Sampson
+ * @version: $Revision: #1 $
+ *
+ * Last modification: $DateTime: 2015/01/19 17:43:23 $
+ * Last modified by:  $Author: CM $
+ * 
+ */
+
+#if !defined(IDataNodeAgentCorbaDef_INCLUDED_)
+#define IDataNodeAgentCorbaDef_INCLUDED_
+
+#include "bus/scada/common_library/IDL/src/DataNodeCorbaTypes.idl"
+
+module TA_Base_Bus
+{
+    interface IDataNodeAgentCorbaDef
+    {
+
+		/**
+		 * createObserver() requests the Agent to create an observer and if successful
+		 * returns a non-zero observer id.
+		 *
+		 * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+		 */
+		unsigned long createObserver()
+			raises (TA_Base_Core::OperationModeException);
+
+
+		/**
+		 * addToObserver()  adds DataNodes to synchronise using Bulk Polling to
+		 * an existing observer.
+		 * 
+		 * @param observerId    The observer ID.
+		 * @param dnKeys    A sequence of entity keys for DataNodes to add to the observer
+		 *
+         * @exception			TA_Base_Core::BadParameterException raised if the observer id is not known.
+		 * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+         */	
+		void addToObserver(in unsigned long observerId, in ScadaCorbaTypes::KeySequence dnKeys)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::BadParameterException);
+
+
+		/**
+		 * removeFromObserver() removes DataNodes from an existing observer.
+		 * 
+		 * @param observerId    The observer id.
+		 * @param dnKeys     A sequence of entity keys for DataNodes to remove from the
+		 * observer.
+		 *
+         * @exception			TA_Base_Core::BadParameterException raised if the observer id is not known.
+		 * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+         */
+		void removeFromObserver(in unsigned long observerId, in ScadaCorbaTypes::KeySequence dnKeys)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::BadParameterException);
+
+
+		/**
+		 * destroyObserver() requests the Agent to destroy an observer.
+		 * 
+		 * @param observerId    The ID of the observer to destroy.
+		 *
+         * @exception			TA_Base_Core::BadParameterException raised if the observer id is not known.
+		 * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+		 */
+		void destroyObserver(in unsigned long observerId)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::BadParameterException);
+
+
+		/**
+		 * getUpdates() checks updates for an observer and returns a sequence of
+		 * SyncUpdate structures for each item that has changed. A zero length sequence is
+		 * returned if there are no updates.
+		 * 
+		 * @param observerId    The observer ID.
+		 *
+         * @exception			TA_Base_Core::BadParameterException raised if the observer id is not known.
+		 * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+         */
+		DataNodeCorbaTypes::SyncUpdateSequence getUpdates (in unsigned long observerId)
+			raises (TA_Base_Core::OperationModeException, TA_Base_Core::BadParameterException);
+
+		
+		//
+		// For OPCBridge use
+		//
+
+		//regiesterDisplayDataPointClient
+		/**
+		  * regiesterDisplayDataPointClient
+		  *
+		  * This method requests the Agent to create an registered client and if successful
+		  * returns a non-zero registered client id.
+		  *
+		  * @return The id of the observer that has been created
+		  *
+		  * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+		  */
+		unsigned long regiesterDisplayDataNodeClient()
+			raises (TA_Base_Core::OperationModeException);
+		
+		//unregiesterDisplayDataPointClient
+		/**
+		  * unregiesterDisplayDataPointClient
+		  *
+		  * This method requests the Agent to create un-registered client.
+		  *
+		  * @return The id of the observer that has been created
+		  *
+		  * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+		  */
+		void unregiesterDisplayDataNodeClient ( in unsigned long cleintId )
+			raises (TA_Base_Core::OperationModeException);
+
+		//getDisplayDataPointUpdate ()
+		/**
+		  * getDisplayDataPointUpdate
+		  *
+		  * This method requests the display datapoint client to get the bulk updates for datapoints
+		  *
+		  * @return The id of the observer that has been created
+		  *
+		  * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+		  */
+		DataNodeCorbaTypes::DataNodeDisplayStateSequence getDisplayDataNodeUpdate( in unsigned long clientId, in boolean getall)
+			raises (TA_Base_Core::OperationModeException);
+
+		//
+		// For Datapoint synchronization use
+		//
+
+		//regiesterDataNodeSynState
+		/**
+		  * regiesterDataNodeSynState
+		  *
+		  * This method requests the Agent to create an registered client and if successful
+		  * returns a non-zero registered client id.
+		  *
+		  * @return The id of the observer that has been created
+		  *
+		  * @exception			TA_Base_Core::OperationModeException raised if the agent is in Monitor mode.
+		  */
+		unsigned long regiesterDataNodeSynState()
+			raises (TA_Base_Core::OperationModeException);
+    };
+};
+
+#endif
+

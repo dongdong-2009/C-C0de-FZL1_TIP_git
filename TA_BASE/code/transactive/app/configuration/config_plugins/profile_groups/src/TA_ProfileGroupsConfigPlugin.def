@@ -1,0 +1,7 @@
+; TA_ProfileGroupsConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_ProfileGroupsConfigPlugin"
+DESCRIPTION  'TA_ProfileGroupsConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

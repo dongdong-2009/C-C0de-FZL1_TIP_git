@@ -1,0 +1,125 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/duty_agent/IDL/src/IDutyAgentMgrCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #2 $
+//
+// Last modification: $DateTime: 2015/01/23 15:58:12 $
+// Last modified by:  $Author: liwei.gong $
+//
+// Duty Agent IDL interface used by Duty/Region Managers.
+//
+
+#ifndef IDUTYAGENTMGRCORBADEF_H_INCLUDED
+#define IDUTYAGENTMGRCORBADEF_H_INCLUDED
+
+#include <core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/DutyAgentTypeCorbaDef.idl>
+#include <bus/security/authentication_agent/IDL/src/IAuthenticationAgentCorbaDef.idl>
+
+module TA_Base_Bus
+{
+	interface IDutyAgentMgrCorbaDef
+	{
+		// Take duty for a list of regions.
+		void mgrTransferRegionDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Take duty for a list of subsystems at a list of regions.
+		void mgrTransferSubsystemDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session,
+			in DutyAgentTypeCorbaDef::SubsystemTreeSequence subsystems )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// (Attempt to) Take duty for a all subsystems at all regions.
+		void mgrTransferAllSubsystemDuty( in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		//Delegate Duty for a list of subsystems to a list of regions
+		void mgrDelegateSubsystemDuty( in DutyAgentTypeCorbaDef::SessionId session,
+			in DutyAgentTypeCorbaDef::KeySequence regions, in DutyAgentTypeCorbaDef::KeySequence subsystems )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Perform system-wide delegation. May be operator initiated or
+		// called automatically in degraded mode (via notifyGroupOffline ).
+		// A session is passed for security, it is not strictly required
+		// for the implementation of the method.
+		void mgrDegradeAllSubsystems( in DutyAgentTypeCorbaDef::SessionId session )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+        // TD12449: The duty manager now needs to retrieve the state of each subsystem.
+        void mgrGetDutyState(in DutyAgentTypeCorbaDef::SessionId session, out DutyAgentTypeCorbaDef::SubsystemStateSequence subState,
+            out DutyAgentTypeCorbaDef::SubsystemDutySequence subDuty, out DutyAgentTypeCorbaDef::RegionDutySequence regDuty )
+            raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+                    TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+		//DutyManager need to retrieve region duties of all sessions, subsystem duties of current session
+        void mgrGetSessionDutyState(in DutyAgentTypeCorbaDef::SessionId session, out DutyAgentTypeCorbaDef::SubsystemStateSequence subState,
+            out DutyAgentTypeCorbaDef::SubsystemDutySequence subDuty, out DutyAgentTypeCorbaDef::RegionDutySequence regDuty )
+            raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+                    TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Provide state information about a specified subsystem at a location
+		// For example, used on subsystem or agent startup to get state information of a subsystem, raised in TD10163
+		DutyAgentTypeCorbaDef::SubsystemStateSequence mgrGetSubsystemDutyState(in DutyAgentTypeCorbaDef::SessionId session, 
+			in DutyAgentTypeCorbaDef::KeySequence subKeys, in DutyAgentTypeCorbaDef::Key locationKey)
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			        TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		DutyAgentTypeCorbaDef::TransferableRegionSequence mgrGetTransferableRegions(
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			        TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		DutyAgentTypeCorbaDef::TransferableSubsystemSequence mgrGetTransferableSubsystems(
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			        TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Called by the Region Manager. This query also returns a list of subsystems (per region)
+		// that would be left uncontrolled if the transfer was to be executed.
+		 DutyAgentTypeCorbaDef::TransferableRegionSequence regMgrGetTransferableRegions(
+			in DutyAgentTypeCorbaDef::SessionId session,
+			out DutyAgentTypeCorbaDef::SubsystemTreeSequence uncontrolledSubs )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			        TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+ 
+		// Called by the Region Manager. This regions transfer method takes an extra session id because
+		// the Region Manager is a third-party duty manipulation tool. Whereas for the Duty Manager the
+		// session that is requesting the transfer is also the session using the Duty Manager.
+		void regMgrTransferRegionDuty( in DutyAgentTypeCorbaDef::SessionId user,
+			in DutyAgentTypeCorbaDef::SessionId session, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			        TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Called by Region Manager to get a list of removable regions and any exclusive subsystems that will be
+		// uncontrolled after the removal
+		DutyAgentTypeCorbaDef::SubsystemTreeSequence regMgrGetRemovableRegions( in DutyAgentTypeCorbaDef::SessionId session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void regMgrRemoveRegionDuty( in DutyAgentTypeCorbaDef::SessionId user,
+			in DutyAgentTypeCorbaDef::SessionId session, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			        TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+
+		void mgrDegradeSubsystemsAtLocation(in DutyAgentTypeCorbaDef::SessionId session,
+			in DutyAgentTypeCorbaDef::KeySequence subsystems, in DutyAgentTypeCorbaDef::Key locationKey )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void mgrDegradeSubsystemsAtRegions(in DutyAgentTypeCorbaDef::SessionId session,
+			in DutyAgentTypeCorbaDef::KeySequence subsystems, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::AccessDeniedException, TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+			TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+	};
+};
+
+#endif //IDUTYAGENTMGRCORBADEF

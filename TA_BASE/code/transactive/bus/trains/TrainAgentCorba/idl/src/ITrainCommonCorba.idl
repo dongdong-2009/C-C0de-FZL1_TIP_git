@@ -1,0 +1,47 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainCommonCorba_Idl)
+#define ITrainCommonCorba_Idl
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for common elements used by more than one other command interfaces.
+     * There are no methods here, only structures, enumerations and type definitions.
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:38 PM
+     */
+    interface ITrainCommonCorba
+    {
+        /**
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        typedef octet TrainId;
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:38 PM
+         */
+        typedef sequence<TrainId> TrainList;
+
+	};
+
+};
+
+#endif

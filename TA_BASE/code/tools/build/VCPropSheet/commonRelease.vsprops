@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="gb2312"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="common" 
+	>
+	<UserMacro 
+		Name="OMNI_VERSION"
+		Value="omniORB_4.1.6"
+	/>
+	<UserMacro
+		Name="OMNI_LIB"
+		Value="omniORB416_rt.lib omniDynamic416_rt.lib omnithread34_rt.lib COS416_rt.lib"
+	/>
+	<UserMacro
+		Name="NSA_Notify_LIB"
+		Value="COSNotify416_rt.lib AttNotification416_rt.lib"
+	/>	
+</VisualStudioPropertySheet>
+ 

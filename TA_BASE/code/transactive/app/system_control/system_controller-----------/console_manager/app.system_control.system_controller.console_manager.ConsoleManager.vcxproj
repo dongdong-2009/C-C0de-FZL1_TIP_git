@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>app.system_control.system_controller.console_manager</ProjectName>
+    <ProjectGuid>{63AB53BF-EFA2-433F-A771-1D0A44D340E8}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\..\..\..\tools\build\VCPropSheet\commonRelease.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+    <Import Project="..\..\..\..\..\tools\build\VCPropSheet\commonDebug.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\../../../../../../bin/win32_nd\</OutDir>
+    <IntDir>.\../../../../../../build/win32_nd/transactive/app/system_control/system_controller/console_manager\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\../../../../../../bin/win32_nr\</OutDir>
+    <IntDir>.\../../../../../../build/win32_nr/transactive/app/system_control/system_controller/console_manager\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <TypeLibraryName>.\../../../../../../bin/win32_nd/app.system_control.system_controller.console_manager.ConsoleManager.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP8 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\..\;..\..\..\..\..\..\build\win32_n\transactive;..\..\..\..\..\..\build\win32_n\transactive\core\message\IDL\src;..\..\..\..\..\..\build\win32_n\transactive\core\exceptions\IDL\src;..\..\..\..\..\..\build\win32_n\transactive\core\process_management\IDL\src;..\..\..\..\..\cots\omniORB\$(OMNI_VERSION)\include;..\..\..\..\..\cots\boost\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_AFXDLL;_DEBUG;_CONSOLE;__WIN32__;__x86__;__NT__;_WIN32_WINNT=0x500;_CRT_SECURE_NO_DEPRECATE;__OSVERSION__=4;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\../../../../../../build/win32_nd/transactive/app/system_control/system_controller/console_manager/app.system_control.system_controller.console_manager.ConsoleManager.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\../../../../../../build/win32_nd/transactive/app/system_control/system_controller/console_manager/</AssemblerListingLocation>
+      <ObjectFileName>.\../../../../../../build/win32_nd/transactive/app/system_control/system_controller/console_manager/</ObjectFileName>
+      <ProgramDataBaseFileName>.\../../../../../../build/win32_nd/transactive/app/system_control/system_controller/console_manager/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>$(OMNI_LIB_D);oci.lib;rpcrt4.lib;aced.lib;libmysql.lib;TA_mcl_d.lib;TA_Base_Core_d.lib;TA_Base_Bus_d.lib;stracelib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../../../../../../bin/win32_nd/ConsoleManager.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../../../../sdk/win32_nd;..\..\..\..\..\cots\omniORB\$(OMNI_VERSION)\lib\x86_win32;..\..\..\..\..\cots\oracle\11.2.0\winnt\lib;..\..\..\..\..\cots\ACE\6_0_4\ACE_wrappers\lib;..\..\..\..\..\cots\boost\boost_1_56_0\stage\lib;..\..\..\..\..\cots\WinStackTrace\build\Debug;..\..\..\..\..\COTS\Mysql\5.5.15\winnt\lib;..\..\..\..\..\cots\mcl\1.1.1\lib\winnt_mysql.5.5.15_boost1.56.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\../../../../../../bin/win32_nd/ConsoleManager.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\../../../../../../bin/win32_nd/app.system_control.system_controller.console_manager.ConsoleManager.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <TypeLibraryName>.\../../../../../../bin/win32_nr/app.system_control.system_controller.console_manager.ConsoleManager.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\..\..\;..\..\..\..\..\..\build\win32_n\transactive;..\..\..\..\..\..\build\win32_n\transactive\core\message\IDL\src;..\..\..\..\..\..\build\win32_n\transactive\core\exceptions\IDL\src;..\..\..\..\..\..\build\win32_n\transactive\core\process_management\IDL\src;..\..\..\..\..\cots\omniORB\$(OMNI_VERSION)\include;..\..\..\..\..\cots\boost\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;__WIN32__;__x86__;__NT__;_WIN32_WINNT=0x500;_CRT_SECURE_NO_DEPRECATE;__OSVERSION__=4;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>.\../../../../../../build/win32_nr/transactive/app/system_control/system_controller/console_manager/app.system_control.system_controller.console_manager.ConsoleManager.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\../../../../../../build/win32_nr/transactive/app/system_control/system_controller/console_manager/</AssemblerListingLocation>
+      <ObjectFileName>.\../../../../../../build/win32_nr/transactive/app/system_control/system_controller/console_manager/</ObjectFileName>
+      <ProgramDataBaseFileName>.\../../../../../../build/win32_nr/transactive/app/system_control/system_controller/console_manager/</ProgramDataBaseFileName>
+      <BrowseInformation>true</BrowseInformation>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>$(OMNI_LIB);oci.lib;rpcrt4.lib;ace.lib;libmysql.lib;TA_mcl.lib;TA_Base_Core.lib;TA_Base_Bus.lib;stracelib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../../../../../../bin/win32_nr/ConsoleManager.exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>../../../../../../sdk/win32_nr;..\..\..\..\..\cots\omniORB\$(OMNI_VERSION)\lib\x86_win32;..\..\..\..\..\cots\oracle\11.2.0\winnt\lib;..\..\..\..\..\cots\ACE\6_0_4\ACE_wrappers\lib;..\..\..\..\..\cots\boost\boost_1_56_0\stage\lib;..\..\..\..\..\cots\WinStackTrace\build\Release;..\..\..\..\..\COTS\Mysql\5.5.15\winnt\lib;..\..\..\..\..\cots\mcl\1.1.1\lib\winnt_mysql.5.5.15_boost1.56.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBC;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\../../../../../../bin/win32_nr/ConsoleManager.pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\../../../../../../bin/win32_nr/app.system_control.system_controller.console_manager.ConsoleManager.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ConsoleManager.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="src\ControlStationCorbaImpl.cpp" />
+    <ClCompile Include="src\ProcessManager.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="src\SystemControllerAdmin.cpp" />
+    <ClCompile Include="src\SystemControllerMonitor.cpp" />
+    <ClCompile Include="src\VersionGen.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_USE_32BIT_TIME_T;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ControlStationConstants.h" />
+    <ClInclude Include="src\ControlStationCorbaImpl.h" />
+    <ClInclude Include="src\ProcessManager.h" />
+    <ClInclude Include="src\SystemControllerAdmin.h" />
+    <ClInclude Include="src\SystemControllerMonitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\ExampleConfig.ini" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,259 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainExceptionsCorba_Idl)
+#define ITrainExceptionsCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for all corba exceptions thrown by the Train Agent
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:40 PM
+     */
+    interface ITrainExceptionsCorba
+    {
+        /**
+         * This exception is thrown when a specified train does not exist.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception InvalidTrainException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            ITrainCommonCorba::TrainId trainId;
+        };
+
+        /**
+         * This exception is thrown when a supplied parameter is invalid.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception InvalidParameterException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            // name of the parameter type that was invalid, eg. "Status 1", "PID Car"
+            string parameterName;
+            // the value of the parameter that was invalid
+            string parameterValue;
+        };
+
+        /**
+         * This exception is thrown when the command to the train cannot be sent over radio.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TransmissionFailureException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+        };
+
+        /**
+         * This exception is thrown when the reply from the train is not received within the timeout period.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TransactionTimeoutException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+        };
+
+        /**
+         * This exception is thrown when a transaction in progress has been cancelled.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TransactionCancelledException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+        };
+
+        /**
+         * This exception is used when an MPU changeover is received while executing a train command.
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception MpuChangeoverException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+        };
+
+        /**
+         * Represents an error from the train
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        enum EBadCommandError
+        {
+            BadChecksum,
+            UnknownCommand,
+            BadParameter,
+            UnexpectedCommand
+        };
+
+        /**
+         * This exception is used when a train command results in a bad command response from the train.
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception BadCommandException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            EBadCommandError errorType;
+        };
+
+        /**
+         * Indicates the failure type of the Radio operation
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        enum ERadioErrorType
+        {
+            RadioCallInvalid,
+            CallSetupFailed,
+            CallSelectFailed,
+            CallEndFailed,
+            DgnaFailed
+        };
+
+        /**
+         * This exception is used for all radio call establishment failures eg. PA Live,
+         * CallDriver, PEC.
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TrainRadioException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            ERadioErrorType errorType;
+        };
+
+        /**
+         * This is raised when a CCTV operation is denied due to a conflicting train.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TrainCctvConflictException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            // This is raised when a CCTV operation is denied due to a conflicting train.
+            ITrainCommonCorba::TrainId owningTrain;
+        };
+
+        /**
+         * Result of a CCTV command
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        enum ECctvCommandStatus
+        {
+            CctvProceeding,
+            CctvInUse,
+            CctvFailed
+        };
+
+        /**
+         * This exception is used when a train CCTV command returns an error.
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TrainCctvException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            ECctvCommandStatus errorType;
+        };
+
+        /**
+         * The result of a PEC command
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        enum EPecCommandResult
+        {
+            PecProceeding,
+            PecInUse,
+            PecFailed
+        };
+
+        /**
+         * This exception is used when a train PEC command returns an error.
+         * @author Robert V
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception TrainPecException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+            EPecCommandResult errorType;
+        };
+
+        /**
+         * This exception is thrown when an invalid selection is made to perform a given action.
+         * "Selection" means a selection of trains that has been saved via the TrainSelectionComponent
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception InvalidSelectionListException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+        };
+
+        /**
+         * This exception is thrown when the requested train radio group is already in use
+         * by another operator (or its use blocked by a conflicting group)
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:40 PM
+         */
+        exception GroupInUseException
+        {
+            // general description of the circumstance that provoked the exception
+            string details;
+        };
+
+    };
+
+};
+
+#endif

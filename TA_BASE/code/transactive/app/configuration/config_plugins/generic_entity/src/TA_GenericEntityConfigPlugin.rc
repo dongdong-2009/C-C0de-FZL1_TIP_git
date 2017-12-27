@@ -1,0 +1,213 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+2 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_GenericEntityConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_GenericEntityConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_GenericEntityConfigPlugin.DLL\0"
+            VALUE "ProductName", "TA_GenericEntityConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_GenericEntityConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ENTITY_VIEW DIALOG DISCARDABLE  0, 0, 432, 333
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,70,19,346,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DESCRIPTION,70,37,346,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ADDRESS,70,55,346,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_PARENT,404,73,12,13
+    PUSHBUTTON      "...",IDC_BUTTON_LOCATION,404,90,12,13
+    PUSHBUTTON      "...",IDC_BUTTON_REGION,404,108,12,13
+    CONTROL         "List2",IDC_LIST_ATTRIBUTES,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,70,144,346,115
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,154,307,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,218,307,50,14
+    LTEXT           "名称:",IDC_STATIC_NAME,16,22,28,13
+    LTEXT           "说明:",IDC_STATIC_DESCRIPTION,16,39,43,13
+    LTEXT           "地址:",IDC_STATIC_ADDRESS,16,56,40,13
+    LTEXT           "父体:",IDC_STATIC_PARENT,16,73,41,13
+    LTEXT           "位置:",IDC_STATIC_LOCATION,16,91,40,13
+    LTEXT           "区域:",IDC_STATIC_REGION,16,109,36,13
+    LTEXT           "子系统:",IDC_STATIC_SUBSYSTEM,16,127,36,13
+    LTEXT           "属性:",IDC_STATIC_ATTRIBUTES,16,143,35,13
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,17,273,53,9
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,17,290,53,9
+    CONTROL         9005,IDC_NAME_BITMAP,"Static",SS_BITMAP,59,23,11,11
+    CONTROL         9005,IDC_DESCRIPTION_BITMAP,"Static",SS_BITMAP,59,41,11,
+                    11
+    CONTROL         9005,IDC_ADDRESS_BITMAP,"Static",SS_BITMAP,59,59,11,11
+    CONTROL         9005,IDC_PARENT_BITMAP,"Static",SS_BITMAP,59,77,11,11
+    CONTROL         9005,IDC_LOCATION_BITMAP,"Static",SS_BITMAP,59,94,11,11
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,70,272,241,13
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,70,289,241,13
+    EDITTEXT        IDC_EDIT_PARENT,70,73,329,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_LOCATION,70,90,329,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_REGION,70,108,329,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SUBSYSTEM,70,126,346,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    GROUPBOX        "类型",IDC_STATIC_TYPE,6,7,418,321
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ENTITY_VIEW, DIALOG
+    BEGIN
+        RIGHTMARGIN, 424
+        VERTGUIDE, 64
+        VERTGUIDE, 70
+        VERTGUIDE, 416
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_GenericEntityConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

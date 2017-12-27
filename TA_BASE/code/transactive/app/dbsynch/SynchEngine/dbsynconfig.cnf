@@ -1,0 +1,57 @@
+; The purpose of this file is to setup some configuration data for 
+; Distributed Heterogeneous Database Synchronization between Oracle
+; and MySQL. The data format in this file is shown below:
+; [section name] 
+; tag = value
+; QueueName    -- the name of the queue which used for synchronizing data
+; CenterDBName -- the name of the central database at Oracle side
+; MsgCompress  -- the options for data compress while traveraling through network
+; PackageSize  -- the maximum package size while traveraling through network
+; SrcDbConStr  -- the source database connection string
+; SkipErrors   -- the errors which can be skipped while occurred at source database
+; LogLevel     -- the log level for debugging
+; LogFileSize  -- the size of log file
+; LogFileCount -- the count of log files
+; LogFileName  -- the path & name of log file
+; ServerPort   -- the port of the SynchEngine while running as server; Config this  
+;                 option while need more than one instance on the same machine.
+; RunType      -- the running type of the SynchEngine, two options available: server/client
+; ConFailMonSwitch  -- the switch for the connection failure monitor mechanism (0: OFF; 1: ON; default: ON) 
+; HeartBeatSwitch   -- the switch for heartbeat mechanism (0: OFF; 1: ON; default: ON)
+; HeartBeatInterval -- the interval time for heartbeat mechanism (unit: seconds) defaule value: 2mins
+; HeartbeatTimeout  -- the heart beat time out (unit: seconds), default value: 5mins
+; BackSlashSwitch   -- the connection option for MySQL back slash (0: disable/OFF;  1: enable/ON; default: OFF) 
+; MysqlCharSet      -- the connection char set option for MySQL database
+
+; enqtimeout   --the timeout of server enq msg, defaule value TIME_MIN_FIVE 300000 millsecs
+; deqtimeout   --the timeout of server deq msg, defaule value TIME_MIN_FIVE 300000 millsecs
+; deqgetacktimeout  --the timeout of get client deqack time, defaule value TIME_MIN_FIFTEEN 900000 millsecs
+; handsharktimeout   --the timeout of get client handshark msg, defaule value TIME_SECOND_TEN 10000 millsecs
+; releaseactortimeout --the timeout of release one server threads, defaule value TIME_MIN_FIVE 300000 millsecs
+; DebugPidFilenames    -- the log file contain PID or not, default value  0 
+
+; enqbatchsize  -- the batch size of Enq default value is 50
+; deqfailovertime -- the timeout of deq fail over, defaule min value TIME_SECOND_FOUR 5000 millsecs, and deq update token time is deqfailovertime/2
+
+
+[dbsyn_com]
+MsgCompress = 1
+PackageSize = 50K
+;HeartBeatSwitch = 1
+;HeartBeatInterval = 120
+;HeartbeatTimeout = 300
+
+[dbsyn_srcDb]
+;SrcDbConStr = MySQL:tra_occ:IT271350_5:IT271350_5:192.168.123.41
+;SkipErrors = 1061,1062
+;MysqlCharSet = gbk
+
+SrcDbConStr = Oracle:TRA_OCC:IT271350_5:IT271350_5
+SkipErrors = 1061,1062
+
+[Log]
+LogLevel = INFO
+LogFileSize = 2000000
+LogFileCount = 50
+LogFileName = s_SynchEngineLog.log
+

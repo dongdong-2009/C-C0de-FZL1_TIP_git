@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{DE1AF323-C0D8-4E40-B027-53CE7C57B57E} = s 'RippleRights'
+		'RippleRights.EXE'
+		{
+			val AppID = s {DE1AF323-C0D8-4E40-B027-53CE7C57B57E}
+		}
+	}
+}

@@ -1,0 +1,244 @@
+'------------------------------------------------------------------------------
+' FILE DESCRIPTION: Contains macros to automate the process of creating comment 
+'					blocks in header files.
+'------------------------------------------------------------------------------
+
+'Strips leading tab spaces. 
+Function StripTabs (ByVal MyStr)
+	Do While InStr(MyStr, vbTab) <> 0 And Instr(MyStr, "(") > Instr(MyStr, vbTab)
+		MyStr = Right(MyStr, Len(MyStr) - InStr(MyStr, vbTab)) 
+	Loop 
+	StripTabs = Trim(MyStr)
+End Function
+
+'Returns a string containing n spaces.
+Function GetIndent(ByVal n)
+	GetIndent = ""
+	For i = 1 to n
+		GetIndent = GetIndent + " "
+	Next
+End Function
+
+'Returns the full name of the currently logged on user.
+Function GetFullName()
+	set net = createobject("wscript.network")
+	adsPath = "WinNT://" & net.userdomain & "/" & net.username  & ",user"
+	set user = getobject(adsPath)
+	GetFullName = user.fullname
+End Function
+
+'Get the return type in the string MyStr, and remove it from the string.
+Sub FindReturnType(ByRef MyStr, ByRef RetTp)
+	' Get the number of "<" characters in the return type.
+	nAngleBrackets = 0
+	Pos = 1
+	StopPos = Instr(MyStr, "(")
+	Do Until Pos = 0 Or Pos > StopPos
+		Pos = Instr(Pos + 1, MyStr, "<") 
+		If Pos <> 0 and Pos < StopPos Then
+			nAngleBrackets = nAngleBrackets + 1
+		End if
+	Loop
+
+	For Count = 1 to nAngleBrackets
+		Reti = Instr(Reti + 1, MyStr, ">")
+	Next
+	'Reti = Instr(Header, ">")
+	If Reti = 0 Then
+		Reti = InStr(MyStr, " ")
+	End If
+	Loc = InStr(MyStr, "(")
+	if Reti < Loc Then
+	  RetTp = Left(MyStr, Reti)
+	  MyStr = Right(MyStr, Len(MyStr) - Reti)
+	End If
+End Sub
+
+'Creates a comment block for a C++ header file.
+Sub AddHeaderFileDescription()
+
+	ActiveWindow.Selection.StartOfDocument
+	'Need to use chr(36) instead of a dollar sign, or CVS will go nuts.
+	Descr = "/**" + vbLf
+	Descr = Descr + "  * The source code in this file is the property of" + vbLf
+	Descr = Descr + "  * Ripple Systems and is not for redistribution" + vbLf
+	Descr = Descr + "  * in any form." + vbLf
+	Descr = Descr + "  *" + vbLf
+	Descr = Descr + "  * Source:   " + chr(36) + "Source" + chr(36) + vbLf
+	Descr = Descr + "  * @author:  " + GetFullName() + vbLf
+	Descr = Descr + "  * @version: " + chr(36) + "Revision" + chr(36) + vbLf
+	Descr = Descr + "  *" + vbLf
+	Descr = Descr + "  * Last modification: " + chr(36) + "Date" + chr(36) + vbLf
+	Descr = Descr + "  * Last modified by:  " + chr(36) + "Author" + chr(36) + vbLf
+	Descr = Descr + "  *" + vbLf
+	Descr = Descr + "  * <description>" + vbLf
+	Descr = Descr + "  *" + vbLf
+	Descr = Descr + "  */" + vbLf + vbLf
+	ActiveDocument.Selection = Descr
+End Sub
+
+'Creates a comment block for the currently selected C/C++ function prototype
+Sub AddFunctionDescription()
+	'Get rid of characters and keywords that we don't need.
+	Selection = Replace(ActiveDocument.Selection, vbTab, "    ")
+	Selection = Replace(Selection, vbLfCr, " ")
+	Selection = Replace(Selection, "virtual ", "")
+	Selection = Replace(Selection, "static ", "")
+
+	'Count the number of spaces at the start of the selection
+	nSpaces = Len(Selection) - Len(LTrim(Selection))
+	indent = getIndent(nSpaces)
+
+	if ActiveDocument.Language = dsCPP Then
+		Header = Trim(Selection)
+
+		'Get the function return type.
+		if Header <> "" then
+			'Get the return type, strip it from the variable Header and put it
+			'in RetTp.
+			FindReturnType Header, RetTp
+
+			'Get the function name.
+			Loc = InStr(Header, "(") - 1
+			Loc2 = InStr(Header, ")")
+			if Loc > 0 And Loc2 > 0 then 'make sure there is a '(' and a ')'
+				fcName = Left(Header, Loc)
+				Header = Right(Header, Len(Header) - Len(fcName))
+
+				'Do we have storage type on the return type?
+				Trim (fcName)
+				If InStr(fcName," ") <> 0 Then
+					retTp = retTp + Left(fcName,InStr (fcName," "))
+					fcName = Right(fcName, Len(fcName) - InStr(fcName," "))
+				End If
+
+				'Get the function parameters.
+				iPrm = 0
+				iPrmA = 0
+				prms = Header 
+
+				'Count the number of parameters. 
+				Do While InStr(prms, ",") <> 0
+					iPrm = iPrm + 1
+					prms = Right(prms, Len(prms) - InStr(prms, ",")) 
+				Loop 
+				
+				'Store the parameter list in the array.
+				If iPrm > 0 Then  ' If multiple params.
+					iPrm = iPrm + 1
+					iPrmA = iPrm
+					Redim ParamArr(iPrm)
+					Do While InStr(header, ",") <> 0
+						ParamArr(iPrm) = Left(Header, InStr (Header, ",") - 1)
+
+						' trim default arg if it exists
+						If InStr (Header, "=") Then
+							ParamArr(iPrm) = Left(ParamArr(iPrm), InStr (Header, "=") - 1)
+							ParamArr(iPrm) = Trim(ParamArr(iPrm))
+						End If
+
+						' Trim from last space to end of string
+						lengthToGet = Len(ParamArr(iPrm)) - InstrRev(ParamArr(iPrm), " ")
+						ParamArr(iPrm) = Right(ParamArr(iPrm), lengthToGet)
+
+						Header = Right(Header, Len(Header) - InStr(Header,","))
+						iPrm = iPrm - 1 
+						Loop 
+					ParamArr(iPrm) = Header 
+					'Remove trailing brace from last parameter.
+					If InStr(ParamArr(iPrm), ")") <> 0 Then
+						ParamArr(iPrm) = Left(ParamArr(iPrm), _
+								InStr(ParamArr(iPrm), ")") - 1)
+						Trim(ParamArr(iPrm))
+					End If
+
+					' trim default arg if it exists
+					If InStr (Header, "=") Then
+						ParamArr(iPrm) = Left(ParamArr(iPrm), InStr (Header, "=") - 1)
+						ParamArr(iPrm) = Trim(ParamArr(iPrm))
+					End If
+
+					' Trim from last space to end of string
+					lengthToGet = Len(ParamArr(iPrm)) - InstrRev(ParamArr(iPrm), " ")
+					ParamArr(iPrm) = Right(ParamArr(iPrm), lengthToGet)
+				Else 'Possibly one param.
+					Redim ParamArr(1)
+					Header = Right(Header, Len(Header) - 1) ' Strip the first brace.
+					Trim(Header)
+					ParamArr(1) = StripTabs(Header)
+					If InStr(ParamArr(1), ")") <> 1 Then
+						ParamArr(1) = Left(ParamArr(1), InStr(ParamArr(1), ")") - 1)
+						Trim(ParamArr(1))
+						iPrmA = 1
+					End If
+
+					' trim default arg if it exists
+					If InStr (Header, "=") Then
+						ParamArr(1) = Left(ParamArr(1), InStr (Header, "=") - 1)
+						ParamArr(1) = Trim(ParamArr(1))
+					End If
+
+					' Trim from last space to end of string
+					lengthToGet = Len(ParamArr(1)) - InstrRev(ParamArr(1), " ")
+					ParamArr(1) = Right(ParamArr(1), lengthToGet)
+				End If
+
+				'Position the cursor one line above the selected text.
+				ActiveDocument.Selection.LineUp
+				ActiveDocument.Selection.LineDown
+				ActiveDocument.Selection.StartOfLine
+
+				Descr =   indent + "/** " + vbLf _
+						+ indent + "  * " + fcName + vbLf _
+						+ indent + "  *" + vbLf _
+						+ indent + "  * description" + vbLf
+
+				Descr = Descr + indent + "  *" + vbLf
+
+				'Print the parameter list. 
+				Last = iPrmA
+				Do While iPrmA <> 0
+					'Remove a line feed from any of the arguments.
+					If InStr(ParamArr(iPrmA), vbLf) <> 0 Then
+						ParamArr(iPrmA) = Right(ParamArr(iPrmA), _
+								(Len(ParamArr(iPrmA)) - _
+								InStr(ParamArr(iPrmA), vbLf)))
+						Trim(ParamArr(iPrmA))
+					End If
+					ParamArr(iPrmA) = StripTabs(ParamArr(iPrmA))
+
+					'Get rid of the keyword "const" from the parameter
+					ParamArr(iPrmA) = Replace(ParamArr(iPrmA), "const ", "")
+
+					'Get rid of the default parameter
+					If Instr(ParamArr(iPrmA), "=") <> 0 Then
+						ParamArr(iPrmA) = Left(ParamArr(iPrmA), _
+										(Instr(ParamArr(iPrmA), "=") - 1))
+					End If
+
+					Descr = Descr + indent + "  * @param " + _
+							ParamArr(iPrmA) + vbLf
+					iPrmA = iPrmA - 1
+				Loop
+
+				If (Trim(retTp) <> "void") and (Trim(retTp) <> "") Then
+					Descr = Descr + indent + "  *" + vbLf _
+								  + indent + "  * @return " + vbLf
+				End If
+
+				'Close the comment block and write it to the file
+				If IPrm > 0 Then
+					Descr = Descr + indent + "  *" + vbLf
+				End If
+				Descr =	Descr + indent + "  */" + vbLf
+				ActiveDocument.Selection = Descr
+			Else
+				MsgBox("It is possible that the function you are trying to"+_
+						" work with has a syntax error.")
+			End if
+		End If
+	Else
+		MsgBox("You need to have an active C/C++ document open"+ _
+				vbLF+"with the function prototype selected.")
+	End If
+End Sub

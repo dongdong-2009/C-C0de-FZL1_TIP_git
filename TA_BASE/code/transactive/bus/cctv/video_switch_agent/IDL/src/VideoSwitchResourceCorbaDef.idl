@@ -1,0 +1,126 @@
+#if !defined(VideoSwitchResourceCorbaDef_B5DC94EC_53A1_432b_99C7_5F3286E2F499__INCLUDED_)
+#define VideoSwitchResourceCorbaDef_B5DC94EC_53A1_432b_99C7_5F3286E2F499__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/VideoSwitchResourceCorbaDef.idl $
+  * @author:  Robert Young
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * Handles all the common functions of VideoSwitchResources.
+  *
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface VideoSwitchResourceCorbaDef
+	{
+
+        /**
+		  * getKey
+		  *
+          * Gets the entity key of the VideoSwitchResource.  This should always be used
+          * to identify the VideoInput, because it is unique and fixed, whereas
+          * names are unique, but are allowed to change.
+          *
+		  * @return		unsigned long
+		  *				The unique entity key of the VideoSwitchResource.
+          *	
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+		unsigned long getKey()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);	
+        
+		/**
+		  * getName
+		  *
+          * Gets the name of the VideoSwitchResource.
+          *
+		  * @return		string
+		  *				The unique name of the VideoSwitchResource.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+		string getName()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * getAddress
+		  *
+          * Gets the name of the VideoSwitchResource.
+          *
+		  * @return		string
+		  *				The address of the VideoSwitchResource.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+		string getAddress()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * getType
+		  * 
+          * Gets the type of the VideoSwitchResource.
+          *
+		  * @return		string
+		  *				The type of the VideoSwitchResource.  e.g. Camera, Sequence, etc.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+ 		  */
+		
+        string getType()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/** 
+		  * getDescription
+		  * 
+          * Gets the description of the VideoSwitchResource.
+          *
+		  * @return		string
+		  *				The description of the VideoSwitchResource.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+  		  */
+
+		string getDescription()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+	}; // VideoSwitchResourceCorbaDef
+
+}; // TA_Base_Bus
+
+#endif // !defined(VideoSwitchResourceCorbaDef_B5DC94EC_53A1_432b_99C7_5F3286E2F499__INCLUDED_)

@@ -1,0 +1,467 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainStateUpdateCorba_Idl)
+#define ITrainStateUpdateCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCctvCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainInformationCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainPaCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainPecCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainRadioGroupCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainTisCorba.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for elements and methods used for State Update. For the TrainAgent,
+     * State updates are broadcast notifications, ie. to every trainagent
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:45 PM
+     */
+    interface ITrainStateUpdateCorba
+    {
+        /**
+         * This notification is used when an agent receives a protocol event for a train
+         * id that it believes it does not/should not have duty for
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct NonDutyTrainTSI
+        {
+            ITrainCommonCorba::TrainId trainId;
+            string trainTsi;
+            unsigned long trainLocation;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        enum ETrainResource
+        {
+            CoreResource,
+            TrainAlarmResource,
+            TrainCctvResource,
+            TrainTisResource,
+            TrainPaResource,
+            TrainCallResource,
+            TrainPecResource
+        };
+
+        /**
+         * This is metadata stored about ongoing calls
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct RadioCallDetails
+        {
+            // The console ID so the call ID can be uniquely identified in the system
+            unsigned long consoleId;
+            // the call in progress (0 if none)
+            unsigned long callId;
+            // the session id of the operator calling this train, "" if none
+            string sessionId;
+            // The called Tsi
+            string calledTsi;
+            // The type of call this is
+            ETrainResource resourceType;
+        };
+
+        /**
+         * A list of call details
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<RadioCallDetails> RadioCallDetailsList;
+
+        /**
+         * Represents a saved train selection list
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct SavedTrainSelection
+        {
+            string name;
+            ITrainCommonCorba::TrainList trains;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<SavedTrainSelection> SavedTrainSelectionSequence;
+
+        /**
+         * This is the train alarm state used for state updates. Decoupled from corba.
+         * 
+         * This is a local state and is only synchronised between peer agents.
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct AlarmState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // This is the alarm ID for the ATC timer alarm if it is raised
+            string atcAlarmId;
+            // This is the alarm ID for the OA1 timer alarm if it is raised
+            string oa1AlarmId;
+            // This is the alarm ID for the radio modealarm if it is raised
+            string radioModeAlarmId;
+            // This is the alarm ID for the cctv pre conflict alarm if it is raised
+            string cctvPreConflictAlarmId;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<AlarmState> AlarmStateList;
+
+
+        /**
+         * The type of call in progress to the train
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        enum ETrainCallType
+        {
+            NoCall,
+            TrainCallOcc,
+            OccCallTrain
+        };
+
+        /**
+         * structure used to synchronise the train call state
+         * 
+         * This is a local state and is only synchronised between peer agents.
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct CallState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // If there is an incoming call
+            boolean incomingCall;
+            // If there is an incoming call, the time it came in.
+            long incomingCallTime;
+            // If a call is in progress (established) and its type
+            ETrainCallType callType;
+            // the session id of the operator calling this train, "" if none
+            string sessionId;
+            // The console ID so the call ID can be uniquely identified in the system
+            unsigned long consoleId;
+            // the call in progress (0 if none)
+            unsigned long callId;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<CallState> CallStateList;
+
+        /**
+         * structure used to synchronise the train pa state
+         * 
+         * This is a local state and is only synchronised between peer agents.
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct PaState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // The session ID of the operator performing a live broadcast.
+            string sessionId;
+            // The ID of the ongoing live announcement on the train.
+            ITrainPaCorba::AnnouncementId liveAnnouncementId;
+            // The console ID so the call ID can be uniquely identified in the system
+            unsigned long liveAnnouncemenConsoleId;
+            // The Radio call ID of the live announcement
+            unsigned long liveAnnouncementCallId;
+            // The static group to be used for the audio call if any
+            string liveAnnouncementStaticGroup;
+            // This is the number of times a PA live announcement has been auto acknowledged.
+            octet autoContinueAckCount;
+            // This is true if auto continues have all been sent, and the operator's continue
+            // is required.
+            boolean continueRequired;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<PaState> PaStateList;
+
+        /**
+         * structure used to synchronise the train pec state
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct PecState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // The session ID of the operator who answered the PEC
+            string sessionId;
+            // The console ID so the call ID can be uniquely identified in the system
+            unsigned long consoleId;
+            // The Radio call ID of the pec call
+            unsigned long callId;
+            // This is the number of times a pec has been auto acknowledged.
+            octet autoContinueCounter;
+            ITrainPecCorba::PecPointCollection activePecPoints;
+            // This is true if auto continues have all been sent, and the operator's continue
+            // is required.
+            boolean continueRequired;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<PecState> PecStateList;
+
+        /**
+         * The TTIS library that is being downloaded (library, schedule, or none)
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        enum ETtisDownloadType
+        {
+            TtisNone,
+            TtisLibrary,
+            TtisSchedule
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct TtdFrame
+        {
+            sequence<octet> data;
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<TtdFrame> TtdFrameList;
+
+        /**
+         * structure used to synchronise the train tis state
+         * 
+         * This is a local state and is only synchronised between peer agents.
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct TisState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // This is the type of library being downloaded to the train currently
+            ETtisDownloadType downloadType;
+            // This is the list of frames being downloaded to the train currently. Used for
+            // repetition requests.
+            // The frames are stored in order, so frame 1 at position 0 and so on.
+            TtdFrameList currentDownload;
+            // This is the version currently being downloaded to the train.
+            unsigned short currentDownloadVersion;
+            // The session ID of the operator who initiated the download
+            string sessionId;
+            // If there is a circuit mode transfer ongoing, the TSI it is to
+            string transferTsi;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<TisState> TisStateList;
+
+        /**
+         * This is the local state synchronised between peer agents only
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct FullLocalState
+        {
+            // The agents operation mode
+            ITrainInformationCorba::AgentOperationMode operationMode;
+            // The ongoing radio calls within this agent
+            RadioCallDetailsList ongoingCalls;
+            // A list of saved selection lists
+            SavedTrainSelectionSequence selectionLists;
+            AlarmStateList alarmStates;
+            CallStateList callStates;
+            PaStateList paStates;
+            PecStateList pecStates;
+            TisStateList tisStates;
+        };
+
+        /**
+         * Used for state updates.
+         * 
+         * This is a global state and is synchronised across all train agents
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct CctvState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // The current state of the cctv
+            ITrainCctvCorba::ECctvSwitchMode cctvSwitchMode;
+            octet item1;
+            octet item2;
+            octet item3;
+            octet item4;
+            // The train ID this train is in pre conflict with, 0 if no pre conflict
+            ITrainCommonCorba::TrainId preConflictTrain;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<CctvState> CctvStateList;
+
+        /**
+         * Represents MPU Main or MPU Backup
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        enum ETimsOrigin
+        {
+            MpuBackup,
+            MpuMain
+        };
+
+        /**
+         * structure used to synchronise the train comms state
+         * 
+         * This is a global state and is synchronised across all train agents
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct CommsState
+        {
+            ITrainCommonCorba::TrainId trainId;
+            // The TSI of the first MPU
+            string primaryMpuTsi;
+            // The TSI of the second MPU
+            string secondaryMpuTsi;
+            // Whether the primarm or secondary MPU is the active one
+            ETimsOrigin activeMpu;
+            // The PA library version on the train.
+            unsigned short paLibraryVersion;
+            // The version of the predefined message library on the train
+            unsigned short ttisLibraryVersion;
+            // The version of the time schedule library on the train
+            unsigned short ttisScheduleVersion;
+            // true if the train is sending OA1 tables.
+            boolean oa1Valid;
+            // true if the train is sending ATC tables.
+            boolean atcValid;
+            // This is where the train is currently sending OA1/ATC tables. If the
+            // communication is not valid, this is the last place they were sent, or 0 if they
+            // were never sent.
+            unsigned long communicatingLocation;
+            // The last update time of the state
+            long timestamp;
+        };
+
+        /**
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        typedef sequence<CommsState> CommsStateList;
+
+        /**
+         * This is the global state synchronised across all locations
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:45 PM
+         */
+        struct FullGlobalState
+        {
+            CommsStateList commsStates;
+            CctvStateList cctvStates;
+            ITrainRadioGroupCorba::TrainRadioGroupList radioGroupList;
+        };
+
+
+        /**
+         * This queries this agent and returns all local state held by this agent. The
+         * information it returns is relevant only to the peer of this agent (ie this is
+         * only used between control/monitor pairs).
+         * 
+         * @return the full local state of this agent
+         */
+        FullLocalState getLocalState()
+			raises (TA_Base_Core::OperationModeException);//limin
+
+        /**
+         * This queries this agent and returns all global state held by this agent. The
+         * information it returns is relevant to all train agents throughout the system.
+         * 
+         * @return the full global state of this agent
+         */
+        FullGlobalState getGlobalState()
+			raises (TA_Base_Core::OperationModeException);//limin
+
+    };
+
+};
+
+#endif

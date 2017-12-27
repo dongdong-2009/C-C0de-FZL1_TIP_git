@@ -1,0 +1,322 @@
+#if !defined(VideoInputCorbaDef_B5DC94EC_53A1_432b_99C7_5F3286E2F499__INCLUDED_)
+#define VideoInputCorbaDef_B5DC94EC_53A1_432b_99C7_5F3286E2F499__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv_gzl9/video_switch_agent/IDL/src/VideoInputCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * Handles all the common functions of VideoInputs.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv_gzl9/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv_gzl9/video_switch_agent/IDL/src/VideoSwitchResourceCorbaDef.idl"
+#include "bus/cctv_gzl9/video_switch_agent/IDL/src/SuperimposedTextControlCorbaDef.idl"
+
+module TA_Base_Bus_GZL9
+{
+    interface VideoInputCorbaDef : VideoSwitchResourceCorbaDef
+	{
+	    //
+        // A struct defining the features that are supported by this Camera.
+        //
+
+        struct SupportedVideoInputFeatures
+        {
+            boolean isSuperimposeDateSupported;
+            boolean isSuperimposeNameSupported;
+            boolean isSuperimposeTextSupported;
+        };
+
+
+        //
+        // A struct defining the current state of this VideoInput.
+		// This is sent in the VideoInputStateUpdate messages.
+        //
+        
+        struct VideoInputState
+        {
+			string type;						// The value returned from getType().
+			string sessionIdOfLockOwner;		// This will be "" if locking is not being used or if no-one holds the lock.
+            boolean isPublicViewingAllowed;		// Are the public allowed to access this VideoInput (ie. on the internet)?
+            boolean isInService;				// Is this VideoInput in service?
+            boolean isDateSuperimposed;			// Is the date superimposed on this VideoInput?
+            boolean isNameSuperimposed;			// Is the VideoInput's name (from getName()) superimposed on this VideoInput?
+            string superimposedText;			// The message text superimposed on this VideoInput or "" if it is blank.
+        };
+                
+        /**
+          * getSupportedVideoInputFeatures
+          *
+          * Gets the features that this VideoInput supports.
+          *
+          * @return     TA_Base_Bus_GZL9::VideoInputCorbaDef::SupportedVideoInputFeatures
+          *             A struct detailing which VideoInput features are supported.
+		  *				If an error occurs while retrieving the information from
+		  *				the database, it will be assumed that the feature is 
+		  *				not supported.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+          */
+ 
+        SupportedVideoInputFeatures getSupportedVideoInputFeatures()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getVideoInputState
+          *
+          * Gets the current state of this VideoInput.
+          *
+          * @return     VideoInputState
+          *             A struct detailing the current VideoInput state. 
+		  *				It is the caller's responsibility to clean up this struct.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+		  *				5. There is a communications failure with the hardware.
+          */
+
+		VideoInputState getVideoInputState()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException,TA_Base_Core::OperationModeException );
+
+		/**
+		  * getVideoInputGroupName
+		  *
+          * Gets the name of the group that this VideoInput belongs to.
+          *
+		  * @return		string
+		  *				The unique name of the group that this VideoInput belongs to.
+          *             The group name is used for grouping the inputs when
+          *             they are displayed.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+		string getVideoInputGroupName()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+		
+		/** 
+		  * isSuperimposedTextControllable
+		  *
+		  * Identifies if superimposing text on the VideoInput is supported.
+		  * Note: This does not identify if all the superimpose text functions
+		  *	(superimpose date, name or free text) are suppported. It should 
+		  * only be used to determine if the interface to the SuperimposedTextControl 
+		  * object exists.
+		  *
+		  * @return		boolean
+		  *				True if the interface to the SuperimposedTextControl object exists.
+		  *				False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+		
+		boolean isSuperimposedTextControllable()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * getSuperimposedTextControl
+		  *
+		  * Gets the interface to the SuperimposedTextControl.
+		  *
+		  * @return		SuperimposedTextControlCorbaDef
+		  *				The interface to the control for displaying superimposed text.		
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if 
+          *             1. The agent is in Monitor mode.
+          *             2. !isSuperimposedTextControllable()
+		  */
+
+		SuperimposedTextControlCorbaDef getSuperimposedTextControl()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * lock
+		  *
+		  * Locks the VideoInput so that the given user session has exclusive
+		  *	control of the VideoInput.
+		  * 
+		  * @param		string sessionId
+		  *				Security id used to identify if this user has permission
+		  *				to lock this object and to identify the holder of the lock.
+		  * 
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. Another user owns the lock for this VideoInput.
+          *             2. The VideoInput or the protocol does not support this operation.
+  		  *				3. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware.
+		  */
+		
+		void lock( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * unlock
+		  *
+		  * Unlocks the VideoInput so that the given user session no longer has 
+		  *	exclusive control of the VideoInput.  This method does nothing if the
+          * lock is not already held by this user.
+		  * 
+		  * @param		string sessionId
+		  *				Security id used to identify if this user currently holds
+		  *				the lock.
+		  * 
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The VideoInput or the protocol does not support this operation.
+  		  *				2. The agent is in Monitor mode.
+		  *				3. The user does not have sufficient privileges for this operation.
+		  *				4. There is a communications failure with the hardware.
+		  */	
+		
+		void unlock( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * overrideLock
+		  *
+		  * Overrides any current ownership of the lock for this VideoInput giving
+          * the given user the exclusive camera lock.
+		  * 
+		  * @param		string sessionId
+		  *				Security id used to identify if this user currently holds
+		  *				the lock or if this user has the privileges to override 
+		  *				the lock.
+		  * 
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The VideoInput or the protocol does not support this operation.
+  		  *				2. The agent is in Monitor mode.
+		  *				3. The user does not have sufficient privileges for this operation.
+		  *				4. There is a communications failure with the hardware.
+		  */	
+		
+		void overrideLock( in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * isPublicViewingAllowed
+		  *
+		  * Identifies if this VideoInput is allowed to be viewed publicly 
+		  * (e.g. on the internet).
+		  *
+		  * @return		boolean
+		  *				True if the VideoInput is allowed to be viewed publicly.
+		  *				False if the VideoInput is not allowed to be viewed publicly
+		  *				or if public viewing control is not supported.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+		  *				5. There is a communications failure with the hardware.
+		  */
+
+		boolean isPublicViewingAllowed()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * setPublicViewingAllowed
+		  *
+		  * Sets if this VideoInput is allowed to be viewed publicly 
+		  * (e.g. on the internet).
+		  *
+		  * @param		boolean isPublicViewingAllowed
+		  *				True if the VideoInput is allowed to be viewed publicly.
+		  *				False otherwise.
+		  * @param		string sessionId
+		  *				Security id used to identify if this user has permission
+		  *				to set the viewing status of this VideoInput.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+          *             1. The user does not own the lock for this VideoInput.
+          *             2. The VideoInput or the protocol does not support this operation.
+		  *				3. The database cannot be accessed.
+		  *				4. The data cannot be retrieved.
+		  *				5. The retrieved data is invalid.
+		  *				6. The agent is in Monitor mode.
+		  *				7. The user does not have sufficient privileges for this operation.
+		  *				8. There is a communications failure with the hardware.
+		  */
+
+		void setPublicViewingAllowed( in boolean isPublicViewingAllowed, in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+		
+		/**
+		  * isInService
+		  *
+		  * Identifies if this VideoInput is in or out of service.
+		  *
+		  * @return		boolean
+		  *				True if the VideoInput is in service.
+		  *				False if the VideoInput is not in service
+		  *				or if service status control is not supported.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+		  *				5. There is a communications failure with the hardware.
+		  */
+
+		boolean isInService()
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+		
+		/**
+		  * setInService
+		  *
+		  * Sets this VideoInput in or out of service.
+		  *
+		  * @param		boolean isInService
+		  *				True to set the VideoInput in service.
+		  *				False to set the VideoInput out of service.
+		  * @param		string sessionId
+		  *				Security id used to identify if this user has permission
+		  *				to set the service status of this VideoInput.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+          *             1. The user does not own the lock for this VideoInput.
+          *             2. The VideoInput or the protocol does not support this operation.
+		  *				3. The database cannot be accessed.
+		  *				4. The data cannot be retrieved.
+		  *				5. The retrieved data is invalid.
+		  *				6. The agent is in Monitor mode.
+		  *				7. The user does not have sufficient privileges for this operation.
+		  *				8. There is a communications failure with the hardware.
+ 		  */
+		
+		void setInService( in boolean isInService, in string sessionId )
+            raises( TA_Base_Bus_GZL9::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	}; // VideoInputCorbaDef
+
+}; // TA_Base_Bus
+
+#endif // !defined(VideoInputCorbaDef_B5DC94EC_53A1_432b_99C7_5F3286E2F499__INCLUDED_)

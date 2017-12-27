@@ -1,0 +1,26 @@
+HKCR
+{
+	ATSBridgeUtil.ATSBridgeUtility.1 = s 'ATSBridgeUtility Class'
+	{
+		CLSID = s '{23B16F05-40CA-47B2-8FB4-9DE37C67CADE}'
+	}
+	ATSBridgeUtil.ATSBridgeUtility = s 'ATSBridgeUtility Class'
+	{
+		CLSID = s '{23B16F05-40CA-47B2-8FB4-9DE37C67CADE}'
+		CurVer = s 'ATSBridgeUtil.ATSBridgeUtility.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {23B16F05-40CA-47B2-8FB4-9DE37C67CADE} = s 'ATSBridgeUtility Class'
+		{
+			ProgID = s 'ATSBridgeUtil.ATSBridgeUtility.1'
+			VersionIndependentProgID = s 'ATSBridgeUtil.ATSBridgeUtility'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{56D26B63-492F-46F9-B16F-04C3503A9376}'
+		}
+	}
+}

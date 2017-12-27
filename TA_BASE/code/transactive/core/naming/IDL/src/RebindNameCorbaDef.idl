@@ -1,0 +1,66 @@
+/**
+ * The source code in this file is the property of 
+ * Ripple Systems and is not for redistribution
+ * in any form.
+ *
+ * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/naming/IDL/src/RebindNameCorbaDef.idl $
+ * @author:  Cameron Rochester
+ * @version: $Revision: #1 $
+ *
+ * Last modification: $DateTime: 2015/01/19 17:43:23 $
+ * Last modified by:  $Author: CM $
+ * 
+ * Interface used to broadcast named obj ref changes
+ */
+
+module TA_Base_Core
+{
+	interface NamedObjectRepositoryCorbaDef;
+
+	/**
+	* map a name to an object
+	*/
+	struct NameObjectPair
+	{
+		/**
+		* the object name that is stored
+		*/
+		string objectName;
+
+		/**
+		* the object reference for the given name
+		*/
+		Object objectReference;
+	};
+
+	typedef sequence<NameObjectPair> NameObjectPairSeq;
+
+	struct RebindNameCorbaDef
+	{
+		/**
+		* The context of the bound objects
+		*/
+		string agentName;
+
+		/**
+		 * Reference to the object repository
+		 */
+		NamedObjectRepositoryCorbaDef objectRepository;
+
+		/**
+		 * How long this name should be cached, if at all
+		 */
+		unsigned long timeToLive;
+		
+		/**
+		* When this set, all objects that are within the given
+		* context should be reset
+		*/
+		boolean contextOnly;
+
+		/**
+		* All the objects bound within this context
+		*/
+		NameObjectPairSeq boundObjects;
+	};
+};

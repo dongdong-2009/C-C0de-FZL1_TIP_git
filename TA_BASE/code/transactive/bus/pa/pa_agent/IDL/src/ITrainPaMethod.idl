@@ -1,0 +1,144 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/pa/pa_agent/IDL/src/ITrainPaMethod.idl $
+// @author:  Sean Liew
+// @version: $Revision: #2 $
+//
+// Last modification: $DateTime: 2015/01/22 11:33:55 $
+// Last modified by:  $Author: qi.huang $
+//
+// PA Agent IDL interface.
+//
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/pa/pa_agent/IDL/src/IPAAgentCorbaDef.idl"
+
+
+module TA_Base_Bus
+{
+
+	interface ITrainPaMethod
+	{
+
+		/////////////////////////
+		// Train Broadcasts
+		/////////////////////////
+
+        // Returns a string for the broadcastId
+        string broadcastTrainDva 
+            ( in IPAAgentCorbaDef::TrainCoverage trains, 
+              in unsigned long messageKey,
+              in unsigned long libraryVersion,
+              in IPAAgentCorbaDef::TrainCyclicParams announcementPeriod,
+			  in boolean hasOverrideOption,
+              in string sessionId,
+			  in boolean bEmergency )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        // Returns a string for the broadcastId
+        string broadcastTrainLive 
+            ( in IPAAgentCorbaDef::TrainCoverage trains,
+			  in boolean hasOverrideOption,
+              in string staticGroup,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+ 		void beginTrainLiveAnnouncement 
+            ( in string broadcastId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		void continueTrainLiveAnnouncement 
+            ( in string broadcastId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		void endTrainLiveAnnouncement
+            ( in string broadcastId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void retryTrainBroadcast 
+            ( in string broadcastId, 
+              in IPAAgentCorbaDef::TrainCoverage trains,
+              in boolean hasOverrideOption,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		///////////////////////////////////////////////////////////////////////
+        //
+		//     PA Agent Methods
+        //
+		///////////////////////////////////////////////////////////////////////
+
+        void terminateBroadcast 
+            ( in string broadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        // broadcast must be terminated first 
+        void removeBroadcast 
+            ( in string broadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::BroadcastIdTypeSeq getBroadcastIdTypes()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+        
+        void changeBroadcastId 
+            ( in string fromBroadcastId, 
+              in string toBroadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::BroadcastConfig getBroadcastConfig 
+            ( in string broadcastId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::ProgressReport getProgressReport 
+            ( in string broadcastId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		////////////////////////////////////////////
+		// Methods to retrieve database configuration
+		////////////////////////////////////////////
+        
+        IPAAgentCorbaDef::TrainDvaMessageRecords getTrainDvaMessageRecords()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		////////////////////////////////////////////
+		// Event Triggered Train DVA Broadcasts
+		////////////////////////////////////////////
+
+        void broadcastEventTriggeredTrainDva 
+            ( in unsigned long messageKey,
+              in short libraryVersion,
+              in IPAAgentCorbaDef::TrainCyclicParams announcementPeriod,
+              in string sessionId,
+              in IPAAgentCorbaDef::TrainCoverage trains )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastEventTriggeredTrainDvaForStation 
+            ( in unsigned long messageKey,
+              in short libraryVersion,
+              in IPAAgentCorbaDef::TrainCyclicParams announcementPeriod,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastEventTriggeredTrainDvaForInbound 
+            ( in unsigned long messageKey,
+              in short libraryVersion,
+              in IPAAgentCorbaDef::TrainCyclicParams announcementPeriod,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastEventTriggeredTrainDvaForOutbound
+            ( in unsigned long messageKey,
+              in short libraryVersion,
+              in IPAAgentCorbaDef::TrainCyclicParams announcementPeriod,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+	}; // ITrainPaMethod
+
+}; // TA_IRS_Bus
+

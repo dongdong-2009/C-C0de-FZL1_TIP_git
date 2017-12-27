@@ -1,0 +1,476 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/data_access_interface/tis_agent/IDL/src/TISMessageDataDefinitions.idl $
+// @author:  Rob Ashcroft
+// @version: $Revision: #2 $
+//
+// Last modification: $DateTime: 2015/01/21 18:27:55 $
+// Last modified by:  $Author: hongzhi.zhang $
+//
+// TIS Message common data definitions.
+//
+
+
+module TA_Base_Core
+{
+    //add for 3001 stis
+
+
+    //
+    // Common TIS types (TTIS and STIS)
+    //
+
+	enum EDisplayMode
+	{
+		SCROLL_LEFT,
+		SCROLL_RIGHT,
+		SCROLL_UP,
+		SCROLL_DOWN,
+		NORMAL_STATIONARY,
+		BLINKING,
+		WIPING,
+		SNOW,
+		////////////////
+		//stis_display_mode
+		INSTANT_ON_STIS,
+		SCROLL_LEFT_STIS,
+		SCROLL_RIGHT_STIS,
+		ROLL_UP_STIS,
+		ROLL_DOWN_STIS,
+		WIPE_LEFT_STIS,
+		WIPE_RIGHT_STIS,
+		LEFT_MULTIPLE_WIPING_STIS,
+		RIGHT_MULTIPLE_WIPING_STIS,
+		CURTAIN_OPEN_STIS,
+		CURTAIN_CLOSE_STIS,
+		RANDOM_ORDER_STIS,
+		CENTER_SPREAD_STIS,
+		TWO_ENDS_SPREAD_STIS,
+		FLASHING_STIS,
+		BLINKING_STIS,
+		COLOR_CHANGE_STIS,
+		DROPPING_STIS
+
+	};
+	
+    enum EJustification
+	{
+		LEFT,
+		CENTRED,
+		RIGHT
+	};
+
+	enum ELibrarySection
+	{
+		EMERGENCY_SECTION,
+		NORMAL_SECTION
+	};
+
+    //
+    // TTIS only types
+    //
+
+
+	typedef sequence<octet> TrainList;
+
+	enum EPIDSelection
+	{
+		ENTIRE_TRAIN,
+		ALL_CAR1,
+		ALL_CAR2,
+		ALL_CAR3,
+		CAR1_PID1,
+		CAR1_PID2,
+		CAR1_PID3,
+		CAR1_PID4,
+		CAR2_PID1,
+		CAR2_PID2,
+		CAR2_PID3,
+		CAR2_PID4,
+		CAR3_PID1,
+		CAR3_PID2,
+		CAR3_PID3,
+		CAR3_PID4
+	};
+
+	typedef sequence<EPIDSelection> TrainPIDList;
+
+    enum ETTISLEDFontSize
+	{
+		TTIS_FONT_SIZE_SMALL,
+		TTIS_FONT_SIZE_LARGE
+	};
+
+	enum ETTISLEDIntensity
+	{
+		NORMAL,
+		HIGH
+	};
+
+	enum ETTISMessagePriority
+	{
+		TTIS_PRIORITY_1,
+		TTIS_PRIORITY_2,
+		TTIS_PRIORITY_3,
+		TTIS_PRIORITY_4,
+		TTIS_PRIORITY_5,
+		TTIS_PRIORITY_6,
+		TTIS_PRIORITY_7,
+        TTIS_PRIORITY_8
+	};
+	enum ETTISClearType
+	{
+		CLEAR_ALL,
+		CLEAR_EMERGENCY,
+		CLEAR_NORMAL,
+		CLEAR_PRIORITY6
+	};
+    struct TTISMessageResetParameters
+    {
+        TrainPIDList pidList;
+        ETTISClearType messageType;
+    };
+
+    struct TTISPredefinedMessageParameters
+    {
+        TrainPIDList pidList;
+        unsigned long libraryVersion;
+        octet perRun;
+        unsigned short messageId;
+    };
+
+    struct TTISFreeTextMessageParameters
+    {
+        TrainPIDList pidList;
+        ETTISLEDFontSize fontSize;
+        EJustification justification;
+        ETTISLEDIntensity intensity;
+        EDisplayMode displayMode;
+        octet perRun;
+        string message;
+    };
+
+    enum TisCommandType
+    {
+        TisFreeTextMessageCommand,
+        TisPredefinedMessageCommand,
+        TisClearCommand
+    };
+
+    struct TTISDisplayResult
+    {
+        octet trainId;
+        string sessionId;
+        long timestamp;
+        boolean success;
+        string errorDetails;
+        TisCommandType originalCommand;
+    };
+
+    // holds the current versions for each train
+	// requested by guis, and also sent as an update by the Tis Agent
+	struct TrainDataVersion
+	{
+		octet trainNumber;
+
+		unsigned long predefinedLibraryVersion;
+		unsigned long nextPredefinedLibraryVersion;
+
+		unsigned short trainTimeScheduleVersion;
+		unsigned short nextTrainTimeScheduleVersion;
+	};
+
+    typedef sequence<TrainDataVersion> TrainDataVersionList;
+
+	struct TrainDownload
+	{
+		octet trainNumber;
+		boolean predefinedDownloadInProgress;
+		boolean timeScheduleDownloadInProgress;
+	};
+
+	typedef sequence<TrainDownload> TrainDownloadList;
+
+	enum EDownloadChangeType
+	{
+		LibraryDownloadStart,
+		LibraryDownloadFinish,
+		LibraryUpgrade,
+		ScheduleDownloadStart,
+		ScheduleDownloadFinish,
+		ScheduleUpgrade
+	};
+
+	// sent in a message when a download/upgrade starts or finishes
+	struct TrainDownloadStatus
+	{
+		octet trainNumber;
+		EDownloadChangeType type;
+		boolean success;	// only on download/upgrage finish
+		string errorDetails; // only on download/upgrage finish
+	};
+
+	enum ETimeScheduleChangeType
+	{
+		Added,
+		Deleted,
+		Modified
+	};
+
+    // sent when a GUI notifies the agent it has changed a time schedule
+	// this is so other guis know when the schedules change
+	struct TimeScheduleChange
+	{
+		unsigned long timeSchedulePkey;
+		ETimeScheduleChangeType changeType;
+	};
+
+    struct TrainDataVersionAlarms
+	{
+		octet trainNumber;
+		string messageLibraryMistmatchAlarm;
+        unsigned long iscsLibraryVersion;
+        unsigned long trainLibraryVersion;
+		string timeScheduleMistmatchAlarm;
+        unsigned short iscsScheduleVersion;
+        unsigned short trainScheduleVersion;
+	};
+
+	typedef sequence<TrainDataVersionAlarms> TrainDataVersionAlarmList;
+
+    //
+    // STIS only types
+    //
+
+    //3001 lcd font size
+    enum ELcdFontSize
+    {
+		LCD_SMALL_FONT, // font size 36
+		LCD_MEDIUM_FONT, // font size 60
+		LCD_LARGE_FONT // font size 128
+    };
+
+    //3001 lcd font colour
+    enum ELcdFontColour
+    {
+        BLACK,
+        WHITE,
+        RED,
+        GREEN,
+        BLUE,
+        YELLOW,
+        CYAN,
+        MAGENTA,
+        ORANGE
+    };
+
+
+	enum EScrollSpeed
+	{
+		SCROLL_SLOW, // 0
+		SCROLL_MEDIUM, // 8
+		SCROLL_FAST // F
+	};
+
+	enum EFontType
+	{
+		DEFAULT_PLASMA_FONT,
+		TIMES_NEW_ROMAN,
+		ARIAL,
+		COURIER_NEW,
+		PLASMA_FONT_RESERVED4,	// valid values according to the protocol
+		PLASMA_FONT_RESERVED5,	// just not defined - reserved
+		PLASMA_FONT_RESERVED6,
+		PLASMA_FONT_RESERVED7,
+		PLASMA_FONT_RESERVED8,
+		PLASMA_FONT_RESERVED9
+	};
+
+	enum EPlasmaColour
+	{
+		PLASMA_BLACK,
+		PLASMA_WHITE,
+		PLASMA_RED,
+		PLASMA_GREEN,
+		PLASMA_BLUE,
+		PLASMA_YELLOW,
+		PLASMA_CYAN,
+		PLASMA_MAGENTA,
+		PLASMA_ORANGE,
+		PLASMA_BROWN,
+		PLASMA_GREY,
+		PLASMA_LIGHT_BLUE,
+		PLASMA_LIGHT_GREEN,
+		PLASMA_LIGHT_RED,
+		PLASMA_COLOUR_RESERVED_E,
+		PLASMA_COLOUR_RESERVED_F
+	};
+
+	enum EPlasmaFontSize
+	{
+		PLASMA_FONT_SIZE_UNUSED,
+		PLASMA_FONT_SIZE_24,
+		PLASMA_FONT_SIZE_36,
+		PLASMA_FONT_SIZE_42,
+		PLASMA_FONT_SIZE_48,
+		PLASMA_FONT_SIZE_60,
+		PLASMA_FONT_SIZE_72,
+		PLASMA_FONT_SIZE_96,
+		PLASMA_FONT_SIZE_128
+	};
+
+	enum EStationType
+	{
+		DEPARTURE,
+		ARRIVAL
+	};
+
+	enum ELEDColour
+	{
+		LED_RED,
+        //green and orange added in 3001
+        LED_GREEN,
+        LED_ORANGE
+	};
+	typedef ELEDColour ELEDFontColour;
+
+	enum ELEDFontSize
+	{
+		FONT_SIZE_SMALL,
+		FONT_SIZE_MEDIUM,
+		FONT_SIZE_LARGE
+	};
+
+	enum ELEDIntensity
+	{
+		INTENSITY_LOW,
+		INTENSITY_MEDIUM,
+		INTENSITY_HIGH
+	};
+
+	enum EStatusRequestType
+	{
+		STATUS_REQUEST_OCC,
+		STATUS_REQUEST_STATION
+	};
+
+	enum ERATISMessageType
+	{
+		RATIS_IN_NEW,
+		RATIS_OUT_NEW,
+		RATIS_IN_UPDATE,
+		RATIS_OUT_UPDATE,
+		RATIS_IN_CLEAR,
+		RATIS_OUT_CLEAR
+	};
+
+	enum ERATISMessageStatus
+	{
+		APPROVED,           // Message has been successfully approved
+		NOT_APPROVED,       // Message has not been approved/rejected
+        REJECTED,           // Message has been successfully rejected
+        APPROVE_FAILED      // Message failed to be approved due to some failure e.g. fail to contact STIS server
+	};
+
+	enum EPIDControl
+	{
+		TURN_ON,
+		TURN_OFF
+	};
+
+	typedef sequence<string> PIDList;
+	typedef sequence<string> LevelList;
+
+	struct STISDestination
+	{
+		string station;   // 3 character station ID, e.g 'DBG'
+        LevelList levels; // List of levels as they appear in the datanode name, e.g. 'Concourse' 'Basement2'
+		PIDList pids;     // Datanode name as it appears in the full datanode name e.g 'PDP02' 'LED05'
+	};
+
+	typedef sequence<STISDestination> STISDestinationList;
+
+	struct DisplayAttributes
+	{
+		EDisplayMode displayMode;
+		EScrollSpeed scrollSpeed;
+		short repeatInterval;
+		short displayTime;
+        octet perRun;
+		EJustification justification;
+	};
+
+	struct PlasmaAttributes
+	{
+		EFontType fontType;
+		EPlasmaFontSize fontSize;
+		EPlasmaColour fontColour;
+		EPlasmaColour backgroundColour;
+	};
+
+	
+	struct STISAttributes
+	{
+		EDisplayMode displayMode;
+		EScrollSpeed scrollSpeed;
+		unsigned short repeatInterval;
+		unsigned short displayTime;
+		EJustification justification;
+		ELcdFontSize lcdFontSize; //value from 0 to 8
+		ELcdFontColour lcdFontColour;
+		ELEDFontSize ledFontSize;
+		ELEDFontColour ledFontColour;
+	};
+
+	/*
+	struct LEDAttributes
+	{
+		ELEDFontSize fontSize;
+		ELEDIntensity intensity;
+		ELEDFontColour fontColour;
+		ELEDFontColour backgroundColour;
+	};
+	*/
+
+    struct LEDAttributes
+    {
+		ELEDFontSize fontSize;
+        ELEDFontColour fontColour;
+		ELEDIntensity intensity;
+    };
+
+    struct LCDAttributesSTIS
+    {
+        ELcdFontSize fontSize;
+        ELcdFontColour fontColour;
+    };
+
+	struct TimeScheduleVersion
+	{
+		unsigned short version;
+		unsigned long timeScheduleKey;
+	};
+
+	//hongran++ TD17502
+	enum IfSendSuccess
+	{
+		Pass,
+		Fail,
+		NA
+	};
+	//++hongran TD17502
+
+	struct CurrentDisplayingMessage
+	{
+		wstring messageContent;
+		string startTime;
+		string endTime;
+		short priority;
+	};
+
+}; // TA_Base_Core
+
+

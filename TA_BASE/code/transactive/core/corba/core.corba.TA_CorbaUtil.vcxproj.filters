@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{a55ddd62-0dd3-4744-864c-aac3f26e5ed0}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CorbaUtil.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServantActivator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ServantBase.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\CorbaUtil.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ServantActivator.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ServantBase.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

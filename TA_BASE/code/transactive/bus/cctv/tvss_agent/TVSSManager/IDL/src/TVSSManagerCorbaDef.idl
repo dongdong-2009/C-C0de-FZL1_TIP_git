@@ -1,0 +1,46 @@
+
+#ifndef TVSS_MANAGER_IDL_INCLUDE
+#define TVSS_MANAGER_IDL_INCLUDE
+
+module TA_Base_Bus
+{
+	interface TVSSManagerCorbaDef
+	{
+		exception TVSSException
+		{
+			string what;
+		};
+
+		enum TVSSCommandType
+		{
+			ClearImage,
+			SingleScreen,
+			QuadScreen,
+			SequnceScreen,
+			MappingMonitor,
+			SingleScreenAlarm,
+			QuadScreenAlarm,
+			SequnceScreenAlarm
+		};
+
+		struct TVSSCommand
+		{
+			TVSSCommandType cmdType;
+			long trainId;
+			char monitorId;
+			char videoInput[4];
+		};
+
+		void tvssClearImage( in long trainId, in char monitorId) raises(TVSSException);
+		void tvssQuadScreen( in long trainId, in char monitorId, in char quadId )raises(TVSSException);
+		void tvssSingleScreen( in long trainId, in char monitorId, in char cameraX )raises(TVSSException);
+		void tvssPecSingleScreen( in long trainId, in char monitorId, in char cameraX )raises(TVSSException);
+		void tvssSequencingScreen( in long trainId, in char monitorId, in char sequenceId )raises(TVSSException);
+		void tvssAcknowledgeEvent(in long trainId,in char monitorId,in char cameraX,in char cameraY)raises(TVSSException);
+		void tvssTrainBorneEvent(in long  trainID,in string eventSt)raises(TVSSException);
+		void tvssEquipmentAlarmQuery( )raises(TVSSException);
+		void tvssAcknowledgeAlarm(in unsigned long entityKey,in string sessionID)raises(TVSSException);
+	};
+};
+
+#endif

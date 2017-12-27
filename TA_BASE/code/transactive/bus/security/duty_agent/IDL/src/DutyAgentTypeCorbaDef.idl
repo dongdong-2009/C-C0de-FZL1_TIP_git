@@ -1,0 +1,224 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/duty_agent/IDL/src/DutyAgentTypeCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Duty Agent IDL data types.
+//
+
+#ifndef DUTYAGENTTYPECORBADEF_H_INCLUDED
+#define DUTYAGENTTYPECORBADEF_H_INCLUDED
+
+#include <bus/security/duty_agent/IDL/src/IDutyAgentRespCorbaDef.idl>
+
+module TA_Base_Bus
+{
+	interface DutyAgentTypeCorbaDef
+	{
+		// Exceptions
+		exception UnhandledException
+		{
+			string reason;
+		};
+
+		// General typedefs
+		typedef string SessionId;
+		typedef string ActionId;
+		typedef unsigned long Key;
+		
+		typedef sequence <Key> KeySequence;
+		typedef sequence <SessionId> SessionIdSequence;
+
+		// Constants
+		const Key INVALID_KEY=0xFFFFFFFF;
+
+		// Used in comms messages sent by the Duty Agent
+		struct RegionDuty
+		{
+			Key       regionKey;
+			SessionId session;
+			Key       profileKey;
+			Key       profileTypeKey;
+		};
+
+		typedef sequence <RegionDuty> RegionDutySequence;
+
+		struct  RegionDutyChanges
+		{
+			RegionDutySequence add;
+			RegionDutySequence rem;
+		};
+		
+		// Used in comms messages sent by the Duty Agent
+		struct SubsystemDuty
+		{
+			Key       regionKey;
+			Key       subsystemKey;
+			SessionId session;
+			Key       profileKey;
+			Key       actionGroupKey;
+		};
+
+		typedef sequence <SubsystemDuty> SubsystemDutySequence;
+
+		// Response to transferable region queries
+		struct TransferableRegion
+		{
+			Key    regionKey;
+			Key    operatorKey;
+			Key    profileKey;
+		};
+		
+		typedef sequence <TransferableRegion> TransferableRegionSequence;
+		
+		// Response to transfable subsystem queries
+		struct TransferableSubsystem
+		{
+			Key    regionKey;
+			Key    subsystemKey;
+			Key    operatorKey;
+			Key    profileKey;
+		};
+
+		typedef sequence <TransferableSubsystem> TransferableSubsystemSequence;
+
+		// Used to specify a set of regions and subsystems at those regions
+		struct SubsystemTree
+		{
+			Key         region;
+			KeySequence subsystems;
+		};
+
+		typedef sequence <SubsystemTree> SubsystemTreeSequence;
+		
+		// Used to query or set the subsystem state
+		struct SubsystemState
+		{
+			Key             regionKey;
+			Key             subsystemKey;
+			unsigned long   prevState;
+			unsigned long   currState;
+		};
+
+		typedef sequence <SubsystemState> SubsystemStateSequence;
+
+		struct SubSession
+		{
+			Key	              subsystem;
+			SessionIdSequence sessions;
+		};
+
+		typedef sequence <SubSession> SubSessionSequence;
+
+		struct RightsLibraryUpdate
+		{
+			Key                region;
+			SubSessionSequence duty;
+		};
+
+		typedef sequence <RightsLibraryUpdate> RightsLibraryUpdateSequence;
+
+		struct VersionedRightsLibraryUpdate
+		{
+			unsigned long versionNum;
+			RightsLibraryUpdateSequence rightsUpdate;
+		};
+
+		struct  SubsystemDutyChanges
+		{
+			SubsystemDutySequence add;
+			SubsystemDutySequence remove;
+			RightsLibraryUpdateSequence rightsUpdate;
+		};
+
+		// The CORBA representation of the TA_Base_Bus::DutyState C++ class attributes
+		struct DaDutyPrimitive
+		{
+			SessionId session;
+			Key       profile;
+		};
+
+		typedef sequence <DaDutyPrimitive> DaDutyPrimitiveSequence;
+			
+		struct DaSubDuty
+		{
+			Key                     subsystem;
+			unsigned long           addState;
+			unsigned long           remState;
+			DaDutyPrimitiveSequence add;
+			DaDutyPrimitiveSequence remove;
+			DaDutyPrimitive         deniedBy;
+			DaDutyPrimitive         timedOut;
+		};
+
+		typedef sequence <DaSubDuty> DaSubDutySequence;
+
+		struct DaRegDuty
+		{
+			DaDutyPrimitiveSequence add;
+			DaDutyPrimitiveSequence remove;
+			DaDutyPrimitive         replace;
+		};
+
+		struct DaDuty
+		{
+			Key region;
+			DaRegDuty   regDuty;
+			DaSubDutySequence subDuty;
+		};
+
+		typedef sequence <DaDuty> DaDutySequence;
+
+		// Control Station Updates
+		struct DutyTree
+		{
+			SessionId     session;
+			unsigned long profile;
+	
+			SubsystemTreeSequence subsystems;
+		};
+
+		typedef sequence <DutyTree> DutyTreeSequence;
+
+		struct DutyRequest
+		{
+			SessionId   targetSession;
+			string      uniqueId;
+			DutyTree    duty;
+
+			IDutyAgentRespCorbaDef dutyAgent;
+		};
+
+		struct DutyPopup
+		{
+			SessionId targetSession;
+			DutyTreeSequence gained;
+			DutyTreeSequence denied;
+			DutyTreeSequence lost;
+		};
+
+		// TD19075
+		typedef sequence <DutyPopup> DutyPopupSequence;
+
+		struct DutyChangeDetail
+		{
+			string action;
+			DutyPopupSequence dutySeq;
+		};
+		// TD19075
+
+		struct StationStatus
+		{
+			Key		regionKey;
+			boolean isOnline;
+		};
+	};
+};
+#endif //DUTYAGENTTYPECORBADEF_H_INCLUDED

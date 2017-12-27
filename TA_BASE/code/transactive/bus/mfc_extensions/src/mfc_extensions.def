@@ -1,0 +1,7 @@
+; mfc_extensions.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TransActiveMFCExtensions"
+DESCRIPTION  'Transactive extensions to the MFC library'
+
+EXPORTS
+    ; Explicit exports can go here

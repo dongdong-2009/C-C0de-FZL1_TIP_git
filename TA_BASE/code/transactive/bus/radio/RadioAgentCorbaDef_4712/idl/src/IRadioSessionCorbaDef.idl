@@ -1,0 +1,231 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/radio/RadioAgentCorbaDef_4712/idl/src/IRadioSessionCorbaDef.idl $
+// @author:  Andy Parker
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Radio Session IDL interface.
+//
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/radio/RadioAgentCorbaDef_4712/idl/src/IRadioCorbaDef.idl"
+
+
+module TA_Base_Bus_4712
+{
+
+	interface IRadioSessionCorbaDef
+	{
+		// Error from Radio API
+		exception radioAPIException
+		{
+			string  what;
+			//long    errorNo;
+		};
+
+        exception radioFallbackException
+        {
+        };
+
+		exception sessionNotInitialiseException
+		{
+		};
+
+		exception invalidCallIDException
+		{
+		};
+
+		exception invalidRequestException
+		{
+		};
+
+		exception accessDeniedException
+		{
+			string what;
+		};
+
+		enum ECallType
+		{
+			SingleCall,
+            GroupUnacknowledgeCall,
+			GroupAcknowledgeCall,
+			GroupBroadcastCall
+		};
+		
+		// TD14696  
+		// Radio Priorities
+		enum ECallPriority
+		{
+			Priority0,
+			Priority1,
+			Priority2,
+			Priority3,				
+			Priority4,	
+			Priority5,	
+			Priority6,	
+			Priority7,	
+			Priority8,	
+			Priority9,	
+			Priority10,	
+			Priority11,	
+			Priority12,	
+			Priority13,	
+			Priority14,	
+			Priority15,	
+			DefaultNormalPriority,	  // Indicates the default normal call priority
+			DefaultEmergencyPriority  // Indicates the default emergency call priority
+		};
+		
+		//TD14593
+		struct BaseStation 
+		{
+			long     Id;
+			string  name;
+		};
+
+		typedef sequence<BaseStation> BaseStationList;
+
+
+		struct RegionalCallZone 
+		{
+			long    zoneId;
+			string  zoneName;
+		};
+
+
+		struct RegionalCallZoneDefinition 
+		{
+			RegionalCallZone  zone;
+			BaseStationList   baseStations;
+		};
+
+		typedef sequence<RegionalCallZoneDefinition> RegionalCallZoneDefinitionList;
+
+		long getMaxBaseStationInRegionalCall()
+			raises (radioAPIException,sessionNotInitialiseException,accessDeniedException);
+		
+		RegionalCallZoneDefinitionList getRegionalCallZoneInformation()
+			raises (radioAPIException,sessionNotInitialiseException,accessDeniedException);	
+
+		void createRegionalCallGroup(in long zone, in BaseStationList baseStations)
+			raises (radioAPIException,sessionNotInitialiseException,accessDeniedException); 
+
+		void  deleteRegionalCallGroup(in long zoneId) 
+			raises (radioAPIException,sessionNotInitialiseException,accessDeniedException); 
+		//TD14593
+
+
+		// *** Get session reference to identify our calls ***
+		long getSessionReference(in string sessionID) 
+		        raises (radioAPIException,sessionNotInitialiseException,accessDeniedException);
+
+		void sessionLogin(in string radioUserName,in string sessionID)
+		        raises (radioAPIException,sessionNotInitialiseException,accessDeniedException);
+
+		void sessionLogout(in string sessionID)
+		        raises (radioAPIException,sessionNotInitialiseException,accessDeniedException);
+
+		// *** Call Control ***
+		void answerCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		// TD14696
+		//long makeCall(in string destinationTSI,in ECallType callType,in boolean fullDuplex,in boolean emergencyCall,in boolean hook,in string sessionId,in boolean isInvisibleToGUIApps)
+		//		raises (radioAPIException,accessDeniedException);
+		long makeCall(in string destinationTSI,in ECallType callType,in boolean fullDuplex,in ECallPriority callPriority,in boolean hook,in string sessionId,in boolean isInvisibleToGUIApps)
+				raises (radioAPIException,accessDeniedException);
+		//
+
+		void releaseCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+				
+		void holdCall(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void resumeCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		long includeSubscriber(in long callID, in string destinationTSI,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void demandTX(in short priority,in string sessionID,out unsigned long queuedID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void ceaseTX(in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void selectCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void deselectCall(in long callID,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void adjustCallVolume(in long callID,in boolean increaseVol,in string sessionID) 
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		// Dynamic Groups
+		typedef sequence<string>            DestinationTSIList;
+
+		// Returns the dynamic group GTSI
+		string makeDynamicGroup(in DestinationTSIList destTSIs, in string sessionID)
+		        raises (radioAPIException,accessDeniedException);
+
+
+		// Text messaging
+
+		typedef sequence<octet> MessageDataType;
+		//Haipeng changed the interface to get the status from the servant.
+		boolean sendTextMessage(in string destinationTSI,in string message,in string sessionId, out string status)
+		        raises (radioAPIException,accessDeniedException);
+
+		// Call monitoring functions
+		long startListening(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+		
+		void stopListening(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		long joinCall(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+
+		void terminateCall(in long callID,in string sessionID)
+		        raises (radioAPIException,invalidCallIDException,accessDeniedException);
+	
+		void getActiveCalls(in string TSI,in string sessionID)
+		        raises (radioAPIException,accessDeniedException);
+
+		long startMonitoring(in string TSI,in string sessionID)
+		        raises (radioAPIException,accessDeniedException);
+
+		void stopMonitoring(in string TSI,in string sessionID)
+		        raises (radioAPIException,invalidRequestException,accessDeniedException);
+
+		// Call Forwarding
+		void setCallForwarding(in IRadioCorbaDef::CallForwardDetails details,in string sessionID)
+		        raises (radioAPIException,accessDeniedException);
+
+		IRadioCorbaDef::CallForwardDetails getCallForwarding()
+		        raises (radioAPIException,accessDeniedException);
+
+		// Patch management
+		typedef sequence<string>            PatchList;
+
+		void createPatch(in PatchList patchSubscribers,in string patchName,in string SessionId)
+		        raises (radioAPIException,accessDeniedException);
+
+		void deletePatch(in string patchName,in string SessionId)
+		        raises (radioAPIException,accessDeniedException);
+		string getPatchOwnerITSI();
+
+		// FlexibleTimeoutNamedObject calls this method to calculate the
+		// timoeut value based on the current configuration
+		unsigned short getFlexibleTimeOutValue() raises (TA_Base_Core::OperationModeException);
+
+	}; // IRadioSessionCorbaDef
+}; // TA_Base_Bus
+

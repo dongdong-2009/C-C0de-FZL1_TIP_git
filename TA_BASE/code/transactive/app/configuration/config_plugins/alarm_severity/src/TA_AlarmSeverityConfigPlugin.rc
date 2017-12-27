@@ -1,0 +1,235 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+2 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_AlarmSeverityConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_AlarmSeverityConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_AlarmSeverityConfigPlugin.DLL\0"
+            VALUE "ProductName", "TA_AlarmSeverityConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_AlarmSeverityConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ALARM_SEVERITY_VIEW DIALOGEX 0, 0, 433, 178
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "Arial Bold"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,69,19,349,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_FG_COLOUR1,101,67,36,13,ES_AUTOHSCROLL | NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BUTTON_FG_COLOUR1,144,67,15,14
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,159,153,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,223,153,50,14
+    GROUPBOX        "",IDC_STATIC_TYPE,9,6,417,165
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,16,120,53,9
+    LTEXT           "名称:",IDC_STATIC_NAME,16,22,28,13
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,16,137,53,9
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,69,120,241,13
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,69,137,241,13
+    CONTROL         9005,IDC_NAME_BITMAP,"Static",SS_BITMAP,63,23,11,11
+    LTEXT           "前景色1",IDC_STATIC_FG_COLOUR1,15,67,71,13
+    CONTROL         9005,IDC_BITMAP_FG_COLOUR1,"Static",SS_BITMAP,95,70,11,
+                    11,WS_EX_TRANSPARENT
+    LTEXT           "警报状态:",IDC_STATIC_ALARM_STATE,15,45,50,14
+    COMBOBOX        IDC_ALARM_STATE,69,44,135,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_FG_COLOUR2,268,67,36,13,ES_AUTOHSCROLL | NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BUTTON_FG_COLOUR2,311,67,15,14
+    LTEXT           "前景色2",IDC_STATIC_FG_COLOUR2,182,67,71,13
+    CONTROL         9005,IDC_BITMAP_FG_COLOUR2,"Static",SS_BITMAP,262,70,11,
+                    11
+    EDITTEXT        IDC_EDIT_BG_COLOUR1,101,93,36,13,ES_AUTOHSCROLL | NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BUTTON_BG_COLOUR1,144,93,15,14
+    LTEXT           "背景色1",IDC_STATIC_BG_COLOUR1,15,93,71,13
+    CONTROL         9005,IDC_BITMAP_BG_COLOUR1,"Static",SS_BITMAP,95,96,11,
+                    11
+    EDITTEXT        IDC_EDIT_BG_COLOUR2,268,93,36,13,ES_AUTOHSCROLL | NOT 
+                    WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BUTTON_BG_COLOUR2,311,93,15,14
+    LTEXT           "背景色2",IDC_STATIC_BG_COLOUR2,182,93,71,13
+    CONTROL         9005,IDC_BITMAP_BG_COLOUR2,"Static",SS_BITMAP,262,96,11,
+                    11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ALARM_SEVERITY_VIEW, DIALOG
+    BEGIN
+        RIGHTMARGIN, 376
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 171
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_ALARM_SEVERITY_VIEW DLGINIT
+BEGIN
+    IDC_ALARM_STATE, 0x403, 11, 0
+0xf2b4, 0xaabf, 0xd1d2, 0xd8bb, 0xa6d3, "\000",          
+
+    IDC_ALARM_STATE, 0x403, 11, 0
+0xf2b4, 0xaabf, 0xb4ce, 0xd8bb, 0xa6d3, "\000",          
+    IDC_ALARM_STATE, 0x403, 11, 0
+0xd8b9, 0xd5b1, 0xb4ce, 0xd8bb, 0xa6d3, "\000",          
+    IDC_ALARM_STATE, 0x403, 17, 0
+0xa1d1, 0xd0d6, 0xc4b5, 0xf2b4, 0xaabf, 0xd1d2, 0xd8bb, 0xa6d3, "\000",          
+    IDC_ALARM_STATE, 0x403, 17, 0
+0xa1d1, 0xd0d6, 0xc4b5, 0xf2b4, 0xaabf, 0xb4ce, 0xd8bb, 0xa6d3, "\000",          
+    IDC_ALARM_STATE, 0x403, 17, 0
+0xa1d1, 0xd0d6, 0xc4b5, 0xd8b9, 0xd5b1, 0xb4ce, 0xd8bb, 0xa6d3, "\000",          
+    0
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_AlarmSeverityConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

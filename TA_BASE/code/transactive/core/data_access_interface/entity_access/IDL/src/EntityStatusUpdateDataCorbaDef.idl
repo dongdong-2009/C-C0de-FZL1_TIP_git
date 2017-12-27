@@ -1,0 +1,39 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/data_access_interface/entity_access/IDL/src/EntityStatusUpdateDataCorbaDef.idl $
+  * @author:  Ripple
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  *
+  * <description>
+  *
+  */
+#if !defined(ENTITYSTATUSUPDATE_IDL)
+#define ENTITYSTATUSUPDATE_IDL
+
+ 
+module TA_Base_Core
+{	 
+  
+   struct EntityStatusUpdateCorbaDef
+   {
+		unsigned long entityKey;
+		string lastSessionId;
+		unsigned long lastModifyDate;
+		string entityStatusDataValue;
+		unsigned long entityStatusType;
+		unsigned long entityStatusDataType;    
+   };
+   
+	// Entity Status Update details
+    typedef sequence<EntityStatusUpdateCorbaDef> EntityStatusUpdateSequence; 
+   
+
+}; // module TA_Base_Core
+
+#endif // !defined(ENTITYSTATUSUPDATE_IDL)

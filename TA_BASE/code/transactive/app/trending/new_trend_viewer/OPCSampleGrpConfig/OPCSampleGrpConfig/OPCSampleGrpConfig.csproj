@@ -1,0 +1,209 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{68FBD6AE-2DB2-4D8C-9729-9A11577582C6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OPCSampleGrpConfig</RootNamespace>
+    <AssemblyName>OPCSampleGrpConfig</AssemblyName>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\bin\win32_nd\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\bin\win32_nd\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ChineseString.cs" />
+    <Compile Include="Common\EnglishString.cs" />
+    <Compile Include="Common\FormCaptionHelper.cs" />
+    <Compile Include="Controller\OPCDataSelectorController.cs" />
+    <Compile Include="Controller\OPCSampleGrpConfigStartController.cs" />
+    <Compile Include="Model\OPCDataSelectorModel.cs" />
+    <Compile Include="Model\OPCSampleGrpConfigStartModel.cs" />
+    <Compile Include="View\OPCSampleGrpConfigStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OPCSampleGrpConfigStart.designer.cs">
+      <DependentUpon>OPCSampleGrpConfigStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\OPCDataSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OPCDataSelector.designer.cs">
+      <DependentUpon>OPCDataSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\OPCSampleGrpConfigStart.resx">
+      <DependentUpon>OPCSampleGrpConfigStart.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OPCDataSelector.resx">
+      <DependentUpon>OPCDataSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="View\OPCSampleGrpConfigViewFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Notes%2816%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Erase%2816%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Erase_24.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nav_icon_insertkey.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save file.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Previous.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviousEnd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NextEnd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search v2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Yes v3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\blank.gif" />
+    <Content Include="Resources\img_checkmark.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DAO.Trending\DAO.Trending.csproj">
+      <Project>{E3417E6D-7B59-41DC-AAEB-CB376FB5830F}</Project>
+      <Name>DAO.Trending</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Entity.Trending\Entity.Trending.csproj">
+      <Project>{4D60352D-4118-4DD8-8D9A-45EB585C3830}</Project>
+      <Name>Entity.Trending</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.GenericGUI\STEE.ISCS.GenericGUI.csproj">
+      <Project>{6AEE1C9A-97BB-4D8B-B195-50AEF2F4D1EF}</Project>
+      <Name>STEE.ISCS.GenericGUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.LOG\STEE.ISCS.Log.csproj">
+      <Project>{1A02D3A3-31E6-4037-B769-8C311F468BAB}</Project>
+      <Name>STEE.ISCS.Log</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.MulLanguage\STEE.ISCS.MulLanguage.csproj">
+      <Project>{F5B95A85-BDE7-4F19-A6C5-C2AB8010B7BE}</Project>
+      <Name>STEE.ISCS.MulLanguage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\STEE.ISCS.MVC\STEE.ISCS.MVC.csproj">
+      <Project>{CE78950A-F16F-44D3-A52C-EB62ACECB33F}</Project>
+      <Name>STEE.ISCS.MVC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TrendingHelper\TrendingHelper.csproj">
+      <Project>{86898DA5-B846-4BC4-9AF2-51E9868B4A40}</Project>
+      <Name>TrendingHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

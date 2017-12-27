@@ -1,0 +1,199 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/signs/TisManagerCorbaDef/src/ITTISManagerCorbaDef.idl $
+// @author:  Rob Ashcroft
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Train Traveller Information System (TTIS) Manager IDL interface.
+//
+
+#ifndef ITTISMANAGERCORBADEF_IDL_INCLUDED
+#define ITTISMANAGERCORBADEF_IDL_INCLUDED
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include <core/data_access_interface/tis_agent/IDL/src/TISMessageDataDefinitions.idl>
+
+module TA_Base_Bus
+{
+
+	interface ITTISManagerCorbaDef
+	{
+
+		exception TTISInvalidParameter
+		{
+			string details;  // e.g. Invalid train id, No PA call for sessionID
+		};
+
+		/*
+		* This exception thrown when any other fault occurs that means the command
+		* cannot be successfully completed. Including: Bad command, invalid checksum, 
+		* different library version, ...
+		*/
+		exception TTISGeneralFailure
+		{
+			string details;
+		};
+
+
+        /**
+         * FlexibleTimeoutNamedObject calls this method to calculate the timoeut value
+         * based on the current configuration
+         */
+        unsigned short getFlexibleTimeOutValue()
+        	raises (TA_Base_Core::OperationModeException);
+
+	
+		/**
+          * submitPredefinedDisplayRequest
+          *
+          * This method allows clients to initiate the display of a predefined message.
+		  * The result will be sent asynchronously back in a TTISDisplayResult message
+          *
+          * @param trains the trains to execute the command on
+          * @param displayParameters the parameters for the display request
+          * @param timestamp the timestamp of the request on the source/client. Used to identify the result message for success/failure.
+          * @param sessionId the operator initiating the command
+          * 
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+          * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+          * @exception TTISInvalidParameter if one of the options given for the operation is erroneous
+          * @exception TTISGeneralFailure for a general error
+          */
+		void submitPredefinedDisplayRequest( in TA_Base_Core::TrainList trains,
+                                             in TA_Base_Core::TTISPredefinedMessageParameters displayParameters,
+                                             in long timestamp,
+                                             in string sessionId )
+				raises ( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TTISInvalidParameter, TTISGeneralFailure );
+
+		/**
+          * submitAdHocDisplayRequest
+          *
+          * This method allows clients to initiate the display of an adhoc message.
+		  * The result will be sent asynchronously back in a TTISDisplayResult message
+          * 
+          * @param trains the trains to execute the command on
+          * @param displayParameters the parameters for the display request
+          * @param timestamp the timestamp of the request on the source/client. Used to identify the result message for success/failure.
+          * @param sessionId the operator initiating the command
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+          * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+          * @exception TTISInvalidParameter if one of the options given for the operation is erroneous
+          * @exception TTISGeneralFailure for a general error
+          */
+		void submitAdHocDisplayRequest( in TA_Base_Core::TrainList trains,
+                                        in TA_Base_Core::TTISFreeTextMessageParameters displayParameters,
+                                        in long timestamp,
+                                        in string sessionId )
+				raises ( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TTISInvalidParameter, TTISGeneralFailure );
+									
+		/**
+		  * submitClearRequest
+		  *
+		  * This method allows clients to initiate the clearing of a PID and its queue.
+		  * The result will be sent asynchronously back in a TTISDisplayResult message
+		  * 
+          * @param trains the trains to execute the command on
+          * @param displayParameters the parameters for the display request
+          * @param timestamp the timestamp of the request on the source/client. Used to identify the result message for success/failure.
+          * @param sessionId the operator initiating the command
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+          * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+          * @exception TTISInvalidParameter if one of the options given for the operation is erroneous
+          * @exception TTISGeneralFailure for a general error
+		  */
+		void submitClearRequest( in TA_Base_Core::TrainList trains,
+                                 in TA_Base_Core::TTISMessageResetParameters displayParameters,
+                                 in long timestamp,
+                                 in string sessionId )
+				raises ( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TTISInvalidParameter, TTISGeneralFailure );
+
+
+		/**
+		  * downloadNextMessageLibrary
+		  *
+		  * This method allows clients to initiate the download of the next predefined message library.
+		  * The result will be sent asynchronously back in a TrainDownloadStatus message
+		  * 
+          * @param trains the trains to execute the command on
+          * @param sessionId the operator initiating the command
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+          * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+          * @exception TTISInvalidParameter if one of the options given for the operation is erroneous
+          * @exception TTISGeneralFailure for a general error
+		  */
+		void downloadNextMessageLibrary( in TA_Base_Core::TrainList trains, in string sessionId )
+				raises ( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TTISInvalidParameter, TTISGeneralFailure );
+
+
+		void cancelDownloadMessageLibrary( in TA_Base_Core::TrainList trains, in string sessionId )
+				raises ( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TTISInvalidParameter, TTISGeneralFailure );
+
+		/**
+		  * upgradeMessageLibrary
+		  *
+		  * This method allows clients to send an upgrade command to inform a train to switch to the recently downloaded message library.
+		  * The result will be sent asynchronously back in a TrainDownloadStatus message
+		  * 
+          * @param trains the trains to execute the command on
+          * @param sessionId the operator initiating the command
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+          * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+          * @exception TTISInvalidParameter if one of the options given for the operation is erroneous
+          * @exception TTISGeneralFailure for a general error
+		  */
+		void upgradeMessageLibrary( in TA_Base_Core::TrainList trains, in string sessionId )
+				raises ( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TTISInvalidParameter, TTISGeneralFailure );
+
+		/**
+		  *	getCurrentTrainDownloads
+		  *
+		  * Get the list of current message downloads
+		  *
+		  *	@return the train id's and the downloads that are in progress.
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+		  */
+		TA_Base_Core::TrainDownloadList getCurrentTrainDownloads()
+                raises ( TA_Base_Core::OperationModeException );
+
+		/**
+		  *	getMessageLibraryVersions
+		  *
+		  * Get the message library versions and upgrade status for each train.
+		  *
+		  *	@return the pre-defined and time schedule versions for each train.
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+		  */
+		TA_Base_Core::TrainDataVersionList getTrainDataVersions()
+            raises ( TA_Base_Core::OperationModeException );
+
+
+    	/**
+		  *	getTrainDataAlarms
+		  *
+		  * Gets the alarm status for each train
+		  *
+		  * @return the pre-defined and time schedule version alarms for each train.
+		  *
+          * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+		  */
+		TA_Base_Core::TrainDataVersionAlarmList getTrainDataAlarms()
+            raises ( TA_Base_Core::OperationModeException );
+
+
+	}; // ITTISManagerCorbaDef
+
+}; // TA_Bus
+
+#endif

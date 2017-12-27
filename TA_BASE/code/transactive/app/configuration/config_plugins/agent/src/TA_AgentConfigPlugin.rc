@@ -1,0 +1,339 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+2 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_AgentConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_AgentConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_AgentConfigPlugin.DLL\0"
+            VALUE "ProductName", "TA_AgentConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_AgentConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AGENT_VIEW DIALOG DISCARDABLE  0, 0, 424, 456
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,86,18,319,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DESCRIPTION,86,35,319,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_EXECUTABLE,86,52,319,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ADDRESS,86,69,319,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_LOCATION,394,86,12,13
+    EDITTEXT        IDC_EDIT_USERNAME,86,120,319,13,ES_AUTOHSCROLL
+    CONTROL         "",IDC_CHECK_MANAGED,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,85,169,8,8
+    CONTROL         "",IDC_CHECK_SERVICE,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,85,185,8,8
+    CONTROL         "",IDC_CHECK_FAILBACK,"Button",BS_AUTOCHECKBOX | 
+                    BS_LEFTTEXT | WS_TABSTOP,85,201,8,8
+    EDITTEXT        IDC_EDIT_LAG,85,214,20,13,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_STARTUP,303,167,20,13,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_CONTROL,303,182,20,13,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_MONITOR,303,198,20,13,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_TERMINATE,303,214,20,13,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_KILL,303,231,20,13,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "List2",IDC_LIST_ATTRIBUTES,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,86,263,319,124
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,155,424,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,219,424,50,14
+    GROUPBOX        "状态",IDC_STATIC_STATUS,7,5,409,443
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,17,397,53,9
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,17,412,53,9
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,87,395,241,13
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,87,410,241,13
+    LTEXT           "名称:",IDC_STATIC_NAME,17,21,47,13
+    LTEXT           "说明:",IDC_STATIC_DESCRIPTION,17,38,43,13
+    LTEXT           "可执行的:",IDC_STATIC_EXECUTABLE,17,55,40,13
+    LTEXT           "位置:",IDC_STATIC_LOCATION,17,88,40,13
+    LTEXT           "属性:",IDC_STATIC_ATTRIBUTES,17,263,38,13
+    EDITTEXT        IDC_EDIT_LOCATION,86,86,302,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CONTROL         9005,IDC_NAME_BITMAP,"Static",SS_BITMAP,79,22,11,11
+    CONTROL         9005,IDC_DESCRIPTION_BITMAP,"Static",SS_BITMAP,79,39,11,
+                    11
+    CONTROL         9005,IDC_EXECUTABLE_BITMAP,"Static",SS_BITMAP,79,56,11,
+                    11
+    CONTROL         9005,IDC_LOCATION_BITMAP,"Static",SS_BITMAP,79,91,11,11
+    LTEXT           "用户名:",IDC_STATIC_USERNAME,17,123,39,13
+    CONTROL         9005,IDC_USERNAME_BITMAP,"Static",SS_BITMAP,79,124,11,11
+    LTEXT           "管理进程:",IDC_STATIC_MANAGED,17,169,59,8
+    LTEXT           "服务进程:",IDC_STATIC_SERVICE,17,185,54,8
+    LTEXT           "自动撤销:",IDC_STATIC_FAILBACK,17,201,47,8
+    LTEXT           "终止超时:",IDC_STATIC_TERMINATE,229,217,64,8
+    LTEXT           "结束超时:",IDC_STATIC_KILL,229,233,42,8
+    LTEXT           "开始延迟:",IDC_STATIC_LAG,17,217,32,8
+    CONTROL         9005,IDC_LAG_BITMAP,"Static",SS_BITMAP,77,218,11,11
+    LTEXT           "地址:",IDC_STATIC_ADDRESS,17,72,40,13
+    LTEXT           "秒",IDC_STATIC_SECONDS1,332,217,27,8
+    LTEXT           "秒",IDC_STATIC_SECONDS2,332,233,27,8
+    LTEXT           "秒",IDC_STATIC_SECONDS3,109,217,27,8
+    EDITTEXT        IDC_EDIT_SUBSYSTEM,86,103,319,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "子系统:",IDC_STATIC_SUBSYSTEM,17,106,40,13
+    CONTROL         9005,IDC_ADDRESS_BITMAP,"Static",SS_BITMAP,79,73,11,11
+    LTEXT           "开始超时:",IDC_STATIC_STARTUP,229,169,46,8
+    LTEXT           "秒",IDC_STATIC_SECONDS4,332,169,27,8
+    LTEXT           "控制超时:",IDC_STATIC_CONTROL,229,185,54,8
+    LTEXT           "秒",IDC_STATIC_SECONDS5,332,185,27,8
+    LTEXT           "监视超时:",IDC_STATIC_MONITOR,229,201,55,8
+    LTEXT           "秒",IDC_STATIC_SECONDS6,332,201,27,8
+    EDITTEXT        IDC_EDIT_PRIORITY,85,231,20,13,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "优先级:",IDC_STATIC_PRIORITY,17,233,26,8
+    PUSHBUTTON      "...",IDC_BUTTON_PASSWORD,394,141,12,13
+    LTEXT           "密码:",IDC_STATIC_PASSWORD,17,143,40,13
+    EDITTEXT        IDC_EDIT_PASSWORD,86,141,302,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP
+    CONTROL         9005,IDC_PASSWORD_BITMAP,"Static",SS_BITMAP,79,146,11,11
+END
+
+IDD_ENTITY_VIEW DIALOG DISCARDABLE  0, 0, 432, 320
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_ENT_NAME,69,19,351,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ENT_DESCRIPTION,69,37,351,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_ENT_ADDRESS,69,55,351,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_ENT_PARENT,408,73,12,13
+    PUSHBUTTON      "...",IDC_BUTTON_ENT_LOCATION,408,90,12,13
+    CONTROL         "List2",IDC_ATTRIBUTE_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,69,130,351,115
+    DEFPUSHBUTTON   "&Apply",IDC_ENT_APPLY,159,294,50,14
+    PUSHBUTTON      "&Reset",IDC_ENT_RESET,223,294,50,14
+    LTEXT           "Name:",IDC_STATIC_ENT_NAME,16,22,28,13
+    LTEXT           "Description:",IDC_STATIC_ENT_DESCRIPTION,16,39,43,13
+    LTEXT           "Address:",IDC_STATIC_ENT_ADDRESS,16,56,40,13
+    LTEXT           "Parent:",IDC_STATIC_ENT_PARENT,16,73,41,13
+    LTEXT           "Location:",IDC_STATIC_ENT_LOCATION,16,91,40,13
+    LTEXT           "Subsystem:",IDC_STATIC_ENT_SUBSYSTEM,16,108,36,13
+    GROUPBOX        "Type",IDC_STATIC_TYPE,12,7,415,308
+    LTEXT           "Attributes:",IDC_STATIC_ENT_ATTRIBUTES,16,129,37,13
+    LTEXT           "Date Created:",IDC_STATIC_ENT_DATE_CREATED,16,260,53,9
+    LTEXT           "Last Modified:",IDC_STATIC_ENT_DATE_MODIFIED,16,277,53,
+                    9
+    LTEXT           "Date goes here",IDC_STATIC_ENT_CREATEDATE,69,259,241,13
+    LTEXT           "Date goes here",IDC_STATIC_ENT_MODIFYDATE,69,276,241,13
+    EDITTEXT        IDC_EDIT_ENT_PARENT,69,73,334,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_ENT_LOCATION,69,90,334,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    EDITTEXT        IDC_EDIT_ENT_SUBSYSTEM,69,109,351,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CONTROL         9005,IDC_ENT_NAME_BITMAP,"Static",SS_BITMAP,63,23,11,11
+    CONTROL         9005,IDC_ENT_DESCRIPTION_BITMAP,"Static",SS_BITMAP,63,41,
+                    11,11
+    CONTROL         9005,IDC_ENT_ADDRESS_BITMAP,"Static",SS_BITMAP,63,59,11,
+                    11
+    CONTROL         9005,IDC_ENT_PARENT_BITMAP,"Static",SS_BITMAP,63,77,11,
+                    11
+    CONTROL         9005,IDC_ENT_LOCATION_BITMAP,"Static",SS_BITMAP,63,94,11,
+                    11
+END
+
+IDD_PASSWORD_DIALOG DIALOG DISCARDABLE  0, 0, 259, 68
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Change Password"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,76,47,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,133,47,50,14
+    LTEXT           "Password:",IDC_STATIC,7,11,35,11
+    LTEXT           "Confirm:",IDC_STATIC,7,29,27,11
+    EDITTEXT        IDC_EDIT_PASSWORD1,44,8,208,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PASSWORD2,44,26,208,13,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_AGENT_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 416
+        VERTGUIDE, 17
+        VERTGUIDE, 86
+        VERTGUIDE, 406
+        TOPMARGIN, 5
+        BOTTOMMARGIN, 448
+    END
+
+    IDD_ENTITY_VIEW, DIALOG
+    BEGIN
+        RIGHTMARGIN, 427
+        VERTGUIDE, 69
+        VERTGUIDE, 420
+        BOTTOMMARGIN, 315
+    END
+
+    IDD_PASSWORD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DETAIL_VIEW         "detail view"
+    IDS_PASSWORD            "password"
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_AgentConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

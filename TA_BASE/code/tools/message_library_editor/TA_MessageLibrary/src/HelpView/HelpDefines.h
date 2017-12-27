@@ -1,0 +1,5 @@
+#pragma once
+
+const UINT IDH_EXTERNAL_START	= 0;
+const UINT IDH_INTERNAL_START	= 1;
+const UINT IDH_MSG_STRING_ERROR = 2;

@@ -1,0 +1,17 @@
+#!/usr/bin/ksh
+count=1
+cd $1
+while true
+do
+if [ -f core ] 
+then
+    mv core core.$count
+    name=`file core.$count | awk '{ print $11 }' |sed s/\'//g`
+    mkdir ~/core_dumps/$name
+    mv core.$count ~/core_dumps/$name/
+fi
+count=$(($count+1))
+fi
+sleep 10
+done
+exit 0

@@ -1,0 +1,45 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $Source: $
+// @author:  Mahaveer Pareek
+// @version: $Revision:  $
+//
+// Last modification: $Date: $
+// Last modified by:  $Author:  $
+//
+// IDataPointStateUpdateCorbaDef IDL interface.
+//
+// This interface is designed to synchronise the state of 
+// monitoring scada agent with the controlling one.
+// 
+// This corba servant of this interface should only be 
+// activated by the monitoring agent. When a monitoring 
+// agent makes transition to a controlling one, the corba 
+// servant must be deactivated.
+//
+
+#ifndef IDataPointStateUpdateCorbaDef_INCLUDED_
+#define IDataPointStateUpdateCorbaDef_INCLUDED_
+
+#include "bus/scada/common_library/IDL/src/DataPointCorbaTypes.idl"
+
+module TA_Base_Bus
+{
+	// The implementation of sendDataPointStateUpdate should be very simple
+	// and should spend least amount of time. One option may be to maintain
+	// a thread-safe queue and then just add the DataPointWriteStateUpdate to the queue and return.
+	// The thread-safe queue can be processed later.
+	// There should not be any exception thrown from within sendDataPointStateUpdate.
+	interface IDataPointStateUpdateCorbaDef
+	{		
+		void sendDataPointStateUpdate(in DataPointCorbaTypes::DataPointWriteStateUpdate dpWriteStateUpdate);
+
+		void sendDataPointStateUpdates(in DataPointCorbaTypes::DataPointWriteStateUpdateSequence dpWriteStateUpdateSequence);
+	};
+
+};
+
+#endif

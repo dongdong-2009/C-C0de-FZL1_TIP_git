@@ -1,0 +1,53 @@
+#if !defined(CommsMessage_935BAC3F_273D_4ab8_8590_52324253DDE5__INCLUDED_)
+#define CommsMessage_935BAC3F_273D_4ab8_8590_52324253DDE5__INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/message/IDL/src/CommsMessageCorbaDef.idl $
+  * @author:  <your name>
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * Comms (Communications) Messages are used
+  * for inter-process communications within 
+  * Transactive. They are not audited and their
+  * contents will not be viewable.
+  */
+
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+		struct CommsMessageCorbaDef
+		{
+			/**
+			 * Time the Message was first generated
+			 */
+			DateTime createTime;
+
+			/**
+			 * The MessageTypeKey as defined in the MESSAGETYPE table
+			 */			
+			string messageTypeKey;
+
+			/**
+			 * An entity associated with this Event
+			 */
+			unsigned long assocEntityKey;
+
+			/**
+			 * Communications Data
+			 */
+			any messageState;
+
+		}; // interface CommsMessageCorbaDef
+
+
+}; // module TA_Base_Core
+
+#endif // !defined(CommsMessage_935BAC3F_273D_4ab8_8590_52324253DDE5__INCLUDED_)

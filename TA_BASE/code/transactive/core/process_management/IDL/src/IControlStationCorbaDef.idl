@@ -1,0 +1,138 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IControlStationCorbaDef.idl $
+  * @author:   Karen Graham
+  * @version:  $Revision: #2 $
+  *
+  * Last modification: $DateTime: 2015/01/24 14:09:54 $
+  * Last mofified by:  $Author: limin.zhu $
+  *
+  * This interface should be implemented by any process that is 
+  * a ProcessManager and a Control Station. It allows applications
+  * to ask the Control Station to launch applications
+  */
+
+#ifndef CONTROLSTATIONCORBADEF_IDL_INCLUDED
+#define CONTROLSTATIONCORBADEF_IDL_INCLUDED
+
+
+module TA_Base_Core
+{
+    interface IControlStationCorbaDef
+    {
+        struct RECT
+        {
+            long left;
+            long top;
+            long right;
+            long bottom;
+        };
+
+		// Used for the Grahpworx targeted command comms messages
+		struct TAToGXMessage
+		{
+			string targetSessionID;
+			string targetSchematicID;
+			string sourceEntityName;
+			string message;
+		};
+
+
+		// used for launch application command
+		struct LaunchApplicationEvent
+		{
+			unsigned long locationKey;
+			unsigned long applicationType;
+			string runParameter;
+		};
+
+		// used for launch application response
+		struct LaunchApplicationACKEvent
+		{
+			unsigned long locationKey;
+			unsigned long applicationType;
+			boolean bSuccess;
+		};
+
+		
+
+		exception ApplicationException{};
+
+        /** 
+          * launchApplication
+          *
+          * This method allows an application to ask the Control Station to launch
+		  * an application.
+          *
+          * @param appType - The application to launch
+          * @param extraCommandLine - The command line to be passed to the application.
+          * @param posFlag - How the application is going to be positioned relative to boundary paramter
+          * @param alignFlag - How the application is going to be positioned relative to point parameter
+          * @param objectDim - The dimension of the object that this application will be launched relative
+          *                    to (if POS_RELATIVE or POS_NOOVERLAP is specified).
+          * @param boundaryDim - The dimension of the object that this application will be bounded in
+          *                      (if POS_BOUNDED is specified)
+          *
+		  * @exception ApplicationException This is thrown if the application cannot
+		  *            launch the specified application for some reason.
+          */
+        void launchAnApplication(in unsigned long appType, 
+                               in string extraCommandLine, 
+                               in unsigned long posFlag,
+                               in unsigned long alignFlag,
+                               in RECT objectDim,
+                               in RECT boundaryDim)
+						raises ( ApplicationException );
+
+
+        /** 
+          * getRect
+          *
+          * Gets the Rect value of the specified area on the specified screen.
+          *
+          * @param targetScreen - The screen on the MFT
+          * @param targetArea - The target area within the screen
+          * @param val - Optional value.  This value should to the x coordinate value 
+          *              if targetScreen is SCREEN_CURRENT, SCREEN_PREVIOUS or SCREEN_NEXT.  
+          *              It should contain the screen number if target screen is 
+          *              SCREEN_SPECIFIC.  By default this is set to -1.
+          *
+          * @return The CRect value of the targetArea that lies on targetScreen.
+          *
+          */
+        RECT getRect(in unsigned long targetScreen, 
+                     in unsigned long targetArea, 
+                     in long val);
+
+
+        /**
+         * launchGraphWorxDisplay
+         *
+         * This attempts to load the specified display in GraphWorX. The GraphWorX instance used
+         * will be depedent on the screen passed in.
+         *
+         * @param string - The name and path of the display to load
+         * @param string - The asset in the display that is to be centered on the screen.  
+         * @param long - The x co-ordinate of the left side of the application that is calling
+         *               this method. This is so it can be determined which screen to launch
+         *               the display on.
+         *
+         * @exception ApplicationException Indicates an error occurred while attempting to launch the display.
+         */
+		void launchDisplay(in string display,
+                           in string asset,
+			               in long leftPosition)
+					  raises ( ApplicationException );
+
+
+        /**
+         * Does nothing - just used to see if the Control Station is *there
+         */
+        void poll();
+    };
+
+};
+
+#endif // CONTROLSTATIONCORBADEF_IDL_INCLUDED

@@ -1,0 +1,332 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DUTYMANAGER_DIALOG DIALOGEX 0, 0, 404, 338
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "权限管理器"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "关闭",IDCANCEL,348,319,50,14
+    CONTROL         "Tab1",IDC_MAINTAB,"SysTabControl32",0x0,7,44,390,269
+    LTEXT           "操作员:",IDC_STATIC,11,6,36,12
+    LTEXT           "权限:",IDC_STATIC,11,19,36,12
+    LTEXT           "Sid James",IDC_STATIC,54,7,112,9
+    LTEXT           "TCO (Central Operator)",IDC_STATIC,53,19,94,10
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,3,389,30
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "DutyManager MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "DutyManager\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "DutyManager.EXE\0"
+            VALUE "ProductName", "DutyManager Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DUTYMANAGER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 397
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 331
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SITESUMMARY DIALOG DISCARDABLE  0, 0, 390, 250
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "取回控制",ID_TAKE_DUTY,17,220,50,14
+    PUSHBUTTON      "代理",ID_DELEGATE,82,220,50,14
+    CONTROL         "List2",IDC_LIST2,"SysListView32",LVS_REPORT | 
+                    LVS_EDITLABELS | WS_BORDER | WS_TABSTOP,24,4,359,207
+END
+
+IDD_SUBSYSTEMSUMMARY DIALOG DISCARDABLE  0, 0, 390, 250
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "取回权限",ID_TAKE_DUTY,85,222,50,14
+    PUSHBUTTON      "给予权限",ID_GIVE_DUTY,21,223,50,14
+    CONTROL         "List2",IDC_LIST2,"SysListView32",LVS_REPORT | 
+                    LVS_EDITLABELS | WS_BORDER | WS_TABSTOP,24,4,359,208
+END
+
+IDD_DELEGATECONFIRM DIALOG DISCARDABLE  0, 0, 186, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "代理控制"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "否",IDOK,123,34,50,14
+    PUSHBUTTON      "是",IDCANCEL,64,34,50,14
+    LTEXT           "是否确实释放所有中央操作员的权限?",
+                    IDC_STATIC,7,9,168,22
+END
+
+IDD_SITETAKE DIALOG DISCARDABLE  0, 0, 235, 223
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "取回控制"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "取回",IDOK,24,198,50,14
+    PUSHBUTTON      "取消",IDCANCEL,156,200,50,14
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | WS_BORDER | 
+                    WS_TABSTOP,13,6,209,179
+END
+
+IDD_SUBSYSTEMGIVE DIALOG DISCARDABLE  0, 0, 256, 150
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "给予子系统"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "应用",IDOK,41,120,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,170,119,50,14
+    LTEXT           "位置",IDC_STATIC,5,9,34,12
+    COMBOBOX        IDC_COMBO1,44,6,100,64,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "子系统",IDC_STATIC,5,29,244,114
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | WS_BORDER | 
+                    WS_TABSTOP,11,40,230,72
+END
+
+IDD_SUBSYSTEMTAKE DIALOG DISCARDABLE  0, 0, 256, 150
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "取回子系统"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "应用",IDOK,41,120,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,170,119,50,14
+    LTEXT           "位置",IDC_STATIC,5,9,34,12
+    COMBOBOX        IDC_COMBO1,44,6,100,64,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "子系统",IDC_STATIC,5,29,244,114
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | WS_BORDER | 
+                    WS_TABSTOP,11,40,230,72
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SITESUMMARY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 383
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 243
+    END
+
+    IDD_SUBSYSTEMSUMMARY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 383
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 243
+    END
+
+    IDD_DELEGATECONFIRM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_SITETAKE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 216
+    END
+
+    IDD_SUBSYSTEMGIVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+
+    IDD_SUBSYSTEMTAKE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 249
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\DutyManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "..\\res\\DutyManager.ico"
+IDI_OCC                 ICON    DISCARDABLE     "..\\res\\icon1.ico"
+IDI_PSC                 ICON    DISCARDABLE     "..\\res\\occ1.ico"
+IDI_TICK                ICON    DISCARDABLE     "..\\res\\ico00001.ico"
+IDI_CROSS               ICON    DISCARDABLE     "..\\res\\ico00002.ico"
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\DutyManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

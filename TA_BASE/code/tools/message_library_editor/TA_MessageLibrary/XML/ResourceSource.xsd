@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<xs:schema id="ResourceSource" targetNamespace="file://ResourceSource.xsd" xmlns:mstns="file://ResourceSource.xsd" xmlns="file://ResourceSource.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="ResourceSource" msdata:IsDataSet="true" msdata:Locale="en-AU" msdata:EnforceConstraints="False">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="RCSource">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Data" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+						</xs:sequence>
+						<xs:attribute name="MFCVersion" form="unqualified" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ResourceHeaderSource">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Data" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+						</xs:sequence>
+						<xs:attribute name="MFCVersion" form="unqualified" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="StringResourceSegment">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Data" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+						</xs:sequence>
+						<xs:attribute name="MFCVersion" form="unqualified" type="xs:string" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ResourceIdentifiers">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ResourceIdentifier" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+										<xs:element name="Definition" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+										<xs:element name="CodePage" type="xs:unsignedShort" minOccurs="0" msdata:Ordinal="2" />
+										<xs:element name="AfxTarget" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+									</xs:sequence>
+									<xs:attribute name="Locale" form="unqualified" type="xs:unsignedShort" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

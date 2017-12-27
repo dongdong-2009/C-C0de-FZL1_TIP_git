@@ -1,0 +1,191 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "..\..\..\..\..\bus\response_plans\plan_tree\src\PlanTree_resource.h" // Resources for the Plan Tree
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""..\\..\\..\\..\\..\\bus\\response_plans\\plan_tree\\src\\PlanTree_resource.h"" // Resources for the Plan Tree\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_PlanDssRuleConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#include ""..\\..\\..\\..\\..\\bus\\response_plans\\plan_tree\\src\\PlanTree.rc"" // Resources for the Plan Tree\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PLAN_DSS_RULE_VIEW DIALOGEX 0, 0, 523, 174
+STYLE DS_SETFONT | DS_MODALFRAME | WS_CHILD
+FONT 10, "宋体", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_EDIT_LOCATION,81,34,83,13,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BUTTON_LOCATION,169,34,12,13
+    EDITTEXT        IDC_EDIT_ENTITY,81,52,402,13,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT_MINIMUM_INTERVAL,133,97,86,13,ES_AUTOHSCROLL | ES_NUMBER
+    PUSHBUTTON      "...",IDC_BUTTON_DENY_STRATEGY,488,71,12,13
+    EDITTEXT        IDC_EDIT_PLAN,250,33,233,13,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_BUTTON_PLAN,488,33,12,13
+    DEFPUSHBUTTON   "应用",IDC_BUTTON_APPLY,144,150,50,14
+    PUSHBUTTON      "重置",IDC_BUTTON_RESET,247,150,50,14
+    LTEXT           "车站:",IDC_STATIC_LOCATION,20,35,43,11
+    GROUPBOX        "预案决策规则",IDC_STATIC_TYPE,8,7,505,160
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,16,137,53,10
+    LTEXT           "最后修改:",IDC_STATIC_DATE_MODIFIED,253,137,53,10
+    LTEXT           "日期显示位置",IDC_STATIC_CREATEDATE,86,137,130,10
+    LTEXT           "日期显示位置",IDC_STATIC_MODIFYDATE,323,137,130,10
+    LTEXT           "激活预案:",IDC_STATIC_PLAN,193,35,43,11
+    CONTROL         9005,IDC_PLAN_BITMAP,"Static",SS_BITMAP,234,34,11,11
+    GROUPBOX        "",IDC_STATIC_ENTITY_GROUP,16,23,488,66
+    CONTROL         9005,IDC_ENTITY_BITMAP,"Static",SS_BITMAP,67,50,11,11
+    PUSHBUTTON      "...",IDC_BUTTON_ENTITY,488,51,12,13
+    CONTROL         9005,IDC_INTERVAL_BITMAP,"Static",SS_BITMAP,119,98,11,11
+    LTEXT           "最小间隔 (毫秒):",IDC_STATIC_INTERVAL,12,99,101,11
+    LTEXT           "触发实体:",IDC_STATIC_TRIGGER_ENTITY,19,54,45,8
+    EDITTEXT        IDC_EDIT_TOLERANT_TIME_FOR_ACTIVE,133,113,86,13,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         9005,IDC_TOLERANT_BITMAP,"Static",SS_BITMAP,119,114,11,11
+    LTEXT           "允许激活有效时间 (秒):",IDC_STATIC_TOLERANT_TIME,12,115,106,11
+    CONTROL         "需要停止预案",IDC_CHECK_NEED_DEACTIVATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,149,73,61,10
+    CONTROL         "真",IDC_RADIO_ACTIVE_TRUE,"Button",BS_AUTORADIOBUTTON,72,73,22,10
+    CONTROL         "假",IDC_RADIO_ACTIVE_FALSE,"Button",BS_AUTORADIOBUTTON,101,73,30,10
+    LTEXT           "激活值:",IDC_STATIC_ACTIVATE_VALUE,19,74,50,8
+    CONTROL         "允许预案多实例",IDC_CHECK_ALLOW_MULTIPLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,226,73,64,10
+    EDITTEXT        IDC_EDIT_DENY_STRATEGY,356,71,127,13,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "拒绝多实例方式:",IDC_STATIC_DENY_STRATEGY,296,74,57,8
+    CONTROL         "星期日",IDC_CHECK_SUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,233,119,34,10
+    GROUPBOX        "   有效时间",IDC_STATIC,228,91,276,41
+    CONTROL         "星期一",IDC_CHECK_MON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,274,119,34,10
+    CONTROL         "星期二",IDC_CHECK_TUE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,310,119,35,10
+    CONTROL         "星期三",IDC_CHECK_WED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,350,119,34,10
+    CONTROL         "星期四",IDC_CHECK_THU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,388,119,35,10
+    CONTROL         "星期五",IDC_CHECK_FRI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,429,119,34,10
+    CONTROL         "星期六",IDC_CHECK_SAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,467,119,33,10
+    LTEXT           "开始时间:",IDC_STATIC_START_TIME,233,105,41,8
+    CONTROL         "",IDC_DTIME_START,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,277,102,50,13
+    LTEXT           "结束时间:",IDC_STATIC_END_TIME,357,104,41,8
+    CONTROL         "",IDC_DTIME_END,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,401,101,50,13
+    CONTROL         9005,IDC_LOCATION_BITMAP,"Static",SS_BITMAP,67,32,11,11
+    CONTROL         9005,IDC_VALIDTIME_BITMAP,"Static",SS_BITMAP,230,90,11,11
+    CONTROL         "启用",IDC_CHECK_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,16,32,10
+END
+
+IDD_CHANGE_PLAN_DIALOG DIALOGEX 0, 0, 186, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "更改预案"
+FONT 10, "宋体", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,39,193,50,14
+    PUSHBUTTON      "取消",IDCANCEL,96,193,50,14
+    CONTROL         "Tree1",IDC_PLAN_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_HSCROLL | WS_TABSTOP,7,7,172,175
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PLAN_DSS_RULE_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 8
+        RIGHTMARGIN, 515
+        VERTGUIDE, 16
+        VERTGUIDE, 132
+        VERTGUIDE, 387
+        VERTGUIDE, 395
+        VERTGUIDE, 406
+        VERTGUIDE, 414
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 167
+    END
+
+    IDD_CHANGE_PLAN_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_PlanDssRuleConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#include "..\..\..\..\..\bus\response_plans\plan_tree\src\PlanTree.rc" // Resources for the Plan Tree
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

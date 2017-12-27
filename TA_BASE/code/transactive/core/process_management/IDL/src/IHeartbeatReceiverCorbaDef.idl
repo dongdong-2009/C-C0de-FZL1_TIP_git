@@ -1,0 +1,41 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IHeartbeatReceiverCorbaDef.idl $
+  * @author:  Justin Ebedes
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  *
+  * This interface is implemented by the System Controller
+  * to allow other System Controllers to send a heartbeat
+  * to it.
+  *
+  */
+
+#ifndef IHEARTBEATRECEIVERCORBADEF_IDL_INCLUDED
+#define IHEARTBEATRECEIVERCORBADEF_IDL_INCLUDED
+
+module TA_Base_Core
+{
+        interface IHeartbeatReceiverCorbaDef
+        {
+
+            /**
+              * receiveHeartbeat
+              *
+              * Called by peers to allow the System Controller to receive
+			  * a heartbeat. If a System Controller does not receive a 
+			  * heartbeat from a host, it assumes it has failed.
+			  *
+			  * @param host The hostname of the System Controller that is
+			  *				sending the heartbeat.
+			  */          
+            oneway void receiveHeartbeat(in string host);
+        };
+};
+
+#endif // IHEARTBEATRECEIVERCORBADEF_IDL_INCLUDED

@@ -1,0 +1,68 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/GZL6_TIP/TA_BASE/transactive/app/system_control/control_station/src/RippleControlStation.idl $
+  * @author:  Ripple
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/06/12 13:35:44 $
+  * Last modified by:  $Author: builder $
+  *
+  */
+// RippleControlStation.idl : IDL source for RippleControlStation.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (RippleControlStation.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(63E6413C-1849-4259-9791-C0F330388B23),
+		dual,
+		helpstring("ISchematicDisplay Interface"),
+		pointer_default(unique)
+	]
+	interface ISchematicDisplay : IDispatch
+	{
+		[id(1), helpstring("Request the display of an ATS schematic on any VDU")] HRESULT displayAtsSchematic(BSTR filePath, long leftPosition);
+		[id(2), helpstring("Request the current session ID for the MFT")] HRESULT getCurrentSessionId([out, retval] BSTR* sessionId);
+		[id(3), helpstring("Request the current profile for the MFT")] HRESULT getCurrentProfile([out, retval] BSTR* profile);
+		[id(4), helpstring("Request the current physical location for the MFT")] HRESULT getCurrentLocation([out, retval] BSTR* location);
+		[id(5), helpstring("Request the current user name for the MFT")] HRESULT getCurrentUserName([out, retval] BSTR* userName);
+	};
+
+[
+	uuid(F6390CBC-4CFA-4208-85F8-6B780E2F41F7),
+	version(1.0),
+	helpstring("TransActive ControlStation 1.0 Type Library")
+]
+library RippleControlStationLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(549EC73F-77CF-4DF9-8ECA-7B73E0F72326),
+		helpstring("_ISchematicDisplayEvents Interface")
+	]
+	dispinterface _ISchematicDisplayEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method detailsChanged")] HRESULT detailsChanged(BSTR newSessionId, BSTR newProfile);
+	};
+
+	[
+		uuid(9F3187D4-5454-4C55-9A42-F0EEBCC5EA72),
+		helpstring("SchematicDisplay Class")
+	]
+	coclass SchematicDisplay
+	{
+		[default] interface ISchematicDisplay;
+		[default, source] dispinterface _ISchematicDisplayEvents;
+	};
+};

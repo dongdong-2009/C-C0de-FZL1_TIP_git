@@ -1,0 +1,13 @@
+REGEDIT
+; This .REG file may be used by your SETUP program.
+;   If a SETUP program is not available, the entries below will be
+;   registered in your InitInstance automatically with a call to
+;   CWinApp::RegisterShellFileTypes and COleObjectFactory::UpdateRegistryAll.
+
+
+HKEY_CLASSES_ROOT\ControlStation.Application = ControlStation Application
+HKEY_CLASSES_ROOT\ControlStation.Application\CLSID = {A0CC1FCF-1565-4DE5-A2AA-30E65E99BAF0}
+
+HKEY_CLASSES_ROOT\CLSID\{A0CC1FCF-1565-4DE5-A2AA-30E65E99BAF0} = ControlStation Application
+HKEY_CLASSES_ROOT\CLSID\{A0CC1FCF-1565-4DE5-A2AA-30E65E99BAF0}\ProgId = ControlStation.Application
+HKEY_CLASSES_ROOT\CLSID\{A0CC1FCF-1565-4DE5-A2AA-30E65E99BAF0}\LocalServer32 = CONTROLSTATION.EXE

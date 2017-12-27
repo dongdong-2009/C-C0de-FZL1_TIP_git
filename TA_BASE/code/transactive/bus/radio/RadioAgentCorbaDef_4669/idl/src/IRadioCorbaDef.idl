@@ -1,0 +1,427 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/radio/RadioAgentCorbaDef_4669/idl/src/IRadioCorbaDef.idl $
+// @author:  Andy Parker
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Radio Session IDL interface.
+//
+
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+
+	interface IRadioCorbaDef
+	{
+		typedef long CallID;
+		typedef long SessionReference;
+		typedef long AudioReference;
+		typedef long CallReference;
+		typedef long MonitorReference;
+
+		exception radioException
+		{
+			string what;
+		};
+
+		// Exception Types
+		exception invalidCallIDException {};
+
+		// Radio types ***
+		enum ECallStatusType
+		{
+			Ringing,
+			Connected,
+			ConnectedGroup,   // Group details now available.
+			Disconnected,
+			OnHold,
+			Deleted,          // Only sent by status updates
+			SessionUpdate     //    "   "   "   "   "   "   . Used for notifying that the radio session is re-initialised and must be re-fetched
+		};
+
+		enum ECallCategory
+		{
+			HalfDuplex,
+			FullDuplex,
+			TextMessage,
+			CallDriver
+		};
+		
+		enum EMonitorStatusType
+		{
+			Monitoring,
+			Listening,
+			Included,
+			Joined,
+			Stopped
+		};
+
+		enum ECallSource
+		{
+		    IncomingCall,
+			OutgoingCall
+		};
+
+		enum ECallType
+		{
+			SingleCall,
+			GroupUnacknowledgeCall,
+			GroupAcknowledgeCall,
+			GroupBroadcastCall,
+			CircuitModeDataCall
+		};
+
+		enum EPTTState {PTT_GRANTED,PTT_QUEUE,PTT_CEASE,PTT_TIMEOUT};
+
+		enum EControlConnectionStatus
+		{
+			NoAppliable,
+			ConnectToPrimary,
+			ConnectToSecondary
+		};
+		
+        struct CallParticipant
+        {
+            string		name;
+            string		TSI;
+            string		location;
+
+			boolean		isAcknowledged;	// Defines 'Not Connected' state, if false
+			EPTTState	pttState;		// Current ptt state, if available (only required if isAcknowledged is true)
+        };
+
+		typedef sequence<CallParticipant> CallParticipantList;
+
+		struct CallDetailsType
+		{
+		   long				callID;
+		   long				sessionRef;
+            unsigned long    consoleKey;
+		   long             time;
+		   string           callTime;
+		   string			callerName;
+		   string			callerTSI;
+		   string           callerLocation;
+		   string			calledName;
+		   string			calledTSI;
+		   string           calledLocation;
+		   ECallStatusType	callStatus;
+		   ECallCategory    callCategory;
+		   ECallSource		callSource;
+		   ECallType		callType;
+		   string           callText;
+		   boolean			isEmergency;
+
+           // ++JM TD10234
+		   boolean          isInvisibleToGUIApps;
+		   // JM++
+
+		   CallParticipantList participants;		   
+		};
+
+
+        struct MonitoredCallDetailsType
+        {    
+         	long		callID;
+        	long		sessionRef;
+            unsigned long   consoleKey;
+        	long		monitorID;
+        	string		callTime;
+        	string		callerName;
+        	string		callerTSI;
+        	string		callerLocation;
+        	string		calledName;
+        	string		calledTSI;
+        	string		calledLocation;
+			EMonitorStatusType		callStatus;
+			ECallCategory			callCategory;
+			ECallType	callType;
+        	
+        	sequence<CallParticipant> participants;        	
+        };
+        
+
+		// *** Call Notifications ***
+		struct CallStatusEvent
+		{
+			long             callID;        // ID for the call
+			long             sessionRef;
+            unsigned long    consoleKey;
+			ECallStatusType  callStatus;
+		    ECallCategory    callCategory;
+
+           // ++JM TD10234
+		   boolean          isInvisibleToGUIApps;
+		   // JM++
+
+		};
+
+	        enum ESessionUpdateReason
+	        {
+	            SessionLoggedIn,
+	            SessionLoggedOut,
+	            SessionLost
+	        };
+	        
+	        struct SessionUpdateNotification
+	        {
+	            unsigned long           consoleKey;
+	            long                    sessionRef;
+	            boolean	            inFallback;
+	            ESessionUpdateReason    reason;
+	        };
+
+		typedef sequence<CallStatusEvent> CallList;
+
+		// *** Call information methods ***
+		CallList        getCallList(in unsigned long consoleID) raises (TA_Base_Core::OperationModeException);
+		CallDetailsType getCallDetails(in long callID, in unsigned long consoleID) raises (invalidCallIDException,TA_Base_Core::OperationModeException);
+		ECallCategory   getCallCategory(in long callID, in unsigned long consoleID) raises (invalidCallIDException,TA_Base_Core::OperationModeException);
+		string          getCallText(in long callID, in unsigned long consoleID) raises (invalidCallIDException,TA_Base_Core::OperationModeException);
+
+
+
+		//****************
+		// SDS Messaging *
+		//****************
+
+		// **** SDS notifications (typically train messages, not text based ones) *****
+		typedef sequence<octet> MessageDataType;
+		struct SDSNotificationEvent
+		{
+			string           sendingITSI;
+			MessageDataType  messageData;
+		};
+
+		// Send SDS message method - uses dedicated radio session.
+		void sendSDSMessage(in string trainITSI, in MessageDataType messageData) raises (TA_Base_Core::OperationModeException);
+
+		//*********************
+		//* PTT Notifications *
+		//*********************
+
+		// These notifications will be sent out when unsolicited PTT events are received.
+		// It will also be used to send out the granted PTT following a PTT request that
+		// has been queued.  We can't wait synchronously for this as it may take some time.
+
+		struct PTTStatusNotification
+		{
+			EPTTState       state;
+			long            callID;         // ID for the call
+			long            sessionRef;     // Session associated with notification
+            unsigned long   consoleKey;     // uniquely identifies the affected mft
+			unsigned long	transactionID;  // O if unsolicited.
+			string          userITSI;       // Source ITSI (Individual Tetra Subscriber Identity)
+			string          tpiITSI;        // Talking Party Identification ITSI
+		};
+
+		//*************************
+		// Circuit Data transfers *
+		//*************************
+	
+		// This exception is thrown if a call is already in progress for the ITSI
+		exception dataCallInProgressException {};
+
+		// This exception is thrown if a call is not in progress for the ITSI
+		exception dataCallNotInProgressException {};
+
+		// These functions permit larger volumes of data to be transferred to other subscribers.
+		// This is typically used for downloading libraries to trains
+		typedef sequence<octet> CircuitDataType;
+
+		/*
+		 * Send data will create a new data call to the destination and transfer the 
+		 * data to that location.  If useXON is specified, the function will monitor the 
+		 * incoming data for XON/OFF characters and modify the transmission flow accordingly.
+		 * A time out fron XOFF to XON will be used to ensure that flow is not stopped
+		 * indefinitely.
+		 * The radio will use the ISCS session to perform the circuit data call as it 
+		 * can keep going even if the scheduling MFT logs out.
+		 */
+		void sendData(in string ITSI,in CircuitDataType data,in boolean useXON, in string sessionID)
+		             raises (dataCallInProgressException,radioException,TA_Base_Core::OperationModeException);
+
+		/*
+		* Cancel data will allow the transfer to a specified ITSI to be stopped.
+		*/
+		void cancelSendData(in string ITSI)
+					raises (dataCallNotInProgressException,TA_Base_Core::OperationModeException);
+
+		// Notification sent to advise clients of progress
+		struct SendDataNotification
+		{
+			string   ITSI;
+		    boolean  isSuccessful;
+			string   failReason;
+		};
+
+
+		// Call Stack Maintenance
+		
+		/*
+		* Add a call driver request to the incoming call stack
+		* (Used by train agent)
+		*/
+		void addCallDriverRequest(in octet trainID,in string trainTSI) raises (TA_Base_Core::OperationModeException);
+
+		/*
+		* Remove a call driver request from the incoming call stack
+		* (Used by train agent)
+		*/
+		void removeCallDriverRequest(in octet trainID) raises (TA_Base_Core::OperationModeException);
+
+
+        // *************************
+        // Degraded and Fallback support
+        // *************************
+
+        /**
+         * Called by the train agent
+         */
+        boolean inFallback() raises (TA_Base_Core::OperationModeException);
+
+
+        /**
+          * Causes the RadioTetraAgent to disconnect from and reconnect to the
+          * Radio System.  Intended to be used when a station operator requests
+          * the trainborne comms duty to go back to Normal (mainline) operation
+          */
+        void resetConnection() raises (TA_Base_Core::OperationModeException);
+
+				
+		//*************************
+		// Subscriber Information *
+		//*************************
+		exception radioDirectoryError
+		{
+			string what;
+		};
+		enum SubscriberType
+		{
+		    INDIVIDUAL_SUBSCRIBER,
+		    GROUP_SUBSCRIBER,
+		    PATCH_SUBSCRIBER
+		};
+		exception radioInvalidSubscriberException
+		{
+		};
+		struct SubscriberDetails
+		{
+			string            TSI;
+			string            subscriberName;
+			string	          locationName;
+			long	          locationKey;
+			string            ownerTSI;        // Only populated for patch subscribers.
+			SubscriberType    type;
+		};
+		typedef sequence<SubscriberDetails> SubscriberList;
+		// Returns a list of Groups
+		SubscriberList    getGroupSubscribers() raises (radioDirectoryError,TA_Base_Core::OperationModeException);
+
+		// Returns a list of PatchGroups
+		SubscriberList    getPatchSubscribers() raises (radioDirectoryError,TA_Base_Core::OperationModeException);
+
+		// Returns a list of Individuals regardless of memberships
+		SubscriberList    getIndividualSubscribers() raises (radioDirectoryError,TA_Base_Core::OperationModeException);
+
+		// Details for requested Subscriber
+		SubscriberDetails getSubscriberDetails(in string TSI) 
+		      raises (radioInvalidSubscriberException,radioDirectoryError,TA_Base_Core::OperationModeException);
+
+		// Returns a list of Individuals in a Group
+		SubscriberList    getGroupMembers(in string TSI) raises (radioDirectoryError,TA_Base_Core::OperationModeException);
+
+		// Returns a list of Individuals in a Patch Group
+		SubscriberList    getPatchMembers(in string TSI) raises (radioDirectoryError,TA_Base_Core::OperationModeException);
+
+		// Search by Subscriber Name
+		SubscriberList    searchSubscriber(in string searchTxt) raises (radioDirectoryError,TA_Base_Core::OperationModeException);
+		
+		//*************
+		// Speed Dial *
+		//*************
+		enum SubscriberNotificationType
+		{
+			NEW_SUBSCRIBER,
+			UPDATE_SUBSCRIBER,
+			DELETE_SUBSCRIBER,
+			SCAN_SUBSCRIBERS       // Sent out to notify clients that a synchronisation scan has completed.
+		};
+
+		struct SubscriberDetailsNotification  // This will be a system wide notification!
+		{
+			SubscriberNotificationType    notifyType;
+			SubscriberDetails             details;    // Not populated for SCAN_SUBSCRIBERS
+		};
+
+		exception invalidSpeedDialSetException
+		{
+		};
+
+		struct SpeedDialEntry
+		{
+			string    label;		// Label to show on speed dial button
+			string    TSI;			// Number to call when activated
+			octet     position;     // Position of button in the set (0 to 255)
+		};
+
+		struct SpeedDialSet
+		{
+			string	 setName;
+			boolean  isSystem;
+			long     profileID;
+			long     operatorID;
+		};
+
+		enum EUserSetTypeMatch
+		{
+			PROFILE,
+			USER,
+			COMBINED
+		};
+
+		typedef sequence<SpeedDialEntry> SpeedDialList;
+
+		/**
+		 * getUserSetName
+		 *
+		 * Returns the name of the speed dial set associated with the specified user and profile combination
+		 *
+		 * @param sessionID The Session ID of the user for which to retrieve the set details
+		 */
+		string getUserSetName(in string sessionID,in EUserSetTypeMatch typeMatch) raises(TA_Base_Core::OperationModeException);
+
+		SpeedDialList getSpeedDialSet(in string setName) raises (invalidSpeedDialSetException,TA_Base_Core::OperationModeException);
+
+		/*
+		 * This method will add (or update if existing) the speed dial set entry with
+		 * the new details supplied.
+		 */
+		void updateSpeedDialSet(in SpeedDialSet setDetails, in string sessionID) raises(TA_Base_Core::OperationModeException);
+
+		/*
+		 * This method will add (or update if existing) the speed dial entry with
+		 * the new details supplied.
+		 */
+		void updateSpeedDial(in string setName, in SpeedDialEntry newEntry, in string sessionID) 
+		                     raises (invalidSpeedDialSetException,TA_Base_Core::OperationModeException);
+		// This structure will be sent out to all locations
+		// via a broadcast notification to advise of speed dial changes.
+		struct SpeedDialUpdateNotification
+		{
+			string          sessionID;    // Session performing update
+			SpeedDialEntry  updateEntry;  // New entry details
+		};
+
+
+	}; // IRadioCorbaDef
+}; // TA_Base_Bus
+

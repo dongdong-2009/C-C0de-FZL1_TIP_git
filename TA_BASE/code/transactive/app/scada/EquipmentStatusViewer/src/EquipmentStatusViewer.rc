@@ -1,0 +1,529 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ESV_DIALOG DIALOGEX 0, 0, 545, 270
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "设备状态视图"
+MENU IDR_MENU1
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    CONTROL         "List2",IDC_EQUIPMENT_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | 
+                    WS_TABSTOP,0,18,545,252
+    COMBOBOX        IDC_REPORT_COMBO,109,2,187,136,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "报告:",IDC_REPORT_LABEL,81,4,26,10
+    COMBOBOX        IDC_LOCATION_COMBO,38,2,30,189,CBS_DROPDOWNLIST | 
+                    CBS_UPPERCASE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "位置:",IDC_LOC_LABEL,2,4,32,10
+    PUSHBUTTON      "",IDC_STOP,306,2,30,12,BS_ICON | BS_CENTER | BS_VCENTER | 
+                    NOT WS_VISIBLE | NOT WS_TABSTOP,WS_EX_STATICEDGE
+    CONTROL         "",IDC_MENU_LINE_CHEAT,"Static",SS_ETCHEDHORZ,64,1,113,1
+END
+
+IDD_PRINT_COMMENT_DIALOG DIALOG DISCARDABLE  0, 0, 274, 61
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "报告注释"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,160,40,50,14
+    PUSHBUTTON      "取消",IDCANCEL,217,40,50,14
+    EDITTEXT        IDC_COMMENT,7,7,260,24,ES_MULTILINE
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "设备状态视图\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "设备状态视图\0"
+            VALUE "LegalCopyright", "版权 (C) 2004\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "EquipmentStatusViewer.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "设备状态视图\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PRINT_COMMENT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 267
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 54
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_RED                 ICON    DISCARDABLE     "..\\res\\red.ico"
+IDI_ORANGE              ICON    DISCARDABLE     "..\\res\\orange.ico"
+IDI_BLUE                ICON    DISCARDABLE     "..\\res\\blue.ico"
+IDI_GREEN               ICON    DISCARDABLE     "..\\res\\green.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONFIGURATION DIALOG DISCARDABLE  0, 0, 537, 200
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "配置报告"
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "Tree1",IDC_EQUIPMENT_TREE,"SysTreeView32",
+                    TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | 
+                    TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | TVS_NOTOOLTIPS | 
+                    TVS_FULLROWSELECT | WS_BORDER | WS_TABSTOP,6,16,178,143
+    LTEXT           "设备描述",IDC_EQUIPMENT_DESCRIPTION,6,158,
+                    178,14,SS_CENTERIMAGE | SS_SUNKEN
+    CONTROL         "List2",IDC_EQUIPMENT_LIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,258,15,274,157
+    PUSHBUTTON      "<< 移除",IDC_REMOVE,187,103,68,14,WS_DISABLED
+    PUSHBUTTON      "添加DataPoint >>",IDC_ADD_DATAPOINTS,187,67,68,14
+    DEFPUSHBUTTON   "确定",IDOK,149,180,68,14
+    PUSHBUTTON      "取消",IDCANCEL,222,180,68,14
+    GROUPBOX        "静态",IDC_REPORT_CONFIGURATION_GROUP_BOX,1,5,535,171,
+                    WS_GROUP
+    PUSHBUTTON      "添加设备 >>",IDC_ADD_DATANODES,187,85,68,14
+END
+
+IDD_FILTER DIALOGEX 0, 0, 260, 302
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "过滤报告"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_ITEMTYPE_FILTER,117,18,131,69,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP,WS_EX_TRANSPARENT
+    CONTROL         "设备归属是",IDC_ASSET_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,43,76,10
+    COMBOBOX        IDC_ASSET_FILTER,117,42,131,60,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "设备描述是",IDC_DESC_FILTER_ENABLED,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,58,95,10
+    COMBOBOX        IDC_DESCRIPTION_FILTER,117,57,131,60,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "点描述是",IDC_DPNAME_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,83,76,10
+    COMBOBOX        IDC_DPNAME_FILTER,117,82,131,75,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "类型是",IDC_DPTYPE_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,98,76,10
+    COMBOBOX        IDC_DPTYPE_FILTER,117,97,131,71,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "值为",IDC_DPVALUE_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,113,76,10
+    COMBOBOX        IDC_DPVALUE_FILTER,117,112,131,81,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "状态是",IDC_STATUS_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,138,76,10
+    CONTROL         "扫描",IDC_SCAN_INHIBIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,127,149,32,10
+    CONTROL         "警报",IDC_ALARM_INHIBIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,176,149,35,10
+    CONTROL         "控制",IDC_CONTROL_INHIBIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,127,162,37,10
+    CONTROL         "被标记为",IDC_TAGGED,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,127,193,37,10
+    CONTROL         "用PTW标记",IDC_TAGGED_PTW,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,176,193,68,10
+    CONTROL         "被覆盖",IDC_OVERRIDDEN,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,127,224,52,10
+    CONTROL         "操作员是",IDC_STATUSCHANGEBY_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,247,51,10
+    COMBOBOX        IDC_STATUSCHANGEBY_FILTER,117,246,131,76,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "时间戳是",IDC_TIMESTAMP_FILTER_ENABLED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,262,76,10
+    COMBOBOX        IDC_TIMESTAMP_FILTER,117,261,131,69,CBS_DROPDOWN | 
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_DISABLED | WS_VSCROLL | 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "确定",IDOK,156,284,46,12
+    PUSHBUTTON      "取消",IDCANCEL,209,284,46,12
+    GROUPBOX        "静态",IDC_FILTER_GROUP_BOX,4,3,251,276,BS_CENTER | 
+                    WS_GROUP
+    CONTROL         "",IDC_MENU_SEPERATOR,"Static",SS_ETCHEDHORZ,5,75,250,1
+    CONTROL         "",IDC_MENU_SEPERATOR2,"Static",SS_ETCHEDHORZ,5,131,250,
+                    1
+    CONTROL         "",IDC_MENU_SEPERATOR3,"Static",SS_ETCHEDHORZ,5,36,250,1
+    GROUPBOX        "被禁止",IDC_STATIC,117,136,131,42
+    GROUPBOX        "被标记为",IDC_STATIC,117,180,131,29
+    GROUPBOX        "被覆盖",IDC_STATIC,117,211,131,29
+    LTEXT           "报告包括",IDC_STATIC,20,20,51,8
+    DEFPUSHBUTTON   "清空过滤器",IDB_CLEAR,4,284,46,12
+    CONTROL         "MMS",IDC_MMS_INHIBIT,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,176,162,37,10
+END
+
+IDD_NEW_REPORT DIALOG DISCARDABLE  0, 0, 241, 64
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "新报告"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,142,48,46,12,WS_DISABLED
+    PUSHBUTTON      "取消",IDCANCEL,191,48,46,12
+    COMBOBOX        IDC_LOCATION,47,15,30,101,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "位置",IDC_STATIC,48,2,28,11
+    EDITTEXT        IDC_REPORT_NAME,79,15,157,12,ES_AUTOHSCROLL
+    LTEXT           "报告名称",IDC_STATIC,132,2,48,11
+    CONTROL         "基于",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,33,42,10
+    COMBOBOX        IDC_BASE_LOCATION,47,32,30,91,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_BASE_REPORT,79,32,158,95,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "新报告",IDC_STATIC,5,16,39,9
+END
+
+IDD_EDIT_REPORT DIALOG DISCARDABLE  0, 0, 196, 53
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "编辑报告"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,95,36,46,12,WS_DISABLED
+    PUSHBUTTON      "取消",IDCANCEL,146,36,46,12
+    COMBOBOX        IDC_LOCATION,3,20,30,101,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "位置",-1,4,7,28,11
+    EDITTEXT        IDC_REPORT_NAME,35,20,157,12,ES_AUTOHSCROLL
+    LTEXT           "报告名称",-1,90,7,48,11
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CONFIGURATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 536
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_FILTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 255
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 296
+    END
+
+    IDD_NEW_REPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 237
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 60
+    END
+
+    IDD_EDIT_REPORT, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 192
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "..\\res\\EquipmentStatusViewer.ico"
+IDI_STOP                ICON    DISCARDABLE     "..\\res\\stop.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\EquipmentStatusViewer.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "文件"
+    BEGIN
+        MENUITEM "新建报告 ...",              ID_FILE_NEWREPORT
+        MENUITEM "编辑报告 ...",             ID_FILE_EDITREPORT
+        MENUITEM "删除报告",               ID_FILE_DELETEREPORT
+        MENUITEM SEPARATOR
+        MENUITEM "导出 ...",                  ID_FILE_EXPORT
+        MENUITEM "打印 ...",                   ID_FILE_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "退出",                        IDEXIT
+    END
+    POPUP "编辑"
+    BEGIN
+        MENUITEM "检察 ...",                 ID_EDIT_INSPECT
+        MENUITEM SEPARATOR
+        MENUITEM "配置报告 ...",        ID_EDIT_CONFIGUREREPORT
+        MENUITEM "配置过滤 ...",       ID_EDIT_CONFIGUREFILTER
+    END
+    POPUP "查看"
+    BEGIN
+        MENUITEM "当前过滤器 ...",         ID_VIEW_FILTER
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏",                     ID_VIEW_TOOLBAR, CHECKED
+        MENUITEM "状态栏",                  ID_VIEW_STATUSBAR, CHECKED
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "设备状态视图帮助", 
+                                                ID_HELP_EQUIPMENTSTATUSVIEWERHELP
+
+        MENUITEM "关于设置状态视图...", 
+                                                ID_HELP_ABOUTEQUIPMENTSTATUSVIEWER
+
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINTOOLBAR TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      ID_TOOLBAR_EXPORT
+    BUTTON      ID_TOOLBAR_PRINT
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_INSPECT
+    BUTTON      ID_TOOLBAR_FILTER
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINTOOLBAR         BITMAP  DISCARDABLE     "..\\res\\toolbar1.bmp"
+IDB_SORTDOWN            BITMAP  DISCARDABLE     "..\\res\\sort_descending.bmp"
+IDB_SORTUP              BITMAP  DISCARDABLE     "..\\res\\sort_ascending.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EQUIPMENTSTATUSVIEWER "设备状态视图"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_STATUSBAR       "显示/隐藏状态栏\n"
+    ID_HELP_EQUIPMENTSTATUSVIEWERHELP 
+                            "帮助使用设备状态视图\n"
+    ID_HELP_ABOUTEQUIPMENTSTATUSVIEWER "关于设备状态视图 ..."
+    ID_TOOLBAR_EXPORT       "导出当前显示的设备状态报告到一个CSV文件\n"
+    ID_FILE_NEWREPORT       "创建一个新的状态报告"
+    ID_EDIT_CONFIGUREREPORT "配置当前设备状态报告"
+    ID_EDIT_INSPECT         "为当前选中设备触发检察面板\n"
+    ID_VIEW_FILTER          "查看/定义当前会话的过滤器"
+    ID_EDIT_CONFIGUREFILTER "为本设备状态报告配置过滤器"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_EXPORT          "导出当前显示的设备状态报告到一个CSV文件"
+    ID_TOOLBAR_PRINT        "打印当前显示设备状态报告"
+    ID_TOOLBAR_HELP         "帮助使用设备状态视图\n"
+    ID_TOOLBAR_FILTER       "查看/定义当前会话的过滤器"
+    ID_TOOLBAR_INSPECT      "为当前选中设备触发检察面板\n"
+    ID_FILE_DELETEREPORT    "删除当前设备状态报告"
+    IDEXIT                  "退出设备状态视图"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_PRINT           "打印当前显示设备状态报告\n"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示/隐藏工具栏\n"
+    IDS_LOCATION            "位置"
+    IDS_REPORT              "报告"
+    IDS_EQUIPMENT           "设备"
+    IDS_DELETE_REPORT       "删除报告"
+    IDS_INSPECTOR_PANEL     "检查面板"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDC_STOP                "取消载入..."
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "..\res\EquipmentStatusViewer.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

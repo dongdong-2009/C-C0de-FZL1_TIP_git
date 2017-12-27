@@ -1,0 +1,12 @@
+///////////////////////////////////////////////////////////
+//  CDataTmp.cpp
+//  Implementation of the Class CDataTmp
+//  Created on:      20-Feb-2012 09:31:53
+//  Original author: Shenglong.LIn
+///////////////////////////////////////////////////////////
+
+#include "CAllDataClass.h"
+
+
+
+

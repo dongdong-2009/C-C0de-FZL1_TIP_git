@@ -1,0 +1,119 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/ProcessManagementDataDefinitionsCorbaDef.idl $
+  * @author:   Ross Tucker
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last mofified by:  $Author: CM $
+  *
+  * This is a collection of data definitions that are used by 
+  * process management interfaces.
+  */
+
+#ifndef PROCESSMANAGEMENTDATADEFINITIONSCORBADEF_IDL_INCLUDED
+#define PROCESSMANAGEMENTDATADEFINITIONSCORBADEF_IDL_INCLUDED
+
+module TA_Base_Core
+{
+        const unsigned short DEFAULT_MGR_PORT = 6666;
+
+        typedef unsigned long ProcessId;
+
+		typedef unsigned long DateTime_ul;
+
+		enum EManagedProcessTerminateCode
+        {
+            RequestedTerminate, // Process Manager told the managed process to terminate
+            InitError,          // Managed process fail to initialise
+            CommsError,
+            UserExit,           // User has closed the managed process
+            DependencyFailure,
+            TimeoutError,
+            FatalError,
+            AccessDenied,       // Session does not have sufficient rights to run managed process 
+            NoActiveSession,    // No active session to run managed process
+            RightsError,        // Unable to determine the rights due to rights agent or configuration problem
+            ConfigError,        // Configuration problem with the process
+            NotKnown
+        };
+
+        enum EOperationMode
+        {
+            Control,
+            Monitor,
+            NotApplicable,
+			Standby
+        };
+
+		enum EFocusType
+		{
+		    GetFocus,
+			Minimise,
+			Maximise
+		};
+
+		// The possible states a process can be in
+        enum EProcessStatus
+        {
+			Unstarted,		// The process has not been started yet.
+			Startup,		// The process has registered and is currently initialising
+            GoingToControl, // The process is running and is currently transitioning 
+                            // to Control mode.
+            GoingToMonitor, // The process is running and is currently transitioning
+                            // to Monitor mode.
+            RunningControl,	// The process is running in Control mode.
+            RunningMonitor, // The process is running in Monitor mode.
+			Terminating,	// The System Controller is terminating the process.
+            NotRunning,		// The process has inexplicably stopped running.
+			Stopped,		// The process has successfully been terminated.
+			RunningStandby,	// The process is running in Standby mode.
+			GoingToStandby  // The process is running and is currently transitioning 
+							// to Standby mode.
+        };
+
+		enum AgentStatusEnum
+		{
+			Normal,		// All agents are running in their configured operation mode.
+			Abnormal,	// All agents are running, but one or more is not in the mode
+						// it was configured to start in.
+			AgentFault  // Not all of the configured agents are running.
+		};
+
+        // Information about the individual Processes
+        struct ProcessData
+        {
+            // The name of the Process as defined in the ManagedProcess type.
+            string				ProcessId;
+            DateTime_ul			started;
+            string				host;
+            EProcessStatus		state;
+            EProcessStatus      requestedState;
+			EOperationMode		operationMode;
+            unsigned short		restarts;
+			string				debugLevel;
+        };
+
+		exception BadParam     // Not using CommonDmIf anymore so this is now here
+				   {
+						string reason;
+				   };  
+
+		typedef sequence<ProcessData> ProcessDataSeq;	      
+};
+
+module TA_Base_Core
+{
+        struct RunParam
+        {
+            string name;
+            string value;
+        };
+
+        typedef sequence<RunParam> RunParamSeq;
+};
+
+#endif // PROCESSMANAGEMENTDATADEFINITIONSCORBADEF_IDL_INCLUDED
+

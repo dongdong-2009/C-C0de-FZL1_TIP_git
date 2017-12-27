@@ -1,0 +1,77 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IManagedAgentCorbaDef.idl $
+  * @author:   Ross Tucker
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last mofified by:  $Author: CM $
+  *
+  * This interface allows the Process Manager to set an Agents
+  * mode to active or standby.
+  */
+
+#ifndef IMANAGEDAGENT_IDL_INCLUDED
+#define IMANAGEDAGENT_IDL_INCLUDED
+
+#include "core/process_management/IDL/src/IManagedApplicationCorbaDef.idl"
+#include "core/process_management/IDL/src/ProcessManagementDataDefinitionsCorbaDef.idl"
+
+module TA_Base_Core
+{
+        interface IManagedAgentCorbaDef : IManagedApplicationCorbaDef
+        {
+			/**
+			* A sequence of NotifyHosts
+			*/
+			typedef sequence< string > NotifyHostSequence;
+
+            /**
+              * setOperationMode
+              *
+              * This method allows the Process Manager to set an
+              * agent's operational mode.
+              */
+            oneway void setOperationMode(in EOperationMode mode);
+
+			/**
+			  * invalidateNotifyHosts
+			  *
+			  * This is called by the SystemController when a 
+			  * peer system controller fails that is running one
+			  * or more NotificationServiceAgents.
+			  *
+			  * @param NotifyHostSequence	the list of Notifyhosts to invalidate
+			  */
+			oneway void invalidateNotifyHosts( in NotifyHostSequence notifyHosts );
+            
+            /**
+              * getOperationMode
+              *
+              * This method allows the Process Manager to get an
+              * agent's operational mode.
+              */
+            EOperationMode getOperationMode();
+
+			/** 
+			  * notifyGroupOffline
+			  *
+			  * Used by the System Controller to inform an agent that
+			  * a group is now offline.
+			  */
+			oneway void notifyGroupOffline(in string group);
+
+			/** 
+			  * notifyGroupOnline
+			  *
+			  * Used by the System Controller to inform an agent that
+			  * a group is now online.
+			  */
+			oneway void notifyGroupOnline(in string group);
+        };
+
+};
+
+#endif // IMANAGEDAGENT_IDL_INCLUDED

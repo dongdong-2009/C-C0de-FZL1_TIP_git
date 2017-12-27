@@ -1,0 +1,140 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IProcessManagerCorbaDef.idl $
+  * @author:   Ross Tucker
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last mofified by:  $Author: CM $
+  *
+  * This interface should be implemented by any process that is
+  * responsible for managing other processes (eg the TransActive
+  * System Controller).
+  */
+
+#ifndef IPROCESSMANAGERCORBADEF_IDL_INCLUDED
+#define IPROCESSMANAGERCORBADEF_IDL_INCLUDED
+
+#include "core/process_management/IDL/src/IManagedProcessCorbaDef.idl"
+#include "core/process_management/IDL/src/IManagedApplicationCorbaDef.idl"
+#include "core/process_management/IDL/src/ProcessManagementDataDefinitionsCorbaDef.idl"
+
+module TA_Base_Core
+{
+        exception ProcessRunningException{}; 
+        exception FailedToRegisterException{}; 
+        
+        interface IProcessManagerCorbaDef
+        {
+            /** 
+             * terminating
+             * 
+             * This is called by a process when it is about to close
+             *
+             * @param ProcessId - The process id of the process so the
+             *                    manager knows which process is making the
+             *                    call.
+             * @param EManagedProcessTerminateCode - The reason why the
+             *                                       process is terminating
+             */
+            void terminating( in ProcessId p_processID, 
+                              in EManagedProcessTerminateCode p_code);
+
+
+            /**
+             * registerManagedProcess
+             *
+             * When a process starts up it will register with the 
+             * manager so the communication cycle is complete.
+             *
+             * @param IManagedProcessCorbaDef - The process interface the
+             *                                  manager can communicate with
+             * @param ProcessId - The process id of the process so the manager
+             *                    knows which process is making the call
+             * @param unsigned long - This is the application type and is used
+             *                        for GUI applications so instances can be
+             *                        limited for certain types
+             * @param string - The name of the entity the process is using for
+             *                 configuration
+             *
+             * @exception ProcessRunningException - Indicates an instance of the
+             *                                      application is already
+             *                                      running so this one should
+             *                                      be terminated
+             * @exception FailedToRegisterException - An error occurred and the
+             *                                        process has not been
+             *                                        registered with the
+             *                                        manager
+             */
+            void registerManagedProcess( in IManagedProcessCorbaDef p_managedProcess,
+										 in ProcessId p_processId,
+                                         in unsigned long applicationType,
+                                         in string entity)
+                raises( ProcessRunningException, FailedToRegisterException);
+
+
+            /**
+             * registerManagedApplication
+             *
+             * This is used to register specialist processes such as
+             * applications and agents.
+             *
+             * @param IManagedApplicationCorbaDef - The interface the manager
+             *                                      can call
+             * @param ProcessId - The id of the process so the manager can
+             *                    identify which process made the call
+             */ 
+            void registerManagedApplication(in IManagedApplicationCorbaDef p_managedApp, 
+											in ProcessId p_processId);
+
+
+            /**
+             * getParams
+             *
+             * Used to retrieve the manager's parameters
+             *
+             * @param ProcessId - The id of the process so the manager can
+             *                    identify which process made the call
+			 * @param string - If the ProcessId is 0, this must be the hostname
+			 *				   of the machine the process is running on.
+             *
+             * @return RunParamSeq - A list of parameter names and values
+             */
+            TA_Base_Core::RunParamSeq getParams(in ProcessId p_processId,
+                                                in string hostname);
+
+
+            /**
+             * poll
+             *
+             * This is used to poll the manager. This is normally used by 
+             * agents only.
+             */
+            void poll();
+
+
+            /**
+             * statusChanged
+             *
+             * This is called by agents to indicate when they move between
+             * states. This method is not needed by GUI's.
+             *
+             * @param EProcessStatus - The state the agent is now in
+             * @param ProcessId - The id of the process that has changed state
+             */
+            void statusChanged(in EProcessStatus status,
+                               in ProcessId p_processId);
+
+
+            /**
+              * handleDoubleControlBaseOnCentralDb
+              */
+            TA_Base_Core::EOperationMode handleDoubleControlBaseOnCentralDb(in string host,
+                                                                            in boolean isCentrolDbOnline,
+                                                                            in unsigned long timeSinceOffline);
+        };
+};
+
+#endif // IPROCESSMANAGERCORBADEF_IDL_INCLUDED

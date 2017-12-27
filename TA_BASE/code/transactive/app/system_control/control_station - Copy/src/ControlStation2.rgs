@@ -1,0 +1,24 @@
+HKCR
+{
+	ControlStation.ControlStation2.1 = s 'ControlStation2 Class'
+	{
+		CLSID = s '{037EDEC7-80F2-11D7-B177-0050BAB1D931}'
+	}
+	ControlStation.ControlStation2 = s 'ControlStation2 Class'
+	{
+		CLSID = s '{037EDEC7-80F2-11D7-B177-0050BAB1D931}'
+		CurVer = s 'ControlStation.ControlStation2.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {037EDEC7-80F2-11D7-B177-0050BAB1D931} = s 'ControlStation2 Class'
+		{
+			ProgID = s 'ControlStation.ControlStation2.1'
+			VersionIndependentProgID = s 'ControlStation.ControlStation2'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{037EDEC3-80F2-11D7-B177-0050BAB1D931}'
+			'TypeLib' = s '{037EDEC4-80F2-11D7-B177-0050BAB1D931}'
+		}
+	}
+}

@@ -1,0 +1,43 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/database_status_monitor/dsmCorbaDef/idl/src/DatabaseStatusCorbaDef.idl $
+// @author:  R. Stagg
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Interface used to send database status updates.
+//
+
+#if !defined DatabaseStatusCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+#define DatabaseStatusCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+
+
+module TA_Base_Bus
+{
+
+	interface DatabaseStatusCorbaDef
+	{
+
+	    enum EState
+        {
+    	    statusUnknown,
+    	    statusAvailable,
+    	    statusUnAvailable
+        };
+
+
+	    struct DatabaseStatus
+        {
+            EState status;
+            string database;
+        };
+
+	}; // end interface DatabaseStatusCorbaDef
+}; // end module TA_Base_Bus
+
+#endif // !defined(DatabaseStatusCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)

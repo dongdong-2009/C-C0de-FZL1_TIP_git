@@ -1,0 +1,12 @@
+//const CString STATUS_MSG( "Status" );
+const CString STATUS_MSG( "状态" );
+//const CString ENABLED_MSG( "Enabled" );
+const CString ENABLED_MSG( "是否使能" );
+//const CString EVENT_TYPE_MSG( "Event Type" );
+const CString EVENT_TYPE_MSG( "事件类型" );
+//const CString ENTITY_TYPE_MSG( "Entity Type" );
+const CString ENTITY_TYPE_MSG( "实体类型" );
+//const CString ENTITY_MSG( "Entity" );
+const CString ENTITY_MSG( "实体" );
+//const CString PLAN_MSG( "Plan" );
+const CString PLAN_MSG( "计划" );

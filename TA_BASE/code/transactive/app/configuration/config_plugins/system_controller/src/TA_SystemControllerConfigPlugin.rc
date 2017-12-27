@@ -1,0 +1,252 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+2 VERSIONINFO
+ FILEVERSION 0,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "TA_SystemControllerConfigPlugin DLL\0"
+            VALUE "FileVersion", "0, 0, 0, 0\0"
+            VALUE "InternalName", "TA_SystemControllerConfigPlugin\0"
+            VALUE "LegalCopyright", "版权 (C) 2003\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TA_SystemControllerConfigPlugin.DLL\0"
+            VALUE "ProductName", "TA_SystemControllerConfigPlugin Dynamic Link Library\0"
+            VALUE "ProductVersion", "0, 0, 0, 0\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\TA_SystemControllerConfigPlugin.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""..\\config_plugin_helper\\src\\TA_ConfigPluginHelper.rc"" // Config Plugin Helper library resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SYSTEMCONTROLLER_VIEW DIALOG DISCARDABLE  0, 0, 431, 369
+STYLE DS_MODALFRAME | WS_CHILD
+FONT 10, "宋体"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,86,18,330,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_DEBUGLOGDIR,86,35,330,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BUTTON_GROUP,404,69,12,13
+    PUSHBUTTON      "...",IDC_BUTTON_SERVER,404,86,12,13
+    EDITTEXT        IDC_EDIT_HSP,111,103,40,13,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_APP,267,103,40,13,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_APP2,111,121,40,13,ES_AUTOHSCROLL | ES_NUMBER
+    PUSHBUTTON      "添加",IDC_BUTTON_ADD,378,138,38,14
+    PUSHBUTTON      "移除",IDC_BUTTON_REMOVE,378,157,38,14
+    CONTROL         "List1",IDC_PROCESS_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,86,138,279,93
+    CONTROL         "List2",IDC_GROUP_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SORTASCENDING | LVS_NOSORTHEADER | 
+                    WS_BORDER | WS_TABSTOP,86,241,193,56
+    DEFPUSHBUTTON   "应用(&A)",IDC_BUTTON_APPLY,156,340,50,14
+    PUSHBUTTON      "重置(&R)",IDC_BUTTON_RESET,220,340,50,14
+    LTEXT           "名称:",IDC_STATIC_NAME,16,19,28,13
+    GROUPBOX        "类型",IDC_STATIC_TYPE,8,7,415,354
+    LTEXT           "创建日期:",IDC_STATIC_DATE_CREATED,16,309,53,9
+    LTEXT           "最后修改时间:",IDC_STATIC_DATE_MODIFIED,16,326,53,9
+    LTEXT           "日期在此显示",IDC_STATIC_CREATEDATE,86,308,241,9
+    LTEXT           "日期在此显示",IDC_STATIC_MODIFYDATE,86,325,241,9
+    CONTROL         9005,IDC_NAME_BITMAP,"Static",SS_BITMAP,76,20,11,11
+    LTEXT           "代理投票时期:",IDC_STATIC_APP,197,104,64,13
+    LTEXT           "秒",IDC_STATIC_SECONDS1,309,105,30,9
+    CONTROL         9005,IDC_APP_BITMAP,"Static",SS_BITMAP,261,105,11,11
+    LTEXT           "心跳发送阶段:",IDC_STATIC_HSP,16,104,78,13
+    LTEXT           "秒",IDC_STATIC_SECONDS2,154,106,30,9
+    CONTROL         9005,IDC_HSP_BITMAP,"Static",SS_BITMAP,105,105,11,11
+    LTEXT           "日志文件夹:",IDC_STATIC_LOG_DIRECTORY,16,36,48,13
+    CONTROL         9005,IDC_DEBUGLOGDIR_BITMAP,"Static",SS_BITMAP,76,36,11,
+                    11
+    LTEXT           "组:",IDC_STATIC_GROUP,16,70,40,13
+    EDITTEXT        IDC_EDIT_GROUP,86,69,310,13,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    LTEXT           "服务器:",IDC_STATIC_SERVER,16,87,40,13
+    EDITTEXT        IDC_EDIT_SERVER,86,86,310,13,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    CONTROL         9005,IDC_SERVER_BITMAP,"Static",SS_BITMAP,76,88,11,11
+    LTEXT           "进程:",IDC_STATIC_PROCESSES,16,138,40,10
+    LTEXT           "监视组:",IDC_STATIC_GROUPS,17,241,69,10
+    LTEXT           "代理:",IDC_STATIC_ART,16,121,87,13
+    LTEXT           "秒",IDC_STATIC_SECONDS3,154,124,30,9
+    CONTROL         9005,IDC_ART_BITMAP,"Static",SS_BITMAP,105,123,11,11
+    EDITTEXT        IDC_EDIT_BINDIR,86,52,330,13,ES_AUTOHSCROLL
+    LTEXT           "Bin 目录:",IDC_STATIC_BIN_DIRECTORY,16,53,48,13
+    CONTROL         9005,IDC_BINDIR_BITMAP,"Static",SS_BITMAP,76,53,11,11
+END
+
+IDD_ADD_PROCESS_DIALOG DIALOG DISCARDABLE  0, 0, 186, 214
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "添加进程"
+FONT 10, "宋体"
+BEGIN
+    CONTROL         "控制",IDC_RADIO_CONTROL,"Button",BS_AUTORADIOBUTTON,
+                    14,161,38,11
+    CONTROL         "监控",IDC_RADIO_MONITOR,"Button",BS_AUTORADIOBUTTON,
+                    14,173,38,10
+    DEFPUSHBUTTON   "确定",IDOK,39,193,50,14
+    PUSHBUTTON      "取消",IDCANCEL,96,193,50,14
+    GROUPBOX        "默认操作模式",IDC_STATIC,7,151,172,36
+    CONTROL         "List1",IDC_PROCESS_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_SORTASCENDING | 
+                    LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | 
+                    WS_TABSTOP,7,7,172,139
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SYSTEMCONTROLLER_VIEW, DIALOG
+    BEGIN
+        RIGHTMARGIN, 423
+        VERTGUIDE, 8
+        VERTGUIDE, 81
+        VERTGUIDE, 86
+        VERTGUIDE, 416
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 361
+    END
+
+    IDD_ADD_PROCESS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\TA_SystemControllerConfigPlugin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "..\config_plugin_helper\src\TA_ConfigPluginHelper.rc" // Config Plugin Helper library resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,487 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\SystemManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "..\\res\\SystemManager.ico"
+IDI_ICON1               ICON    DISCARDABLE     "..\\res\\icon1.ico"
+IDI_ICON2               ICON    DISCARDABLE     "..\\res\\icon2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SYSTEMMANAGER_DIALOG DIALOGEX 0, 0, 514, 239
+STYLE DS_3DLOOK | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "System Manager"
+MENU IDR_MAINMENU
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_MAIN_PROCESSLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_SORTASCENDING | NOT WS_VISIBLE | 
+                    WS_DISABLED | WS_BORDER,32,57,196,87
+    EDITTEXT        IDC_STATUS,0,147,541,12,ES_READONLY | NOT WS_BORDER | 
+                    NOT WS_TABSTOP,WS_EX_CLIENTEDGE
+    CONTROL         "",IDC_MENU_LINE,"Static",SS_ETCHEDHORZ,2,0,513,1
+    CONTROL         "Tab1",IDC_TAB_HOSTS,"SysTabControl32",0x0,6,23,508,210
+END
+
+IDD_STARTPROCESS_DIALOG DIALOG DISCARDABLE  0, 0, 225, 147
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Start Process"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "Yes",IDOK,59,123,50,14
+    PUSHBUTTON      "No",IDCANCEL,118,123,50,14
+    GROUPBOX        "",IDC_STATIC,7,7,212,107
+    LTEXT           "Are you sure you want to start the following processes?",
+                    IDC_STATIC,22,18,182,13
+    LISTBOX         IDC_START_PROCESS_LIST,22,33,184,71,NOT LBS_NOTIFY | 
+                    LBS_SORT | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_SYSTEMCONTROLLER_DIALOG DIALOG DISCARDABLE  0, 0, 220, 87
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "System Manager"
+FONT 10, "Arial Bold"
+BEGIN
+    COMBOBOX        IDC_HOST_NAME,61,21,144,30,CBS_DROPDOWNLIST | CBS_SORT | 
+                    NOT WS_VISIBLE | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_HOST_NAME_EDIT,61,21,144,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PORT_NUMBER,61,39,144,13,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "OK",IDOK,53,66,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,115,66,50,14
+    LTEXT           "Host Name:",IDC_STATIC,15,23,39,12,NOT WS_VISIBLE | 
+                    WS_DISABLED
+    LTEXT           "Port Number:",IDC_STATIC,15,41,44,12
+    GROUPBOX        "System Controller Details",IDC_STATIC,7,7,206,53
+END
+
+IDD_LOGIN_DIALOG DIALOG DISCARDABLE  0, 0, 274, 126
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "System Manager"
+FONT 10, "Arial Bold"
+BEGIN
+    COMBOBOX        IDC_NAME_COMBO,51,22,206,83,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PROFILE_COMBO,51,39,206,80,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LOCATION_COMBO,51,55,206,74,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_PASSWORD_EDIT,51,72,206,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "OK",IDOK,82,105,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,142,105,50,14
+    LTEXT           "Name:",IDC_STATIC,13,25,36,14
+    LTEXT           "Profile:",IDC_STATIC,13,41,28,14
+    LTEXT           "Location:",IDC_STATIC,13,57,32,14
+    LTEXT           "Password:",IDC_STATIC,13,73,34,14
+    GROUPBOX        "Login",IDC_STATIC,7,7,260,88
+END
+
+IDD_OPTIONS_DIALOG DIALOG DISCARDABLE  0, 0, 194, 39
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Options"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,140,5,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,140,21,50,14
+    COMBOBOX        IDC_REFRESH_RATE_COMBO,82,13,38,112,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Refresh Data every",IDC_STATIC,15,16,62,8
+    GROUPBOX        "Refresh Rate",IDC_STATIC,4,1,124,34
+END
+
+IDD_STOPPROCESS_DIALOG DIALOG DISCARDABLE  0, 0, 225, 147
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Stop Process"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "Yes",IDOK,59,123,50,14
+    PUSHBUTTON      "No",IDCANCEL,118,123,50,14
+    LTEXT           "Are you sure you want to stop the following processes?",
+                    IDC_STATIC,22,18,177,12
+    GROUPBOX        "",IDC_STATIC,7,7,212,107
+    LISTBOX         IDC_STOP_PROCESS_LIST,22,33,184,71,NOT LBS_NOTIFY | 
+                    LBS_SORT | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_SHUTDOWN_MONITOR_DIALOG DIALOG DISCARDABLE  0, 0, 207, 98
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Shutdown Controller"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "Shutdown",IDOK,94,77,50,14,WS_DISABLED
+    PUSHBUTTON      "Cancel",IDCANCEL,150,77,50,14
+    GROUPBOX        "",IDC_STATIC,7,7,193,63
+    LTEXT           "You are about to shutdown the System Controller on the following host:",
+                    IDC_STATIC,12,15,183,20
+    LTEXT           "- Hostname",IDC_HOSTNAME,12,44,127,22
+END
+
+IDD_PROCESS_PARAMS DIALOG DISCARDABLE  0, 0, 211, 42
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set Process Runtime Parameters"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,157,5,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,157,22,50,14
+    GROUPBOX        "Process parameters",IDC_STATIC,4,1,146,36
+    COMBOBOX        IDC_DEBUG_LEVEL_COMBO,69,15,74,83,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Debug Level",IDC_STATIC,21,18,42,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "SystemManager MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "SystemManager\0"
+            VALUE "LegalCopyright", "Copyright (C) 2001\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "SystemManager.EXE\0"
+            VALUE "ProductName", "SystemManager Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CONTEXT_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "Start Process",               IDM_START_PROCESS
+        MENUITEM "Stop Process",                IDM_STOP_PROCESS
+        MENUITEM "Set Process Runtime Parameters", IDM_PROCESS_PARAM
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_STOPPROCESS_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 219
+        VERTGUIDE, 7
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About SystemManager..."
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_BUTTON_LOGIN         "Login\nLogin to the application"
+    ID_BUTTON_LOGOUT        "Logout\nLogout of the application"
+    ID_BUTTON_START         "Start\nStart the selected process"
+    ID_BUTTON_STOP          "Stop\nStop the selected process"
+    ID_BUTTON_REFRESH       "Refresh\nRefresh the list of processes"
+    IDS_LOGOUT              "logout"
+    IDS_EXIT                "exit"
+    IDS_ALL_FUNCTIONALITIES "All System Manager functionality"
+    IDS_LOGIN               "log in"
+    IDS_INVALID_USER        " with invalid username"
+    IDS_INVALID_PASSWORD    " with invalid password"
+    IDS_INVALID_PROFILE     " with invalid profile"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_SHUT_DOWN           "ShutDown"
+    IDS_SET_OPERATING_MODE  "Set Operating Mode"
+    IDS_SET_OPTIONS         "Set Options"
+    ID_BUTTON_RETRYALL      "RetryAll\nRetry to login to all failed server"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_INVALID_LOCATION    " with invalid location"
+    IDS_INVALID_WORKSTATION " at an unconfigured workstation"
+    IDS_PROFILE_NOT_PERMITTED " with an unauthorised profile"
+    IDS_LOCATION_NOT_PERMITTED " at an unauthorised location"
+    IDS_UNIDENTIFIED_CONSOLE " on an unidentified console"
+    IDS_AUTHENTICATION_SERVICE_ERROR 
+                            " because of an authentication service error"
+    IDS_CANNOT_ACCESS_SYSTEM_CONTROLLER 
+                            " because it cannot access the System Controller"
+    IDS_NO_SYSTEM_CONTROLLER 
+                            " because no System Controller is running on the specified host and port"
+    IDS_CANNOT_RETRIEVE_INFO 
+                            " because the System Controller process information could not be retrieved"
+    IDS_DATABASE_ERROR      " because of database error"
+    IDS_PORT_NUMBER         "port number"
+    IDS_ALL_FUNCTIONALITY   "all System Manager functionalities"
+    IDS_UNKNOWN_ERROR       " because of an error"
+    IDS_START_PROCESS       "Start Process"
+    IDS_STOP_PROCESS        "Stop Process"
+    IDS_PROCESS_PARAM_ALLOWED "Process Param Allowed"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CHANGEOPERATIONMODE_DIALOG DIALOG DISCARDABLE  0, 0, 225, 218
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Change Operation Mode"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "Change Mode",IDOK,51,197,56,14
+    PUSHBUTTON      "Cancel",IDCANCEL,121,197,56,14
+    GROUPBOX        "",IDC_STATIC,7,7,211,114
+    GROUPBOX        "Select Operation Mode",IDC_STATIC,31,129,164,60
+    CONTROL         "Control",IDC_CONTROL,"Button",BS_AUTORADIOBUTTON,93,143,
+                    38,16
+    CONTROL         "Monitor",IDC_MONITOR,"Button",BS_AUTORADIOBUTTON,93,162,
+                    38,16
+    LTEXT           "You are about to change the Operation Mode of the following processes:",
+                    IDC_STATIC,22,18,185,19
+    LISTBOX         IDC_MODE_PROCESS_LIST,22,39,184,71,NOT LBS_NOTIFY | 
+                    LBS_SORT | LBS_NOINTEGRALHEIGHT | LBS_NOSEL | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Log&in...",                   ID_FILE_LOGIN
+        MENUITEM "L&ogout...",                  ID_FILE_LOGOUT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_FILE_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Refresh",                    ID_VIEW_REFRESH
+        MENUITEM "Optio&ns...",                 ID_VIEW_OPTIONS
+    END
+    POPUP "&Control"
+    BEGIN
+        MENUITEM "St&art Process...",           ID_CONTROL_STARTPROCESS
+        MENUITEM "&Stop Process...",            ID_CONTROL_STOPPROCESS
+        MENUITEM "Change Process Operation &Mode...", 
+                                                ID_CONTROL_CHANGEPROCESSOPERATIONMODE
+
+        MENUITEM "Shutdown System Contro&ller...", 
+                                                ID_CONTROL_SHUTDOWNSYSTEMCONTROLLER
+
+        MENUITEM "Set Process R&untime Parameters...", ID_CONTROL_SETPARAM
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "S&ystem Manager Help",        ID_HELP_INDEX
+        MENUITEM "A&bout System Manager...",    ID_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_CHANGEOPERATIONMODE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 211
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR1 TOOLBAR DISCARDABLE  22, 23
+BEGIN
+    BUTTON      ID_BUTTON_LOGIN
+    BUTTON      ID_BUTTON_LOGOUT
+    BUTTON      ID_BUTTON_START
+    BUTTON      ID_BUTTON_STOP
+    SEPARATOR
+    BUTTON      ID_BUTTON_REFRESH
+    SEPARATOR
+    BUTTON      ID_BUTTON_RETRYALL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR1            BITMAP  DISCARDABLE     "..\\res\\toolbar1.bmp"
+IDB_UP                  BITMAP  DISCARDABLE     "..\\res\\up.bmp"
+IDB_DOWN                BITMAP  DISCARDABLE     "..\\res\\down.bmp"
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\SystemManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

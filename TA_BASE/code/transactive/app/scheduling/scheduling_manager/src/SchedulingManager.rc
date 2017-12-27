@@ -1,0 +1,541 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\SchedulingManager.ico"
+IDR_TESTDOTYPE          ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\SchedulingManager.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "..\\res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "文件"
+    BEGIN
+        MENUITEM "打印",                          ID_FILE_PRINT
+        MENUITEM "退出",                          ID_APP_EXIT
+    END
+    POPUP "显示"
+    BEGIN
+        MENUITEM "全部工作",                        ID_VIEW_ALLJOBS
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏",                         ID_VIEW_TOOLBAR
+        MENUITEM "状态栏",                         ID_VIEW_STATUS_BAR
+    END
+    POPUP "任务"
+    BEGIN
+        MENUITEM "增加",                          ID_JOB_ADD
+        MENUITEM "查看",                          ID_VIEW_JOBDETAILS
+        MENUITEM "删除",                          ID_JOB_DELETE
+        MENUITEM "编辑",                          ID_JOB_EDIT
+        MENUITEM "生效",                          ID_JOB_ENABLE
+        MENUITEM "取消",                          ID_JOB_DISABLE
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "系统时间表帮助",                     ID_HELP_SCHEDULINGMANAGER
+        MENUITEM "关于系统时间表",                     ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "SchedulingManager MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "SchedulingManager"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "SchedulingManager.EXE"
+            VALUE "ProductName", "SchedulingManager Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_JOB_DIALOG DIALOGEX 0, 0, 321, 382
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "工作对话框"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    COMBOBOX        IDC_JD_COMBO_JOBTYPE,60,20,157,84,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "选择...",IDC_JD_BUTTON_SELECTJOB,222,61,40,14
+    EDITTEXT        IDC_JD_EDIT_JOBDESCRIPTION,60,41,247,12,ES_AUTOHSCROLL
+    CONTROL         "无",IDC_JD_RADIO_ONCEOFF,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,26,111,55,10
+    CONTROL         "每日",IDC_JD_RADIO_DAILY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,26,125,53,10
+    CONTROL         "每周",IDC_JD_RADIO_WEEKLY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,26,139,52,10
+    CONTROL         "每月",IDC_JD_RADIO_MONTHLY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,26,153,54,10
+    CONTROL         "每年",IDC_JD_RADIO_YEARLY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,26,167,56,10
+    CONTROL         "无结束时间",IDC_JD_RADIO_NO_END_DATE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,26,203,80,10
+    CONTROL         "循环",IDC_JD_RADIO_END_AFTER,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,26,218,59,10
+    EDITTEXT        IDC_JD_EDIT_END_AFTER,109,217,68,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "结束于",IDC_JD_RADIO_END_BY,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,26,233,65,10
+    CONTROL         "DateTimePicker1",IDC_JD_DATETIMEPICKER_END_BY,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,109,232,68,12
+    COMBOBOX        IDC_JD_COMBO_PROFILE,46,336,105,74,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_JD_COMBO_LOCATION,198,336,105,75,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "保存",IDOK,66,361,50,14
+    PUSHBUTTON      "新建保存",IDC_SAVE_NEW,136,361,50,14
+    PUSHBUTTON      "关闭",IDCANCEL,206,361,50,14
+    GROUPBOX        "任务类型",IDC_STATIC,7,7,307,72
+    LTEXT           "类型",IDC_STATIC,17,22,27,8,NOT WS_GROUP
+    LTEXT           "描述",IDC_STATIC,17,43,27,8,NOT WS_GROUP
+    GROUPBOX        "作业定时",IDC_STATIC,7,88,307,226
+    GROUPBOX        "循环范围",IDC_STATIC_RANGE_PANEL,17,191,286,61
+    LTEXT           "次之后",IDC_RANGE_PANEL_TEXT,183,219,40,8,NOT WS_GROUP
+    GROUPBOX        "",IDC_JD_RECURRENCE_PATTERN,82,105,221,79,NOT WS_VISIBLE
+    GROUPBOX        "内容摘要",IDC_STATIC,17,260,286,44
+    GROUPBOX        "工作执行",IDC_STATIC,7,324,307,31
+    LTEXT           "权限",IDC_STATIC,17,338,23,8,NOT WS_GROUP
+    LTEXT           "位置",IDC_STATIC,163,338,28,8,NOT WS_GROUP
+    EDITTEXT        IDC_JD_EDIT_SCHEDULE_SUMMARY,26,273,271,27,ES_MULTILINE | ES_READONLY | NOT WS_BORDER
+    CONTROL         "Spin1",IDC_JD_SPINNER_END_AFTER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_ARROWKEYS,142,217,8,12
+    GROUPBOX        "",IDC_STATIC,82,99,221,85
+    GROUPBOX        "循环模式",IDC_STATIC,17,99,286,85
+    LTEXT           "工作",IDC_STATIC,17,64,27,8
+    EDITTEXT        IDC_JD_EDIT_JOBNAME,60,62,157,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "详情...",IDC_JD_BUTTON_JOBDETAILS,267,61,40,14
+END
+
+IDD_NO_RECURRENCE DIALOG  0, 0, 262, 62
+STYLE DS_SETFONT
+FONT 10, "宋体"
+BEGIN
+    LTEXT           "执行在",IDC_STATIC,10,21,33,8
+    CONTROL         "DateTimePicker1",IDC_ONCEOFF_DATETIMEPICKER_DATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,50,19,66,12
+    LTEXT           "在",IDC_STATIC,122,21,8,8
+    CONTROL         "DateTimePicker2",IDC_ONCEOFF_DATETIMEPICKER_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,136,19,54,12
+END
+
+IDD_DAILY_RECURRENCE DIALOG  0, 0, 159, 50
+STYLE DS_SETFONT
+FONT 10, "宋体"
+BEGIN
+    LTEXT           "每天定时在",IDC_STATIC,11,21,57,8
+    CONTROL         "DateTimePicker1",IDC_DAILY_DATETIMEPICKER_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,74,18,54,13
+END
+
+IDD_WEEKLY_RECURRENCE DIALOG  0, 0, 230, 76
+STYLE DS_SETFONT
+FONT 10, "宋体"
+BEGIN
+    LTEXT           "每周定时在",IDC_STATIC,7,7,69,8
+    CONTROL         "周一",IDC_WEEKLY_CHECK_MONDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_GROUP | WS_TABSTOP,7,20,44,12
+    CONTROL         "周二",IDC_WEEKLY_CHECK_TUESDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,60,20,44,12
+    CONTROL         "周三",IDC_WEEKLY_CHECK_WEDNESDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,113,20,44,12
+    CONTROL         "周四",IDC_WEEKLY_CHECK_THURSDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,166,20,44,12
+    CONTROL         "周五",IDC_WEEKLY_CHECK_FRIDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,7,38,44,12
+    CONTROL         "周六",IDC_WEEKLY_CHECK_SATURDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,60,38,44,12
+    CONTROL         "周日",IDC_WEEKLY_CHECK_SUNDAY,"Button",BS_OWNERDRAW | BS_NOTIFY | WS_TABSTOP,113,38,44,12
+    LTEXT           "在",IDC_STATIC,7,55,8,8
+    CONTROL         "DateTimePicker1",IDC_WEEKLY_DATETIMEPICKER_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,24,53,53,13
+END
+
+IDD_MONTHLY_RECURRENCE DIALOG  0, 0, 255, 67
+STYLE DS_SETFONT
+FONT 10, "宋体"
+BEGIN
+    CONTROL         "Spin1",IDC_MONTHLY_SPINNER_DAY,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_ARROWKEYS,142,16,8,12
+    EDITTEXT        IDC_MONTHLY_EDIT_ADAY_DAY,95,16,35,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "日",IDC_STATIC,138,19,8,8,NOT WS_GROUP
+    CONTROL         "DateTimePicker1",IDC_MONTHLY_DATETIMEPICKER_ADAY_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,154,16,54,12
+    CONTROL         "每月重新运行在",IDC_MONTHLY_RADIO_ADAY,"Button",BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,14,15,68,13
+    CONTROL         "每月最后一天在",IDC_MONTHLY_RADIO_LASTDAY,"Button",BS_OWNERDRAW | WS_TABSTOP,14,40,88,13
+    CONTROL         "DateTimePicker2",IDC_MONTHLY_DATETIMEPICKER_LASTDAY_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,118,39,54,12
+END
+
+IDD_YEARLY_RECURRENCE DIALOG  0, 0, 246, 76
+STYLE DS_SETFONT
+FONT 10, "宋体"
+BEGIN
+    LTEXT           "日",IDC_STATIC,149,19,8,8,NOT WS_GROUP
+    CONTROL         "DateTimePicker1",IDC_YEARLY_DATETIMEPICKER_ADAY_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,163,17,56,12
+    CONTROL         "每年重复运行在",IDC_YEARLY_RADIO_ADAY,"Button",BS_OWNERDRAW | WS_GROUP,8,16,73,14
+    CONTROL         "每年二月的最后一天重复运行在",IDC_YEARLY_RADIO_LASTDAY,"Button",BS_OWNERDRAW,9,35,117,14
+    CONTROL         "DateTimePicker2",IDC_YEARLY_DATETIMEPICKER_LASTDAY_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,151,36,56,12
+    CONTROL         "DateTimePicker1",IDC_YEARLY_DATETIMEPICKER_ADAY_DATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,87,17,56,12
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_JOB_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 314
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 375
+    END
+
+    IDD_NO_RECURRENCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 255
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_DAILY_RECURRENCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 43
+    END
+
+    IDD_WEEKLY_RECURRENCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+
+    IDD_MONTHLY_RECURRENCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 9
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 60
+    END
+
+    IDD_YEARLY_RECURRENCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 239
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 69
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\SchedulingManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\..\\..\\..\\bus\\resources\\TransActiveResources.rc"" // Standard Transactive Resources\r\n"
+    "#include ""..\\..\\..\\..\\bus\\response_plans\\plan_tree\\src\\PlanTree.rc"" // Plan Tree control resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Scheduling Manager\n\nTestDo\n\n\nSchedulingManager.Document\nTestDo Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "系统时间表"
+    AFX_IDS_IDLEMESSAGE     "准备"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_CLOSE           "关闭活动文档\nClose"
+    ID_FILE_PRINT           "打印调度工作列表"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "弹出关于系统时间表的信息"
+    ID_APP_EXIT             "退出系统时间表"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一个窗格"
+    ID_PREV_PANE            "切换到前一个窗格\n前一个窗格"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "分割活动窗口\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "拨动工具条开/关"
+    ID_VIEW_STATUS_BAR      "拨动状态条开/关"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "改变窗口大小"
+    AFX_IDS_SCMOVE          "改变窗口位置"
+    AFX_IDS_SCMINIMIZE      "最小化窗口"
+    AFX_IDS_SCMAXIMIZE      "最大化窗口"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档视图"
+    AFX_IDS_SCPREVWINDOW    "切换到前一个文档视图"
+    AFX_IDS_SCCLOSE         "关闭活动窗口并提示保存文档"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "恢复窗口至正常大小"
+    AFX_IDS_SCTASKLIST      "活动作业列表"
+    IDS_ABOUTBOX            "关于系统时间表(&A)"
+    IDS_GET_JOBS            "获取工作列表"
+    IDS_SAVE_JOB            "保存工作"
+    IDS_SAVE_NEW_JOB        "保存新的工作"
+    IDS_DELETE_JOB          "删除工作"
+    IDS_INITIALISE_APP      "初始化应用程序"
+    IDS_ENABLE_JOB          "允许工作"
+    IDS_DISABLE_JOB         "禁用工作"
+    IDS_COLUMN_STATUS       "状态"
+    IDS_COLUMN_TYPE         "类型"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_JOBDETAILS      "弹出查看任务对话框"
+    ID_VIEW_VIEWALLJOBS     "在显示使用操作员权限的有计划工作和显示所有工作之间切换"
+    ID_HELP_SCHEDULINGMANAGERHELP "显示系统时间表帮助信息"
+    ID_JOB_ADD              "弹出添加任务对话框"
+    ID_JOB_DELETE           "删除调度任务"
+    ID_JOB_EDIT             "弹出编辑选择了的调度任务对话框"
+    ID_JOB_ENABLE           "生效选择的调度任务"
+    ID_JOB_DISABLE          "取消选择的调度任务"
+    ID_VIEW_ALLJOBS         "在显示所有工作和显示具备操作员权限的工作之间切换"
+    ID_HELP_SCHEDULINGMANAGER "弹出系统时间表帮助信息"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_COLUMN_DESCRIPTION  "描述"
+    IDS_COLUMN_SCHEDULE_START "定时器开始时间"
+    IDS_COLUMN_RECURRENCE   "重复周期"
+    IDS_COLUMN_SCHEDULE_END "定时器结束时间"
+    IDS_COLUMN_PROFILE      "简介"
+    IDS_COLUMN_LOCATION     "位置"
+    IDS_UNKNOWN_ERROR       "发生了一个求知错误"
+    IDS_SCHEDULING_AGENT    "计划代理"
+    IDS_RIGHTS_AGENT        "权限代理"
+    IDS_MONDAY              "周一"
+    IDS_TUESDAY             "周二"
+    IDS_WEDNESDAY           "周三"
+    IDS_THURSDAY            "周四"
+    IDS_FRIDAY              "周五"
+    IDS_SATURDAY            "周六"
+    IDS_SUNDAY              "周日"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RECURRENCE_FORMAT_NONE "在 %1 %2 发生."
+    IDS_RECURRENCE_FORMAT_DAILY "每天在 %1 发生."
+    IDS_RECURRENCE_FORMAT_WEEKLY "每 %1 发生于 %2."
+    IDS_RECURRENCE_FORMAT_MONTHLY_SPECIFIC "每月在 %1日%2 发生."
+    IDS_RECURRENCE_FORMAT_MONTHLY_LAST "发生在每月最后一天 %1."
+    IDS_RECURRENCE_FORMAT_YEARLY_SPECIFIC "每年在 %1 %2 发生."
+    IDS_RECURRENCE_FORMAT_YEARLY_LAST "发生在每年二月最后一天 %1."
+    IDS_RANGE_END_AFTER     "\r\n在 %1 次之后结束，发生在 %2."
+    IDS_RANGE_END_BEFORE    "\r\n结束在 %1."
+    IDS_INHIBITED           "禁止"
+    IDS_UNINHIBITED         "允许"
+    IDS_NUM_JOBS_STATUS     "%1 计划工作"
+    IDS_RANGE_NONE          " "
+    IDS_RECUR_NONE          "无"
+    IDS_RECUR_DAILY         "每日"
+    IDS_RECUR_WEEKLY        "每周"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_RECUR_MONTHLY       "每月"
+    IDS_RECUR_YEARLY        "每年"
+    IDS_VIEW_JOB_DIALOG_TITLE "查看作业"
+    IDS_ADD_JOB_DIALOG_TITLE "增加作业"
+    IDS_EDIT_JOB_DIALOG_TITLE "编辑作业"
+    IDS_VIEW_DIALOG_OK_BUTTON_NAME "确定"
+    IDS_ADD_JOB             "增加加新的作业"
+    IDS_EDIT_JOB            "编辑工作"
+    IDS_HELP_PATH_FORMAT    "../help/%1.hlp"
+    IDS_DLL_PATH_FORMAT     "TA_%1JobDetailsPlugin.dll"
+    IDS_ALL_SCHEDULES_PRINT_HEADER "工作计划列表 %1"
+    IDS_PROFILE_SCHEDULES_PRINT_HEADER "工作计划列表 %1 (经权限过滤)"
+    IDS_PRINT_TITLE         "计划"
+    IDS_SHOW_JOB_DETAIL     "显示工作详情"
+    IDS_UNDEFINED_JOB       "<undefined>"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_PROFILE             "简介"
+    IDS_LOCATION            "位置"
+    IDS_JOB_SETTING         "工作设置"
+    IDS_DELETE              "删除"
+    IDS_SHOW_LOCATION       "显示位置"
+    IDS_SHOW_PROFILE        "显示权限"
+    IDS_ENABLE_JOBS_STATUS  "已处理 %d/%d 允许工作请求"
+    IDS_DISABLE_JOBS_STATUS "已处理 %d/%d 禁用工作请求"
+    IDS_DELETE_JOBS_STATUS  "已处理 %d/%d 删除工作请求"
+    IDS_UPDATE_EDIT_LOCK    "更新编辑锁"
+    IDS_EDIT_SCHEDULE       "编辑调度"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "..\res\SchedulingManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\..\..\..\bus\resources\TransActiveResources.rc" // Standard Transactive Resources
+#include "..\..\..\..\bus\response_plans\plan_tree\src\PlanTree.rc" // Plan Tree control resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

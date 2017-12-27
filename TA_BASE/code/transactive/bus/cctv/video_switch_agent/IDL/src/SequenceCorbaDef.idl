@@ -1,0 +1,347 @@
+#if !defined(SequenceCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)
+#define SequenceCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/SequenceCorbaDef.idl $
+  * @author:   Rob Young
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that provides access to the 
+  * Sequence state and control.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoInputCorbaDef.idl"
+
+module TA_Base_Bus
+{
+	interface SequenceCorbaDef : VideoInputCorbaDef
+	{
+		typedef sequence< unsigned long >	VideoInputKeySequence;
+
+		//
+		// Struct used to define current configuration of a sequence.
+		//
+
+		struct SequenceConfig
+		{
+			unsigned short dwellTime;
+			VideoInputKeySequence inputKeySequence;
+			string description;
+		};
+
+        //
+        // The state of a sequence
+        //
+        enum ESequenceState
+        {
+            Playing,
+            Paused,
+            Stopped
+        };
+
+        //
+        // A struct defining the current state of this Sequence.
+        //
+        
+        struct SequenceState
+        {
+            unsigned long videoOutputKey;   // The Video Output that this state update is for
+            unsigned long currentCameraKey; // The current Camera displayed in the sequence
+                                            // running on the Video Output
+            ESequenceState currentState;    // The current state of the sequence running on
+                                            // the Video Output
+        };
+		/**
+		  * isReadOnly
+		  *
+		  * Indicates whether this Sequence's configuration can be changed.
+		  *
+		  * @return     boolean
+		  *				True if the Sequence configuration can be changed,
+		  *				False otherwise.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+
+		boolean isReadOnly()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		// TD16691
+		/**
+		  * getSequenceDescription
+		  *
+		  * Indicates get the Sequence's description.
+		  *
+		  * @return     string
+		  *				the Sequence description,
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+
+		string getSequenceDescription()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+		// TD16691
+
+		/** 
+		  * getDwellTimeRange
+		  *
+		  * Provides the range of seconds that can be set as the Sequence's dwell time.
+		  *
+		  * @param		unsigned short minimumDwellTime
+		  *				will contain minimum dwell time (in seconds).
+		  *	@param		unsigned short maximumDwellTime
+		  *				will contain maximum dwell time (in seconds).
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+
+		void getDwellTimeRange( out unsigned short minimumDwellTime, out unsigned short maximumDwellTime )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);			
+
+		/** 
+		  * getMaxNumberOfInputs
+		  *
+		  * Returns the maximum number of VideoInputs that can be configured.
+		  *
+		  * @return		unsigned short
+		  *				The maximum number of VideoInputs that can 
+		  *				be configured for this sequence.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+
+		unsigned short getMaxNumberOfInputs()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * getSequenceConfig
+		  *
+		  * Gets the current configution of this Sequence.
+		  * 
+		  * @return     SequenceConfig
+		  *				The current configuration of this Sequence.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				1. The data cannot be retrieved.
+		  *				2. The retrieved data is invalid.
+		  *				3. The agent is in Monitor mode.
+		  */
+
+		SequenceConfig getSequenceConfig()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * setSequenceConfig
+		  *
+		  * Sets the current configuration of this Sequence.
+		  *
+		  * Precondition: !isReadOnly()
+		  *
+		  * @param		SequenceConfig newConfig
+		  *				The configuration to be set for this Sequence.
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+          *             2. A VideoInput key is not recognised.
+		  *				3. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware.
+          */
+		
+		void setSequenceConfig( in SequenceConfig newConfig, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+		/**
+		  * setSequenceDescription
+		  *
+		  * Sets the current description of this Sequence.
+		  *
+		  * Precondition: !isReadOnly()
+		  *
+		  * @param		string newDescription
+		  *				The description to be set for this Sequence.
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+          *             2. A VideoInput key is not recognised.
+		  *				3. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware.
+          */
+		
+		void setSequenceDescription( in string newDescription, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+		/**
+		  * cycleToNextVideoInput
+		  *
+		  * Manually cycles sequence playback to next VideoInput.
+		  *
+		  *	@param		unsigned long videoOutputEntityKey 
+		  *				EntityKey of VideoOutput the dynamic playback manipulation
+		  *				should be applied to (set to 0 to apply to all VideoOutputs currently
+		  *				assigned this Sequence).
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void cycleToNextVideoInput( in unsigned long videoOutputEntityKey, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * cycleToPreviousVideoInput
+		  *
+		  * Manually cycles sequence playback to previous VideoInput.
+		  *
+		  *	@param		unsigned long videoOutputEntityKey 
+		  *				EntityKey of VideoOutput the dynamic playback manipulation
+		  *				should be applied to (set to 0 to apply to all VideoOutputs currently
+		  *				assigned this Sequence).
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void cycleToPreviousVideoInput( in unsigned long videoOutputEntityKey, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * pauses
+		  *
+		  * Pauses playback of sequence.
+		  *
+		  *	@param		unsigned long videoOutputEntityKey 
+		  *				EntityKey of VideoOutput the dynamic playback manipulation
+		  *				should be applied to (set to 0 to apply to all VideoOutputs currently
+		  *				assigned this Sequence).
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void pause( in unsigned long videoOutputEntityKey, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * play
+		  *
+		  * Begin/Resume Playback of sequence.
+		  *
+		  *	@param		unsigned long videoOutputEntityKey 
+		  *				EntityKey of VideoOutput the dynamic playback manipulation
+		  *				should be applied to (set to 0 to apply to all VideoOutputs currently
+		  *				assigned this Sequence).
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void play( in unsigned long videoOutputEntityKey, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * stop
+		  *
+		  * Stop playback of sequence (can be same behaviour as pause depending on hardware).
+		  *
+		  *	@param		unsigned long videoOutputEntityKey 
+		  *				EntityKey of VideoOutput the dynamic playback manipulation
+		  *				should be applied to (set to 0 to apply to all VideoOutputs currently
+		  *				assigned this Sequence).
+          * @param      string sessionId
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+		  * @exception	VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+		  *				2. The Sequence is not currently assigned to VideoOutput specified.
+		  *				2. The agent is in Monitor mode.
+		  *				4. The user does not have sufficient privileges for this operation.
+		  *				5. There is a communications failure with the hardware. 
+		  */
+
+		void stop( in unsigned long videoOutputEntityKey, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+        /**
+          * getSequenceState
+          *
+          * Returns the sequence's current state.
+          *
+          * @param      unsigned long videoOutputEntityKey
+          *             The key of the video output that the sequence is running on.
+          *
+          * @return     ESequenceState
+          *             The sequence's current state.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The switching hardware, or the protocol does not support this operation.
+          *             2. The agent is in Monitor mode.
+          *             3. The sequence is not running on the specified video output.
+          */
+
+        SequenceState getSequenceState( in unsigned long videoOutputEntityKey )
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	}; // SequenceCorbaDef
+
+}; // TA_Base_Bus
+#endif // !defined(SequenceCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)

@@ -1,0 +1,347 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !#define(ITrainPecCorba_Idl)
+#define ITrainPecCorba_Idl
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainExceptionsCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCctvCorba.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands used by Trainborne PEC operations
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:43 PM
+     */
+    interface ITrainPecCorba
+    {
+        /**
+         * Represents a PEC within a car
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        enum EPecNumber
+        {
+            AllPec,
+            PecOne,
+            PecTwo,
+            PecThree,
+            PecFour
+        };
+
+        /**
+         * Represents a car
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        enum EPecCarNumber
+        {
+            AllCars,
+            CarOne,
+            CarTwo,
+            CarThree
+        };
+
+        /**
+         * This indicates the update type for the given PEC on the given train.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        enum EPecUpdateType
+        {
+            // A new PEC has been activated, or an existing PEC has been updated. The banner
+            // should refresh the information with the new information in this message. If the
+            // PEC is not in the banner it should be updated.
+            PECUpdated,
+            // The given PEC has been reset, a single reset message will be sent for each PEC
+            // on a train. So if a train has multiple PEC, and a PEC reset all has occurred, a
+            // separate message will be sent for each PEC.
+            PECReset,
+            // The given PEC has been reset, due to MPU changeover.
+            PECMpuChangeover,
+            // The given PEC is in progress, but the audio call has been lost. This is simply
+            // used by the PEC dialog open for the given PEC to notify the operator that this
+            // has occurred.
+            PECCallLost
+        };
+
+        /**
+         * Used to determine which type of user is in control of PEC, if anyone
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        enum EPecSource
+        {
+            // If PEC not yet handled, or has been reset
+            PecSourceUnassigned,
+            // Driver has responded to PEC
+            PecSourceDriver,
+            // OCC/Operator has responded to PEC
+            PecSourceOperator
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        struct PecPoint
+        {
+            EPecCarNumber car;
+            EPecNumber pec;
+            EPecSource source;
+            boolean valid;
+            // If train resends PEC, this is reset to the new value
+            long creationTime;
+        };
+
+        /**
+         * *** PEC Notification Message
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        struct PecUpdate
+        {
+            // The train this applies to
+            ITrainCommonCorba::TrainId trainId;
+            // The type of notification this is
+            EPecUpdateType updateType;
+            // The PEC this notification is for, and its updated details.
+            PecPoint pec;
+            // Only set when pec is "in progress" by an operator. Used to determine whether
+            // caller or another operator is in control of PEC
+            string sessionId;
+        };
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        typedef sequence<PecUpdate> PecUpdateList;
+
+        /**
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:43 PM
+         */
+        typedef sequence<PecPoint> PecPointCollection;
+
+
+        /**
+         * FlexibleTimeoutNamedObject calls this method to calculate the timoeut value
+         * based on the current configuration
+         */
+        unsigned short getFlexibleTimeOutValue()
+        	raises (TA_Base_Core::OperationModeException);
+
+        /**
+         * Gets all active PEC for all trains, and their status.
+         * 
+         * @return all active PEC for all trains managed by this agent
+         */
+        PecUpdateList getAllActivePec()
+        	raises (TA_Base_Core::OperationModeException);//limin
+
+        /**
+         * This will start the PEC answer sequence, and make the audio call.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous (ie if the given PEC is not active or not valid)
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainPecException if there was an error performing a PEC operation
+         * @exception ITrainExceptionsCorba::TrainRadioException if the radio call failed
+         * 
+         * @param trainId    The train the PEC is on
+         * @param car    The PEC car
+         * @param pec    The PEC within the car
+         * @param sessionId    The operator answering the PEC
+         */
+        void answerPec(in ITrainCommonCorba::TrainId trainId,
+					   in EPecCarNumber car, 
+					   in EPecNumber pec, 
+					   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainPecException,
+					ITrainExceptionsCorba::TrainRadioException);
+
+        /**
+         * This will activate the correct CCTV image for a PEC on a train.
+         * It follows all the standard CCTV conflict management rules.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous (ie if the given PEC is not active or not valid)
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train that the PEC is in progress on
+         * @param car    The car the PEC is active in
+         * @param pec    The PEC that is active
+         * @param sessionId    The operator performing the action
+         */
+        ITrainCctvCorba::TrainCameraSequence activatePecCamera(in ITrainCommonCorba::TrainId trainId, 
+							   in EPecCarNumber car, 
+							   in EPecNumber pec, 
+							   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * This will activate the correct CCTV image for a PEC on a train.
+         * It follows all the standard CCTV conflict management rules.
+         * If this train is delocalised, it allows the operator to select the location of the train manually.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous (ie if the given PEC is not active or not valid)
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainCctvConflictException if the train can not be activated due to conflict management rules
+         * @exception ITrainExceptionsCorba::TrainCctvException if there was an error performing a CCTV operation
+         * 
+         * @param trainId    The train that the PEC is in progress on
+         * @param car    The car the PEC is active in
+         * @param pec    The PEC that is active
+         * @param trainLocation    Than manually determined location of the train
+         * @param sessionId    The operator performing the action
+         */
+        ITrainCctvCorba::TrainCameraSequence activatePecCameraDelocalisedTrain(in ITrainCommonCorba::TrainId trainId, 
+											   in EPecCarNumber car, 
+											   in EPecNumber pec, 
+											   in unsigned long trainLocation, 
+											   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainCctvConflictException,
+					ITrainExceptionsCorba::TrainCctvException);
+
+        /**
+         * Resets the PEC on the train.
+         * If this PEC is in progress, the PEC call will be ended and the PEC reset. The PEC will be considered reset once the command executes successfully.
+         * If this PEC is not valid, then the actual reset will not be sent. The PEC will simply be removed from the list of active PEC.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous (ie if the given PEC is not active or not valid)
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainPecException if there was an error performing a PEC operation
+         * 
+         * @param trainId    The train to reset the PEC on
+         * @param car    The car
+         * @param pec    The PEC number
+         * @param sessionId    The operator performing the reset
+         */
+        void resetPec(in ITrainCommonCorba::TrainId trainId,
+					  in EPecCarNumber car, 
+					  in EPecNumber pec, 
+					  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainPecException);
+
+        /**
+         * This is the same as resetPec except it applies to all PEC on a particular train.
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or not valid for this operation
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TransactionTimeoutException if there was a timeout waiting for the train to respond to the command
+         * @exception ITrainExceptionsCorba::TransactionCancelledException if the transaction was externally cancelled before completion
+         * @exception ITrainExceptionsCorba::MpuChangeoverException if during the transaction, an MPU changeover was received
+         * @exception ITrainExceptionsCorba::BadCommandException if instead of a valid response, the train responded with a bad command message
+         * @exception ITrainExceptionsCorba::TrainPecException if there was an error performing a PEC operation
+         * 
+         * @param trainId    The train to reset the PEC on
+         * @param sessionId    The operator doing the reset
+         */
+        void resetAllPec(in ITrainCommonCorba::TrainId trainId, 
+						 in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TransactionTimeoutException,
+					ITrainExceptionsCorba::TransactionCancelledException,
+					ITrainExceptionsCorba::MpuChangeoverException,
+					ITrainExceptionsCorba::BadCommandException,
+					ITrainExceptionsCorba::TrainPecException);
+
+    };
+
+};
+
+#endif

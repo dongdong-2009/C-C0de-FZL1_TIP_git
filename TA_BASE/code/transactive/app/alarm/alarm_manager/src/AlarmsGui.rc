@@ -1,0 +1,488 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ALARMSGUI_DIALOG DIALOGEX 0, 0, 488, 211
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_VISIBLE | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "ISCS报警管理器"
+MENU IDR_AM_MAIN_MENU
+FONT 10, "宋体", 0, 0, 0x1
+BEGIN
+    CONTROL         "列表3",IDC_ALARM_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | LVS_ALIGNLEFT | LVS_OWNERDATA | WS_TABSTOP,2,1,486,210,WS_EX_CLIENTEDGE
+    LTEXT           "",IDC_STATUSBAR,65,178,331,13,SS_CENTERIMAGE,WS_EX_STATICEDGE
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",0x0,1,178,279,7,WS_EX_CLIENTEDGE
+    LTEXT           "页面控制",IDC_PAGER_CTRL,2,2,252,20,SS_CENTERIMAGE,WS_EX_DLGMODALFRAME
+    CONTROL         "",IDC_MENU_LINE,"Static",SS_ETCHEDHORZ,2,0,373,1
+    LTEXT           " 总计： ",IDC_STATIC_TOTALARMS,430,11,30,8
+    EDITTEXT        IDC_TOTAL_ALARMS,456,11,32,12,ES_AUTOHSCROLL | ES_READONLY,WS_EX_RIGHT
+    LTEXT           "未回应：",IDC_STATIC_NOTACK,430,1,30,8
+    EDITTEXT        IDC_NOT_ACKED,456,1,32,12,ES_AUTOHSCROLL | ES_READONLY,WS_EX_RIGHT
+    COMBOBOX        IDC_NAMED_FILTER,296,8,128,179,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "当前过滤\n  器",IDC_STATIC_CURRENT_FILTER,257,5,37,16
+END
+
+IDD_RULES DIALOGEX 0, 0, 603, 183
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "系统报警/子系统非设备报警禁止"
+FONT 10, "宋体", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "移除禁止项",IDC_REMOVE_BUTTON,5,159,66,14
+    CONTROL         "List1",IDC_RULES_LIST,"SysListView32",LVS_REPORT | LVS_NOLABELWRAP | WS_TABSTOP,5,51,591,100,WS_EX_CLIENTEDGE
+    CONTROL         "显示所有禁止项",IDC_RADIO_SHOW_ALL,"Button",BS_AUTORADIOBUTTON,25,10,80,10
+    CONTROL         "根据车站过滤禁止项",IDC_RADIO_FILTER_LOCATION,"Button",BS_AUTORADIOBUTTON,25,26,79,10
+    GROUPBOX        "",IDC_STATIC,5,2,591,38
+    PUSHBUTTON      "关闭",IDC_CLOSE,531,159,65,14
+    PUSHBUTTON      "刷新",IDC_REFRESH,453,159,65,14
+    COMBOBOX        IDC_COMBO_LOCATIONS,108,23,271,96,CBS_DROPDOWN | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "导出清单",IDC_EXPORT_LIST,373,159,65,14
+    PUSHBUTTON      "打印清单",IDC_PRINT_LIST,292,159,65,14
+END
+
+IDD_ALARM_FILTER DIALOG  0, 0, 463, 183
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "报警过滤器"
+FONT 10, "宋体"
+BEGIN
+    GROUPBOX        "子系统",IDC_SUBSYSTEM_STATIC,8,2,127,26
+    EDITTEXT        IDC_SUBSYSTEM_EDIT,13,13,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_SUBSYSTEM_BUTTON,116,13,14,12
+    GROUPBOX        "位置",IDC_LOCATION_STATIC,139,2,128,26
+    EDITTEXT        IDC_LOCATION_EDIT,144,13,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_LOCATION_BUTTON,247,13,14,12
+    GROUPBOX        "日期/时间",IDC_ALARM_STATUS_STATIC2,270,2,186,53
+    CONTROL         "",IDC_FROM_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,282,16,10,9
+    LTEXT           "从:",IDC_STATIC_FROM,294,16,12,8
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_FROMDATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,311,15,57,12
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_FROMTIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,376,15,52,12
+    GROUPBOX        "操作员",IDC_OPERATOR_STATIC,8,29,127,26
+    EDITTEXT        IDC_OPERATOR_EDIT,13,38,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_OPERATOR_BUTTON,116,38,14,12
+    GROUPBOX        "报警类型",IDC_ALARMT_TYPE_STATIC,140,29,127,26
+    EDITTEXT        IDC_ALARM_TYPE_EDIT,144,38,100,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_ALARM_TYPE_BUTTON,247,38,14,12
+    CONTROL         "",IDC_TO_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,282,37,12,8
+    LTEXT           "至:",IDC_STATIC_TO,295,37,11,8
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_TODATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,310,36,57,12
+    CONTROL         "DateTimePicker1",IDC_DATETIMEPICKER_TOTIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,376,36,52,12
+    GROUPBOX        "设备",IDC_ASSET_STATIC,7,59,260,28
+    EDITTEXT        IDC_EDIT_ASSET,12,69,249,12,ES_AUTOHSCROLL
+    GROUPBOX        "描述",IDC_DESCRIPTION_STATIC,7,92,260,28
+    EDITTEXT        IDC_EDIT_DESCRIPTION,12,102,249,12,ES_AUTOHSCROLL
+    GROUPBOX        "级别",IDC_STATIC,270,59,70,61
+    GROUPBOX        "确认",IDC_ACK_GROUP,346,59,52,61
+    CONTROL         "已确认",IDC_ACK_ACKED,"Button",BS_AUTORADIOBUTTON | WS_GROUP,351,69,37,11
+    CONTROL         "未确认",IDC_ACK_UNACKED,"Button",BS_AUTORADIOBUTTON,351,82,39,11
+    CONTROL         "全部",IDC_ACK_ALL,"Button",BS_AUTORADIOBUTTON,351,96,40,8
+    GROUPBOX        "状态",IDC_STATE,404,59,52,61
+    CONTROL         "未消除",IDC_STATE_OPEN,"Button",BS_AUTORADIOBUTTON | WS_GROUP,409,82,37,11
+    CONTROL         "已消除",IDC_STATE_CLOSED,"Button",BS_AUTORADIOBUTTON,409,69,39,11
+    CONTROL         "全部",IDC_STATE_ALL,"Button",BS_AUTORADIOBUTTON,409,96,35,9
+    GROUPBOX        "命名过滤器",IDC_NAMED_FILTER_BOX,7,122,260,32
+    COMBOBOX        IDC_NAMED_FILTER,11,135,147,56,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "保存",IDC_SAVE,165,133,46,14
+    PUSHBUTTON      "删除",IDC_DELETE,215,133,46,14
+    DEFPUSHBUTTON   "缺省/清除",IDC_CLEAR_FILTERS_BUTTON,7,164,73,14
+    DEFPUSHBUTTON   "确定",IDC_OK,274,164,50,14
+    PUSHBUTTON      "取消",IDC_CANCEL,328,164,50,14
+    PUSHBUTTON      "应用",IDC_APPLY,406,164,50,14
+    GROUPBOX        "静态",IDC_LIST_PLACEHOLDER,274,70,61,45
+    COMBOBOX        IDC_COMBO_FROM,311,15,57,12,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_TO,311,36,57,12,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_FROM,376,15,52,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TO,376,36,52,12,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_FROM,"msctls_updown32",UDS_ARROWKEYS,419,16,8,10
+    CONTROL         "Spin1",IDC_SPIN_TO,"msctls_updown32",UDS_ARROWKEYS,419,37,8,10
+END
+
+IDD_MULTIPLE_SEL_DLG DIALOG  0, 0, 186, 226
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "报警管理器"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",ID_MULTIOK,73,205,50,14
+    PUSHBUTTON      "取消",IDCANCEL,129,205,50,14
+    LISTBOX         IDC_MULTI_SEL_LIST,7,7,172,191,LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO_ALARM_MANAGER VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "AlarmsGui MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "AlarmsGui"
+            VALUE "LegalCopyright", "版权 (C) 2001"
+            VALUE "OriginalFilename", "AlarmsGui.EXE"
+            VALUE "ProductName", "AlarmsGui Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ALARMSGUI_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_RULES, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 596
+        VERTGUIDE, 25
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 173
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR1 ACCELERATORS 
+BEGIN
+    VK_ESCAPE,      IDK_UNSELECT_KEY,       VIRTKEY, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_ALARMSGUI_DIALOG DLGINIT
+BEGIN
+    IDC_NAMED_FILTER, 0x403, 11, 0
+0xacc4, 0xcfc8, 0xfdb9, 0xcbc2, 0xf7c6, "\000" 
+    0
+END
+
+IDD_ALARM_FILTER DLGINIT
+BEGIN
+    IDC_NAMED_FILTER, 0x403, 5, 0
+0xacc4, 0xcfc8, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "..\\res\\Spelling.bmp"
+IDB_BITMAP2             BITMAP                  "..\\res\\Delete.bmp"
+IDB_COMMENTSGREY        BITMAP                  "..\\res\\commentsGrey.bmp"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\AlarmsGui.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""..\\..\\..\\bus\\alarm\\alarm_list_control\\src\\AlarmListCtrl.rc""\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\res\\AlarmsGui.ico"
+IDI_ACKNOWLEDGE         ICON                    "..\\res\\ack.ico"
+IDI_DELETE_HOT          ICON                    "..\\res\\delhot.ico"
+IDI_ACKNOWLEDGE_HOT     ICON                    "..\\res\\ackhot.ico"
+IDI_DELETE              ICON                    "..\\res\\del.ico"
+IDI_VIEWCAM_HOT         ICON                    "..\\res\\vwcamhot.ico"
+IDI_VIEWCAM             ICON                    "..\\res\\viewcam.ico"
+IDI_REFRESH_HOT         ICON                    "..\\res\\refreshot.ico"
+IDI_PLAN_HOT            ICON                    "..\\res\\Planhot.ico"
+IDI_PRINT               ICON                    "..\\res\\print.ico"
+IDI_PRINT_HOT           ICON                    "..\\res\\printhot.ico"
+IDI_REFRESH             ICON                    "..\\res\\refresh.ico"
+IDI_PLAN                ICON                    "..\\res\\Plan.ico"
+IDI_SILENCE_HOT         ICON                    "..\\res\\mutehot.ico"
+IDI_DETAIL_HOT          ICON                    "..\\res\\dethot.ico"
+IDI_SILENCE             ICON                    "..\\res\\mute.ico"
+IDI_DETAIL              ICON                    "..\\res\\det.ico"
+IDI_APPLY_FILTERS_HOT   ICON                    "..\\res\\appfltht.ico"
+IDI_APPLY_FILTERS       ICON                    "..\\res\\appfilt.ico"
+IDI_SHOW_FILTERS_HOT    ICON                    "..\\res\\shwfltht.ico"
+IDI_SHOW_FILTERS        ICON                    "..\\res\\shwfilt.ico"
+IDI_SM_BELL             ICON                    "..\\res\\sm_bell.ico"
+IDI_TBAR_HOT            ICON                    "..\\res\\tbar_hot.ico"
+IDI_TBAR                ICON                    "..\\res\\tbar.ico"
+IDI_SUPPRESS_HOT        ICON                    "..\\res\\suphot.ico"
+IDI_SUPPRESS            ICON                    "..\\res\\suppress.ico"
+IDI_SHOW_RULES_HOT      ICON                    "..\\res\\shwrlsht.ico"
+IDI_SHOW_RULES          ICON                    "..\\res\\showruls.ico"
+IDI_SAVE_HOT            ICON                    "..\\res\\savehot.ico"
+IDI_SAVE                ICON                    "..\\res\\save.ico"
+IDI_VIEWS_HOT           ICON                    "..\\res\\acknowle.ico"
+IDI_VIEWS               ICON                    "..\\res\\views.ico"
+IDI_SORT                ICON                    "..\\res\\Sort.ico"
+IDI_SORT_HOT            ICON                    "..\\res\\sort_hot.ico"
+IDI_UNACKBOX            ICON                    "..\\res\\icon1.ico"
+IDI_MANUAL_CLOSE_HOT    ICON                    "..\\res\\manualClose_hot.ico"
+IDI_MANUAL_CLOSE        ICON                    "..\\res\\manualClose.ico"
+IDI_COMMENT             ICON                    "..\\res\\comment.ico"
+IDI_COMMENT_HOT         ICON                    "..\\res\\commenthot.ico"
+IDI_EVENT_VIEWER_COLD   ICON                    "..\\res\\EventViewer_cold.ico"
+IDI_EVENT_VIEWER_HOT    ICON                    "..\\res\\EventViewer_hot.ico"
+IDI_UNREMOVABLE_RULE    ICON                    "..\\res\\closed_padlock.ico"
+IDI_RULE_REMOVABLE      ICON                    "..\\res\\open_padlock.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MONITOR_MENU MENU 
+BEGIN
+    POPUP "位置标志符"
+    BEGIN
+        MENUITEM "开始摄像控制",                      ID_LAUNCH_CAM_CTRL
+        MENUITEM SEPARATOR
+    END
+END
+
+IDR_AM_MAIN_MENU MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "打印(&P)...",                   ID_FILE_PRINT
+        MENUITEM "导出(&E)...",                   ID_FILE_EXPORT
+        MENUITEM SEPARATOR
+        MENUITEM "退出(&X)",                      ID_FILE_EXIT
+    END
+    POPUP "显示(&V)"
+    BEGIN
+        MENUITEM "过滤器(&F)...",                  ID_VIEW_SHOWFILTERS
+        MENUITEM "显示禁止项(&H)...",                ID_VIEW_SHOWINHIBITIONS
+        MENUITEM SEPARATOR
+        MENUITEM "工具栏(&T)",                     ID_VIEW_TOOLBAR, CHECKED
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR, CHECKED
+    END
+    POPUP "报警(&A)"
+    BEGIN
+        MENUITEM "确认选择(&A)",                    ID_AM_ALARM_ACKNOWLEDGE
+        MENUITEM "查看备注(&M)...",                 ID_AM_ALARM_VIEW_COMMENT
+        MENUITEM SEPARATOR
+        MENUITEM "关联界面(&S)",                    ID_AM_ALARM_SCHEMATIC
+        MENUITEM "关联操作对话框(&I)...",              ID_AM_ALARM_INSPECTOR
+        MENUITEM "关联事件(&E)...",                 ID_AM_ALARM_EVENTS
+        MENUITEM SEPARATOR
+        MENUITEM "关联&DSS...",                   ID_AM_ALARM_PLAN
+		MENUITEM "关联预案实例(&P)...",			ID_AM_ALARM_PLAN_INSTANCE
+        MENUITEM "推迟 DSS(&P)",                  ID_AM_CANCEL_ALARM_PLAN
+        MENUITEM SEPARATOR
+        MENUITEM "故障申报单(&J)...",               ID_AM_ALARM_JOB_REQUEST
+        MENUITEM "关联趋势...",                     ID_AM_ALARM_TREND
+        MENUITEM "关联雪崩事件(&V)...",               ID_AM_ALARM_AVALANCHE_EVENTS
+        //MENUITEM "创建事项报表(&R)",                  ID_AM_ALARM_EVENT_LOG, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "消除和确认选项(&C)",                 ID_AM_ALARM_MANUAL_CLOSE
+        POPUP "抑制(&H)..."
+        BEGIN
+            MENUITEM "根据类型(&Y)",                    ID_AM_INHIBIT_BY_TYPE
+            MENUITEM "根据描述(&O)",                    ID_AM_INHIBIT_BY_DESCRIPTION
+        END
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "报警管理器帮助(&H)",                 ID_HELP
+        MENUITEM "关于报警管理器(&A)",                 ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_PRINT           "打印警报"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLS_LAUNCHCAMERA   "启动摄像"
+    ID_FILE_EXPORT          "导出到文件"
+    ID_ALARM_DELETE         "删除警报"
+    ID_ALARM_INHIBIT        "抑制系统警报"
+    ID_ALARM_ADDCOMMENT     "为警报添加一个注释"
+    ID_TOOLS_RUNPLAN        "运行一个计划"
+    ID_TOOLS_SILENCE        "开关静音模式"
+    ID_VIEW_APPLYFILTERS    "运行警报过滤器"
+    ID_VIEW_SHOWFILTERS     "显示警报过滤器对话框"
+    ID_VIEW_SHOWINHIBITIONS "显示抑制对话框"
+    ID_VIEW_REFRESH         "刷新视图"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ALARM_ALL_ACKNOWLEDGE "确认全部警报"
+    ID_TOOLS_LAUNCHVIEW     "启动数据视图"
+    ID_VIEW_COLUMN_ALARMTYPE "显示警报类型列"
+    ID_VIEW_COLUMN_SYSTEM   "显示系统列"
+    ID_VIEW_COLUMN_TIME_LOGGED "显示日志时间列"
+    ID_VIEW_COLUMN_ACKNOWLEDGE "显示确认列"
+    ID_VIEW_COLUMN_STATE    "开关状态列"
+    ID_VIEW_COLUMN_REGION   "开关地区列"
+    ID_RUN_PLAN             "启动与警报相关计划"
+    ID_RELATED_INSPECTOR    "启动相关监控面板"
+    ID_RELATED_TREND        "启动trend查看器"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_JOB_REQUEST          "显示窗口并允许产生一个MMS任务"
+    ID_VIEW_COLUMN_COMMENTS "在警报管理器中扩展注释列"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_DETAILS         "开关细节描述视图"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "开关工具栏"
+    ID_VIEW_STATUS_BAR      "开关状态栏"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "关于警报"
+    ID_HELP                 "警报帮助"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\AlarmsGui.rc2"  // non-Microsoft Visual C++ edited resources
+#include "..\..\..\bus\alarm\alarm_list_control\src\AlarmListCtrl.rc"
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

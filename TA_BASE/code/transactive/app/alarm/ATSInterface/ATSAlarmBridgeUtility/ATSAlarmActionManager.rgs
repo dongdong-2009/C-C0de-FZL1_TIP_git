@@ -1,0 +1,26 @@
+HKCR
+{
+	ATSAlarmBridgeUtility.ATSAlarmActionM.1 = s 'ATSAlarmActionManager Class'
+	{
+		CLSID = s '{E8A7F762-8797-4E89-81E3-11C080642387}'
+	}
+	ATSAlarmBridgeUtility.ATSAlarmActionMan = s 'ATSAlarmActionManager Class'
+	{
+		CLSID = s '{E8A7F762-8797-4E89-81E3-11C080642387}'
+		CurVer = s 'ATSAlarmBridgeUtility.ATSAlarmActionM.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E8A7F762-8797-4E89-81E3-11C080642387} = s 'ATSAlarmActionManager Class'
+		{
+			ProgID = s 'ATSAlarmBridgeUtility.ATSAlarmActionM.1'
+			VersionIndependentProgID = s 'ATSAlarmBridgeUtility.ATSAlarmActionMan'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{90318F9E-3C96-497E-BB7C-BC5D7247B881}'
+		}
+	}
+}

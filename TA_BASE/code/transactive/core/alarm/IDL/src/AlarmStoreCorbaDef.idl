@@ -1,0 +1,285 @@
+#if !defined(ALARM_STORE_IDL)
+#define ALARM_STORE_IDL
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/alarm/IDL/src/AlarmStoreCorbaDef.idl $
+  * @author:  Andy Parker
+  * @version: $Revision: #2 $
+  *
+  * Last modification: $DateTime: 2015/01/20 22:25:27 $
+  * Last modified by:  $Author: huirong.luo $
+  * 
+  * Alarm Store Messages are used to communicate between applications
+  * and the alarm store.  It defines functions used to control the store.
+  * Note: notifications are provided by the store through a callback to 
+  *       avoid the use of notification service.
+  */
+
+#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+#include "core/alarm/IDL/src/AlarmStoreCallbackCorbaDef.idl"
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+	interface IAlarmStoreCorbaDef
+	{
+		// The default port for pinning the alarm store
+        const unsigned short DEFAULT_ALARM_STORE_PORT = 7777;
+
+		const string DEFAULT_ALARM_STORE_NAME = "AlarmStore";
+
+		exception AlarmNotFoundException
+		{
+		};
+
+		exception AlarmIndexNotFoundException
+		{
+		};
+
+		// Filter Definition
+		enum FilterType {FILTER_PROFILE,
+		                 FILTER_ALARM_TYPE,
+						 FILTER_ALARM_TIME,
+						 FILTER_ALARM_TIME_RANGE,
+						 FILTER_ASSOCIATED_ENTITY_KEY,
+						 FILTER_ASSOCIATED_ENTITY_NAME,
+						 FILTER_LOCATION,
+						 FILTER_OPERATOR,
+						 FILTER_SEVERITY,
+						 FILTER_STATE,
+						 FILTER_SUBSYSTEM,
+						 FILTER_ASSET_NAME,
+						 FILTER_DESCRIPTION,
+						 FILTER_OMTYPE,
+						 FILTER_SUBSYSTEMTYPE,
+						 FILTER_SYSTEMTYPE
+						};
+
+		enum FilterComparison {COMPARE_LESS_THAN,
+		                       COMPARE_LESS_THAN_EQUAL,
+					  		   COMPARE_EQUAL,
+							   COMPARE_GREATER_THAN,
+							   COMPARE_GREATER_THAN_EQUAL,
+							   COMPARE_NOT_EQUAL,
+							   COMPARE_CONTAINS,
+							   COMPARE_RANGE_INCLUSIVE,
+							   COMPARE_RANGE_EXCLUSIVE};
+
+		enum EAlarmState {  STATE_ALL_OPEN     ,
+							STATE_OPEN_UNACKED ,
+							STATE_OPEN_ACKED   ,
+							STATE_CLOSED       ,
+							STATE_ALL_UNACKED  ,
+							STATE_ANY          };
+        enum EAlarmOMType
+        {
+            OMTYPE_OPERATION,
+            OMTYPE_MAINTENANCE,
+            OMTYPE_BOTH,
+            OMTYPE_ALL
+        };
+
+		struct ParameterDateRange
+		{
+			unsigned long paramDate1;
+			unsigned long paramDate2;
+		};
+					   
+		union FilterParameters switch ( FilterType )
+		{
+			case FILTER_PROFILE:
+			case FILTER_ASSOCIATED_ENTITY_NAME:
+			case FILTER_ASSET_NAME:
+			case FILTER_DESCRIPTION:
+			case FILTER_OPERATOR:
+			case FILTER_SUBSYSTEMTYPE:
+			case FILTER_SYSTEMTYPE:
+				string	      paramText;
+
+			case FILTER_SUBSYSTEM:
+			case FILTER_ALARM_TIME:
+			case FILTER_LOCATION:
+			case FILTER_ASSOCIATED_ENTITY_KEY:
+			case FILTER_SEVERITY:
+			case FILTER_ALARM_TYPE:
+				unsigned long paramULong;
+
+			case FILTER_ALARM_TIME_RANGE:
+				ParameterDateRange   paramDateRange;
+
+			case FILTER_STATE:
+				EAlarmState   paramState;
+			case FILTER_OMTYPE:
+				EAlarmOMType  paramOMType;
+		};
+
+		struct FilterEntry 
+		{
+			FilterComparison	compareOp;         
+			FilterParameters    parameters;
+
+		};
+
+		typedef sequence<FilterEntry> FilterInfo;
+
+		exception InvalidFilterException
+		{
+			FilterEntry  filter;
+		};
+
+		// Sort Definitions
+		enum SortType {	SORT_OPEN_CLOSE,
+						SORT_ACK_NOT_ACK,
+						SORT_ALARM_TYPE,
+						SORT_LOCATION,
+						SORT_TIME,
+						SORT_DESCRIPTION,
+						SORT_ENTITY_NAME, // ASSET
+						SORT_SUB_SYSTEM_KEY,
+						SORT_ACK_TIME,
+						SORT_ACK_BY,
+						SORT_SEVERITY,
+						SORT_ASSET_NAME,
+						SORT_VALUE,
+						SORT_MMS,
+						SORT_DSS,
+						SORT_AVALANCHE,
+						//TD #12719++
+						SORT_COMMENT
+						//TD ++#12719
+						};
+
+		enum SortDirection {SORT_ASCENDING,
+		                    SORT_DESCENDING};
+		struct SortEntry 
+		{
+			SortType       type;
+			SortDirection  direction;
+		};
+
+		typedef sequence<SortEntry> SortInfo;
+
+		typedef sequence<unsigned long> LocationList;
+
+
+		struct IndexInfo
+		{
+			unsigned long totalAlarms;
+			unsigned long unackAlarms;
+			unsigned long highestSeverity;
+			unsigned long dutyAlarmVersion;
+			TA_Base_Core::MillisecondTime earliestSourceTime;
+			TA_Base_Core::MillisecondTime latestSourceTime;
+			boolean exceededMaxDisplay;
+			boolean isLoadingAlarms;
+		};
+
+		typedef long IndexReference;
+
+		// Methods
+		/*
+		* setStoreMonitorAllLocations
+		*
+		* Tell the store to monitor alarms from all known (database config) alarm agents.
+		*/
+		void setStoreMonitorAllLocations();
+
+		/*
+		* setStoreMonitorLocation
+		*
+		* Tell the store to monitor alarms from a single alarm agent at a specified location.
+		*
+		* @param - location - location of alarm agent to monitor
+		*/
+		void setStoreMonitorLocation(in unsigned long location);
+
+		/*
+		* setStoreMonitorLocations
+		*
+		* Tell the store to monitor alarms from alarm agents at specified locations.
+		*
+		* @param - location - locations of alarm agents to monitor
+		*/
+		void setStoreMonitorLocations(in LocationList locations);
+
+		/*
+		* setSessionId
+		*
+		* Tells the store what session ID to use when determining what the highest severity alarm
+		* sound is. If this method is called, alarm sounds will only be played for alarms that are
+		* acknowledgable. Otherwise, the alarm sound will be played for all alarms.
+		*/
+		void setSessionId(in string sessionId);
+
+		/*
+		* createIndex
+		*
+		* Set up a new index to be managed by the alarm store.  If a suitable index already
+		* exists (same filter and sort) it will be re-used.
+		*
+		* @param - filter - Details of filtering required on index
+		* @param - sort   - Details of sorting required on index
+		* @param - callbackMethod - Corba callback to be used to advise user of index updates
+		* returns index reference for use with other methods (delete and getInfo)
+		*/
+		IndexReference createIndex(in FilterInfo filter,in SortInfo sort,in unsigned long cs_pos/*TA_Base_Core::IAlarmStoreCallbackCorbaDef callbackMethod*/, in boolean isHighestSeverityNeeded,in boolean isDefault )
+		     raises (InvalidFilterException);
+
+		/*
+		* setStorePreFilter
+		*
+		* Set an filter for the store which will pre-filter all alarms.  This may help reduce the work of
+		* the store when an MFT only requires a subset of alarms, e.g. limit to profile of user.  Once excluded in
+		* the pre-filter alarms cannot be added to any indexes.
+		*
+		* @param - filter - Details of filtering required on store
+		*/
+		void setStorePreFilter(in FilterInfo filter)
+		     raises (InvalidFilterException);
+
+		//////////////////////////////////////////////////////////
+		// The following three functions is used for stress test
+		/*
+		* newAlarm
+		*
+		* @param alarmDetail - indicate the new alarm detailed data
+		*/
+		void newAlarm(in AlarmDetailCorbaDef alarmDetail);
+
+		/*
+		* updateAlarm
+		*
+		* @param alarmUpdate - indicate the updated alarm detailed data
+		*/
+		void updateAlarm(in AlarmUpdateCorbaDef alarmUpdate);
+
+		/*
+		* getAliveTimeStamp
+		*
+		* Return the latest time stamp updated by alarm store service
+		*/
+		long getAliveTimeStamp();
+
+		/*
+		* getAlarm
+		*
+		* Get the details for a specified alarm.  This will return the alarm from the AlarmStore cache and avoid
+		* the need to go back to the alarm agent.
+		*
+		* @param - string - ID of alarm details required for
+		* @return - Returns the requested alarm
+		*/
+		AlarmDetailCorbaDef getAlarm(in string alarmID) raises (AlarmNotFoundException);
+
+		//////////////////////////////////////////////////////////
+
+		void RemoveAlarms(in TA_Base_Core::StringSequence p_alarms);
+	};
+
+}; // module TA_Base_Core
+
+#endif // !defined(ALARM_STORE_IDL)

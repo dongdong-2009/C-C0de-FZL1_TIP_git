@@ -1,0 +1,228 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""res\\Saver.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "\r\n"
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\Saver.ico"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,2,0,0
+ PRODUCTVERSION 1,2,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "Comments", "Combuilder制作\0"
+            VALUE "CompanyName", "Ripple\0"
+            VALUE "FileDescription", "Transactive Screen Saver\0"
+            VALUE "FileVersion", "1.2\0"
+            VALUE "InternalName", "Transactive Screen Saver\0"
+            VALUE "LegalCopyright", "版权 ? Combuilder 1998 - 2005\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "TransactScreensaver.scr\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Transactive Screen Saver\0"
+            VALUE "ProductVersion", "1.2\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LOGIN_DLG DIALOGEX 0, 0, 195, 205
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "操作员登录"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_PASSWORD_EDIT_AB,48,156,135,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL | WS_DISABLED
+    DEFPUSHBUTTON   "登录(&L)",IDC_LOGIN_BUTTON_AB,38,183,54,14,WS_DISABLED
+    PUSHBUTTON      "取消(&C)",IDC_CANCEL,106,183,54,14
+    CONTROL         "动画2",IDC_ANIMATE_AB,"SysAnimate32",ACS_CENTER | 
+                    WS_BORDER | WS_TABSTOP,9,8,178,79
+    GROUPBOX        "",IDC_STATIC_GROUP,5,97,185,80
+    LTEXT           "名字(&N):",IDC_STATIC,12,110,34,10
+    LTEXT           "概述(&F):",IDC_STATIC_PROFILE,12,126,34,10
+    LTEXT           "位置(&C):",IDC_STATIC_LOCATION,12,142,34,10
+    LTEXT           "密码(&P):",IDC_STATIC_PASSWORD,12,158,34,10
+    CTEXT           "版本# 1.0",IDC_VERSION,10,90,175,8
+    EDITTEXT        IDC_NAME_EDIT,48,108,135,12,ES_AUTOHSCROLL | WS_DISABLED | 
+                    NOT WS_TABSTOP
+    EDITTEXT        IDC_PROFILE_EDIT,48,124,135,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED | NOT WS_TABSTOP
+    EDITTEXT        IDC_LOCATION_EDIT,48,140,135,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED | NOT WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_LOGIN_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 190
+        VERTGUIDE, 48
+        VERTGUIDE, 183
+        TOPMARGIN, 8
+        BOTTOMMARGIN, 198
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DESCRIPTION         "屏幕保护"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COMPANYNAME         "业务系统"
+    IDS_NOOPTIONS           "当前屏保没有选项可设置"
+    IDS_MSGCAPTION          "屏幕保护"
+    IDS_PREVIEW             "预览"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "屏幕保护"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_KRTC_TRANSACTIVE    BITMAP  DISCARDABLE     "res\\transactive_krtc.bmp"
+IDB_C830_TRANSACTIVE    BITMAP  DISCARDABLE     "res\\transactive_c830.bmp"
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "res\Saver.rc2"  // non-Microsoft Visual C++ edited resources
+
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,325 @@
+#if !defined(AlarmAgentCorbaDef_496EB579_3332_4356_AD38_4BDA6D3642B7__INCLUDED_)
+#define AlarmAgentCorbaDef_496EB579_3332_4356_AD38_4BDA6D3642B7__INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/alarm/IDL/src/AlarmAgentCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * This is the interface to the AlarmAgent
+  */
+
+#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "core/alarm/IDL/src/AlarmAgentQueueItemCorbaDef.idl"
+
+module TA_Base_Core
+{
+		const string ALARM_AGENT_NAME = "/alarm/AlarmAgent";
+
+        interface AlarmAgentCorbaDef
+        {
+
+            exception AlarmException
+            {
+                string reason;
+            };
+
+            exception NoAlarmException
+            {
+                string reason;
+            };
+			exception AlarmCapacityExceededException
+			{
+				string reason;
+			};
+
+            /**
+              * submitAlarm
+              *
+              * This method allows clients to submit a new alarm
+              *
+              * @param Set to TRUE if it is acceptable for more than one 
+              *        instance of this alarm to be active at once
+              * @param The alarm
+              */
+            void submitAlarm(in boolean p_multipleOccurancesAllowed, 
+                             in AlarmDetailCorbaDef p_alarm)
+				raises( OperationModeException, AlarmException );
+
+            /**
+              * updateComments
+              *
+              * This method allows an operator to modify the comment associated with
+              * a given alarm.
+              *
+              * @param The new comment
+              * @param The alarm id
+              * @param The operators session id
+              */
+            void updateComments(in string p_description, 
+                                in string p_alarmID, 
+                                in string p_sessionID)
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+            /**
+              * acknowledge
+              *
+              * This method allows a system/subsystem to acknowledge an alarm
+              *
+              * @param The alarm id
+              * @param The operator session id
+              */
+            void acknowledge(in string p_alarmID, 
+                             in string p_sessionId)
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+            /**
+              * acknowledgeSeq
+              *
+              * This method allows a system/subsystem to acknowledge a group of alarms
+              *
+              * @param The collection of alarm ids
+              * @param The operator session id
+              */
+            void acknowledgeSeq(in TA_Base_Core::StringSequence p_alarms,
+                                in string p_sessionId)
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+            /**
+              * operatorAcknowledgeSeq
+              *
+			  ** It has been replace by operatorAcknowledgeSeqEx, and will be removed in the furture.
+			  *
+              * This method allows an operator via banner/viewer to acknowledge a group of alarms
+              * manually
+			  *
+              * @param The collection of alarm ids
+              * @param The operator session id
+              */
+            void operatorAcknowledgeSeq(in TA_Base_Core::StringSequence p_alarms,
+                                in string p_sessionId)
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+            /**
+              * operatorAcknowledgeSeqEx
+              *
+              * This method allows an operator via banner/viewer to acknowledge a group of alarms
+              * manually, it will return a alarm id list which includes alarms cannot be found on alarm agent.
+			  *
+              * @param The collection of alarm ids
+              * @param The operator session id
+			  * @return Alarms cannot be found on alarm agent
+              */
+            TA_Base_Core::StringSequence operatorAcknowledgeSeqEx(in TA_Base_Core::StringSequence p_alarms,
+                                in string p_sessionId)
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+
+            /**
+              * closeAlarmById
+              *
+              * This close should be used if there may be more than one instance
+              * of this alarm (ie if it was submitted with p_multipleOccurancesAllowed
+              * set to TRUE)
+			  * This close method is used by a system/sub-system
+              *
+              * @param The alarm id
+              */
+            void closeAlarmById(in string p_alarmID, in string p_closeValue, in unsigned long p_closeTime)
+				raises( OperationModeException );
+
+            /**
+              * closeAlarmByTypeAndKey
+              *
+              * This close should be used if there is only one active instance
+              * of this alarm (ie if it was submitted with p_multipleOccurancesAllowed
+              * set to FALSE)
+			  * This close method is used by a system/sub-system
+              *
+              * @param The alarm type
+              * @param The entity key
+              */
+            void closeAlarmByTypeAndKey(in unsigned long p_alarmType, 
+                                        in unsigned long p_entityKey,
+										in string p_closeValue,
+										in unsigned long p_closeTime )
+				raises( OperationModeException );
+
+            /**
+              * operatorCloseAlarm
+              *
+			  *
+              * This close should be used by the Alarm Manager when alarms are manually
+              * closed by operators. It takes a session key as a parameter.
+			  * This close method is used by an operator via a banner/viewer
+              *
+              * @param The alarm Id
+              * @param A session key
+              */
+            void operatorCloseAlarm( in string p_alarmID, in string p_sessionId )
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+            /**
+              * operatorCloseAlarmSequence
+              *
+              * This close should be used by the Alarm Manager when a sequence of alarms are manually
+              * closed by operators. It takes a session key as a parameter.
+			  * Please note that the close time and value should be updated in the alarm's closeTime and ParamList (with ClosedTime param)
+			  * This close method is used by an operator via a banner/viewer
+              *
+              * @param The alarm Id
+              * @param A session key
+              */
+            void operatorCloseAlarmSequence( in TA_Base_Core::StringSequence p_alarms, in string p_sessionId )
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+ 
+		  /**
+          * operatorCloseAlarmSequenceEx
+          *
+          * This close should be used by the Alarm Manager when a sequence of alarms are manually
+          * closed by operators. It takes a session key as a parameter.
+		  * Please note that the close time and value should be updated in the alarm's closeTime and ParamList (with ClosedTime param)
+		  * This close method is used by an operator via a banner/viewer, it will return a alarm id list which includes alarms cannot be found on alarm agent.
+          *
+          * @param The alarm Id
+          * @param A session key
+		  * @return Alarms cannot be found on alarm agent
+          */
+			TA_Base_Core::StringSequence operatorCloseAlarmSequenceEx( in TA_Base_Core::StringSequence p_alarms, in string p_sessionId )
+				raises( OperationModeException, AccessDeniedException, AlarmException );
+
+            /**
+              * getAlarms
+              *
+              * This method returns all of the currently open and/or unacknowledged alarms
+              *
+              * @return All currently open and/or unacknowledged alarms
+              */
+            AlarmSequence getAlarms()
+				raises( OperationModeException );
+
+            /**
+              * getQueueUpdates
+              *
+              * This method returns all of the currently items in the alarm agent's queue for updating
+              *
+              * @return All currently queue item
+              */
+			AlarmAgentQueueItemSequence getQueueUpdates()
+				raises( OperationModeException );
+
+            /**
+              * getEntityAlarms
+              *
+              * This method returns all of the currently open and/or unacknowledged alarms
+              * for a specific entity.
+              *
+              * @param The entity key
+              *
+              * @return All currently open and/or unacknowledged alarms
+              */
+            AlarmSequence getEntityAlarms(in unsigned long p_entityKey)
+				raises( OperationModeException );
+
+            /**
+              * getMostRecentActiveAlarmForEntity
+              *
+              * This method takes an entity key and returns the alarm for that entity
+              * with the most recent createTime field. If no alarms exist for the entity,
+              * the method throws an AlarmAgentException.
+              *
+              * @param The entity key
+              *
+              * @return The most recent alarm for the passed in entity.
+              *
+              * @exception AlarmAgentException raised if no alarms exist for the entity.
+              */
+            AlarmDetailCorbaDef getMostRecentActiveAlarmForEntity(in unsigned long p_entityKey)
+                raises( OperationModeException, AlarmException );
+
+            /**
+			 * getActiveAlarmForEntityOfType
+			 *
+			 * This function will retrieve the unack/open alarm for an entity of a defined 
+			 * alarm type by querying the AlarmAgent assigned to the entities location
+			 *
+			 * @return AlarmDetailCorbaDef* the alarm. If no such alarm, NULL will be returned
+			 *
+			 * @param alarmTypeKey - The type of alarm as defined in the specific Message Type header file
+			 * @param unsigned long entityKey - the entitykey of the entity
+             *
+             * @return The most unique open/unack alarm for the passed in entity and alarm type.
+             *
+			 * @exception AlarmAgentException raised if there is problem with getting the alarm.
+             */
+            AlarmDetailCorbaDef getActiveAlarmForEntityOfType(in unsigned long p_alarmTypeKey, in unsigned long p_entityKey)
+                raises( OperationModeException, AlarmException );
+
+            /**
+              * getAlarm
+              *
+              * return The alarm with the specified UID.
+              *
+              * @param alarmId: the UID of the alarm
+              *
+              * @return The alarm with the specified UID.
+              *
+              * @exception AlarmException raised if the specified alarm does not exist.
+              */
+            AlarmDetailCorbaDef getAlarm(in string alarmId)
+                raises( OperationModeException, AlarmException );
+
+            /**
+              * setMmsState
+              *
+              * This method is called when the MMS state of an alarm has changed.
+        	  * It results in the mmsState variable for the alarm being updated appropriately.
+              *
+              * @param p_alarmId: The alarm ID
+	          * @param p_mmsState: The new mmsState of the alarm
+              *
+              * @exception AlarmException raised if no alarm exists with the specified ID,
+	          *            or if the specified mmsState is already set
+              */
+            void setMmsState(in string p_alarmId, in MmsStateType p_mmsState)
+                raises( OperationModeException, AlarmException );
+
+            /**
+              * planAssociatedWithAlarmWasRun
+              *
+              * This method is called when a plan that is associated with a given alarm
+              * is run. It results in the decisionSupportState variable for the alarm being
+              * updated appropriately.
+              *
+              * @param The alarm
+              * @param Operator session ID
+              */
+            void planAssociatedWithAlarmWasRun(in string p_alarmId, in string p_sessionID)
+                raises( OperationModeException, AlarmException );
+
+            /**
+              * planAssociatedWithAlarmWasPostponed
+              *
+              * This method is called when a plan that is associated with a given alarm
+              * is postponed. It results in the decisionSupportState variable for the alarm being
+              * updated appropriately.
+              *
+              * @param The alarm
+              * @param Operator session ID
+              */
+            void planAssociatedWithAlarmWasPostponed(in string p_alarmId, in string p_sessionID)
+                raises( OperationModeException, AlarmException );
+        };
+
+
+}; // module TA_Base_Core
+
+#endif // !defined(AlarmAgentCorbaDef_496EB579_3332_4356_AD38_4BDA6D3642B7__INCLUDED_)

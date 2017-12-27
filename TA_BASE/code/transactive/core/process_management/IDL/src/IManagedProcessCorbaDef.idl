@@ -1,0 +1,80 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IManagedProcessCorbaDef.idl $
+  * @author:   Ross Tucker
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last mofified by:  $Author: CM $
+  *
+  * This interface should be implemented by any process that is 
+  * managed by the TransActive Process Manager.
+  */
+
+#ifndef MANAGEDPROCESSCORBADEF_IDL_INCLUDED
+#define MANAGEDPROCESSCORBADEF_IDL_INCLUDED
+
+#include "core/process_management/IDL/src/ProcessManagementDataDefinitionsCorbaDef.idl"
+
+module TA_Base_Core
+{
+        interface IManagedProcessCorbaDef
+        {
+
+			exception PollException{};
+
+            /**
+              * terminate
+              *
+              * This method allows the Process Manager to terminate
+              * a managed process.
+              */
+            oneway void terminate();
+
+            /**
+              * setParam
+              *
+              * This method allows the Process Manager to change a
+              * managed process' run time parameter.
+              *
+              * @param The modified RunParam
+              */
+            void setParam(in TA_Base_Core::RunParam p_parameter);
+
+            /**
+              * getParams
+              *
+              * This method allows the Process Manager to retrieve an applications
+              * current run time parameters
+              *
+              * @return The run param sequence
+              */
+            TA_Base_Core::RunParamSeq getParams();
+
+            /**
+              * poll
+              *
+              * This method allows the Process Manager to verify that the process
+			  * is still running and functioning correctly. If the process is running
+			  * normally, then it just returns. If a problem within the process is
+			  * detected, then the process throws an exception.
+			  *
+			  * @exception PollException  Thrown if a problem is detected within the
+			  *							  process.
+              */
+            void poll() raises (PollException);
+
+            /**
+              * servicesRestarted
+              *
+              * This method instructs the ManagedProcess to tell the notification
+              * service to do some re-resolving
+              */
+            void servicesRestarted();
+        };
+
+};
+
+#endif // MANAGEDPROCESSCORBADEF_IDL_INCLUDED

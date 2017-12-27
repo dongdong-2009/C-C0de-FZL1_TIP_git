@@ -1,0 +1,521 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/pa/pa_agent/IDL/src/IPAAgentCorbaDef.idl $
+// @author:  Sean Liew
+// @version: $Revision: #2 $
+//
+// Last modification: $DateTime: 2015/01/22 11:19:39 $
+// Last modified by:  $Author: qi.huang $
+//
+// PA Agent IDL interface.
+//
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+
+module TA_Base_Bus
+{
+
+    interface IPAAgentCorbaDef
+    {
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     PA Agent exceptions
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        enum EPaErrorId
+        {
+            eBroadcastIdNotFound,
+            eFepcCommsFailure,
+            eBroadcastLimitReached,
+            eBadParameter,
+            eAccessDenied,
+            eTrainAgentCommsFailure,
+            eBroadcastStationMusicFailure,
+            eSetAdhocTypeFailure,
+            eZoneNotMapped,
+            ePaErrorIdEndMark // Do not use this value (for adding purpose), add new value just one prior to it
+        };
+
+        exception PaErrorException
+        {
+            EPaErrorId eErrorId;
+            string strWhat;
+        };
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     PA Agent Constants
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        enum EBroadcastType
+        {
+            StationMusic,
+            StationLive,
+            StationDva,
+            StationRecording,
+            OccPlayback,
+            TrainLive,
+            TrainDva,
+            ZoneMonitoring //added by lixiaoxia
+        };
+
+        enum EBroadcastState
+        {
+            Creation,
+            Execution,
+            Runtime,
+            Aborting,
+            Termination,
+            PendingRemoval
+        };
+
+        enum EBackupKeyState
+        {
+            BackupUnknow,
+            BackupLock,
+            BackupUnlock
+        };
+
+        enum EGlobalState
+        {
+            GLOBAL_STATE_NO_FAILURE,
+            GLOBAL_STATE_NO_FREE_ANNOUNCE_ID,
+            GLOBAL_STATE_NO_FREE_MESSAGE_SEQ_ID,
+            GLOBAL_STATE_NO_FREE_DVA_CHANNEL,
+            GLOBAL_STATE_RECORDING_SOURCE_BUSY,
+            GLOBAL_STATE_MESSAGE_BUSY_RECORDING,
+            GLOBAL_STATE_MESSAGE_BUSY_BROADCASTING,
+            GLOBAL_STATE_COMMS_FAILURE_TRAIN_AGENT,
+            GLOBAL_STATE_COMMS_FAILURE_TIS_AGENT,
+            GLOBAL_STATE_COMMS_FAILURE_AUTHENTICATION_AGENT,
+            GLOBAL_STATE_HARDWARE_FAILURE_TRAIN_AGENT,
+            GLOBAL_STATE_HARDWARE_FAILURE_TIS_AGENT,
+            GLOBAL_STATE_HARDWARE_FAILURE_PA_AGENT,
+            GLOBAL_STATE_NO_PERMISSION_FAILURE_TRAIN_AGENT,
+            GLOBAL_STATE_NO_PERMISSION_FAILURE_TIS_AGENT,
+            GLOBAL_STATE_INVALID_PROTOCOL_FAILURE_TRAIN_AGENT,
+            GLOBAL_STATE_INVALID_PROTOCOL_FAILURE_TIS_AGENT,
+            GLOBAL_STATE_INVALID_PROTOCOL_FAILURE_PA_AGENT,
+            GLOBAL_STATE_PUBLIC_DVA_SET_VERSION_CONFLICT,
+            GLOBAL_STATE_RADIO_CALL_RESET,			// Applicable to PA Live trainborne, if the call is lost
+            GLOBAL_STATE_STATIC_GROUP_IN_USE,
+            GLOBAL_STATE_SCHEDULE_DVA_FULL,
+            GLOBAL_STATE_END_MARK // Do not use this value (for adding purpose), add new value just one prior to it
+        };
+
+
+        enum ELocalState
+        {
+            LOCAL_STATE_IN_PROGRESS,
+            LOCAL_STATE_IN_PROGRESS_DWELL_TIME,
+            LOCAL_STATE_CONNECTING,        // train pa live initial state (before train ready for live announcement)0
+            LOCAL_STATE_TRAIN_READY,
+            LOCAL_STATE_CONTINUE_LIVE_ANNOUNCEMENT_REQUIRED,
+            LOCAL_STATE_COMPLETED,
+            LOCAL_STATE_ABORTED,        
+            LOCAL_STATE_FAILED_CYCLE,
+            LOCAL_STATE_FAILED_ZONE,
+            LOCAL_STATE_FAILED_OVERRIDDEN,
+            LOCAL_STATE_FAILED_TRAIN,
+            LOCAL_STATE_FAILED_CONNECTION_RESET,
+            LOCAL_STATE_FAILED_INTERRUPTED,
+            LOCAL_STATE_FAILED_VERSION_CONFLICT,
+            LOCAL_STATE_FAILED_INVALID_REQUEST,
+            LOCAL_STATE_FAILED_BUSY,
+            LOCAL_STATE_FAILED_BUSY_WITH_OVERRIDE_OPTION,
+            LOCAL_STATE_FAILED_CONTINUE_LIVE_ANNOUNCEMENT_TIMEOUT,        // Trainborne Pa Live, an expected reset request was not received
+            LOCAL_STATE_FAILED_NO_PERMISSION,
+            LOCAL_STATE_TRAIN_FIRST_CYCLE_CANCELLED,
+            LOCAL_STATE_FAILED_BAD_COMMAND,
+            LOCAL_STATE_FAILED_DIFFERENT_ORIGIN,
+            LOCAL_STATE_FAILED_DIFFERENT_VERSION,
+            LOCAL_STATE_FAILED_NO_RESPONSE_FROM_TRAIN,
+            LOCAL_STATE_FAILED_MPU_CHANGEOVER,
+            LOCAL_STATE_PTT_ACTIVATED,
+            LOCAL_STATE_IN_PROGRESS_OVERRIDDEN,
+            LOCAL_STATE_BROADCASTING,
+            LOCAL_STATE_FAILED_LINK_LOST,
+            LOCAL_STATE_END_MARK // Do not use this value (for adding purpose), add new value just one prior to it
+        };
+
+        enum EMusicType
+        {
+            NoMusic,
+            LocalMusic,
+            OccMusic
+        };
+
+        enum EScheduleUpdateType
+        {
+            ScheduleCreate,
+            ScheduleRemove,
+            ScheduleUpdate
+        };
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //    PAS FEPC constants detailed in PAS SICD
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        // Enums should be used but we cannot explicitly define the constant values
+
+        const short PA_OCC_MIN_DVA_NUM = 1;
+        const short PA_OCC_MAX_DVA_NUM = 900;
+        const short PA_MIN_AD_HOC_DVA_ID = 1;
+        const short PA_MAX_AD_HOC_DVA_ID = 6;
+        const short PA_STN_MIN_DVA_NUM = 1;
+        const short PA_STN_MAX_DVA_NUM = 999;
+        const short PA_OCC_MIN_ZONE_ID = 1;
+        const short PA_OCC_MAX_ZONE_ID = 64;
+        const short PA_STN_MIN_ZONE_ID = 1;
+        const short PA_STN_MAX_ZONE_ID = 32;
+        const short PA_MIN_STN_ID = 1;
+        const short PA_MAX_STN_ID = 66; // Capability is 66
+        const short PA_MIN_SCHEDULE_EVENT_ID = 1;
+        const short PA_MAX_SCHEDULE_EVENT_ID = 100;
+
+        const unsigned short PAS_DVA_TYPE_DELETED = 0;
+        const unsigned short PAS_DVA_TYPE_PRE_RECORD_EMERGENCY = 1;
+        const unsigned short PAS_DVA_TYPE_AD_HOC_EMERGENCY = 2;
+        const unsigned short PAS_DVA_TYPE_PRE_RECORD_NORMAL = 3;
+        const unsigned short PAS_DVA_TYPE_AD_HOC_NORMAL = 4;
+        const unsigned short PAS_DVA_TYPE_ATS_MSG = 5;
+        const unsigned short PAS_DVA_TYPE_SPARE_A = 6;
+        const unsigned short PAS_DVA_TYPE_SPARE_B = 7;
+        const unsigned short PAS_DVA_TYPE_SPARE_C = 8;
+        const unsigned short PAS_DVA_TYPE_AD_HOC_BLANK = 100;
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //    PAS ISCS constants between PA Manager and PA Agents
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        const string TRAIN_PA_CORBA_NAME = "TrainPA";
+        const string STATION_PA_CORBA_NAME = "StationPA";
+        const string BROADCAST_ID_FILTER_STRING = "BroadcastId";
+        const unsigned short MAX_ADHOC_LABEL_LENGTH = 32;
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     Broadcast Configuration Structures
+        //
+        ///////////////////////////////////////////////////////////////////////
+        
+        typedef unsigned long DateTime;
+
+        typedef sequence<unsigned long>     CoverageIndices;
+        typedef sequence<unsigned long>     TrainCoverage;
+        typedef sequence<unsigned long>     ZoneCoverage;
+        typedef sequence<unsigned long>     MessageKeySeq;
+        typedef sequence<unsigned short>    ScheduleDvaIds;
+
+        struct BroadcastIdType
+        {
+            string                          broadcastId;
+            EBroadcastType                  broadcastType;  // Used for filtering 
+            string                          sessionId;
+        };
+
+        typedef sequence<BroadcastIdType>   BroadcastIdTypeSeq;
+
+        // BroadcastUpdate Comms message data         
+        struct CurrentBroadcastsUpdateData
+        {
+            string                          fromBroadcastId;
+            string                          toBroadcastId;
+            EBroadcastType                  broadcastType;  // Used for filtering 
+            string                          sessionId;
+        };
+	
+        // BroadcastLibraryUpdate Comms message data         
+        struct ScheduleBroadcastsUpdateData
+        {
+            unsigned long ulScheduleKey;
+            EBroadcastType broadcastType;  // Used for filtering 
+            EScheduleUpdateType eUpdateType;
+            string strBroadcastId;
+            unsigned long ulDvaMsgKey;
+            ZoneCoverage seqZoneKeys;
+            unsigned long ulCyclicTimes;
+            DateTime tmStartTime;
+            string strStatus;
+        };
+
+        struct StationMusicConfig
+        {
+            unsigned short sourceId;
+            ZoneCoverage zones;
+            EMusicType musicType;
+        };
+
+        struct StationLiveConfig
+        {
+            boolean                         hasChime;
+            unsigned short                  sourceId;
+            ZoneCoverage                    zones;
+        };
+
+        struct TrainCyclicParams
+        {
+            unsigned short periodInSecs;
+            unsigned short durationInSecs;
+        };
+
+        struct TriggeredBroadcastConfig
+        {
+            string strBroadcastId;
+            unsigned long ulDvaMsgKey;
+            ZoneCoverage lstZoneKeys;
+            unsigned long ulCyclicTimes;
+            DateTime tmStartTime;
+        };
+
+        struct StationCyclicParams
+        {
+            DateTime startTime;
+            DateTime stopTime;
+            DateTime period;
+            unsigned short usCyclicTimes;
+            unsigned short usScheduleId;
+            boolean bCycSun;
+            boolean bCycMon;
+            boolean bCycTue;
+            boolean bCycWed;
+            boolean bCycThu;
+            boolean bCycFri;
+            boolean bCycSat;
+        };
+
+        struct StationDvaConfig
+        {
+            unsigned short sourceId;
+            ZoneCoverage zones;
+            MessageKeySeq messages;
+            unsigned short dwellInSecs;
+            boolean isSynchronisedWithTis;
+            boolean hasChime;
+            boolean isLocalPlayback; // playback to local paging console
+            boolean bCyclic;
+            unsigned long priorityGroup;
+            unsigned long pKey;
+            StationCyclicParams stCyclicParams;
+        };
+
+        struct StationRecordingConfig
+        {
+            unsigned short sourceId;
+            unsigned long messageKey;
+            unsigned short usMsgType;
+        };
+
+        struct TrainLiveConfig
+        {
+            TrainCoverage                   trains;
+            octet                            trainAnnouncementId;
+            boolean                         hasOverrideOption;
+            string                          staticGroupName;
+        };
+
+        struct TrainDvaConfig
+        {
+            TrainCoverage                   trains;
+            boolean                         hasOverrideOption;
+            unsigned long                   messageKey;
+            unsigned long                   libraryVersion;
+            TrainCyclicParams               stCyclicParams;
+            boolean                         isEmergency;
+        };
+
+        union BroadcastConfigSpecifics switch( EBroadcastType )
+        {
+            case StationMusic:
+                StationMusicConfig          theStationMusicConfig;
+
+            case StationLive:
+                StationLiveConfig           theStationLiveConfig;
+
+            case StationDva:
+                StationDvaConfig            theStationDvaConfig;
+
+            case StationRecording:
+                StationRecordingConfig      theStationRecordingConfig;
+
+            case TrainLive:
+                TrainLiveConfig             theTrainLiveConfig;
+
+            case TrainDva:
+                TrainDvaConfig              theTrainDvaConfig;
+        };
+
+        struct BroadcastConfig
+        {
+           string sessionId;
+           string broadcastId;
+           DateTime submitTime;
+           EBroadcastType broadcastType;
+           BroadcastConfigSpecifics theBroadcastConfigSpecifics;
+           boolean isEventTriggered;
+           boolean isStop;
+        };
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     Progress Report Structures
+        //
+        ///////////////////////////////////////////////////////////////////////
+     
+
+        struct LocalProgress
+        { 
+           unsigned long                    zoneKeyOrTrainId;
+           ELocalState                      localState;
+           octet                            overridingSourcePriorityForZonesOnly;
+           boolean                          errorOccurred;
+        };
+        typedef sequence<LocalProgress>     LocalProgressSeq;
+
+        
+        struct ProgressReport
+        { 
+           string broadcastId;   // May be redundant
+           EBroadcastState broadcastState;
+           EGlobalState globalState;
+           LocalProgressSeq localProgresses;
+        };
+
+        // BroadcastProgressUpdate Comms message data         
+        typedef ProgressReport              BroadcastProgressUpdateData;
+
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     CORBA structures to mimic those defined in 
+        //     app/pa/PAAgent/src/CachedMapDefinitions.h
+        //
+        ///////////////////////////////////////////////////////////////////////
+        struct StationDvaMessageRecord
+        {
+            unsigned long m_pKey;
+            unsigned long m_locationKey;
+            unsigned short m_id;
+            string m_label;
+            unsigned short m_type;
+            unsigned long m_tisMessageTag;
+            short m_tisLibrarySection;
+            unsigned long m_tisLibraryVersion;
+        };
+        typedef sequence<StationDvaMessageRecord> StationDvaMessageRecords;
+        typedef StationDvaMessageRecords DvaMessagesUpdateData;
+
+
+        struct DvaVersionRecord
+        {
+            unsigned long                   ulKey;
+            unsigned long                   ulLocationKey;
+            string                          strVersionNumber;
+        };
+        typedef sequence<DvaVersionRecord> DvaVersionRecords;
+
+	struct TrainDvaMessageRecord
+        {
+            unsigned long                   m_pKeyOrId;        
+            string                          m_label;
+        };   
+        typedef sequence<TrainDvaMessageRecord> TrainDvaMessageRecords;
+
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     PAS parameters Update Structures
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        struct PaSysParameter
+        {
+            string strName;
+            string strValue;
+        };
+
+        typedef sequence<PaSysParameter> PaSysParameterSeq; 
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     Broadcast Parameter Update Structures
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        enum EBroadcastParameter
+        {
+            BROADCAST_PARAMETER_WAS_EXECUTED_SUCCESSFULLY,
+            BROADCAST_PARAMETER_IS_CONNECTED,
+            BROADCAST_PARAMETER_NEXT_TRAIN_TO_EXECUTE,
+            BROADCAST_PARAMETER_TRAIN_ANNOUNCEMENT_ID,
+            BROADCAST_PARAMETER_STATION_ANNOUNCE_ID,
+            BROADCAST_PARAMETER_MESSAGE_SEQUENCE_ID,
+            BROADCAST_PARAMETER_PRIORITY,
+            BROADCAST_PARAMETER_HAS_OVERRIDE_OPTION,
+            BROADCAST_PARAMETER_SESSION_ID,
+            BROADCAST_PARAMETER_IS_TAGGED_FOR_REMOVAL,
+            BROADCAST_PARAMETER_SCHEDULE_DVA_EVENT_ID,
+            BROADCAST_PARAMETER_OPERATOR_ABORTED,
+            BROADCAST_PARAMETER_EFFECTIVE_COVERAGE_INDICES,
+            BROADCAST_PARAMETER_END_MARK // Do not use this value (for adding purpose), add new value just one prior to it
+        };
+
+        struct BroadcastParameter
+        {
+            string                          broadcastId;
+            EBroadcastParameter             parameter;
+            any                             data;
+        };
+
+        typedef sequence<BroadcastParameter>        BroadcastParameterSeq; 
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     Complete Broadcast State Structures
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        struct CompleteBroadcastState
+        {
+            string                          broadcastId;
+            BroadcastConfig                 theBroadcastConfig;
+            ProgressReport                  theProgressReport;
+            BroadcastParameterSeq           broadcastParameters;
+        };
+
+        typedef sequence<CompleteBroadcastState> CompleteBroadcastStateSeq;
+
+        struct CompleteAgentState
+        {
+            CompleteBroadcastStateSeq broadcastStates;
+            ScheduleDvaIds availableIds;
+            boolean bAvailableIdInitialized;
+        };
+
+
+        ///////////////////////////////////////////////////////////////////////
+        //
+        //     Backup key status structures
+        //
+        ///////////////////////////////////////////////////////////////////////
+
+        struct BackupKeyStatus
+        {
+            string                         strBackupKeyName;
+            EBackupKeyState                eBackupMode;
+        };
+
+	}; // IPAAgentCorbaDef
+
+}; // TA_IRS_Bus
+

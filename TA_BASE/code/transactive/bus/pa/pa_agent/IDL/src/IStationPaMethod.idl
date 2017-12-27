@@ -1,0 +1,265 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/pa/pa_agent/IDL/src/IStationPaMethod.idl $
+// @author:  Sean Liew
+// @version: $Revision: #5 $
+//
+// Last modification: $DateTime: 2015/01/24 13:41:41 $
+// Last modified by:  $Author: qi.huang $
+//
+// PA Agent IDL interface.
+//
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/pa/pa_agent/IDL/src/IPAAgentCorbaDef.idl"
+
+
+module TA_Base_Bus
+{
+
+	interface IStationPaMethod
+	{
+		/////////////////////////
+		// Station Broadcasts 
+		/////////////////////////
+
+        // Returns a string for the broadcastId
+        string broadcastStationScheduleDva 
+            ( in IPAAgentCorbaDef::MessageKeySeq messages, 
+              in IPAAgentCorbaDef::ZoneCoverage zones, 
+              in unsigned short dwellInSecs, 
+              in boolean hasChime, 
+              in boolean isSynchronisedWithTis, 
+              in string groupName,
+              in IPAAgentCorbaDef::StationCyclicParams stCyclicParams,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        // Returns a string for the broadcastId
+        string broadcastStationDva 
+            ( in IPAAgentCorbaDef::MessageKeySeq messages, 
+              in IPAAgentCorbaDef::ZoneCoverage zones, 
+              in unsigned short dwellInSecs, 
+              in boolean hasChime, 
+              in boolean isSynchronisedWithTis, 
+              in string groupName,                // zone group selection for broadcast Id
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void stopBroadcastStationDva
+            ( in IPAAgentCorbaDef::ZoneCoverage zones,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void enableZoneMonitoring
+            ( in boolean bEnable,
+              in IPAAgentCorbaDef::ZoneCoverage zones, 
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		// Returns a string for the broadcastId
+        string playbackStationDva
+            ( in unsigned long messageKey,
+              in unsigned short sourceId,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void stopPlaybackStationDva
+            ( in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        // Returns a string for the broadcastId
+        string broadcastStationLive 
+            ( in boolean hasChime,
+              in unsigned short sourceId, 
+              in IPAAgentCorbaDef::ZoneCoverage zones, 
+              in string groupName,                // zone group selection for broadcast Id
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void stopBroadcastStationLive
+            ( in IPAAgentCorbaDef::ZoneCoverage zones,
+              in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::EBackupKeyState getBackupKeyStatus
+            ( in string backupName )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastStationMusic 
+            ( in IPAAgentCorbaDef::EMusicType musicType,
+              in IPAAgentCorbaDef::ZoneCoverage zones, 
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        // Returns a string for the broadcastId
+        string recordAdhocMessage 
+            ( in unsigned short sourceId, 
+              in unsigned long messageKey,
+              in unsigned short usMsgType,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void retryStationBroadcast 
+            ( in string broadcastId, 
+              in IPAAgentCorbaDef::ZoneCoverage zones,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		/////////////////////////
+		// Common 
+		/////////////////////////
+
+        void agentLinkTest()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        boolean hardwareLinkTest
+			( in string broadcastId, in string sessionId)
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void terminateBroadcast 
+            ( in string broadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        // broadcast must be terminated first 
+        void removeBroadcast 
+            ( in string broadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void removeScheduleBroadcast 
+            ( in unsigned long ulScheduleKey,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void restoreBroadcast 
+            ( in string broadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        boolean setAdhocType 
+            ( in unsigned long messageKey, 
+              in unsigned short messageType,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        boolean setAdhocLabel 
+            ( in unsigned long messageKey, 
+              in string label,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::BroadcastIdTypeSeq getBroadcastIdTypes()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+        
+        void changeBroadcastId 
+            ( in string fromBroadcastId, 
+              in string toBroadcastId,
+              in string sessionId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::BroadcastConfig getBroadcastConfig 
+            ( in string broadcastId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::ProgressReport getProgressReport 
+            ( in string broadcastId ) 
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		// song toan++
+		// TD10409
+		//
+		// query status of music at OCC or Station
+		// Parameter:
+		//		sessionid: session id
+		// return:
+        //      OccMusic: OCC music is playing
+        //      LocalMusic: Station music is playing
+        //      NoOccMusic or NoLocalMusic: No music is playing
+		IPAAgentCorbaDef::EMusicType getMusicStatus( in string sessionId )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+		// ++song toan
+		// TD10409
+
+		void forceTerminateAllExistPA()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		////////////////////////////////////////////
+		// Methods to retrieve database configuration
+		////////////////////////////////////////////
+        
+		IPAAgentCorbaDef::StationDvaMessageRecords getStationDvaMessageRecords()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        IPAAgentCorbaDef::DvaVersionRecords getDvaVersionRecords()
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+		////////////////////////////////////////////
+		// Event Triggered Station DVA Broadcasts
+		////////////////////////////////////////////
+
+        void broadcastEventTriggeredStationDva
+            ( in unsigned long messageKey, 
+              in string messageVersionNumber,
+              in boolean hasChime, 
+              in boolean isSynchronisedWithTis, 
+              in unsigned long durationInSecs, 
+              in unsigned short periodInSecs, 
+              in string sessionId,
+              in IPAAgentCorbaDef::ZoneCoverage zones )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastEventTriggeredStationDvaForStation
+            ( in unsigned long messageKey, 
+              in string messageVersionNumber,
+              in boolean hasChime, 
+              in boolean isSynchronisedWithTis, 
+              in unsigned long durationInSecs, 
+              in unsigned short periodInSecs, 
+              in string sessionId)
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastEventTriggeredStationDvaForArea
+            ( in unsigned long messageKey, 
+              in string messageVersionNumber,
+              in boolean hasChime, 
+              in boolean isSynchronisedWithTis, 
+              in unsigned long durationInSecs, 
+              in unsigned short periodInSecs, 
+              in string sessionId,
+              in string zoneArea )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastEventTriggeredStationDvaForGroup
+            ( in unsigned long messageKey, 
+              in string messageVersionNumber,
+              in boolean hasChime, 
+              in boolean isSynchronisedWithTis, 
+              in unsigned long durationInSecs, 
+              in unsigned short periodInSecs, 
+              in string sessionId,
+              in string zoneGroupLabel )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastSigTriggeredStationDva
+            ( in unsigned long ulEventType, 
+              in unsigned long ulSrcStationLocationKey,
+              in unsigned long ulDestStationLocationKey,
+              in unsigned long ulDestPlatformId,
+              in boolean bIsLastTrain,
+              in boolean bTrainInfoValid,
+              in IPAAgentCorbaDef::DateTime dtStartTime )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+
+        void broadcastFasTriggeredStationDva
+            ( in unsigned long ulAlarmEntityKey, 
+              in unsigned long ulSrcStationLocationKey )
+            raises (TA_Base_Core::OperationModeException, IPAAgentCorbaDef::PaErrorException);
+	}; // IStationPaCorba
+
+}; // TA_IRS_Bus
+

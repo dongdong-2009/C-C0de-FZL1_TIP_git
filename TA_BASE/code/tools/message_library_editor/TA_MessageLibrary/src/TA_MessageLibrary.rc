@@ -1,0 +1,990 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENA)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_AUS
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\TA_MessageLibrary.ico"
+IDR_EXTERNAL_MAINFRAME  ICON    DISCARDABLE     "res\\TA_MessageLibrary.ico"
+IDR_TA_MessageLibraTYPE ICON    DISCARDABLE     "res\\TA_MessageLibraryDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP  MOVEABLE PURE   "res\\Toolbar.bmp"
+IDB_HELP_TOOLBAR        BITMAP  DISCARDABLE     "res\\HelpToolbar.bmp"
+IDR_EXTERNAL_MAINFRAME  BITMAP  MOVEABLE PURE   "res\\ExternalToolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR MOVEABLE PURE  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    SEPARATOR
+    BUTTON      IDM_GRID_PROPERTIES
+    BUTTON      IDM_TEST_MESSAGE
+    SEPARATOR
+    BUTTON      IDM_GRID_INSERTMESSAGE
+    BUTTON      IDM_GRID_DELETEMESSAGE
+    SEPARATOR
+    BUTTON      IDM_GRID_COLUMNSELECTOR
+    BUTTON      IDM_GRID_SHOWOBSOLETE
+    SEPARATOR
+    BUTTON      IDM_GRID_NEXT_ERROR
+    BUTTON      IDM_GRID_NEXT_WARNING
+    SEPARATOR
+    BUTTON      IDM_FILE_EXPORTTORCFILE
+    BUTTON      IDM_PARAMETER_INPUT
+    BUTTON      IDM_FILE_CHANGELOG
+END
+
+IDR_EXTERNAL_MAINFRAME TOOLBAR MOVEABLE PURE  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+    SEPARATOR
+    BUTTON      IDM_GRID_PROPERTIES
+    BUTTON      IDM_TEST_MESSAGE
+    BUTTON      IDM_GRID_COLUMNSELECTOR
+    SEPARATOR
+    BUTTON      IDM_GRID_NEXT_ERROR
+    BUTTON      IDM_GRID_NEXT_WARNING
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      IDM_GRID_DELETEMESSAGE, VIRTKEY, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      IDM_GRID_INSERTMESSAGE, VIRTKEY, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_RETURN,      IDM_GRID_PROPERTIES,    VIRTKEY, ALT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,2
+ PRODUCTVERSION 1,0,0,2
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Ripple Systems\0"
+            VALUE "FileDescription", "System Message Dictionary Editor\0"
+            VALUE "FileVersion", "1.0.0.1\0"
+            VALUE "InternalName", "TA_MessageLibrary.exe\0"
+            VALUE "LegalCopyright", "(c) Ripple Systems 2004\0"
+            VALUE "LegalTrademarks", "Ripple Systems\0"
+            VALUE "OriginalFilename", "TA_MessageLibrary.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "System Message Dictionary Editor\0"
+            VALUE "ProductVersion", "1.0.0.2\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// 24
+//
+
+IDR_MANIFEST            24      MOVEABLE PURE   "res\\TA_MessageLibrary.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Export to RC file ...",       IDM_FILE_EXPORTTORCFILE
+        MENUITEM "&Export to Tab Delimited Text...", ID_FILE_EXPORT
+        MENUITEM SEPARATOR
+        MENUITEM "Extract From Excel ...",      ID_FILE_EXTRACTFROMEXCEL
+        MENUITEM SEPARATOR
+        MENUITEM "Add New Language ...",        IDM_EDIT_NEW_LANG
+        MENUITEM SEPARATOR
+        MENUITEM "Parameters ...",              IDM_PARAMETER_INPUT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "&Help Bar",                   IDM_VIEW_HELPBAR, CHECKED
+        MENUITEM "Message Parameters",          IDM_VIEW_MSG_PARAMS, CHECKED
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&View Help Bar",              IDM_VIEW_HELPBAR
+        MENUITEM SEPARATOR
+        MENUITEM "&About ...",                  ID_APP_ABOUT
+    END
+END
+
+IDM_GRID_POPUPS MENU DISCARDABLE 
+BEGIN
+    POPUP "GRID_POPUP_EXT"
+    BEGIN
+        MENUITEM "Properties",                  IDM_GRID_PROPERTIES
+        MENUITEM "Test Message Box",            IDM_TEST_MESSAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Column Selector",             IDM_GRID_COLUMNSELECTOR
+    END
+    POPUP "GRID_POPUP_INT"
+    BEGIN
+        MENUITEM "Properties",                  IDM_GRID_PROPERTIES
+        MENUITEM "Send to Clipboard",           IDM_GRID_MSG_COPY
+        MENUITEM "Test Message Box",            IDM_TEST_MESSAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Insert Message",              IDM_GRID_INSERTMESSAGE
+        MENUITEM "Make Obsolete",               IDM_GRID_MAKEOBSOLETE
+        MENUITEM "Delete Message",              IDM_GRID_DELETEMESSAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Column Selector",             IDM_GRID_COLUMNSELECTOR
+        MENUITEM "Show Obsolete",               IDM_GRID_SHOWOBSOLETE
+        , CHECKED
+    END
+END
+
+IDM_PARAM_GRID_POPUPS MENU DISCARDABLE 
+BEGIN
+    POPUP "GRID_POPUP_INT"
+    BEGIN
+        MENUITEM "Add New",                     IDM_PARAM_ADD
+        MENUITEM SEPARATOR
+        MENUITEM "Make Obsolete",               IDM_PARAM_OBSOLETE
+        MENUITEM "Delete",                      IDM_PARAM_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "Show Obsolete",               IDM_PARAM_SHOW_OBSOLETE
+        , CHECKED
+    END
+END
+
+IDR_EXTERNAL_MAINFRAME MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM "&Export",                     ID_FILE_EXPORT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM "&Help Bar",                   IDM_VIEW_HELPBAR, CHECKED
+        MENUITEM "Message Parameters",          IDM_VIEW_MSG_PARAMS, CHECKED
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&View Help Bar",              IDM_VIEW_HELPBAR
+        MENUITEM SEPARATOR
+        MENUITEM "&About ...",                  ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 66
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About TA_MessageLibrary"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,21,20
+    LTEXT           "System Messages Dictionary Editor Version 1.0",
+                    IDC_STATIC,40,10,119,19,SS_NOPREFIX
+    LTEXT           "Copyright (C) Ripple Systems 2004",IDC_STATIC,40,40,119,
+                    13
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_MESSAGEEXTRACTOR_DIALOG DIALOGEX 0, 0, 299, 126
+STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Excel Message Extractor"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&Extract",IDOK,187,103,50,16
+    PUSHBUTTON      "&Close",IDCANCEL,242,103,50,16
+    EDITTEXT        IDC_ED_SOURCE,7,20,233,15,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse",IDC_BTN_SOURCE_BROWSE,242,21,50,14
+    EDITTEXT        IDC_ED_TARGET,7,56,233,15,ES_AUTOHSCROLL | NOT 
+                    WS_VISIBLE
+    PUSHBUTTON      "&Browse",IDC_BTN_TARGET_BROWSE,242,57,50,14,NOT 
+                    WS_VISIBLE
+    LTEXT           "Enter the message spreadsheet location",IDC_TXT_SOURCE,
+                    7,7,233,8
+    LTEXT           "Enter the output location",IDC_TXT_TARGET,7,45,233,8,
+                    NOT WS_VISIBLE
+    LTEXT           "",IDC_TXT_PROGRESS,7,81,286,13,NOT WS_GROUP
+END
+
+IDD_MSGSTRINGPAGE DIALOG DISCARDABLE  0, 0, 252, 143
+STYLE WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ED_MSGSTRINGPAGE_STRING,7,7,234,129,ES_MULTILINE | 
+                    ES_AUTOVSCROLL
+END
+
+IDD_MSGATTRIBUTESPAGE DIALOG DISCARDABLE  0, 0, 263, 164
+STYLE WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Attributes"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_ED_MSGATTRIBUTESPAGE_ID,76,7,102,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | ES_NUMBER
+    EDITTEXT        IDC_ED_MSGATTRIBUTESPAGE_HELPID,76,27,102,14,
+                    ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Information",IDC_RADIO_MSGATTRIBUTESPAGE_INFO,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,101,58,51,10
+    CONTROL         "Warning",IDC_RADIO_MSGATTRIBUTESPAGE_WARN,"Button",
+                    BS_AUTORADIOBUTTON,101,72,51,10
+    CONTROL         "Error",IDC_RADIO_MSGATTRIBUTESPAGE_ERROR,"Button",
+                    BS_AUTORADIOBUTTON,101,86,51,10
+    GROUPBOX        "Message Type",IDC_GRP_MSGATTRIBUTESPAGE_MSG_TYPE,76,47,
+                    102,56,WS_TABSTOP
+    LTEXT           "Message Identifier",IDC_TXT_MSGATTRIBUTESPAGE_ID,7,7,58,
+                    8
+    LTEXT           "Help Identifier",IDC_TXT_MSGATTRIBUTESPAGE_HELPID,7,29,
+                    44,8
+    CONTROL         "Obsolete",IDC_CHK_MSGATTRIBUTESPAGE_OBSOLETE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,130,53,10
+    LTEXT           "String Resource ID",IDC_TXT_MSGATTRIBUTESPAGE_RES_ID,7,
+                    113,65,10
+    EDITTEXT        IDC_ED_MSGATTRIBUTESPAGE_RES_ID,76,110,124,14,
+                    ES_AUTOHSCROLL
+    CONTROL         "Raise Audit Event",
+                    IDC_CHK_MSGATTRIBUTESPAGE_AUDIT_EVENT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,76,145,73,10
+END
+
+IDD_MSGSTYLEPAGE DIALOG DISCARDABLE  0, 0, 210, 169
+STYLE WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Message Box Style"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "OK",IDC_RADIO_MSGSTYLEPAGE_OK,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,25,17,84,10
+    CONTROL         "OK, Cancel",IDC_RADIO_MSGSTYLEPAGE_OKCANCEL,"Button",
+                    BS_AUTORADIOBUTTON,25,28,84,10
+    CONTROL         "Yes, No",IDC_RADIO_MSGSTYLEPAGE_YESNO,"Button",
+                    BS_AUTORADIOBUTTON,25,39,84,10
+    CONTROL         "Yes, No, Cancel",IDC_RADIO_MSGSTYLEPAGE_YESNOCANCEL,
+                    "Button",BS_AUTORADIOBUTTON,25,50,84,10
+    CONTROL         "Retry, Cancel",IDC_RADIO_MSGSTYLEPAGE_RETRYCANCEL,
+                    "Button",BS_AUTORADIOBUTTON,25,60,59,10
+    CONTROL         "Abort, Retry, Ignore",
+                    IDC_RADIO_MSGSTYLEPAGE_ABORTRETRYIGNORE,"Button",
+                    BS_AUTORADIOBUTTON,25,71,84,10
+    CONTROL         "Cancel, Try, Continue",
+                    IDC_RADIO_MSGSTYLEPAGE_CANCELTRYCONT,"Button",
+                    BS_AUTORADIOBUTTON | NOT WS_VISIBLE,25,82,84,10
+    GROUPBOX        "Buttons",IDC_GRP_MSGSTYLEPAGE_BTNS,7,4,196,95,WS_GROUP
+    CONTROL         "Button 1",IDC_RADIO_MSGSTYLEPAGE_DEF1,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,137,28,43,10
+    CONTROL         "Button 2",IDC_RADIO_MSGSTYLEPAGE_DEF2,"Button",
+                    BS_AUTORADIOBUTTON,137,39,43,10
+    CONTROL         "Button 3",IDC_RADIO_MSGSTYLEPAGE_DEF3,"Button",
+                    BS_AUTORADIOBUTTON,137,50,43,10
+    CONTROL         "Button 4",IDC_RADIO_MSGSTYLEPAGE_DEF4,"Button",
+                    BS_AUTORADIOBUTTON,137,61,43,10
+    GROUPBOX        "Default Button",IDC_GRP_MSGSTYLEPAGE_DEFBTN,125,15,68,
+                    57,WS_GROUP
+    CONTROL         "Help Button",IDC_CHK_MSGSTYLEPAGE_HELPBTN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,133,81,53,10
+    CONTROL         "No Icon",IDC_RADIO_MSGSTYLEPAGE_NOICON,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,27,112,41,10
+    CONTROL         "Error",IDC_RADIO_MSGSTYLEPAGE_ERROR,"Button",
+                    BS_AUTORADIOBUTTON,27,123,31,10
+    CONTROL         "Warning",IDC_RADIO_MSGSTYLEPAGE_WARNING,"Button",
+                    BS_AUTORADIOBUTTON,27,134,43,10
+    CONTROL         "Information",IDC_RADIO_MSGSTYLEPAGE_INFO,"Button",
+                    BS_AUTORADIOBUTTON,27,145,51,10
+    GROUPBOX        "Icon",IDC_GRP_MSGSTYLEPAGE_ICON,7,101,113,59,WS_GROUP
+END
+
+IDD_EXPORTTORCDLG DIALOGEX 0, 0, 264, 117
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Export to RC file"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&Export",IDOK,155,94,50,16
+    PUSHBUTTON      "&Cancel",IDCANCEL,207,94,50,16
+    EDITTEXT        IDC_ED_EXPORTTORCDLG_TARGET,7,70,199,14,ES_AUTOHSCROLL
+    LTEXT           "Enter the name of resource file to create",
+                    IDC_TXT_EXPORTTORCDLG_HEADER,7,58,250,8
+    PUSHBUTTON      "&Browse",IDC_BTN_EXPORTTORCDLG_TARGET,207,70,50,14
+    LTEXT           "Select the language to export",
+                    IDC_TXT_EXPORTTORCDLG_SEL_LANG,7,7,250,14
+    COMBOBOX        IDC_COMBO_EXPORTTORCDLG_SEL_LANG,7,19,197,114,
+                    CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Include English (Australian) in the resource file",
+                    IDC_CHK_EXPORTTORCDLG_INC_ENA,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,38,250,10
+END
+
+IDD_PARAMETERINPUTDLG DIALOG DISCARDABLE  0, 0, 302, 246
+STYLE WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Message Parameters"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&Save",IDOK,190,223,50,16
+    PUSHBUTTON      "&Close",IDCANCEL,245,223,50,16
+    CONTROL         "Custom1",IDC_LIST_PARAMETERS,"MFCGridCtrl",WS_TABSTOP,7,
+                    7,288,215
+END
+
+IDD_CHANGELOGDLG DIALOG DISCARDABLE  0, 0, 320, 254
+STYLE WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Change Log"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "&Save",IDOK,207,231,50,16
+    PUSHBUTTON      "&Cancel",IDCANCEL,263,231,50,16
+    CONTROL         "Custom1",IDC_LIST_CHANGE_GRID,"MFCGridCtrl",WS_TABSTOP,
+                    7,7,306,219
+END
+
+IDD_NEWLANGDLG DIALOGEX 0, 0, 186, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Language"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Add",IDOK,75,72,50,16
+    PUSHBUTTON      "Cancel",IDCANCEL,129,72,50,16
+    COMBOBOX        IDC_COMBO_NEWLANGDLG,7,25,172,99,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Select Language to add from the drop down list",
+                    IDC_TXT_NEWLANGDLG,7,7,172,13
+END
+
+IDD_MSGPARAMSPAGE DIALOGEX 0, 0, 260, 146
+STYLE WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+CAPTION "Parameters"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Move Up",IDC_BTN_MSGPARAMSPAGE_MOVE_UP,190,17,50,14
+    PUSHBUTTON      "Move Down",IDC_BTN_MSGPARAMSPAGE_MOVE_DOWN,190,35,50,14
+    PUSHBUTTON      "Add...",IDC_BTN_MSGPARAMSPAGE_ADD,190,92,50,14
+    PUSHBUTTON      "Remove",IDC_BTN_MSGPARAMSPAGE_REMOVE,190,110,50,14
+    GROUPBOX        "Parameters",IDC_GRP_MSGPARAMSPAGE,7,7,238,122,0,
+                    WS_EX_TRANSPARENT
+    CONTROL         "",IDC_LIST_MSGPARAMSPAGE_PARAMS,"SysListView32",
+                    LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | 
+                    LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | 
+                    WS_TABSTOP,10,16,178,109
+END
+
+IDD_COLUMNSELECTOR DIALOG DISCARDABLE  0, 0, 158, 113
+STYLE WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Column Selector"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,90,50,16
+    PUSHBUTTON      "Cancel",IDCANCEL,101,90,50,16
+    CONTROL         "",IDC_LIST_COLUMN_SELECTOR,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,7,144,81
+END
+
+IDD_ADDPARAMDLG DIALOG DISCARDABLE  0, 0, 206, 124
+STYLE WS_POPUP | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Select Parameter to Add"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Add",IDOK,95,103,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,149,103,50,14
+    CONTROL         "List1",IDC_LIST_ADDPARAMDLG_PARAMS,"SysListView32",
+                    LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | 
+                    WS_BORDER | WS_TABSTOP,7,7,192,91
+    PUSHBUTTON      "&Edit...",IDC_BUTTON1,7,103,50,14
+END
+
+IDD_HELP_DLGBAR DIALOG DISCARDABLE  0, 0, 117, 94
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDC_HELPCTRLBAR_BROWSER,0,19,116,59,NOT WS_GROUP | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HELP_TOPICS,0,79,117,135,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PARAM_DLGBAR DIALOG DISCARDABLE  0, 0, 117, 55
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPCHILDREN
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "",IDC_PARAMCTRLBAR_BROWSER,2,2,113,51,NOT WS_GROUP
+END
+
+IDD_GRIDFORMVIEW DIALOG DISCARDABLE  0, 0, 185, 93
+STYLE WS_CHILD | WS_CLIPCHILDREN
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Custom1",IDC_MESSAGE_GRID,"MFCGridCtrl",WS_TABSTOP,0,0,
+                    185,93
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO MOVEABLE PURE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_MSGSTRINGPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 245
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+    END
+
+    IDD_MSGATTRIBUTESPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 256
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 157
+    END
+
+    IDD_MSGSTYLEPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 203
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_EXPORTTORCDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 257
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 110
+    END
+
+    IDD_PARAMETERINPUTDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 295
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 239
+    END
+
+    IDD_CHANGELOGDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 247
+    END
+
+    IDD_NEWLANGDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_MSGPARAMSPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 253
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 139
+    END
+
+    IDD_COLUMNSELECTOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 151
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 106
+    END
+
+    IDD_ADDPARAMDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 199
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 117
+    END
+
+    IDD_HELP_DLGBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 110
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_PARAM_DLGBAR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 110
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_GRIDFORMVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 178
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE MOVEABLE PURE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\TA_MessageLibrary.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#include ""afxprint.rc""       // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+IDR_BASE_PARAMETER      HTML    DISCARDABLE     "Html\\Parameters.htm"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDR_MAINFRAME           "TA_MessageLibrary\n\nTA_MessageLibra\n\n\nTAMessageLibrary.Document\nTA_MessageLibrary.Document"
+    IDS_PARAMDLG_COLUMN_PARAMETER "Parameter"
+    ID_FILE_EXTRACTFROMEXCEL 
+                            "Extracts the messages from the legacy Excel Spreadsheet"
+    IDS_PARAMDLG_COLUMN_TYPE "Type"
+    IDS_PARAMDLG_COLUMN_OBSOLETE "Obsolete"
+    IDS_PARAMDLG_COLUMN_DESC "Description"
+    IDM_VIEW_HELPBAR        "Display the help control bar"
+    IDM_FILE_EXPORTTORCFILE "Create an RC file from the message library\nExport to RC"
+    IDM_PARAMETER_INPUT     "Show Parameter Input Dialog\nParameters"
+    IDS_LOGDLG_COLUMN_DATE  "Date"
+    IDM_FILE_CHANGELOG      "Show Change Log\nShow Change Log"
+    IDS_LOGDLG_COLUMN_USER  "User"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_HELP_REFRESH        "Refresh page\nRefresh"
+    IDM_HELP_HOME           "Go to the help contents page\nHome"
+    IDM_HELP_PRINT          "Print the current topic\nPrint"
+    IDR_EXTERNAL_MAINFRAME  "TA_MessageLibrary\n\nTA_MessageLibra\n\n\nTAMessageLibrary.Document\nTA_MessageLibrary.Document"
+    IDS_HELPTOPIC_START     "Start"
+    IDS_HELPTOPIC_USING     "Using the Editor"
+    IDS_HELPTOPIC_TEXT_ERRORS "Message Text Errors"
+    IDS_HELPTOPIC_MESSAGE_PROPERTIES "Message Properties"
+    IDS_HELPTOPIC_MESSAGE_FORMAT "Message Format"
+    IDS_HELPTOPIC_ADDING_A_MESSAGE "Adding a Message"
+    IDS_HELPTOPIC_REMOVING_MESSAGES "Removing Messages"
+    IDS_HELPTOPIC_NEW_LANGUAGE "Adding Support for a New Language"
+    IDS_HELPTOPIC_COMMAND_LINE_PARAMS "Command Line Parameters"
+    IDS_HELPTOPIC_CHANGE_LOG "Change Log"
+    IDS_HELPTOPIC_PARAM_EDITOR "Parameter Editor"
+    IDS_HELPTOPIC_BUILD_INTEGRATION "Build Integration"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LOGDLG_COLUMN_COMMENTS "Comments"
+    IDM_EDIT_NEW_LANG       "Erase the selection\nErase"
+    IDS_MAINFRAME_MESSAGE_PARAMS_CTRLBAR "Message Parameters"
+    IDS_MAINFRAME_HELP_CTRLBAR "Help Topics"
+    IDS_COMMENTS_FMT_DELETE_MSG "Deleted message %ld from repository"
+    IDM_GRID_COLUMNSELECTOR "Display the Column Selector for the grid\nColumn Selector"
+    IDS_COMMENTS_FMT_ADD_MSG "Added message %ld to repository"
+    IDM_GRID_INSERTMESSAGE  "Insert a new message into the library\nAdd Message"
+    IDS_COMMENTS_FMT_MODIFY_MSG "Modified message %ld"
+    IDM_GRID_DELETEMESSAGE  "Deletes the selected message\nDelete Message"
+    IDS_MSG_TYPE_INFO       "Information"
+    IDS_MSG_TYPE_WARNING    "Warning"
+    IDM_GRID_SHOWOBSOLETE   "Show/Hide obsolete messages\nShow\\Hide Obsolete"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "System Messages Dictionary"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MSG_TYPE_ERROR      "Error"
+    IDM_GRID_PROPERTIES     "Show Message properties\nMessage Properties"
+    IDS_MSGPROPERTIES_HEADER "Message Properties"
+    IDS_GRID_COLUMN_ID      "Message ID"
+    IDS_GRID_COLUMN_TYPE    "Message Type"
+    IDS_GRID_COLUMN_HELP_ID "Help ID"
+    IDS_GRID_COLUMN_STYLE   "Message Box Style"
+    IDS_GRID_COLUMN_MESSAGE "Message "
+    IDS_GRID_CONFIRM_DELETE "Deleting the message will remove the message from the repository.\nAn alternative is to make the message obsolete.This will leave the message is the repository, but prevent it from being exported to a resource library"
+    IDS_GRID_CONFIRM_DELETE_HEADER "Please confirm message deletion"
+    IDS_PARAMS_MISSING_PARAM "ERROR - Parameter does not exist in respository"
+    IDS_PARAMS_UNKNOWN_TYPE "Unknown"
+    IDS_COMMENTS_FMT_NEW_PARAM "Added new parameter %s"
+    IDS_COMMENTS_FMT_MODIFY_PARAM "Modified parameter %s"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_COMMENTS_FMT_DEL_PARAM "Deleted parameter %s"
+    IDS_COMMENTS_INVALID_DATETIME 
+                            "The updated date and time is invalid.\nPlease check and re-enter."
+    IDM_VIEW_MSG_PARAMS     "Display the parameters for the window"
+    IDM_TEST_MESSAGE        "Show the message box as it would appear in TransActive\nTest Message"
+    IDS_APP_MISSING_OUTPUT_RC 
+                            "Silent mode requires command line parameter RC_PATH."
+    IDS_APP_XMLDOC_MISSING  "Could not locate XML Document:\n%s\n"
+    IDS_APP_XMLDOC_ERROR    "An error occurred opening the XML document\n%s\nError:\nCode = 0x%x\nSource = Line : %ld; Char : %ld\nError Description = %s\n"
+    IDS_APP_XMLDOC_SAVE_ERROR 
+                            "Error Saving the XML Message Doc:\n%s\nCode = 0x%x\nSource = Line : %ld; Char : %ld\nError Description = %s\n"
+    IDS_APP_EXCEL_EXPORT    "Initial extraction of messages from Excel spreadsheet"
+    IDS_APP_EXCEL_MSG_ERROR "An error occured formatting %s Message - %ld"
+    IDS_APP_RESOURCE_PLACE_MARKER_ERROR 
+                            "Failed to find place marker '%s' in resource source"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_APP_EXCEL_PROGRESS_LOAD_DOC "Loading the XML document"
+    IDS_APP_EXCEL_PROGRESS_REGISTRY 
+                            "Setting the Excel guess row size in the registry"
+    IDS_APP_EXCEL_PROGRESS_CONNECT "Connecting to Excel"
+    IDS_APP_EXCEL_PROGRESS_WORKSHEET "Extracting messages from %s worksheet"
+    IDS_APP_EXCEL_PROGRESS_POST_COMMENTS 
+                            "Please now update the System Message Library with those messages from the Excel spreadsheet that were marked as obsolete"
+    IDS_APP_EXCEL_PROGRESS_PARAMS "Extracting parameters"
+    IDS_APP_EXCEL_PROGRESS_COMPLETE "Saving changes to disk"
+    IDS_GRID_COLUMN_OBSOLETE "Obsolete"
+    IDS_GRID_COLUMN_AUDIT_EVENT "Raise Audit Event"
+    IDS_APP_SAVE_CHANGES    "Would you like to save the changes made to:\n%s"
+    IDS_GRID_COLUMN_RESOURCE_ID "Resource Identifier"
+    IDS_APP_XMLDOC_SAVE_EXCEPTION 
+                            "Error Saving the XML Message Doc:\n%s\nCode = 0x%x\nError = %s\n"
+    IDS_COMMENTS_FMT_MSG_OBSOLETE "Made message %ld obsolete"
+    IDS_APP_RC_EXPORT_ERROR "There are errors preventing the export of the library to RC format.\nPlease resolve the errors before continuing"
+    IDS_COMMENTS_FMT_MSG_NOT_OBSOLETE "Reinstated message %ld"
+    IDM_PARAM_OBSOLETE      "Make the parameter obsolete"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_PARAM_DELETE        "Delete the parameter"
+    IDM_PARAM_SHOW_OBSOLETE "Show Obsolete parameters"
+    IDM_PARAM_ADD           "Add new parameter"
+    IDM_HELP_BACK           "Return to the previous help topic\nGo Back"
+    IDM_HELP_FORWARD        "Return to the previous help topic\nGo forward"
+    IDM_HELP_STOP           "Stop\nStop"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDM_GRID_NEXT_ERROR     "Scroll the grid to the next error\nGoto Next Error"
+    IDM_GRID_NEXT_WARNING   "Scroll the grid to the next warning\nGoto Next Warning"
+    IDM_GRID_MSG_COPY       "Construct C++ code and send to the Clipboard\nSend to Clipboard"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_HELPTOPIC_EXPORT_TO_RC "Export to RC File"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    ID_FILE_EXPORT          "Exports the file to another format"
+END
+
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\TA_MessageLibrary.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#include "afxprint.rc"       // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

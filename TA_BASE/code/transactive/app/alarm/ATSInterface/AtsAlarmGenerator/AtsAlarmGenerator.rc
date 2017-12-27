@@ -1,0 +1,252 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\AtsAlarmGenerator.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\AtsAlarmGenerator.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About AtsAlarmGenerator"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "AtsAlarmGenerator, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2011",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_ATSALARMGENERATOR_DIALOG DIALOGEX 0, 0, 588, 327
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "AtsAlarmGenerator"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Alarm Details",IDC_STATIC,7,7,205,240
+    PUSHBUTTON      "&Submit",IDC_BTN_SUBMIT,84,227,53,14
+    PUSHBUTTON      "Start Auto Submit",IDC_BTN_AUTO_SUBMIT,25,261,79,14
+    PUSHBUTTON      "&Clear All Alarms",IDC_BTN_CLEAR,25,280,79,14
+    PUSHBUTTON      "E&xit",IDC_BTN_EXIT,25,299,79,14
+    PUSHBUTTON      "Acknowledge",IDC_BTN_ACK,231,227,79,14
+    PUSHBUTTON      "Close",IDC_BTN_CLOSE,318,227,79,14
+    PUSHBUTTON      "Normalize",IDC_BTN_NORMALIZE,405,227,79,14
+    EDITTEXT        IDC_EDT_ALARM_ID,75,21,102,12,ES_AUTOHSCROLL
+    LTEXT           "AlarmID",IDC_STATIC,25,22,26,8
+    LTEXT           "Description",IDC_STATIC,25,95,36,8
+    LTEXT           "Value",IDC_STATIC,25,41,18,8
+    LTEXT           "Asset name",IDC_STATIC,25,113,38,8
+    LTEXT           "System",IDC_STATIC,25,60,24,8
+    LTEXT           "SubSystem",IDC_STATIC,25,78,36,8
+    EDITTEXT        IDC_EDT_ALARM_VALUE,75,39,121,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_DESCRIPTION,75,93,121,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDT_ASSET_NAME,75,111,121,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_CBO_SYSTEM,75,57,121,56,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_SUBSYSTEM,75,75,121,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Severity",IDC_STATIC,25,132,28,8
+    COMBOBOX        IDC_CBO_SEVERITY,75,129,121,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Auto Submit Configuration",IDC_STATIC,221,251,213,68
+    GROUPBOX        "",IDC_STATIC,7,251,205,68
+    EDITTEXT        IDC_EDT_ALARM_COUNT,285,266,60,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Alarm Count",IDC_STATIC,234,268,40,8
+    EDITTEXT        IDC_EDT_THREADS,285,282,60,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Threads",IDC_STATIC,233,284,27,8
+    EDITTEXT        IDC_EDT_SUBMIT_INTERVAL,285,299,60,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Submit Interval",IDC_STATIC,233,301,50,8
+    CONTROL         "Ack && Close",IDC_CHK_ACK_CLOSE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,361,268,53,10
+    EDITTEXT        IDC_EDT_ACK_CLOSE_INTERVAL,360,282,60,12,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "Auto Submit Progress",IDC_STATIC,441,251,140,68
+    EDITTEXT        IDC_EDT_UNSUBMITTED,499,267,60,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    LTEXT           "UnSubmitted",IDC_STATIC,449,269,42,8
+    EDITTEXT        IDC_EDT_UNCLOSED,499,283,60,12,ES_AUTOHSCROLL | ES_READONLY | ES_NUMBER
+    LTEXT           "UnClosed",IDC_STATIC,449,285,31,8
+    PUSHBUTTON      "Clear Fields",IDC_BTN_CLEAR_ATS,144,227,53,14
+    GROUPBOX        "",IDC_STATIC,221,7,360,240
+    CONTROL         "",IDC_LST_ALARMS,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,221,11,360,204
+    LTEXT           "Location",IDC_STATIC,25,168,28,8
+    LTEXT           "AlarmType",IDC_STATIC,25,150,35,8
+    COMBOBOX        IDC_CBO_LOCATION_ID,75,165,121,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_CBO_ALARM_TYPE,75,147,121,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Gen",IDC_BTN_GEN_ALARMID,179,19,19,14
+    LTEXT           "Lapsed time",IDC_STATIC,450,301,39,8
+    EDITTEXT        IDC_EDT_LAPSED_TIME,499,299,60,14,ES_CENTER | ES_AUTOHSCROLL | ES_READONLY
+    COMBOBOX        IDC_CBO_MMS_STATE,75,184,121,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "MMS State",IDC_STATIC,25,186,35,8
+    PUSHBUTTON      "Gen Random",IDC_BTN_GEN_RANDOM,25,227,53,14
+    LTEXT           "Alarm State",IDC_STATIC,25,204,38,8
+    COMBOBOX        IDC_CBO_ALARM_STATE,75,203,121,39,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "AtsAlarmGenerator.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "AtsAlarmGenerator.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_ATSALARMGENERATOR_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 581
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About AtsAlarmGenerator..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\AtsAlarmGenerator.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

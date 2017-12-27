@@ -1,0 +1,304 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DUTY_MANAGER_DLG DIALOGEX 0, 0, 276, 130
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "权限管理器"
+MENU IDR_DUTYMANAGER_MENU
+FONT 10, "宋体", 0, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_STATUS_STATIC,2,119,273,10,SS_SUNKEN | NOT WS_GROUP
+END
+
+IDD_REGIONS_DLG DIALOGEX 0, 0, 390, 130
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "区域"
+FONT 10, "宋体", 0, 0, 0x0
+BEGIN
+    CONTROL         "活动的区域任务",IDC_RGN_DUTY_GRID,"MFCGridCtrl",WS_BORDER | WS_TABSTOP,5,5,379,99
+    DEFPUSHBUTTON   "获取区域权限",IDC_TRANSFER_RGN_DUTY_BTN,126,108,125,14
+    CONTROL         "全系统权限下发",IDC_DELEGATE_SUB_DUTY_BTN,"Button",BS_OWNERDRAW | WS_TABSTOP,255,108,127,14
+    PUSHBUTTON      "取回本地权限",IDC_REVOKE_LOCAL_DUTY,0,108,125,14
+END
+
+IDD_SUBSYSTEMS_DLG DIALOGEX 0, 0, 389, 130
+STYLE DS_SETFONT | WS_CHILD | WS_CLIPCHILDREN | WS_CAPTION
+CAPTION "子系统"
+FONT 10, "宋体", 0, 0, 0x0
+BEGIN
+    CONTROL         "活动的子系统任务",IDC_SUB_DUTY_GRID,"MFCGridCtrl",WS_BORDER | WS_TABSTOP,5,5,379,99
+    DEFPUSHBUTTON   "移交子系统权限",IDC_TRANSFER_SUB_DUTY_BTN,120,111,133,14
+    CONTROL         "显示所有子系统",IDC_SHOW_ALL_SUBS_CHECK,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_TABSTOP,5,111,113,14
+    PUSHBUTTON      "请求所有子系统权限",IDC_TRANSFER_ALL_SUB_DUTY_BTN,252,90,128,14,NOT WS_VISIBLE
+    PUSHBUTTON      "收回子系统权限",IDC_REVOKE_SUB_DUTY_BTN,256,111,128,14
+END
+
+IDD_SUBSYSTEM_DUTY_XFER_DLG DIALOG  0, 0, 344, 232
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "请求子系统权限"
+FONT 10, "宋体"
+BEGIN
+    PUSHBUTTON      "取消",IDCANCEL,205,213,50,14
+    CONTROL         "List1",IDC_TRANSFERABLE_SUB_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,12,51,320,149
+    GROUPBOX        "区域",IDC_REGIONS_BOX,5,4,334,30
+    EDITTEXT        IDC_REGIONS_EDIT,12,15,308,12,ES_READONLY
+    GROUPBOX        "子系统",IDC_STATIC,5,40,334,167
+    PUSHBUTTON      "...",IDC_SELECT_RGNS_BTN,320,15,12,12
+    DEFPUSHBUTTON   "确定",IDC_REQUEST_DUTY_BTN,147,213,50,14
+    PUSHBUTTON      "全选",IDC_REQUEST_ALLDUTY_BTN,89,213,50,14
+END
+
+IDD_REGION_DUTY_XFER_DLG DIALOG  0, 0, 230, 221
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "获取区域权限"
+FONT 10, "宋体"
+BEGIN
+    PUSHBUTTON      "取消",IDCANCEL,119,202,50,14
+    DEFPUSHBUTTON   "获取",IDC_TAKE_DUTY_BTN,62,202,50,14
+    CONTROL         "List1",IDC_TRANSFERABLE_RGN_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,5,6,220,190
+END
+
+IDD_REGION_SELECT_DLG DIALOG  0, 0, 117, 122
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "选择区域"
+FONT 10, "宋体"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,5,103,50,14
+    PUSHBUTTON      "取消",IDCANCEL,62,103,50,14
+    CONTROL         "List1",IDC_ASSIGNED_RGN_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,5,6,107,91
+END
+
+IDD_SUBSYSTEM_DUTY DIALOGEX 0, 0, 239, 332
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 10, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "动作",IDC_ACTION_BTN,108,309,50,14
+    PUSHBUTTON      "取消",IDCANCEL,174,309,50,14
+    GROUPBOX        "子系统权限",IDC_STATIC,6,5,222,123
+    GROUPBOX        "车站",IDC_STATIC,6,129,222,176
+    PUSHBUTTON      "全线",IDC_ALL_BTN,36,309,50,14
+    CONTROL         "",IDC_LIST_REGIONS,"SysListView32",LVS_REPORT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,13,141,210,160
+    LISTBOX         IDC_LIST_SUBSYSTEMS,12,18,210,96,LBS_SORT | LBS_OWNERDRAWFIXED | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "显示所有子系统",IDC_CHECKBOX_SHOW_ALL_SUBSYSTEMS,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,12,115,68,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "Duty Manager MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "权限管理器"
+            VALUE "LegalCopyright", "版权 (C) 2004"
+            VALUE "OriginalFilename", "权限管理器.EXE"
+            VALUE "ProductName", "Duty Manager Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\DutyManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_DUTYMANAGER_ICON    ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\DutyManager.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_DUTYMANAGER_MENU MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "退出(&X)",                      ID_APP_EXIT
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "索引(&I)...",                   ID_HELP_INDEX
+        MENUITEM SEPARATOR
+        MENUITEM "关于权限管理器(&A)...",              ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_GRID_IMAGES_BMP     BITMAP                  "..\\res\\grid_images.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_REGIONS_DLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 276
+    END
+
+    IDD_REGION_DUTY_XFER_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 214
+    END
+
+    IDD_REGION_SELECT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 110
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_SUBSYSTEM_DUTY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 325
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息、版本号及版权\n关于"
+    ID_APP_EXIT             "退出应用程序\n退出"
+    IDS_LOCATION_STATUS     "载入本地权限 ..."
+    IDS_SUBSYSTEM_STATUS    "载入子系统权限 ..."
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "..\res\DutyManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

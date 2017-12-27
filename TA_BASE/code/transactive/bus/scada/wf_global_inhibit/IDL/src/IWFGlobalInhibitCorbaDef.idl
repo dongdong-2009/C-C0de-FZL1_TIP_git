@@ -1,0 +1,82 @@
+//
+// The source code in this file is the property of
+// ST Electronics and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/scada/wf_global_inhibit/IDL/src/IWFGlobalInhibitCorbaDef.idl $
+// @author:  Liu Yong
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/02/27 17:11:16 $
+// Last modified by:  $Author: CM $
+//
+// Interface used to set and get the global WF Inhibit state and verify the password for the current session.
+//
+
+#if !defined(IWFGlobaInhibitCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)
+#define IWFGlobalInhibitCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+	module TA_Base_Bus
+	{
+		exception VerifyPasswordException
+		{
+			string description;
+		};
+
+		interface IWFGlobalInhibitCorbaDef
+		{
+			/**
+			*
+			* get the pkey of the datapoint representing the 
+			* global WF Inhibit state
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws TA_Base_Core::DatabaseErrorException
+			*/	
+			unsigned long getWFGlobalInhibitKey()
+				raises( TA_Base_Core::OperationModeException, TA_Base_Core::DatabaseErrorException);
+
+			/**
+			*
+			* get the global WF Inhibit state
+			*
+			* @throws TA_Base_Core::OperationModeException
+			*/	
+			boolean getWFGlobalInhibit()
+				raises( TA_Base_Core::OperationModeException);
+
+			/**
+			*
+			* set the global WF Inhibit state
+			*
+			* @throws TA_Base_Core::OperationModeException
+			* @throws TA_Base_Core::AccessDeniedException
+			* @throws TA_Base_Core::DatabaseErrorException
+			*/	
+			void setWFGlobalInhibit(in boolean applied, in string sessionID)
+				raises( TA_Base_Core::OperationModeException, TA_Base_Core::AccessDeniedException, TA_Base_Core::DatabaseErrorException);
+
+			/**
+			* verifyPassword
+			*
+			* This method verify the password for the user of the specified session.
+			*
+			* @param sessionId     The session ID from which the password verify request is being made.
+			* @param password      The password passed for the user related to the specified session.
+			*
+			* @return true if the password change was successful, false otherwise.
+			*
+			* @exception VerifyPasswordException Thrown if the session is not valid or password is not match.
+			*
+			* pre: The password CANNOT be the empty string.
+			*/
+			void verifyPassword(in string sessionId, in string password) 
+			raises (VerifyPasswordException, TA_Base_Core::OperationModeException);
+
+
+		}; // end interface IWFGlobalInhibitCorbaDef
+	}; // end module TA_Base_Bus
+
+#endif // !defined(IWFGlobaInhibitCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)

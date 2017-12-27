@@ -1,0 +1,97 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  * 
+  * Source:    $File: //depot/TA_Common_V1_TIP/transactive/core/process_management/IDL/src/IManagedGUICorbaDef.idl $
+  * @author:   Karen Graham
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last mofified by:  $Author: CM $
+  *
+  * This interface allows the Process Manager to alert a GUI when
+  * it is required to change its state.
+  */
+
+#ifndef IMANAGEDGUI_IDL_INCLUDED
+#define IMANAGEDGUI_IDL_INCLUDED
+
+#include "core/process_management/IDL/src/ProcessManagementDataDefinitionsCorbaDef.idl"
+#include "core/process_management/IDL/src/IManagedApplicationCorbaDef.idl"
+
+module TA_Base_Core
+{
+    interface IManagedGUICorbaDef : IManagedApplicationCorbaDef
+    {
+        struct RECT
+        {
+            long left;
+            long top;
+            long right;
+            long bottom;
+        };
+
+        /**
+        * serverStateChange
+        *
+        * This lets a GUI know that the server has gone down or come back up.
+        * If it is indicating that a server has gone down then this means the GUI
+        * application must ensure it is in a reasonable state and stop the user from
+        * performing any more actions which require contact with the server. 
+        * If it indicates the server is back up the GUI should return to a normal
+        * operating state. It should also indicate to the user visually that a server
+        * is down or up.
+        *
+        * @param    isServerUp    This is set to 'true' if the server is functioning.
+        *                         This is set to 'false' if the server is not functioning.
+        */
+        void serverStateChange(in boolean isServerUp);
+
+        /**
+        * changeFocus
+        *
+        * This tells the application to change it's focus. It can tell the application
+        * to take the focus or it can tell the application to minimise/maximise.
+        *
+        * @param    focusType
+        */
+        void changeFocus(in EFocusType focusType);
+
+        /**
+        * setWindowPosition
+        *
+        * This tells an application where it should position its main window.
+        *
+        * @param posFlag - How the application is going to be positioned relative to boundary paramter
+        * @param alignFlag - How the application is going to be positioned relative to point parameter
+        * @param objectDim - The dimension of the object that this application will be launched relative
+        *                    to (if POS_RELATIVE or POS_NOOVERLAP is specified).
+        * @param boundaryDim - The dimension of the object that this application will be bounded in
+        *                      (if POS_BOUNDED is specified)
+        */
+        void setWindowPosition(in unsigned long posFlag,
+                               in unsigned long alignFlag,
+                               in RECT objectDim,
+                               in RECT boundaryDim);
+
+        /**
+        * getWindowPosition
+        *
+        * This gets the current window position
+        *
+        * @return The window position in a RECT.
+        *
+        */
+        RECT getWindowPosition();
+
+        /**
+         * dutyChanged
+         *
+         * This tells an application that the duties for the session in which it is running have been updated.
+         * The appliation is responsible for re-checking all duty-based functionality.
+         */
+        void dutyChanged();
+    };
+};
+
+#endif // IMANAGEDGUI_IDL_INCLUDED

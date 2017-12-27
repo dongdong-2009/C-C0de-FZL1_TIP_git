@@ -1,0 +1,240 @@
+#if !defined(VideoOutputGroupCorbaDef_F1D08BFD_72A2_4c4a_97BE_4293EE57DCC7__INCLUDED_)
+#define VideoOutputGroupCorbaDef_F1D08BFD_72A2_4c4a_97BE_4293EE57DCC7__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/VideoOutputGroupCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * A VideoOutputGroup is an object to group VideoOutputs together,
+  * such as a video wall monitor group, a wallboard, all recording devices or all
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoOutputCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface VideoOutputGroupCorbaDef
+    {
+        typedef sequence< VideoOutputCorbaDef > VideoOutputSequence;
+
+        /**
+		  * getKey
+		  *
+          * Gets the entity key of the VideoOutputGroup.  This should always be used
+          * to identify the VideoOutputGroup, because it is unique and fixed, whereas
+          * names are unique, but are allowed to change.
+          *
+		  * @return		unsigned long
+		  *				The unique entity key of the VideoOutputGroup.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+		unsigned long getKey()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getName
+          *
+          * Gets the VideoOutputGroup name.
+          *
+          * @return     string
+          *             The unique VideoOutputGroup name.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        string getName()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getGroupType
+          *
+          * Currently all the VideoOutputs in a group must be of the same type.
+          *	See bus/cctv/video_switch_agent/src/EntityTypeConstants.h
+		  * for the available types.
+		  *
+          * @return     string
+          *             The type of VideoOutputs in the group.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        string getGroupType()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getTypeSize
+          *
+          * Currently all the VideoOutputs in a group must be of the same type and size.
+		  * e.g. they must all be small VideoMonitors, or all medium VideoMonitors.
+		  * If the type does not have sizes, the default will be small (e.g. for
+		  * recording units).  See bus/cctv/video_switch_agent/src/EntityTypeConstants.h
+		  * for the available sizes.
+          *
+          * @return     string
+          *             The size of the VideoOutputs in the group.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        string getTypeSize()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getPosition
+          *
+          * Get the position of the VideoOutputGroup in the VDM overview. 
+          * The left most section postion is 1, incrementing by 1 to the right.
+          *
+          * @return     unsigned short
+          *             The position ( 1,2, ... n ).
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        unsigned short getPosition()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getGroupDimensionX
+          *
+          * The VideoOutputGroup is displayed as a 2D matrix of VideoOutputs.
+          * This method gets the width of the matrix.
+          *
+          * @return     unsigned short
+          *             The number of VideoOutputs across the group.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        unsigned short getGroupDimensionX()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getGroupDimensionY
+          *
+          * The VideoOutputGroup is displayed as a 2D matrix of VideoOutputs.
+          * This method gets the height of the matrix.
+          *
+          * @return     unsigned short
+          *             The number of VideoOutputs down the group.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        unsigned short getGroupDimensionY()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getVideoOutputList
+          *
+          * Gets the configured VideoOutputs contained within this VideoOutputGroup.
+          * The VideoOutputs will be in order of display from left to right, top to bottom.
+          *
+          * @return     VideoOutputSequence
+          *             The VideoOutputs in the VideoOutputGroup.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        VideoOutputSequence getVideoOutputList()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+    
+        /**
+          * isCapableOfLayouts
+          *
+          * Indicates if this VideoOutputGroup is capable of using layouts to show VideoOutputs,
+          * graphics or combinations.  If true the VDM GUI should not include a boarder gap 
+          * between monitors in the overview display, because the are a combined output display. 
+          *
+          * @return     boolean
+          *             True if the VideoOutputGroup is capable of using layouts.
+          *             False otherwise.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+
+        boolean isCapableOfLayouts()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getVideoWallboardAgentName
+          *
+          * Gets the video wallboard agent name to use the layouts
+          *
+          * @return     string
+          *             The unique video wallboard name.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          *             5. The VideoOutputGroup is no capable of layouts
+          */
+
+        string getVideoWallboardAgentName ()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+
+    }; // VideoOutputGroupCorbaDef
+
+}; // TA_Base_Bus
+
+#endif // !defined(VideoOutputGroupCorbaDef_F1D08BFD_72A2_4c4a_97BE_4293EE57DCC7__INCLUDED_)

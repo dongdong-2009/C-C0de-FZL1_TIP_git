@@ -1,0 +1,45 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/3001_TIP_NEW/TA_BASE/transactive/core/process_management/IDL/src/IDllHostCorbaDef.idl $
+  * @author:  Xia Xinsong
+  * @version: $Revision: #0 $
+  *
+  * Last modification: $DateTime: 2012/11/29 09:35:15 $
+  * Last modified by:  $Author: Xia Xinsong $
+  *
+  * Interface used by the dll component to communicate with a dll host.
+  *
+  *
+  */
+
+
+#ifndef IDLLHOSTCORBADEF_IDL_INCLUDED
+#define IDLLHOSTCORBADEF_IDL_INCLUDED
+
+
+module TA_Base_Core
+{
+    interface IDllHostCorbaDef
+    {
+        exception NameNotFound {};
+
+        /**
+          * getObject
+          *
+          * this method is called by the dll component client when trying to get the 
+          * object pointer
+          *
+          * @param    objectName the name of the object required
+          * @return    Object    the request object
+          * @exception NameNotFound thrown when the dll host does not hold the object
+          */
+        Object getObject( in string objectName)
+            raises ( NameNotFound );
+
+    };
+};
+
+#endif // IDLLHOSTCORBADEF_IDL_INCLUDED

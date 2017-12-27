@@ -1,0 +1,88 @@
+#if !defined(VideoMonitor_6D856C3B_635C_4e91_8C91_072E38E337FD__INCLUDED_)
+#define VideoMonitor_6D856C3B_635C_4e91_8C91_072E38E337FD__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/VideoMonitorCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * Handles the specific functions for VideoMonitors.
+  * Inherits from IEntity.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoOutputCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    interface VideoMonitorCorbaDef : VideoOutputCorbaDef
+    {
+		//
+        // An enumeration of the possible VideoMonitor sizes.
+        // All monitors are considered to be square.
+        //
+
+        enum EVideoMonitorSize
+        {
+            Small,          // e.g. Standard monitors
+            Medium,         // e.g. Extra large monitors
+            Large           // e.g. Rear projection displays
+        };
+
+        /**
+          * getSize
+          * 
+          * Gets the size of the VideoMonitor.
+          *
+          * @return     EVideoMonitorSize
+          *             The size of the VideoMonitor.
+          *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+          */
+        
+        EVideoMonitorSize getSize()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+       
+        /**
+          * getConsoleKey
+          *
+          * Gets the key of the Console to which this VideoMonitor is attached.
+          * (0 if this is not a console monitor)00
+          * 
+          * @return     unsigned long
+          *             The unique key of the console to which this VideoMonitor
+          *             is attached or 0 if it is not a Console VideoMonitor.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The database cannot be accessed.
+          *             2. The data cannot be retrieved.
+          *             3. The retrieved data is invalid.
+          *             4. The agent is in Monitor mode.
+          */
+
+        unsigned long getConsoleKey()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+	
+		unsigned long getDisplayOrder()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		boolean isOverallMonitor()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+    }; // VideoMonitorCorbaDef
+
+}; // TA_Base_Bus
+    
+#endif // !defined(VideoMonitor_6D856C3B_635C_4e91_8C91_072E38E337FD__INCLUDED_)

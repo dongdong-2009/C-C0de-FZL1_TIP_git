@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<xs:schema id="Library" targetNamespace="file://TAMessageLibrary.xsd" xmlns:mstns="file://TAMessageLibrary.xsd" xmlns="file://TAMessageLibrary.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:element name="Library" msdata:IsDataSet="true" msdata:Locale="en-AU" msdata:EnforceConstraints="False">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Messages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Message" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ID" type="xs:unsignedLong" minOccurs="0" msdata:Ordinal="0" />
+										<xs:element name="MessageType" type="xs:unsignedShort" minOccurs="0" msdata:Ordinal="1" />
+										<xs:element name="HelpID" type="xs:unsignedLong" minOccurs="0" msdata:Ordinal="2" />
+										<xs:element name="MsgBoxStyle" type="xs:unsignedLong" minOccurs="0" msdata:Ordinal="3" />
+										<xs:element name="String" minOccurs="0" maxOccurs="unbounded" nillable="true">
+											<xs:complexType>
+												<xs:simpleContent msdata:ColumnName="String_Text" msdata:Ordinal="1">
+													<xs:extension base="xs:string">
+														<xs:attribute name="Locale" form="unqualified" type="xs:unsignedShort" use="required" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded" nillable="true">
+											<xs:complexType>
+												<xs:simpleContent msdata:ColumnName="Parameter_Text" msdata:Ordinal="0">
+													<xs:extension base="xs:string"></xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="Obsolete" form="unqualified" type="xs:string" />
+									<xs:attribute name="AuditEvent" form="unqualified" type="xs:boolean" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Parameters">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ParameterDef" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+										<xs:element name="Description" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+									</xs:sequence>
+									<xs:attribute name="Type" form="unqualified" type="xs:string" />
+									<xs:attribute name="Obsolete" type="xs:boolean" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ChangeLog">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Revision" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UpdatedDate" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false" />
+										<xs:element name="UpdatedUserID" type="xs:string" minOccurs="1" maxOccurs="1" nillable="false" />
+										<xs:element name="Comments" type="xs:string" minOccurs="1" maxOccurs="1" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

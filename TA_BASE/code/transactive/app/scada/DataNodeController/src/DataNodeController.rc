@@ -1,0 +1,302 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DATANODECONTROLLER_DIALOG DIALOGEX 0, 0, 338, 219
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "数据结点控制器"
+MENU IDR_DNC_MENU
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "Tree1",IDC_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | 
+                    TVS_NOTOOLTIPS | TVS_FULLROWSELECT | WS_BORDER | 
+                    WS_TABSTOP,1,1,119,171
+    EDITTEXT        IDC_STATUS_EDIT,5,182,325,29,ES_MULTILINE | ES_READONLY | 
+                    WS_VSCROLL | NOT WS_TABSTOP
+    CONTROL         "Tab1",IDC_DNC_TAB,"SysTabControl32",NOT WS_VISIBLE,124,
+                    12,207,159
+    GROUPBOX        "状态",IDC_STATIC,1,173,333,43
+    GROUPBOX        "数据结点",IDC_DATA_NODE_LABEL,122,0,211,173
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "DataNodeController MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "DataNodeController\0"
+            VALUE "LegalCopyright", "版权 (C) 2004\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "DataNodeController.EXE\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "DataNodeController Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DATANODECONTROLLER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 337
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (Australia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_INHIBIT_DLG DIALOG DISCARDABLE  0, 0, 200, 141
+STYLE WS_CHILD
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "禁止扫描",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,18,54,10
+    CONTROL         "禁止警报",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,24,35,57,10
+    CONTROL         "禁止MMS",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,35,52,54,10
+    CONTROL         "禁止控制",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,95,61,10
+    PUSHBUTTON      "应用",IDC_BUTTON1,149,127,50,14
+    GROUPBOX        "输入禁止",IDC_STATIC,6,4,192,67
+    GROUPBOX        "输出禁止",IDC_STATIC,6,76,192,45
+END
+
+IDD_SUMMARY_DLG DIALOG DISCARDABLE  0, 0, 200, 143
+STYLE WS_CHILD
+FONT 10, "Arial Bold"
+BEGIN
+    CONTROL         "List1",IDC_LIST1,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,2,2,197,139
+END
+
+IDD_NOTES_DLG DIALOG DISCARDABLE  0, 0, 203, 141
+STYLE WS_CHILD
+FONT 10, "Arial Bold"
+BEGIN
+    EDITTEXT        IDC_NOTES_EDIT,3,2,195,120,ES_MULTILINE | ES_WANTRETURN | 
+                    WS_VSCROLL
+    PUSHBUTTON      "更新",IDC_UPDATE_BUTTON,4,127,50,14
+    PUSHBUTTON      "清除",IDC_CLEAR_BUTTON,149,127,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SUMMARY_DLG, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 124
+    END
+
+    IDD_NOTES_DLG, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 139
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\DataNodeController.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_DNC                 ICON    DISCARDABLE     "..\\res\\EquipmentStatusViewer.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_DNC_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "文件"
+    BEGIN
+        MENUITEM "退出",                        ID_APP_EXIT
+    END
+    POPUP "工具"
+    BEGIN
+        MENUITEM "检查",                     ID_TOOLS_INSPECT
+    END
+    POPUP "帮助"
+    BEGIN
+        MENUITEM "数据结点控制器帮助",   ID_HELP_HELP
+        MENUITEM "关于数据结点控制器",  ID_HELP_ABOUTDATANODECONTROLLER
+
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_DNC_TOOLBAR TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      ID_TOOLBAR_INSPECT
+    SEPARATOR
+    BUTTON      ID_TOOLBAR_HELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_DNC_TOOLBAR         BITMAP  DISCARDABLE     "..\\res\\dnc_tool.bmp"
+#endif    // English (Australia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\DataNodeController.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

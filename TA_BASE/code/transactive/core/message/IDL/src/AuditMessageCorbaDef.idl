@@ -1,0 +1,112 @@
+#if !defined(AuditMessage_E1DF1D82_1CAC_40cd_BF2A_6DA9393AD2BD__INCLUDED_)
+#define AuditMessage_E1DF1D82_1CAC_40cd_BF2A_6DA9393AD2BD__INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/message/IDL/src/AuditMessageCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * Audit Messages are used to track operator actions,
+  * alarm changes (such as acknowledgements,
+  * deletions), and any other audit worthy actions
+  * within Transactive. The Transactive Event
+  * Viewer will only be interested in these Messages.
+  */
+
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+		struct AuditMessageCorbaDef
+		{
+			/**
+			 * Time the Message was first generated
+			 */
+			MillisecondTime createTime;
+
+			/**
+			 * Time the Message was logged, if at all
+			 */
+			MillisecondTime logTime;
+
+			/**
+			 * The MessageTypeKey as defined in the MESSAGETYPE table
+			 */			
+			string messageTypeKey;
+
+			/**
+			* The UUID of this event, as a string
+			*/
+			string eventID;
+
+			/**
+			 * An entity associated with this Event
+			 */
+			unsigned long assocEntityKey;
+			
+			/**
+			 * The fully formatted description as taken 
+			 * from the message type table
+			 */
+			string messageDescription;
+
+			/**
+			 * list of parameters for the description
+			 */
+			string messageParameterList;
+
+			/**
+			 * Additonal Audit details
+			 */
+			string messageDetails;
+
+			/**
+			 * sessionID for operator or entity in the system
+			 */
+			string sessionID;
+
+			/**
+			 * Used to store any Alarm that is assocaiated
+			 * with this Message
+			 */
+			string assocAlarmID;
+
+			/**
+			 * This is to relate the event to an incident
+			 */
+			string assocIncidentID;
+
+			/**
+			 * This is to relate the event to a parent event
+			 * ie: Plan steps
+			 */
+			string parentEventID;
+
+			/**
+			 * Name of the asset associated with the event.  For example, a datapoint can 
+			 * specify the "AssetName" parameter associated with it's parent DataNode.
+			 * May be empty.
+			 */
+			string assetName;
+
+			// TD13673
+			/**
+			 * locationKey associated with this Event
+			 */
+			unsigned long locationKey;
+
+		};
+		
+		typedef sequence<AuditMessageCorbaDef> AuditMessageSequence;
+
+
+}; // module TA_Base_Core
+
+#endif // !defined(AuditMessage_E1DF1D82_1CAC_40cd_BF2A_6DA9393AD2BD__INCLUDED_)

@@ -1,0 +1,171 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/maintenance_management/mmsCorbaDef/idl/src/IMmsConnectionCorbaDef.idl $
+// @author:  C. DeWolfe
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Interface used by the MMS Agent only. Provides a interface to the MMS Server
+// to submit and retrieve messages. These methods do not perform data validation, as example
+// this method does not check that assetId parameter is valid. It is assumed that data has
+// been validated prior to employing this interface
+//
+// All messages are constructed as specifed in the MMS/ISCS SICD. For additional clarification
+//refer to the Job Request Mgr GUI Design Note
+//
+
+#if !defined(IMmsConnectionCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)
+#define IMmsConnectionCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_
+
+#include "core/alarm/IDL/src/AlarmMessageCorbaDef.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+#include "bus/maintenance_management/mmsCorbaDef/idl/src/IMmsGlobalInhibitCorbaDef.idl"
+
+module TA_Base_Bus
+{
+	//thrown if message submission or retrieval fails
+    exception MmsConnectionFailure
+    {
+        string errorMessage;
+		long errorCode;
+    };
+
+	struct JobRequestDetailCorbaDef
+	{
+		string assetId;
+
+		string requestor;
+
+		boolean targetDateEnabled;
+
+		TA_Base_Core::DateTime targetDate;
+
+		string alarmDescField;
+
+		string problemReport;
+
+		//the following values are populated by the agent
+		//and should not be modified, or even used by the client:
+
+		//note that the assetId above is editable and may not
+		//coorospond to this entity
+		unsigned long dataNodeKey;
+
+		//these values are used if the JRM was launched via an alarm
+		//set this string to NOT_FROM_ALARM if ...
+		string alarmUID;
+		unsigned long locationKey;
+		unsigned long dataPointKey;
+
+		TA_Base_Core::DateTime alarmTime;      //new for C955
+		unsigned long alarmSeverity;           //new for C955
+		string alarmFaultCode;				   //new for C955
+		string alarmValue;                     //new for C955
+		//whether the job request is triggered automatically or manually
+		boolean  isAutoTrigger;                //new for C955
+
+
+	};
+
+	interface IMmsConnectionCorbaDef : IMmsGlobalInhibitCorbaDef
+	{
+		/**
+		 * Submit a MMS Alarm Message to the MMS Server.
+		 *
+		 * @param alarmSeverity: text desc of alarm's severity value
+		 * @param p_alarm: the alarm for which the message is being submitted
+		 *
+		 * @throw TA_Base_Bus::MmsConnectionFailure if submission fails for any reason
+		 * other than OperationModeException
+		 */
+		void submitAlarmMessage(
+			in string alarmSeverity, 
+			in TA_Base_Core::AlarmDetailCorbaDef p_alarm)
+			raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+		/**
+		 * Submit a Job Request Message to the MMS Server.
+		 *
+		 * @param details are used to construct the message
+		 *
+		 * The alarmDescField of the details param should be populated as specifed
+		 * in submitAlarmMessage() if applicable. If not applicable, it must be blank
+		 *
+		 * @throw ConnectionFailure if submission fails for any reason
+		 * other than OperationModeException
+		 */
+		void submitJobRequestMessage(
+			in JobRequestDetailCorbaDef details)
+			raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+		/**
+		 * Submit a Counter Message to the MMS Server.
+		 *
+		 * @param assetId: The "Asset Name" from the datanode config
+		 * @param dataPointName: characters following last '.' in entity name of dp
+		 * @param dataPointDesc: desc field of datapoint entity config
+		 * @param dataPointValue: the value of the datapoint
+		 *
+		 * @throw ConnectionFailure if submission fails for any reason
+		 * other than OperationModeException
+		 */
+		void submitCounterMessage(
+			in string assetId,
+			in string dataPointName,
+			in string dataPointDesc,
+			in double dataPointValue)
+			raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+		/**
+		 * Submit a Measurement Message to the MMS Server.
+		 *
+		 * @param assetId: The "Asset Name" from the datanode config
+		 * @param dataPointName: characters following last '.' in entity name of dp
+		 * @param dataPointDesc: desc field of datapoint entity config
+		 * @param dataPointValue: the value of the datapoint
+		 *
+		 * @throw ConnectionFailure if submission fails for any reason
+		 * other than OperationModeException
+		 */
+		void submitMeasurementMessage(
+			in string assetId,
+			in string dataPointName,
+			in string dataPointDesc,
+			in double dataPointValue)
+			raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+        /**
+          * ping
+		  *
+		  * Test if the MMS Server is contactable. 
+		  * The method will wait for the configured timeout period 
+		  * for a responce before assuming failure.
+		  *
+		  * @throw ConnectionFailure if transaction fails for any reason
+		  * other than OperationModeException
+          */
+		void ping()
+		raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+        /**
+          * clearMessages
+		  *
+		  * if there are any messages in the queue waiting for you pop them and throw 
+		  * them in the bin. If there are no messages waiting do nothing
+		  *
+		  * @throw ConnectionFailure if transaction fails for any reason
+		  * other than OperationModeException
+          */
+		void clearMessages()
+		raises( TA_Base_Core::OperationModeException, MmsConnectionFailure );
+
+	}; // end interface IMmsConnectionCorbaDef
+}; // end module TA_Base_Bus
+
+#endif // !defined(IMmsConnectionCorbaDef_496EB38_4BDA6D3642B7__INCLUDED_)

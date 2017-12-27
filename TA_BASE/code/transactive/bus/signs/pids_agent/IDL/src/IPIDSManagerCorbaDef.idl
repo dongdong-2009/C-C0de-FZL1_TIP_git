@@ -1,0 +1,89 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/3002_TIP/TA_BASE/transactive/bus/signs_4669/TisManagerCorbaDef/src/ISTISManagerCorbaDef.idl $
+// @author:  Rob Ashcroft
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2009/09/24 11:10:12 $
+// Last modified by:  $Author: grace.koh $
+//
+// Station Traveller Information System (STIS) Manager IDL interface.
+//
+
+#ifndef ISPIDSMANAGERCORBADEF_IDL_INCLUDED
+#define ISPIDSMANAGERCORBADEF_IDL_INCLUDED
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+//#include <core/data_access_interface/tis_agent_4669/IDL/src/TISMessageDataDefinitions.idl>
+
+module TA_Base_Bus
+{
+    interface IPIDSManagerCorbaDef
+    {
+//		exception PIDSServerNotConnectedException{};
+//		exception PIDSGeneralFailureException
+//		{
+//			string details;
+//		};
+
+        typedef sequence<octet>             PidsMessage;	//for Chinese character
+        struct PidsDestination
+        {
+            short station;   // station ID, e.g 1£¬2,...40
+            boolean concourse; //indicate Station Pids zone for Concourse
+			boolean upTrack; //indicate Station Pids zone for UpTrack
+			boolean downTrack; //indicate Station Pids zone for DownTrack
+			boolean gateway; //indicate Station Pids zone for Exit&Enter 
+        };
+
+        typedef sequence<PidsDestination> PidsDestinationList;
+        struct MessageTime
+        {
+            long year;
+            long month;
+            long day;
+            long hour;
+            long minute;
+            long second;
+        };
+
+
+		// Sig related
+		typedef sequence<octet> SigData;
+		void submitSigRequest(in SigData data);
+
+        //return 0: send successfully, other value: FEP Link communication fail
+        short submitAdhocDisplayRequest(
+            in PidsDestinationList destinationList,
+            in PidsMessage messageContent,
+            in boolean msgType,				// 0 = Low priority message, 1 = High priority message
+            in boolean showType,			// 0 = bottom scrolling text message, 1 = whole pids screen message
+            in long trainNo,			// 0 = display to all train, -1 = no display on train, >=1 mean display to the trainNo
+            in MessageTime startTime,
+            in MessageTime endTime,
+            in long interval,
+            in boolean isCyclic );
+//			raises (PIDSServerNotConnectedException, PIDSCommunicationTimeoutException, TA_Base_Core::OperationModeException);
+
+        short submitAdhocDisplayRequestWithMulityByteMsgContent(
+            in PidsDestinationList destinationList,
+            in PidsMessage messageContent,
+            in boolean msgType,				// 0 = Low priority message, 1 = High priority message
+            in boolean showType,			// 0 = bottom scrolling text message, 1 = whole pids screen message
+            in boolean isTrain,			// 0 = display normal, 1 = display on all trains
+            in MessageTime startTime,
+            in MessageTime endTime,
+            in long interval,
+            in boolean isCyclic );
+        //return 0: send successfully, other value: FEP Link communication fail
+        short submitClearRequest(
+            in PidsDestinationList destinationList,
+            in long trainNo );		// 0 = display to all train, -1 = no display on train, >=1 mean display to the trainNo
+//			raises (PIDSServerNotConnectedException, PIDSCommunicationTimeoutException,TA_Base_Core::OperationModeException);
+    };
+}; // TA_Bus
+
+#endif

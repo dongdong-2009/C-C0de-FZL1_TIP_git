@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{833DEE1C-D5FC-4868-9C8B-07C22F54A216} = s 'SoundManager'
+		'TA_SoundManager.EXE'
+		{
+			val AppID = s {833DEE1C-D5FC-4868-9C8B-07C22F54A216}
+		}
+	}
+}

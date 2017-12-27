@@ -1,0 +1,547 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SORT_DESC           BITMAP                  "..\\res\\sort_descending.bmp"
+IDB_SORT_ASC            BITMAP                  "..\\res\\sort_ascending.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ARCHIVEMANAGER_DIALOG DIALOGEX 0, 0, 293, 170
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "归档管理器"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "计划归档",IDC_BUTTON_SCHEDULE,17,15,120,20,WS_DISABLED
+    PUSHBUTTON      "手动归档",IDC_BUTTON_MANUAL,17,48,120,20,WS_DISABLED
+    PUSHBUTTON      "恢复档案",IDC_BUTTON_RESTORE,17,81,120,20,WS_DISABLED
+    PUSHBUTTON      "已恢复数据",IDC_BUTTON_DISPLAY,17,114,120,20,WS_DISABLED
+    PUSHBUTTON      "关闭",IDOK,216,149,50,14
+    LTEXT           "把自动创建的文档备份到移动介质.",IDC_STATIC,152,21,124,20
+    LTEXT           "根据指定日期文件进行归档",IDC_STATIC,152,54,124,20
+    LTEXT           "恢复选定文件.",IDC_STATIC,152,87,124,20
+    LTEXT           "显示已恢复文档列表，并删除指定的已恢复数据.",IDC_STATIC,152,118,124,20
+END
+
+IDD_WRITE_ARCHIVE_DIALOG DIALOGEX 0, 0, 191, 230
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "插入归档移动介质"
+FONT 11, "宋体", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,37,209,50,14
+    PUSHBUTTON      "取消",IDCANCEL,103,209,50,14
+    CONTROL         "List1",IDC_FILE_LIST,"SysListView32",LVS_REPORT | WS_BORDER,7,34,174,148
+    LTEXT           "选择一块空白DVD并按OK继续.",IDC_STATIC_INSERT_CDDVD,7,191,174,12
+    LTEXT           "需要? DVD来完成备份.\n以下文件将被备份:",IDC_NUM_CDS_STATIC,7,7,174,23
+END
+
+IDD_RESTORE_ARCHIVE_DIALOG DIALOGEX 0, 0, 191, 230
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "查看恢复的归档"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    LTEXT           "选中的驱动包括以下日期归档.请选择要恢复的日期",IDC_STATIC,7,7,174,20
+    LTEXT           "选中驱动",IDC_STATIC,45,33,48,8
+    COMBOBOX        IDC_DRIVE_COMBO,99,31,46,42,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "List1",IDC_ARCHIVE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | WS_BORDER | WS_TABSTOP,7,53,174,146
+    PUSHBUTTON      "全选",IDC_BUTTON_SELECT_ALL,10,209,50,14
+    PUSHBUTTON      "恢复",ID_BUTTON_RESTORE,70,209,50,14,WS_DISABLED
+    DEFPUSHBUTTON   "取消",IDCANCEL,130,209,50,14
+    PUSHBUTTON      "关闭",IDOK,70,209,50,14,NOT WS_VISIBLE | WS_DISABLED | NOT WS_TABSTOP
+END
+
+IDD_DELETE_ARCHIVE_DIALOG DIALOGEX 0, 0, 290, 184
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "已恢复的归档数据"
+FONT 11, "宋体", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "关闭",IDOK,120,163,50,14,NOT WS_VISIBLE | WS_DISABLED
+    CONTROL         "List1",IDC_ARCHIVE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,36,273,117
+    PUSHBUTTON      "移除数据",IDC_BUTTON_REMOVE_DATA,120,163,50,14,WS_DISABLED
+    LTEXT           "清单中包括以下已恢复数据，请选择需要删除的已恢复数据.",IDC_STATIC,7,7,168,22
+    DEFPUSHBUTTON   "取消",IDCANCEL,186,163,50,14
+    PUSHBUTTON      "改变日期",IDC_MODIFY_BUTTON,54,163,50,14,WS_DISABLED
+END
+
+IDD_DATE_RANGE_DIALOG DIALOGEX 0, 0, 178, 84
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "选择归档日期范围"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,18,54,50,14
+    PUSHBUTTON      "取消",IDCANCEL,102,53,50,14
+    LTEXT           "请选择要归档的日期范围:",IDC_STATIC,7,7,161,12
+    CONTROL         "DateTimePicker2",IDC_DATETIMEPICKER_FROM,
+                    "SysDateTimePick32",DTS_RIGHTALIGN,32,27,50,12
+    CONTROL         "DateTimePicker2",IDC_DATETIMEPICKER_TO,
+                    "SysDateTimePick32",DTS_RIGHTALIGN,118,27,50,12
+    LTEXT           "从:",IDC_STATIC,7,26,20,15,SS_CENTERIMAGE
+    LTEXT           "到:",IDC_STATIC,97,26,11,15,SS_CENTERIMAGE
+END
+
+IDD_RETRIEVING_DATA_DIALOG DIALOGEX 0, 0, 184, 66
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "重新获得数据"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "停止",IDSTOP,67,45,50,14
+    LTEXT           "归档数据从 ?? 到 ??",IDC_RANGE_STATIC,7,7,167,12
+    LTEXT           "当前获得数据日期为:",-1,7,26,78,8
+    LTEXT           "",IDC_DATE_STATIC,88,26,86,8
+END
+
+IDD_SELECT_DATE_DIALOG DIALOGEX 0, 0, 170, 75
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "选择删除日期"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,27,54,50,14
+    PUSHBUTTON      "取消",IDCANCEL,93,54,50,14
+    LTEXT           "请选择日期，与该日期相当关的勾选的数据设置应被删除",IDC_STATIC,7,7,153,21
+    CONTROL         "DateTimePicker2",IDC_DATEPICKER,"SysDateTimePick32",DTS_RIGHTALIGN,72,31,50,12
+    LTEXT           "删除截止日期:",IDC_STATIC,7,33,61,8
+END
+
+IDD_BURN_CD_DIALOG DIALOGEX 0, 0, 205, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "写到媒体"
+FONT 10, "Arial Bold", 0, 0, 0x1
+BEGIN
+    LTEXT           "写过程:",IDC_STATIC,7,7,52,8
+    CONTROL         "Progress1",IDC_WRITE_PROGRESS,"msctls_progress32",WS_BORDER | 0x1,7,17,191,15
+    LTEXT           "步骤:",IDC_STATIC,7,39,24,8
+    CTEXT           "",IDC_STAGE_STATIC,7,49,191,17,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "取消会引发损坏及不可读的媒体.",IDC_STATIC,14,170,177,18,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    PUSHBUTTON      "取消",IDCANCEL,78,193,50,14
+    EDITTEXT        IDC_LOG_EDIT,7,84,191,80,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "日志:",IDC_STATIC,7,73,15,8
+END
+
+IDD_RETRIEVE_COMPLETE_DIALOG DIALOG  0, 0, 259, 182
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "获取完成"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "是",IDYES,71,161,50,14
+    LTEXT           "从数据库中取数据时，错误及警告发生.\n日志文件已保存，当错误分析结束请立即删除.",IDC_STATIC,7,7,245,28
+    PUSHBUTTON      "否",IDNO,137,161,50,14
+    CONTROL         "Tree1",IDC_ERROR_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | WS_BORDER | WS_TABSTOP,7,40,245,98
+    LTEXT           "仍然继续么?",IDC_STATIC,7,147,82,8
+END
+
+IDD_RESTORE_COMPLETE_DIALOG DIALOG  0, 0, 259, 169
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "恢复完成"
+FONT 10, "Arial Bold"
+BEGIN
+    DEFPUSHBUTTON   "关闭",IDOK,104,148,50,14
+    LTEXT           "恢复数据到数据库中时，错误及警告发生.\n日志文件已保存，当错误分析结束请立即删除.",-1,7,7,245,28
+    CONTROL         "Tree1",IDC_ERROR_TREE,"SysTreeView32",TVS_HASBUTTONS | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | WS_BORDER | WS_TABSTOP,7,40,245,98
+END
+
+IDD_BURN_DVD_DIALOG DIALOGEX 0, 0, 205, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "写到介质"
+FONT 11, "宋体", 400, 0, 0x86
+BEGIN
+    LTEXT           "写过程:",IDC_STATIC,7,7,52,8
+    CONTROL         "Progress1",IDC_WRITE_PROGRESS,"msctls_progress32",WS_BORDER | 0x1,7,17,191,15
+    LTEXT           "步骤:",IDC_STATIC,7,39,24,8
+    CTEXT           "",IDC_STAGE_STATIC,7,49,191,17,SS_CENTERIMAGE | SS_SUNKEN
+    LTEXT           "取消会引发损坏及不可读的介质.",IDC_STATIC,14,170,177,18,SS_CENTERIMAGE,WS_EX_TRANSPARENT
+    PUSHBUTTON      "取消",IDCANCEL,78,193,50,14
+    EDITTEXT        IDC_LOG_EDIT,7,84,191,80,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    LTEXT           "日志:",IDC_STATIC,7,73,24,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,27,13,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404B0"
+        BEGIN
+            VALUE "FileDescription", "ArchiveManager MFC Application"
+            VALUE "FileVersion", "00, 27, 13, 01"
+            VALUE "InternalName", "ArchiveManager"
+            VALUE "LegalCopyright", "版权 (C) 2003"
+            VALUE "OriginalFilename", "ArchiveManager.EXE"
+            VALUE "ProductName", "ArchiveManager Application"
+            VALUE "ProductVersion", "00, 27, 13, 01"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ARCHIVEMANAGER_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 283
+        VERTGUIDE, 127
+        VERTGUIDE, 142
+        VERTGUIDE, 266
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 163
+        HORZGUIDE, 143
+    END
+
+    IDD_WRITE_ARCHIVE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 223
+    END
+
+    IDD_RESTORE_ARCHIVE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 181
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 223
+    END
+
+    IDD_DELETE_ARCHIVE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 280
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 177
+    END
+
+    IDD_DATE_RANGE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 168
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 77
+    END
+
+    IDD_RETRIEVING_DATA_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 174
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_SELECT_DATE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 160
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 68
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""..\\res\\ArchiveManager.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "..\\..\\..\\..\\bus\\resources\\icons\\archivemanager.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ARCHIVEMANAGER      "归档管理器"
+    UI050023_DELETE_ABORTED "工作站 %2 的 操作员 %1 已取消恢复数据的删除."
+    UI050030_WRITE_ABORTED  "工作站 %2 的 操作员 %1 已取消传输档案文件到可移动媒体."
+    UI050045_RESTORE_ABORTED "工作站 %2 的 操作员 %1 已取消档案数据的恢复."
+    UI050046_LABEL_CD       "写光盘已完成.\n请标注此光盘为: CD %1"
+    UI050048_INSERT_MEDIA   "请插入空白CD-R光盘并点击确定钮, 或点击取消钮以取消对CD-R光盘的写操作."
+    UI050049_NO_TABLES      "数据库%1里没有指定要归档的数据表."
+    UI050050_DELETE_IN_PROG "数据正在被删除. 一旦此日期的数据被全部移除, 删除操作将被取消. 这样会防止数据损坏. 请等待..."
+    UI050051_SELECT_DATE    "请选择要恢复的日期."
+    UI050052_RESTORE_IN_PROG 
+                            "数据正在被导入. 恢复操作将被取消, 一旦此日期的档案被全部恢复. 这样会防止数据损坏. 请等待..."
+    UI050053_RETRIEVE_IN_PROG 
+                            "正在从数据库获取数据. 此操作将被停止, 一旦完成获取此日期的全部数据. 这样会防止数据损坏. 请等待..."
+    UI050054_NO_MORE_FILES  "已无要写入光盘的文件."
+    UI050055_WRITE_IN_PROG  "写操作中. 如果安全此操作将被取消. 请等待..."
+    UI050057_CHANGE_DATE_ABORTED "工作站 %2 的操作员 %1 取消了更改恢复数据删除日期的操作."
+    UI050059_EARLIEST_DATE  "明天是可被选为应删除日期最早的日期.\n请选择另一个日期."
+END
+
+STRINGTABLE 
+BEGIN
+    UI050060_TRANSFER_ABORTED "此工作站当前操作员已取消传输档案文件到可移动媒体."
+    UI050061_DELETE_ABORTED "此工作站当前操作员已取消恢复的档案数据的删除."
+    UI050062_RESTORE_ABORTED "此工作站当前操作员已取消档案数据的恢复."
+    UW050001_NO_VALID_FILENAMES 
+                            "可移动媒体上无法找到此格式的文件 AYYYY_MM_DD_filepostfix_V2.dmp 或 MYYYY_MM_DD_filepostfix_V2.dmp."
+    UW050002_DELETE_FILES_FAILED 
+                            "删除以下档案文件失败, 原因为:\n%1\n请手动删除这些文件.\nPlease delete these files manually."
+    UW050003_SERVER_DOWN    "服务器当机. 关闭功能直到服务恢复."
+    UW050004_ADD_DIR_FAILED "添加文件夹%1到要写入可移动媒体的文件列表的操作失败, 原因为:\n%2"
+    UW050004_REASON_INVALID_DIR "文件夹无效. 请检查它的确存在并且可访问."
+    UW050004_UW050016_REASON_MEMORY "内存错误: 创建NERO ISO项失败."
+    UW050009_INVALID_DATE   "昨天是可以归档的最后日期."
+    UW050010_INVALID_RANGE  "无效的日期范围. 起始日期必须跟截止日期相同或更早."
+    UW050011_DATE_NOT_FOUND "无法恢复%1的数据, 因为日期不在列表中."
+    UW050012_DATA_NOT_FOUND "数据库清单表: %1中没有找到恢复数据. 注意: 标注为删除的数据没有显示."
+    UW050013_NO_MAN_ARCHIVES 
+                            "在档案文件夹%1里没有符合条件的手动归档文件:\n1. 文件必须遵循格式 MYYYY_MM_DD_filepostfix_[V2].dmp.\n2. 文件的归档日期必须在 %2 跟 %3 之间.\n2. The archive date for the files must be in the date range %2 to %3."
+    UW050014_NO_AUTO_ARCHIVES 
+                            "档案文件夹 %1 里没有匹配的档案文件:\n1. 文件必须遵循格式 AYYYY_MM_DD_filepostfix_[V2].dmp."
+    UW050015_DELETE_LOG_FILES_FAILED "删除以下日志记录文件失败, 原因为:\n%1\n请手动删除这些文件."
+END
+
+STRINGTABLE 
+BEGIN
+    UW050016_ADD_FILE_FAILED "添加文件 %1 到要写入可移动媒体的文件列表的操作失败, 原因为:\n%2"
+    UW050016_REASON_INVALID_FILE "文件无效. 请检查它的确存在并且可访问."
+    UW050017_SAVE_SETTINGS  "保存操作员 %1 的用户设置失败, 原因为:\n%2"
+    UE050021_INSUF_PRIV_MAN_ARCHIVE "工作站 %2 的 操作员 %1 没有足够权限来执行手动归档."
+    UE050034_INSUF_PRIV_RESTORE "工作站 %2 的操作员 %1 没有足够权限来恢复归档数据."
+    UE050052_INSUF_PRIV_REMOVE "工作站 %2 的 操作员 %1 没有足够权限来从数据库移除恢复数据."
+    UE050054_REMOVE_FAILED  "无法从数据库移除%1的恢复数据, 原因为:\n%2"
+    UE050054_REASON_FIND_FAILED "无法从数据库移除%1的恢复数据, 原因为:\n%2"
+    UE050055_RETRIEVE_LIST_FAILED "寻找选定项的数据失败."
+    UE050055_REASON_INV_ACCESS_FAILED "档案清单访问失败"
+    UE050079_INSUF_PRIV_TRANSFER "工作站%2的操作员%1没有足够权限来传输档案到可移动媒体."
+    UE050087_UNKNOWN_RIGHTS "无法确定当前操作员的权限, 原因为:\n%1"
+    UE050087_REASON_RL_ACCESS_FAILURE "权限库无法访问."
+    UE050087_REASON_UNKNOWN_RESOURCE "资源编号无法确定."
+    UE050090_WRITE_FAILED   "写%1的档案文件到可移动媒体操作失败, 原因为:\n%2"
+    UE050090_REASON_DLL_OPEN_FAILED "无法打开 NeroAPI.DLL. 请检查库真的存在."
+END
+
+STRINGTABLE 
+BEGIN
+    /*UE050090_REASON_INVALID_ARGS "Nero 初始化失败 - 参数无效."
+    UE050090_REASON_INVALID_SER_NO "Nero 初始化失败 - 序列号无效."
+    UE050090_REASON_EXPIRED "Nero 初始化失败 - 此演示版Nero已过期."
+    UE050090_REASON_RUNNING "Nero 初始化失败 - Nero 已经被其他程序启动."
+    UE050090_REASON_UNLOCKABLE "Nero 初始化失败 - 无法锁住Nero来使用."
+    UE050090_REASON_UNKNOWN "Nero 初始化失败 - 发生未知错误 (%1) ."*/
+    UE050090_REASON_NO_DRIVES """驱动器 %1 不存在."
+    UE050090_REASON_OPEN_FAILED "无法打开驱动器: %1"
+    UE050090_REASON_NO_FILES "没有要写入可移动媒体的档案文件."
+    UE050090_REASON_UNKNOWN_CD_FORMAT "未知媒体模式."
+    UE050090_REASON_INVALID_DRIVE "无效驱动器."
+    UE050090_REASON_WRITE_FAILED "写失败"
+    UE050090_REASON_FN_NOT_ALLOWED "功能不允许"
+    UE050090_REASON_DRIVES_NOT_ALLOWED "驱动器不允许"
+    UE050090_REASON_UNKNOWN_ERROR "未知错误"
+    UE050093_RESTORE_FAILED "无法恢复%1的数据 原因为:\n%2"
+END
+
+STRINGTABLE 
+BEGIN
+    UE050094_UPDATE_FAILED  "无法更新数据库中的%1表, 原因为:\n%2."
+    UE050094_REASON_AO_FAILED "档案在线访问失败."
+    UE050094_REASON_INV_FAILED "档案清单访问失败"
+    UE050095_IMP_CMD_LOAD_FAILED "无法载入导入的命令:\n%1"
+    UE050095_REASON_ENTITY_DATA "无法获取归档管理器的GUI实体数据."
+    UE050095_REASON_CAST_FAILED "实体数据无法转换为ArchiveManagerEntityData."
+    UE050090_REASON_NO_MEDIA " 没插入光盘"
+    UE050095_REASON_INVALID_IMP "找不到导入程序(%1)."
+    UE050095_REASON_INVALID_DB "无效的数据库连接字符串:\n%1"
+    UE050096_UNKNOWN_MEDIA_LOC "无法确定可移动媒体位置的路径, 原因为:\n%1"
+    UE050096_REASON_ENTITY_DATA "无法获取归档管理器的GUI实体数据."
+    UE050096_REASON_CAST_FAILED "实体数据无法转换为ArchiveManagerEntityData."
+    UE050096_REASON_MED_LOC_EMPTY "归档管理器的MediaLocation参数未在数据库里设置."
+    UE050096_REASON_INVALID_IMP "归档管理器的MediaLocation参数所指位置 (%1) 是无效文件夹."
+    UE050098_UNKNOWN_STATUS "无法确定日期%1的档案状态, 由于:\n%2"
+    UE050100_RETRIEVE_FAILED "无法取得%1的数据, 由于下面的错误:\n%2"
+END
+
+STRINGTABLE 
+BEGIN
+    UE050101_EXP_LOAD_FAILED "无法载入导出命令, 由于以下错误:\n%1"
+    UE050101_REASON_ENTITY_DATA "无法获取归档管理器的GUI实体数据."
+    UE050101_REASON_CAST_FAILED "实体数据无法转换为ArchiveManagerEntityData."
+    UE050101_REASON_ORACLE_HOME_UNKNOWN "无法获取Oracle主目录"
+    UE050101_REASON_INVALID_EXP "无法找到导出程序(%1)."
+    UE050101_REASON_INVALID_DB "无效的数据库连接字符串:\n%1"
+    UE050102_FILE_TOO_BIG   "文件%1太大(%2 MB)无法装入一个%3.\n请找系统管理员来解决."
+    UE050104_PATH_ERROR     "无法确定档案文件夹路径, 由于下面错误:\n%1"
+    UE050104_REASON_ENTITY_DATA "无法获取归档管理器的GUI实体数据."
+    UE050104_REASON_CAST_FAILED "实体数据无法转换为ArchiveManagerEntityData."
+    UE050104_REASON_MAN_PARAM_NOT_SET "归档管理器的ManualArchiveDirectory参数不在数据库中."
+    UE050104_REASON_AUTO_PARAM_NOT_SET "归档管理器的AutoArchiveDirectory参数不在数据库中."
+    UE050104_REASON_INVALID_MAN_DIR 
+                            "归档管理器的ManualArchiveDirectory参数所指定路径是无效文件夹:\n%1"
+    UE050104_REASON_INVALID_AUTO_DIR 
+                            "归档管理器的AutoArchiveDirectory参数所指定路径是无效的:\n%1"
+    UE050108_MULTI_INSTANCE "%1无法启动, 由于以下错误:\n%2"
+    UE050108_REASON_DB_FAILED "从数据库中无法确定%1的实例是否已经在系统中运行."
+END
+
+STRINGTABLE 
+BEGIN
+    UE050108_REASON_RUNNING "%1的实例已经运行在工作站%2."
+    UE050109_INSUF_PRIV_CHANGE_DATE "工作站%2的操作员%1没有足够权限更改恢复数据的应删除日期."
+    UE050110_INVALID_FILENAME_FORMAT 
+                            "文件名 %1 不是格式 AYYYY_MM_DD_filepostfix_[V2].dmp 或 MYYYY_MM_DD_filepostfix_[V2].dmp."
+    UE050111_OPERATOR_NAME  "无法从对话期编号确定操作员名字, 由于下面错误:\n%1"
+    UE050111_REASON_OP_FAILED "操作员数据无法从数据库中确定."
+    UE050112_WRKSTN_NAME    "无法由对话期编号决定工作站名字, 由于以下错误:\n%1"
+    UE050113_AUDIT_MSG      "无法决定审查信息所需要的实体键, 由于以下错误:\n%1"
+    UE050113_REASON_ENT_FAILED "归档管理器的数据不能由数据库决定."
+    UE050114_MSG_SENDER     "无法得到一个AuditMessageSender来给这个行动发一个审查信息."
+    UE050115_AUDIT_MSG_FAILED "发送审查信息失败, 由于以下错误:\n%1"
+    UE050115_REASON_UNKNOWN "未知错误发生."
+    UE050116_CHECK_LOG_FAILED "在日志文件中检查错误失败\n%1\n由于以下错误:\n%2"
+    UE050116_REASON_INVALID_FILE "日志文件无效.\n请检查文件是否存在并且可访问."
+    UE050116_REASON_OPEN_FAILED "日志文件无法被打开读取."
+    UE050117_SELECT_FAILED  "无法得到选中删除截止日期,由于以下错误:\n%1"
+    UE050118_UPDATE_FAILED  "无法更新文档目录,由于以下错误::\n%1\n没有别的项将被处理."
+END
+
+STRINGTABLE 
+BEGIN
+    UE050118_REASON_INV_ACCESS_FAILED "档案清单访问失败"
+    UE050119_INSUF_PRIV_REMOVE "当前的运算操作符权限不足,无法移除恢复的归档数据."
+    UE050120_INSUF_PRIV_CHANGE_DATE "当前的运算操作符权限不足,无法改变恢复的归档数据的删除截止日期."
+    UE050121_DELETE_INV_ITEM_FAILED "删除在日期 %1 的目录项失败, 由于以下错误:\n%2"
+    UE050122_INSUF_PRIV_RESTORE "当前的运算操作符权限不足,无法恢复归档数据."
+    UE050123_INSUF_PRIV_TRANSFER "当前的运算操作符权限不足,无法写档案至可移除媒体."
+    UE050124_INSUF_PRIV_MAN_ARCHIVE "当前的运算操作符权限不足,无法做手动归档."
+    UE050125_INVALID_ENTITY "归档管理器实体不是类型 '%1'."
+    UE050136_DATABASE_ERROR "不能获得配置信息."
+    ID_UW_05001             "提供的归档媒体没有包括归档数据"
+    UE050090_REASON_MEDIA_NOT_BLANK "非空光盘"
+    UE050090_REASON_MEDIA_WRITE_PROTECTED "光盘写保护"
+    UE050090_REASON_MEDIA_OUT_OF_MEMORY "光盘空间不足"
+    UE050090_REASON_MEDIA_INCOMPATIBLE "光盘不兼容"
+    126                     "已经取消写操作"
+    UE050090_REASON_WRITE_SUCCESSFUL "写成功并完成"
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "..\res\ArchiveManager.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

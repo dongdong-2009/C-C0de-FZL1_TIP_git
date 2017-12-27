@@ -1,0 +1,397 @@
+#if !defined(RecordingUnitCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)
+#define RecordingUnitCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/4669_TIP/TA_BASE/transactive/bus/cctv/video_switch_agent/IDL/src/RecordingUnitCorbaDef.idl $
+  * @author:   Rob Young
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2008/10/31 12:12:40 $
+  * Last modified by:  $Author: grace.koh $
+  *
+  * The interface to an object that provides access to the 
+  * RecordingUnit state and control.
+  */
+
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl"
+#include "bus/cctv/video_switch_agent/IDL/src/VideoSwitchResourceCorbaDef.idl"
+
+module TA_Base_Bus
+{
+	interface RecordingUnitCorbaDef : VideoSwitchResourceCorbaDef
+	{
+		//
+		// Available recording speeds are stored as sequence of strings.
+		// The sequence can be used with RecordingUnitState::currentRecordingSpeedIndex
+		// to determine current recording speed. Strings are used so as to be meaningful
+		// for display to operator in clienbt applications (eg "Time-Lapse" or "High Quality").
+		//
+
+		typedef string								recordingSpeed;
+		typedef sequence< recordingSpeed >          recordingSpeedSequence;
+
+		//
+		// Enum to identify various types of RecordingUnits 
+		//
+
+		enum ERecordingUnitType
+		{
+			VCR,
+			DVD
+		};
+
+		//
+		// Struct defining current state of Recording Unit.
+		// Note: Currently this is only current recording speed, but struct can be extended
+		// if other device status information can be obtained.
+		//
+
+		struct RecordingUnitState
+		{
+			// index relevant to recordingSpeedSequence
+			unsigned short currentRecordingSpeedIndex;
+		};
+
+		//
+		// Struct defining supported features of Recording Unit.
+		//
+
+		struct SupportedRecordingUnitFeatures
+		{ 
+			boolean isPlaybackControllable;
+			boolean isRecordingControllable;
+			boolean isRecordingSpeedControllable;
+		};
+
+		/**
+		  * getSupportedFeatures
+		  *
+		  * Gets the features that this RecordingUnit supports.
+		  *
+		  * @return     SupportedRecordingUnitFeatures
+		  *				The supported features struct for this recording unit.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+
+		SupportedRecordingUnitFeatures getSupportedFeatures()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * getRecordingUnitState
+		  *
+		  * Gets the current state of this RecordingUnit.
+		  *
+		  * @return     RecordingUnitState
+		  *				The current state of this recording unit.
+		  * 
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if:
+		  *				1. The database cannot be accessed.
+		  *				2. The data cannot be retrieved.
+		  *				3. The retrieved data is invalid.
+		  *				4. The agent is in Monitor mode.
+		  */
+
+		RecordingUnitState getRecordingUnitState()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * getRecordingSpeeds
+		  *
+		  * Get the recording speeds available for this device.
+		  *
+		  * @return     recordingSpeedSequence
+		  *				Sequence of Strings corresponding to the available
+		  *				recording speeds for this recording unit.
+		  *
+		  * @exception	VideoSwitchAgentException
+		  *				Thrown if the agent is in Monitor mode.
+		  */
+
+		recordingSpeedSequence getRecordingSpeeds()
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * play 
+		  *
+		  * Send play command to recordingUnit.
+		  *
+		  * Precondition: isPlaybackControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void play( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * fastForward
+		  *
+		  * Send fast-forward command to recordingUnit.
+		  *
+		  * Precondition: isPlaybackControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void fastForward( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * rewind
+		  *
+		  * Send rewind command to recordingUnit.
+		  *
+		  * Precondition: isPlaybackControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void rewind( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * pause
+		  *
+		  * Send pause command to recordingUnit.
+		  *
+		  * Precondition: isPlaybackControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void pause( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * stopPlayback
+		  *
+		  * Send stop command to recordingUnit during playback.
+		  *
+		  * Precondition: isPlaybackControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void stopPlayback( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * skipToNextChapter
+		  *
+		  * Send skipToNextChapter command to recordingUnit.
+		  *
+		  * Precondition: ( isPlaybackControllable() && (ERecordingUnitType == DVD) )
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void skipToNextChapter( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * skipToPreviousChapter
+		  *
+		  * Send skipToNextChapter command to recordingUnit.
+		  *
+		  * Precondition: ( isPlaybackControllable() && (ERecordingUnitType == DVD) )
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void skipToPreviousChapter( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * record
+		  *
+		  * Send record command to recordingUnit.
+		  *
+		  * Precondition: isRecordingControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void record( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * stopRecording
+		  *
+		  * Send stop command to recordingUnit during recording.
+		  *
+		  * Precondition: isRecordingControllable()
+		  *
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void stopRecording( in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+		/**
+		  * setRecordingSpeed
+		  *
+		  * Set new recording speed from those available for this RecordingUnit.
+		  *
+		  * precondition: ( isRecordingSpeedControllable() && (recordingSpeedIndex < recordingSpeeds.size() )
+		  *
+		  * @param		unsigned short recordingSpeedIndex
+		  *				Index within recordingSpeedSequence to set speed to.
+          * @param      string sessionId   
+          *             Used to determine if the user has sufficient 
+          *             privileges for this operation.
+		  *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The user does not own the lock for this RecordingUnit.
+          *             2. The RecordingUnit or the protocol does not support this operation.
+          *             3. The RecordingUnit is out of service.
+		  *				4. The agent is in Monitor mode.
+		  *				5. The user does not have sufficient privileges for this operation.
+		  *				6. There is a communications failure with the hardware.
+          *             7. The RecordingUnit address cannot be retrieved from the database.
+		  */
+
+		void setRecordingSpeed( in unsigned short recordingSpeedIndex, in string sessionId )
+			raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+        /**
+          * getConsoleKey
+          *
+          * Gets the key of the Console to which this RecordingUnit is attached.
+          * (0 if this is not a console recording unit)
+          * 
+          * @return     unsigned long
+          *             The unique key of the console to which this RecordingUnit
+          *             is attached or 0 if it is not a Console RecordinUnit.
+          *
+          * @exception  VideoSwitchAgentException
+          *             Thrown if:
+          *             1. The database cannot be accessed.
+          *             2. The data cannot be retrieved.
+          *             3. The retrieved data is invalid.
+          *             4. The agent is in Monitor mode.
+          */
+
+        unsigned long getConsoleKey()
+            raises( TA_Base_Bus::VideoSwitchAgentException ,TA_Base_Core::OperationModeException);
+
+	}; // RecordingUnitCorbaDef
+
+}; // TA_Base_Bus
+
+#endif // !defined(RecordingUnitCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)

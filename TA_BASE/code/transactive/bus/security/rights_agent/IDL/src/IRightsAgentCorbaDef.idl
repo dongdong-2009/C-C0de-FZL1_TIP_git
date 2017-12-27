@@ -1,0 +1,71 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/rights_agent/IDL/src/IRightsAgentCorbaDef.idl $
+// @author:  Nick Jardine
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Operation Rights Agent IDL Interface
+//
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+#include <bus/security/authentication_agent/IDL/src/IAuthenticationAgentCorbaDef.idl>
+module TA_Base_Bus
+{
+    interface IRightsAgentCorbaDef
+    {
+        enum ERightsResponse
+        {
+            Permit,
+            Deny,
+            Indeterminate,
+            NotApplicable
+        };
+
+        enum EDecisionModule
+        {
+            Rights,
+            Mutex
+        };
+
+		exception MonitorModeCall
+		{
+		};
+
+		typedef sequence<unsigned long> ActionSeq;
+		typedef sequence<unsigned long> ResourceSeq;
+
+		// yanrong: called by authentication to inform RightsAgent to update session information.
+		void sessionUpdate(	in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in boolean bSessionEnd )
+			raises ( MonitorModeCall ,TA_Base_Core::OperationModeException);
+
+        ERightsResponse isActionPermittedOnResource(in string sessionId,
+            in unsigned long resoruceKey, in unsigned long actionKey,
+            out string reasonString, out EDecisionModule decisionModule)
+			raises ( MonitorModeCall ,TA_Base_Core::OperationModeException);
+		 ERightsResponse isActionPermittedOnResourceWithoutDuty(in string sessionId,
+            in unsigned long resoruceKey, in unsigned long actionKey,
+            out string reasonString, out EDecisionModule decisionModule)
+			raises ( MonitorModeCall ,TA_Base_Core::OperationModeException);
+		ResourceSeq isActionPermittedOnResources(in string sessionId,
+            in ResourceSeq resoruceKeys, in unsigned long actionKey,
+            out string reasonString, out EDecisionModule decisionModule)
+			raises ( MonitorModeCall ,TA_Base_Core::OperationModeException);
+
+		ActionSeq areActionsPermittedOnResource(in string sessionId, 
+			in unsigned long resourceKey,
+			in ActionSeq actionKeys, out string reasonString,
+			out EDecisionModule decisionModule );
+
+			
+        ERightsResponse isActionPermittedOnLocSub(in string sessionId,
+            in unsigned long actionKey, in unsigned long locationKey, in unsigned long subsystemKey,
+            out string reasonString, out EDecisionModule decisionModule)
+			raises ( MonitorModeCall ,TA_Base_Core::OperationModeException);
+
+    };
+};

@@ -1,0 +1,322 @@
+// ATSBridgeUtil.idl : IDL source for ATSBridgeUtil
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ATSBridgeUtil.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(4C007031-097D-499B-AD44-A44C03CAA6E1),
+	dual,
+	nonextensible,
+	helpstring("IATSIntList Interface"),
+	pointer_default(unique)
+]
+interface IATSIntList : IDispatch{
+	[id(1), helpstring("method Add")] HRESULT Add([in] LONG lVal);
+	[id(2), helpstring("method Clear")] HRESULT Clear(void);
+	[id(3), helpstring("method Remove")] HRESULT Remove([in]LONG lIndex);
+	[id(4), helpstring("method GetSize")] HRESULT GetSize([out,retval] LONG* plRetVal);
+	[id(5), helpstring("method GetItem")] HRESULT GetItem([in]LONG lIndex, [out,retval] LONG* plRetVal);
+	[id(6), helpstring("method SetItemAt")] HRESULT SetItemAt([in] LONG lIndex, [in] LONG lnewVal);
+};
+[
+	object,
+	uuid(E69ED143-BFFB-45B7-B02E-1BB53F979A83),
+	dual,
+	nonextensible,
+	helpstring("IATSStringList Interface"),
+	pointer_default(unique)
+]
+interface IATSStringList : IDispatch{
+	[id(1), helpstring("method Add")] HRESULT Add([in] BSTR bstrVal);
+	[id(2), helpstring("method Clear")] HRESULT Clear(void);
+	[id(3), helpstring("method Remove")] HRESULT Remove([in] LONG lIndex);
+	[id(4), helpstring("method GetSize")] HRESULT GetSize([out,retval] LONG* plRetVal);
+	[id(5), helpstring("method GetItem")] HRESULT GetItem([in] LONG lIndex, [out,retval] BSTR* pbstrRetVal);
+	[id(6), helpstring("method SetItemAt")] HRESULT SetItemAt([in] LONG lIndex, [in] BSTR bstrNewVal);
+};
+[
+	object,
+	uuid(DAB92A0C-C43C-4057-9A7B-78C205C7D2E6),
+	dual,
+	nonextensible,
+	helpstring("IATSDateTime Interface"),
+	pointer_default(unique)
+]
+interface IATSDateTime : IDispatch{
+	[propget, id(1), helpstring("property Year")] HRESULT Year([out, retval] SHORT* pVal);
+	[propput, id(1), helpstring("property Year")] HRESULT Year([in] SHORT newVal);
+	[propget, id(2), helpstring("property Month")] HRESULT Month([out, retval] SHORT* pVal);
+	[propput, id(2), helpstring("property Month")] HRESULT Month([in] SHORT newVal);
+	[propget, id(3), helpstring("property Day")] HRESULT Day([out, retval] SHORT* pVal);
+	[propput, id(3), helpstring("property Day")] HRESULT Day([in] SHORT newVal);
+	[propget, id(4), helpstring("property Hour")] HRESULT Hour([out, retval] SHORT* pVal);
+	[propput, id(4), helpstring("property Hour")] HRESULT Hour([in] SHORT newVal);
+	[propget, id(5), helpstring("property Minute")] HRESULT Minute([out, retval] SHORT* pVal);
+	[propput, id(5), helpstring("property Minute")] HRESULT Minute([in] SHORT newVal);
+	[propget, id(6), helpstring("property Second")] HRESULT Second([out, retval] SHORT* pVal);
+	[propput, id(6), helpstring("property Second")] HRESULT Second([in] SHORT newVal);
+	[propget, id(7), helpstring("property Nanosecond")] HRESULT Nanosecond([out, retval] LONG* pVal);
+	[propput, id(7), helpstring("property Nanosecond")] HRESULT Nanosecond([in] LONG newVal);
+	[id(8), helpstring("method SetDate")] HRESULT SetDate([in] SHORT Year, [in] SHORT Month, [in] SHORT Day, [in] SHORT Hour, [in] SHORT Minute, [in] SHORT Second, [in] LONG NanoSecond);
+};
+[
+	object,
+	uuid(1C1E314D-182C-4ED9-9165-97CEB4E0E14F),
+	dual,
+	nonextensible,
+	helpstring("IATSEvent Interface"),
+	pointer_default(unique)
+]
+interface IATSEvent : IDispatch{
+	[propget, id(1), helpstring("property EventID")] HRESULT EventID([out, retval] BSTR* pVal);
+	[propput, id(1), helpstring("property EventID")] HRESULT EventID([in] BSTR newVal);
+	[propget, id(2), helpstring("property EventType")] HRESULT EventType([out, retval] BSTR* pVal);
+	[propput, id(2), helpstring("property EventType")] HRESULT EventType([in] BSTR newVal);
+	[id(3), helpstring("method GetTimeStamp")] HRESULT GetTimeStamp([in,out] IATSDateTime** pDateTime);
+	[propget, id(4), helpstring("property Asset")] HRESULT Asset([out, retval] BSTR* pVal);
+	[propput, id(4), helpstring("property Asset")] HRESULT Asset([in] BSTR newVal);
+	[propget, id(5), helpstring("property Description")] HRESULT Description([out, retval] BSTR* pVal);
+	[propput, id(5), helpstring("property Description")] HRESULT Description([in] BSTR newVal);
+	[propget, id(6), helpstring("property Operator")] HRESULT Operator([out, retval] BSTR* pVal);
+	[propput, id(6), helpstring("property Operator")] HRESULT Operator([in] BSTR newVal);
+	[propget, id(7), helpstring("property Location")] HRESULT Location([out, retval] BSTR* pVal);
+	[propput, id(7), helpstring("property Location")] HRESULT Location([in] BSTR newVal);
+	[propget, id(8), helpstring("property Value")] HRESULT Value([out, retval] BSTR* pVal);
+	[propput, id(8), helpstring("property Value")] HRESULT Value([in] BSTR newVal);
+	[propget, id(9), helpstring("property SystemName")] HRESULT SystemName([out, retval] BSTR* pVal);
+	[propput, id(9), helpstring("property SystemName")] HRESULT SystemName([in] BSTR newVal);
+	[propget, id(10), helpstring("property SubsystemName")] HRESULT SubsystemName([out, retval] BSTR* pVal);
+	[propput, id(10), helpstring("property SubsystemName")] HRESULT SubsystemName([in] BSTR newVal);
+	[propget, id(11), helpstring("property AlarmID")] HRESULT AlarmID([out, retval] BSTR* pVal);
+	[propput, id(11), helpstring("property AlarmID")] HRESULT AlarmID([in] BSTR newVal);
+	[propget, id(12), helpstring("property AlarmType")] HRESULT AlarmType([out, retval] BSTR* pVal);
+	[propput, id(12), helpstring("property AlarmType")] HRESULT AlarmType([in] BSTR newVal);
+	[propget, id(13), helpstring("property AlarmMMSState")] HRESULT AlarmMMSState([out, retval] SHORT* pVal);
+	[propput, id(13), helpstring("property AlarmMMSState")] HRESULT AlarmMMSState([in] SHORT newVal);
+	[propget, id(14), helpstring("property AlarmAvalancheType")] HRESULT AlarmAvalancheType([out, retval] SHORT* pVal);
+	[propput, id(14), helpstring("property AlarmAvalancheType")] HRESULT AlarmAvalancheType([in] SHORT newVal);
+	[propget, id(15), helpstring("property AlarmSeverity")] HRESULT AlarmSeverity([out, retval] SHORT* pVal);
+	[propput, id(15), helpstring("property AlarmSeverity")] HRESULT AlarmSeverity([in] SHORT newVal);
+	[propget, id(16), helpstring("property OperationalMaintenanceType")] HRESULT OperationalMaintenanceType([out, retval] SHORT* pVal);
+	[propput, id(16), helpstring("property OperationalMaintenanceType")] HRESULT OperationalMaintenanceType([in] SHORT newVal);
+	[propget, id(17), helpstring("property AlarmState")] HRESULT AlarmState([out, retval] SHORT* pVal);
+	[propput, id(17), helpstring("property AlarmState")] HRESULT AlarmState([in] SHORT newVal);
+};
+[
+	object,
+	uuid(1F63D5C7-09DB-4514-A0DB-A1CE0B00F5D2),
+	dual,
+	nonextensible,
+	helpstring("IATSEventList Interface"),
+	pointer_default(unique)
+]
+interface IATSEventList : IDispatch{
+	[id(1), helpstring("method Add")] HRESULT Add([in] IATSEvent* pATSEvent);
+	[id(2), helpstring("method Clear")] HRESULT Clear(void);
+	[id(3), helpstring("method Remove")] HRESULT Remove(LONG lIndex);
+	[id(4), helpstring("method GetSize")] HRESULT GetSize([out,retval] LONG* plRetVal);
+	[id(5), helpstring("method GetItem")] HRESULT GetItem([in] LONG lIndex, [in,out] IATSEvent** pATSEvent);
+	[id(6), helpstring("method SetItemAt")] HRESULT SetItemAt([in] LONG lIndex, [in] IATSEvent* pATSEvent);
+};
+[
+	object,
+	uuid(ED06D7FD-69BE-4D64-801A-1C9FA0E3CB2D),
+	dual,
+	nonextensible,
+	helpstring("IATSEventSystem Interface"),
+	pointer_default(unique)
+]
+interface IATSEventSystem : IDispatch{
+	[propget, id(1), helpstring("property Name")] HRESULT Name([out, retval] BSTR* pVal);
+	[propput, id(1), helpstring("property Name")] HRESULT Name([in] BSTR newVal);
+	[id(2), helpstring("method GetSubSystemList")] HRESULT GetSubSystemList([in,out] IATSStringList** pSubSystemList);
+};
+[
+	object,
+	uuid(BCB1B984-E91F-4210-AA2C-95686713F022),
+	dual,
+	nonextensible,
+	helpstring("IATSEventSystemList Interface"),
+	pointer_default(unique)
+]
+interface IATSEventSystemList : IDispatch{
+	[id(1), helpstring("method Add")] HRESULT Add([in] IATSEventSystem* pATSEventSystem);
+	[id(2), helpstring("method Clear")] HRESULT Clear(void);
+	[id(3), helpstring("method Remove")] HRESULT Remove([in]LONG lIndex);
+	[id(4), helpstring("method GetSize")] HRESULT GetSize([out,retval] LONG* plRetVal);
+	[id(5), helpstring("method GetItem")] HRESULT GetItem(LONG lIndex, [in,out] IATSEventSystem** pATSEventSystem);
+	[id(6), helpstring("method SetItemAt")] HRESULT SetItemAt([in] LONG lIndex, [in] IATSEventSystem* pATSEventSystem);
+};
+[
+	object,
+	uuid(71ADC320-6B34-4D62-86D5-2B82034F88D3),
+	dual,
+	nonextensible,
+	helpstring("IATSFilterCriteria Interface"),
+	pointer_default(unique)
+]
+interface IATSFilterCriteria : IDispatch{
+	[propget, id(1), helpstring("property StartTimePeriodDefined")] HRESULT StartTimePeriodDefined([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(1), helpstring("property StartTimePeriodDefined")] HRESULT StartTimePeriodDefined([in] VARIANT_BOOL newVal);
+	[id(2), helpstring("method GetStartTimePeriod")] HRESULT GetStartTimePeriod([in,out] IATSDateTime** pDateTime);
+	[propget, id(3), helpstring("property EndTimePeriodDefined")] HRESULT EndTimePeriodDefined([out, retval] VARIANT_BOOL* pVal);
+	[propput, id(3), helpstring("property EndTimePeriodDefined")] HRESULT EndTimePeriodDefined([in] VARIANT_BOOL newVal);
+	[id(4), helpstring("method GetEndTimePeriod")] HRESULT GetEndTimePeriod([in,out] IATSDateTime** pDateTime);
+	[id(5), helpstring("method GetEventTypeEqualOr")] HRESULT GetEventTypeEqualOr([in,out] IATSStringList** pStringList);
+	[id(6), helpstring("method GetAssetEqualOr")] HRESULT GetAssetEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(7), helpstring("method GetDescriptionEqualOr")] HRESULT GetDescriptionEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(8), helpstring("method GetOperatorEqualOr")] HRESULT GetOperatorEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(9), helpstring("method GetLocationEqualOr")] HRESULT GetLocationEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(10), helpstring("method GetValueEqualOr")] HRESULT GetValueEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(11), helpstring("method GetSystemNameEqualOr")] HRESULT GetSystemNameEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(12), helpstring("method GetSubsystemNameEqualOr")] HRESULT GetSubsystemNameEqualOr([in] IATSStringList** pATSStringList);
+	[id(13), helpstring("method GetAlarmIDEqualOr")] HRESULT GetAlarmIDEqualOr([in,out] IATSStringList** pATSStringList);
+	[id(14), helpstring("method OperationalMaintenanceTypeEqualOr")] HRESULT GetOperationalMaintenanceTypeEqualOr([in,out] IATSIntList** pATSIntList);
+	[id(15), helpstring("method GetAlarmStateEqualOr")] HRESULT GetAlarmStateEqualOr([in,out] IATSIntList** pATSIntList);
+	[id(16), helpstring("method GetAlarmAvalancheTypeEqualOr")] HRESULT GetAlarmAvalancheTypeEqualOr([in,out] IATSIntList** pATSIntList);
+	[id(17), helpstring("method GetAlarmSeverityEqualOr")] HRESULT GetAlarmSeverityEqualOr([in,out] IATSIntList** pATSIntList);
+	[id(18), helpstring("method GetAlarmTypeEqualOr")] HRESULT GetAlarmTypeEqualOr([in,out] IATSStringList** pATSStringList);
+};
+[
+	object,
+	uuid(CA7A7E62-9A1D-487C-B8B7-E8E24A4D0A26),
+	dual,
+	nonextensible,
+	helpstring("IATSBridgeUtility Interface"),
+	pointer_default(unique)
+]
+interface IATSBridgeUtility : IDispatch{
+	[id(1), helpstring("method DoForwardPageQuery")] HRESULT DoForwardPageQuery([in] IATSFilterCriteria* filterCriteria, [in] BSTR atsEventID, [in] LONG length, [in,out] IATSEventList** pAtsEvents, [out,retval] LONG* pRetVal);
+	[id(2), helpstring("method DoForwardPageQueryDate")] HRESULT DoForwardPageQueryDate([in] IATSFilterCriteria* filterCriteria, [in] IATSDateTime* startTime, LONG length, [in,out] IATSEventList** atsEvents, [out,retval] LONG* pRetVal);
+	[id(3), helpstring("method DoPreviousPageQuery")] HRESULT DoPreviousPageQuery([in] IATSFilterCriteria* pfilterCriteria, [in] BSTR atsEventID, LONG length, [in,out] IATSEventList** pATSEvents, [out,retval] LONG* pRetVal);
+	[id(4), helpstring("method DoPreviousPageQueryDate")] HRESULT DoPreviousPageQueryDate([in] IATSFilterCriteria* pfilterCriteria, [in] IATSDateTime* pEndTime, LONG length, [in,out] IATSEventList** pATSEvents, [out,retval] LONG* pRetVal);
+	[id(5), helpstring("method DoStartTimeEndTimeQuery")] HRESULT DoStartTimeEndTimeQuery([in] IATSFilterCriteria* pfilterCriteria, [in] IATSDateTime* pStartTime, [in] IATSDateTime* pEndTime, [in,out] IATSEventList** pATSEvents, [out,retval] LONG* pRetVal);
+	[id(6), helpstring("method DoStatisticsQuery")] HRESULT DoStatisticsQuery([in] IATSFilterCriteria* pfilterCriteria, [in] IATSDateTime* pStartTime, [in] IATSDateTime* pEndTime, [in,out] LONG* pEventCount, [out,retval] LONG* pRetVal);
+	[id(7), helpstring("method DoEventInfoQuery")] HRESULT DoEventInfoQuery([in,out] IATSEventSystemList** pEventSystems, [in,out] IATSStringList** pEventTypes, [in,out] IATSStringList** pAlarmTypes, [out,retval] LONG* plVal);
+	[id(8), helpstring("method DoAlarmInfoQuery")] HRESULT DoAlarmInfoQuery([in,out] IATSStringList** pAlarmTypes, [out,retval] LONG* plVal);
+	//[id(9), helpstring("method TestInt")] HRESULT TestInt([in] IATSIntList * pIntList, [in,out] IATSIntList ** pIntListRes);
+	//[id(10), helpstring("method TestString")] HRESULT TestString([in] IATSStringList* pStringList, [in,out] IATSStringList** pStringListRet);
+	//[id(11), helpstring("method TestEvent")] HRESULT TestEvent([in] IATSEvent* pEvent, [in,out] IATSEvent** pEventRet);
+	//[id(12), helpstring("method TestDateTime")] HRESULT TestDateTime([in] IATSDateTime* pDateTime, [in,out] IATSDateTime** pDateTimeRet);
+	//[id(13), helpstring("method TestEventSystem")] HRESULT TestEventSystem([in] IATSEventSystem* pEventSystem, [in,out] IATSEventSystem** pEventSystemRet);
+	//[id(14), helpstring("method TestEventList")] HRESULT TestEventList([in] IATSEventList* pEventList, [in,out] IATSEventList** pEventListRet);
+	//[id(15), helpstring("method TestEventSystemList")] HRESULT TestEventSystemList([in] IATSEventSystemList* pEventSystems, [in,out] IATSEventSystemList** pEventSystemsRet);
+	//[id(16), helpstring("method TestFilterCriteria")] HRESULT TestFilterCriteria([in] IATSFilterCriteria* pFilterCriteria, [in,out] IATSFilterCriteria** pFilterCriteriaRet);
+};
+[
+	object,
+	uuid(68A6F3FD-1A22-4F98-B29F-F1D8961465F7),
+	dual,
+	nonextensible,
+	helpstring("IATSEventSubscription Interface"),
+	pointer_default(unique)
+]
+interface IATSEventSubscription : IDispatch{
+	[id(1), helpstring("method startSubscription")] HRESULT startSubscription([in] IATSFilterCriteria* pfilterCriteria, [in] LONG backloglength, [in,out] IATSEventList** pATSEvents, [out,retval] LONG* pRetVal);
+	[id(2), helpstring("method stopSubscription")] HRESULT stopSubscription([out,retval] LONG* plVal);
+};
+[
+	uuid(56D26B63-492F-46F9-B16F-04C3503A9376),
+	version(1.0),
+	helpstring("ATSBridgeUtil 1.0 Type Library")
+]
+library ATSBridgeUtilLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(78F5E6DA-3BE1-4066-911C-3E2D5EEC984F),
+		helpstring("ATSIntList Class")
+	]
+	coclass ATSIntList
+	{
+		[default] interface IATSIntList;
+	};
+	[
+		uuid(77C5CBB3-7529-4A6E-9522-2E28975FA043),
+		helpstring("ATSStringList Class")
+	]
+	coclass ATSStringList
+	{
+		[default] interface IATSStringList;
+	};
+	[
+		uuid(AA1D6690-6FDA-4B5E-986D-9387DB65B80E),
+		helpstring("ATSEvent Class")
+	]
+	coclass ATSEvent
+	{
+		[default] interface IATSEvent;
+	};
+	[
+		uuid(8E89F9A8-DBB2-4B6B-A524-CE6ECE715EDE),
+		helpstring("ATSDateTime Class")
+	]
+	coclass ATSDateTime
+	{
+		[default] interface IATSDateTime;
+	};
+	[
+		uuid(C68EFDF1-91D1-4DB4-9698-E28CDECC69F5),
+		helpstring("ATSEventList Class")
+	]
+	coclass ATSEventList
+	{
+		[default] interface IATSEventList;
+	};
+	[
+		uuid(C988D859-E440-4797-AF37-2F32DE9840BF),
+		helpstring("ATSEventSystem Class")
+	]
+	coclass ATSEventSystem
+	{
+		[default] interface IATSEventSystem;
+	};
+	[
+		uuid(65203707-C1FA-45AE-9492-E77B2CB9D8E7),
+		helpstring("ATSEventSystemList Class")
+	]
+	coclass ATSEventSystemList
+	{
+		[default] interface IATSEventSystemList;
+	};
+	[
+		uuid(45A9A577-30B8-4DC1-B3F0-737CCD0E6557),
+		helpstring("ATSFilterCriteria Class")
+	]
+	coclass ATSFilterCriteria
+	{
+		[default] interface IATSFilterCriteria;
+	};
+	[
+		uuid(23B16F05-40CA-47B2-8FB4-9DE37C67CADE),
+		helpstring("ATSBridgeUtility Class")
+	]
+	coclass ATSBridgeUtility
+	{
+		[default] interface IATSBridgeUtility;
+	};
+	[
+		uuid(3EC07762-AE4B-4B52-8D4F-9BE37460143E),
+		helpstring("_IATSEventSubscriptionEvents Interface")
+	]
+	dispinterface _IATSEventSubscriptionEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method EventUpdate")] HRESULT EventUpdate(SHORT error, IATSEventList* pATSEvents);
+	};
+	[
+		uuid(DF8AE25F-804E-48FE-9C0D-400F0A25FA49),
+		helpstring("ATSEventSubscription Class")
+	]
+	coclass ATSEventSubscription
+	{
+		[default] interface IATSEventSubscription;
+		[default, source] dispinterface _IATSEventSubscriptionEvents;
+	};
+};

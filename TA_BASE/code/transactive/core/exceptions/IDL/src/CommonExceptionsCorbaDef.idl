@@ -1,0 +1,85 @@
+#ifndef TA_CORE_COMMON_EXCEPTIONS_IDL
+#define TA_CORE_COMMON_EXCEPTIONS_IDL
+
+/**
+ * The source code in this file is the property of 
+ * Ripple Systems and is not for redistribution
+ * in any form.
+ *
+ * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl $
+ * @author:  Cameron Rochester
+ * @version: $Revision: #1 $
+ *
+ * Last modification: $DateTime: 2015/01/19 17:43:23 $
+ * Last modified by:  $Author: CM $
+ * 
+ * Collection of Common CORBA exceptions.
+ */
+module TA_Base_Core
+{
+	/**
+	* AccessDeniedException
+	*
+	* Thrown when the operator performing the action does not have
+	* permission.
+	*/
+	exception AccessDeniedException
+	{
+		string reason;
+	};
+
+	/**
+	* OperationNotSupportedException
+	*
+	* Thrown when an operation performed on an object is not supported
+	* for any reason
+	*/
+	exception OperationNotSupportedException
+	{
+		string reason;
+	};
+
+	/**
+	* BadParameterException
+	*
+	* Thrown when a parameter provided to the operation is invalid
+	* for any reason including range errors, etc
+	*/
+	exception BadParameterException
+	{
+		string reason;
+	};
+
+	/**
+	* NotAvailableException
+	*
+	* Thrown if the requested information is not available
+	*/
+	exception NotAvailableException
+	{
+		string reason;
+	};
+
+	/**
+	* DatabaseErrorException
+	*
+	* Thrown if you want the client to know when a Database error
+	* has occured during a request
+	*/
+	exception DatabaseErrorException
+	{
+		string reason;
+	};
+
+	/**
+	* IncorrectModeException
+	*
+	* Thrown when an operation is performed on an object when 
+	* the agent is not in control mode
+	*/
+	exception OperationModeException
+	{
+		string reason;
+	};
+};
+#endif //#define TA_CORE_COMMON_EXCEPTIONS_IDL

@@ -1,0 +1,65 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: app.alarm.alarm_agent.AlarmAgent - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP50A.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GR /GX /ZI /Od /I "..\..\.." /I "../../../.." /I "../../../../../build/win32_n/transactive" /I "../../../../../build/win32_n/transactive/core/data_access_interface/planagent/IDL/src" /I "../../../../../build/win32_n/transactive/core/process_management/IDL/src" /I "../../../../../build/win32_n/transactive/core/exceptions/IDL/src" /I "../../../../../build/win32_n/transactive/core/alarm/IDL/src" /I "../../../../../build/win32_n/transactive/core/message/IDL/src" /I "../../../../../build/win32_n/transactive/bus/maintenance_management/mmscorbadef/IDL/src" /I "../../../../../build/win32_n/transactive/bus/response_plans/plan_manager/IDL/src" /I "../../../../../build/win32_n/transactive/bus/security/duty_agent/IDL/src" /I "../../../../../build/win32_n/transactive/bus/security/authentication_agent/IDL/src" /I "../../../../../build/win32_n/transactive/bus/cctv/video_switch_agent/IDL/src" /I "..\..\..\..\cots\omniORB\omniORB_4.0.5\include" /I "..\..\..\..\cots\ACE\5_3\ACE_wrappers\\" /I "..\..\..\..\cots\boost\boost_1_31_0" /D "_DEBUG" /D "__WIN32__" /D "__x86__" /D "_NT_" /D __OSVERSION__=4 /D "WIN32" /D "_CONSOLE" /D "_MBCS" /FR"../../../../../build/win32_nd/transactive/app/alarm/alarm_agent/" /Fo"../../../../../build/win32_nd/transactive/app/alarm/alarm_agent/" /Fd"../../../../../build/win32_nd/transactive/app/alarm/alarm_agent/" /FD /GZ /c 
+"D:\coderoot\PRIV_ALARM_STORE_ISSUE\transactive\app\alarm\alarm_agent\src\AlarmAgent.cpp"
+"D:\coderoot\PRIV_ALARM_STORE_ISSUE\transactive\app\alarm\alarm_agent\src\main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP50A.tmp" 
+Creating temporary file "C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP50B.tmp" with contents
+[
+aced.lib omniORB405_rtd.lib omniDynamic405_rtd.lib COS405_rtd.lib omnithread30_rtd.lib oci.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Rpcrt4.lib TA_Base_Core_d.lib TA_Base_Bus_d.lib winmm.lib /nologo /subsystem:console /incremental:yes /pdb:"../../../../../bin/win32_nd/AlarmAgent.pdb" /debug /debugtype:both /machine:I386 /out:"../../../../../bin/win32_nd/AlarmAgent.exe" /pdbtype:sept /libpath:"../../../../../sdk/win32_nd" /libpath:"../../../../cots/omniORB/omniORB_4.0.5/lib/x86_win32" /libpath:"../../../../cots/oracle/920/winnt/lib" /libpath:"../../../../cots/ACE/5_3/ACE_wrappers/ace" /libpath:"..\..\..\..\cots\boost\boost_1_31_0\libs\Winnt40" 
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AbstractRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AlarmAgent.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AlarmAgentException.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AlarmAgentImpl.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AlarmCache.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AlarmCacheCapacityExceededException.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AlarmQueue.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AutoAcknowledgeRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\AvalancheSuppressionRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\CCTVRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\DatabaseLoader.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\main.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\MMSRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\PlanExecutionRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\RuleRepository.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\RuleTimer.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\SuppressionRule.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\TransactionQueue.obj
+\coderoot\build\win32_nd\transactive\app\alarm\alarm_agent\VersionGen.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\chenlei\LOCALS~1\Temp\RSP50B.tmp"
+<h3>Output Window</h3>
+Compiling...
+AlarmAgent.cpp
+main.cpp
+d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\main.cpp(41) : error C2259: 'AlarmAgent' : cannot instantiate abstract class due to following members:
+        d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\alarmagent.h(42) : see declaration of 'AlarmAgent'
+d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\main.cpp(41) : warning C4259: 'void __thiscall TA_Base_Bus::IGenericAgentUser::checkOperationMode(void)' : pure virtual function was not defined
+        d:\coderoot\priv_alarm_store_issue\transactive\bus\generic_agent\src\igenericagentuser.h(49) : see declaration of 'checkOperationMode'
+d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\main.cpp(41) : warning C4259: 'class TA_Base_Bus::IEntity *__thiscall TA_Base_Bus::IGenericAgentUser::createEntity(class boost::shared_ptr<class TA_Base_Core::IEntityData>)' : pure virtual function was not defined
+        d:\coderoot\priv_alarm_store_issue\transactive\bus\generic_agent\src\igenericagentuser.h(114) : see declaration of 'createEntity'
+d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\main.cpp(41) : error C2259: 'AlarmAgent' : cannot instantiate abstract class due to following members:
+        d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\alarmagent.h(42) : see declaration of 'AlarmAgent'
+d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\main.cpp(41) : warning C4259: 'void __thiscall TA_Base_Bus::IGenericAgentUser::checkOperationMode(void)' : pure virtual function was not defined
+        d:\coderoot\priv_alarm_store_issue\transactive\bus\generic_agent\src\igenericagentuser.h(49) : see declaration of 'checkOperationMode'
+d:\coderoot\priv_alarm_store_issue\transactive\app\alarm\alarm_agent\src\main.cpp(41) : warning C4259: 'class TA_Base_Bus::IEntity *__thiscall TA_Base_Bus::IGenericAgentUser::createEntity(class boost::shared_ptr<class TA_Base_Core::IEntityData>)' : pure virtual function was not defined
+        d:\coderoot\priv_alarm_store_issue\transactive\bus\generic_agent\src\igenericagentuser.h(114) : see declaration of 'createEntity'
+Generating Code...
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+AlarmAgent.exe - 2 error(s), 4 warning(s)
+</pre>
+</body>
+</html>

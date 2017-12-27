@@ -1,0 +1,1093 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{6eb07d41-df91-4d6f-9944-37a48f9418ab}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="AccessFactories">
+      <UniqueIdentifier>{3b408015-d07d-45f3-b79f-67fa3389e8ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HelperClasses">
+      <UniqueIdentifier>{731c5434-db59-41cf-9578-c8e0bcf60f65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{030b8481-6dc1-4dde-b659-c9623b619403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{d34af067-6999-467d-b8a5-141dcae75339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SQLHelper">
+      <UniqueIdentifier>{4cb6a28b-cbf6-49c0-ace5-c687a436a072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MMS">
+      <UniqueIdentifier>{e7e58b21-1152-4d16-af7d-8abeb9dcf594}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Action.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmDisplayFilterData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmSeverityData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmStateData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmTypeData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CombinedEventData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigActionGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigAlarmSeverityData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigAlarmType.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigChangesTypes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigECSStationColourData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigEquipReport.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigEquipReportData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigEventColourData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigGlobalParameter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigGui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigLocation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigMessageType.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigOnlinePrintCfg.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigOnlinePrinter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigOperator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigProfile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigProfileGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigRights.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigScadaDisplay.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigSubsystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataPointStateChangeData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ECSStationColourData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquipReport.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquipReportData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventColourData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlobalParameter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Gui.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Location.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageTypeData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NamedFilter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NamingPort.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OnlinePrintCfg.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OnlinePrinter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OPCEntityDataAccessFactory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Operator.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OperatorPassword.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerDemandData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Profile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProfileGroup.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Region.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReportDirectory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReportFile.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Resource.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScadaBusinessItem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScadaBusinessManagerAccessFactory.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScadaBusinessManagerAccessFactoryImpl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScadaDisplay.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SchematicDisplayMaps.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Session.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Subsystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SubsystemState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SystemData.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionGroupAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmDisplayFilterAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmSeverityAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmStateAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmTypeAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CombinedEventAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DataPointStateChangeAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ECSStationColourAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquipReportAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquipReportDataAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventColourAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlobalParameterAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LocationAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageTypeAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModbusServerAnaloguePoint.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModbusServerPoint.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModbusServerPointAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NamedFilterAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NamingPortAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OnlinePrintCfgAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OnlinePrinterAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OperatorAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OperatorPasswordAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PowerDemandAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProfileAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProfileGroupAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RegionAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReportDirectoryAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ReportFileAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RightsAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScadaDisplayAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SchematicDisplayMapAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SecuritySettingAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SessionAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SubsystemAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SubsystemStateAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SystemAccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\T6AccessFactory.cpp">
+      <Filter>AccessFactories</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionGroupHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ActionHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmSeverityHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AlarmTypeHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ECSStationColourHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquipReportDataHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EquipReportHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventColourHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlobalParameterHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GuiHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LocationHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MessageTypeHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OnlinePrintCfgHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OnlinePrinterHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OperatorHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProfileGroupHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProfileHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RegionHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ResourceHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScadaDisplayHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SubsystemHelper.cpp">
+      <Filter>HelperClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DatabaseFactory.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DbConnection.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DbConnectionStrings.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DbStatus.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleDbData.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleDbDatabase.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLCode.cpp">
+      <Filter>SQLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLFileHelper.cpp">
+      <Filter>SQLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLParamsHelper.cpp">
+      <Filter>SQLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLTypeAdapter.cpp">
+      <Filter>SQLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLUtilityFun.cpp">
+      <Filter>SQLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SQLVarParms.cpp">
+      <Filter>SQLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MmsRequestAccessFactory.cpp">
+      <Filter>MMS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MmsRequestAlarmData.cpp">
+      <Filter>MMS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MmsRequestScheduledData.cpp">
+      <Filter>MMS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MmsRequestSchematicData.cpp">
+      <Filter>MMS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Action.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionGroup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmDisplayFilterData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmSeverityData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmStateData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmTypeData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CombinedEventData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigActionGroup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigAlarmSeverityData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigAlarmType.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigChangesTypes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigECSStationColourData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigEquipReport.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigEquipReportData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigEventColourData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigGlobalParameter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigGui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigLocation.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigMessageType.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigOnlinePrintCfg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigOnlinePrinter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigOperator.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigProfile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigProfileGroup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigRights.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigScadaDisplay.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigSubsystem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataPointStateChangeData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ECSStationColourData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquipReport.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquipReportData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventColourData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlobalParameter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Gui.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IApplicationObserver.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\INamingPort.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IScadaBusinessItem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ISubsystemState.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Location.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessageData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessageTypeData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NamedFilter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NamingPort.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OnlinePrintCfg.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OnlinePrinter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OPCEntityDataAccessFactory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Operator.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OperatorPassword.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PowerDemandData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Profile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProfileGroup.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Region.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReportDirectory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReportFile.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resource.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScadaBusinessItem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScadaBusinessManagerAccessFactory.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScadaBusinessManagerAccessFactoryImpl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScadaDisplay.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SchematicDisplayMaps.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Session.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Subsystem.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SubsystemState.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SystemData.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionGroupAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmDisplayFilterAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmSeverityAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmStateAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmTypeAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CombinedEventAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataPointStateChangeAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ECSStationColourAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquipReportAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquipReportDataAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventColourAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlobalParameterAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GuiAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IMessageAccessFactoryUser.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IModbusServerAnaloguePoint.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IModbusServerPoint.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LocationAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessageAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessageTypeAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ModbusServerAnaloguePoint.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ModbusServerPoint.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ModbusServerPointAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NamedFilterAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NamingPortAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OnlinePrintCfgAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OnlinePrinterAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OperatorAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OperatorPasswordAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PowerDemandAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProfileAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProfileGroupAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RegionAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReportDirectoryAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ReportFileAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ResourceAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RightsAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScadaDisplayAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SchematicDisplayMapAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SecuritySettingAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SessionAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SubsystemAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SubsystemStateAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SystemAccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\T6AccessFactory.h">
+      <Filter>AccessFactories</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionGroupHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ActionHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmSeverityHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AlarmTypeHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ECSStationColourHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquipReportDataHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EquipReportHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EventColourHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlobalParameterHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GuiHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IAction.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LocationHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MessageTypeHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OnlinePrintCfgHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OnlinePrinterHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OperatorHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProfileGroupHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProfileHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RegionHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ResourceHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ScadaDisplayHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SubsystemHelper.h">
+      <Filter>HelperClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IActionGroup.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IAlarmData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IAlarmDisplayFilterData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IAlarmSeverityData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IAlarmTypeData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICamera.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ICombinedEventData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigAlarmType.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigDuty.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigECSStationColourData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigEquipReport.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigEquipReportData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigEventColourData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigGlobalParameter.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigGui.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigItem.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling_agent\src\IConfigJobData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigLocation.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigMessageType.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigOnlinePrintCfg.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigOnlinePrinter.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigOperator.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigProfile.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigProfileGroup.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigRights.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigScadaDisplay.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling_agent\src\IConfigScheduleData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IConfigSubsystem.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IDatabase.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IDatabaseCallbackUser.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IDataPointStateChangeData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IECSStationColourData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IEquipReport.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IEquipReportData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IEventColourData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IGlobalParameter.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IGui.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IItem.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="scheduling_agent\src\IJobData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ILocation.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IMessageData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IMessageTypeData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IOnlinePrintCfg.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IOnlinePrinter.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IOperator.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IOperatorPassword.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IPowerDemandData.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IProfile.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IProfileGroup.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IRegion.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IReportDirectory.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IReportFile.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IResource.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IRights.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IScadaDisplay.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ISchematicDisplayMaps.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ISession.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ISubsystem.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DatabaseFactory.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataTypeEnums.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DataTypesLookup.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DbConnection.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DbConnectionStrings.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DBCounterTypes.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DbStatus.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SimpleDbData.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SimpleDbDatabase.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLCode.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLCommonDef.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sqldef.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLFileHelper.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLParamsHelper.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLTypeAdapter.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLUtilityFun.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SQLVarParms.h">
+      <Filter>SQLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MmsRequestAccessFactory.h">
+      <Filter>MMS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MmsRequestAlarmData.h">
+      <Filter>MMS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MmsRequestScheduledData.h">
+      <Filter>MMS</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MmsRequestSchematicData.h">
+      <Filter>MMS</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

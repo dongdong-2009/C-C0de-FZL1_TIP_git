@@ -1,0 +1,74 @@
+#if !defined(GenericMessage_58720913_46C4_44df_B05B_6C97100249C3__INCLUDED_)
+#define GenericMessage_58720913_46C4_44df_B05B_6C97100249C3__INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/core/message/IDL/src/GenericMessageCorbaDef.idl $
+  * @author:  Cameron Rochester
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  * 
+  * Generic Message is the generalised Message class. 
+  * The Transactive libraries or client applications 
+  * should never use GenericMessage. If the existing
+  * specialised classes are not suitable then a new 
+  * Message should be created and documented.
+  */
+
+module TA_Base_Core
+{
+		/**
+		 * Equivalent of the time_t construct
+		 */
+		typedef unsigned long DateTime;
+
+
+		/**
+		 * Equivalent of the timeb construct
+		 */		
+		struct MillisecondTime
+		{
+			DateTime time;
+			unsigned short millitm;
+		};
+
+		/**
+		 * a simple string sequence
+		 */
+		typedef sequence<string> StringSequence;
+		
+		/**
+		 * The type of modification that has occured
+		 */
+		enum EModificationType
+		{
+			Update,
+			Create,
+			Delete
+		};
+
+		struct DescriptionPair
+		{
+			/**
+			* This is the placeholder in the desription string
+			* ie: "This is a [ replaceMe ] description";
+			*
+			* if placeHolder is "replaceMe" and value is "interesting" 
+			* the expanded string would be
+			* -	"This is a interesting description"
+			* 
+			*/
+			string placeHolder;
+			string value;
+		};
+
+		typedef sequence<DescriptionPair> DescriptionPairSeq;
+
+}; // module TA_Base_Core
+
+#endif // !defined(GenericMessage_58720913_46C4_44df_B05B_6C97100249C3__INCLUDED_)

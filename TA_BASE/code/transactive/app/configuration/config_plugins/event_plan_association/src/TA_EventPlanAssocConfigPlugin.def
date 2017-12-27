@@ -1,0 +1,7 @@
+; TA_EventPlanAssocConfigPlugin.def : Declares the module parameters for the DLL.
+
+LIBRARY      "TA_EventPlanAssocConfigPlugin"
+DESCRIPTION  'TA_EventPlanAssocConfigPlugin Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here

@@ -1,0 +1,252 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $Source$
+  * @author:  Robert van Hugten
+  * @version: $Revision$
+  *
+  * Last modification: $Date$
+  * Last modified by:  $Author$
+  *
+  */
+
+#if !defined(ITrainDriverCallCorba_Idl)
+#define ITrainDriverCallCorba_Idl
+
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainCommonCorba.idl"
+#include "bus/trains/TrainAgentCorba/idl/src/ITrainExceptionsCorba.idl"
+#include "bus/radio/RadioAgentCorbaDef_4669/idl/src/IRadioSessionCorbaDef.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus
+{
+    /**
+     * Interface for commands used by Trainborne Radio operations
+     * @author Robert van Hugten
+     * @version 1.0
+     * @created 13-Nov-2007 3:49:39 PM
+     */
+    interface ITrainDriverCallCorba
+    {
+        /**
+         * This indicates an OCC call request has been activated or updated.
+         * It is sent to the call banner and Radio Manager to display the call request.
+         * Additional information about the train can be obtained from the train selection component.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 18-Mar-2008 3:18:04 PM
+         */
+        struct OccCallRequest
+        {
+            ITrainCommonCorba::TrainId trainId;
+            long timestamp;
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        typedef sequence<OccCallRequest> OccCallRequestList;
+
+        /**
+         * This indicates an OCC call request has been answered or cancelled.
+         * Radio Manager and banner should remove the call entry.
+         * @author Robert van Hugten
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        struct OccCallReset
+        {
+            ITrainCommonCorba::TrainId trainId;
+        };
+
+        /**
+         * A list of normal non-train radio users
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        typedef sequence<string> ItsiList;
+
+        /**
+         * Represents the result of a call train command
+         * @author Adam Radics
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        enum EVoiceCallResult
+        {
+            // A call train response was received, and the call is proceeding
+            CallTrainProceeding,
+            // A call train response was received, and the call failed due to the audio being
+            // in use.
+            CallTrainAudioRouteInUse,
+            // A call train response was received, and the call failed due to the audio being
+            // in use, it will succeed if an option to override is given.
+            CallTrainAudioRouteInUseOptionToOverride,
+            // A call train response was received, and the call failed due to the call being
+            // reset
+            CallTrainReset,
+            // A bad command response was received, with a bad checksum error.
+            BadCommandBadChecksum,
+            // A bad command response was received, with an unknown command error.
+            BadCommandUnknownCommand,
+            // A bad command response was received, with a bad parameter error.
+            BadCommandBadParameter,
+            // A bad command response was received, with an unexpected command error.
+            BadCommandUnexpectedCommand,
+            InvalidTrainError,
+            TransmissionFailureError,
+            TransactionTimeoutError,
+            TransactionCancelledError,
+            MpuChangeoverError
+        };
+
+        /**
+         * The result of a voice call to a single train
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        struct VoiceCallResponse
+        {
+            // The ID of the train
+            ITrainCommonCorba::TrainId trainId;
+            // The result of the command, whether it succeeded, or the error type if it failed
+            EVoiceCallResult result;
+            // Optional extra information for debug logging purposes
+            string details;
+        };
+
+        /**
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        typedef sequence<VoiceCallResponse> VoiceCallResponseList;
+
+        /**
+         * The result of a call to one or more trains. Each train that was included in the
+         * call request will have an entry here.
+         * @author adamr
+         * @version 1.0
+         * @created 13-Nov-2007 3:49:39 PM
+         */
+        struct DriverCallResult
+        {
+            // The console ID the call was made from. 0 if no call made.
+            unsigned long consoleId;
+            // The call ID of the call. 0 if no call made.
+            unsigned long callId;
+            // Result of the operation on each train
+            VoiceCallResponseList resultList;
+        };
+
+
+        /**
+         * FlexibleTimeoutNamedObject calls this method to calculate the timoeut value
+         * based on the current configuration
+         */
+        unsigned short getFlexibleTimeOutValue()
+        	raises (TA_Base_Core::OperationModeException);
+
+        /**
+         * This will retrieve all active OCC call requests.
+         * 
+         * @return a sequence of OCC call requests
+         */
+        OccCallRequestList getAllOccCallRequests()
+			raises (TA_Base_Core::OperationModeException);//limin
+
+        /**
+         * This will answer the outstanding OCC call request for the given train.
+         * 
+         * @exception ITrainExceptionsCorba::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidTrainException if the train ID given is not known or there is no outstanding call request for this train
+         * @exception ITrainExceptionsCorba::TransmissionFailureException if there was a failure sending the command to the train
+         * @exception ITrainExceptionsCorba::TrainRadioException if the radio call failed
+         * 
+         * @param trainId    The train whos OCC call request we are going to answer.
+         * @param sessionId    The session ID of the operator answering the call
+         */
+        void answerOccCallRequest(in ITrainCommonCorba::TrainId trainId,
+								  in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidTrainException,
+					ITrainExceptionsCorba::TransmissionFailureException,
+					ITrainExceptionsCorba::TrainRadioException);
+
+        /**
+         * Sets up a call to a train or a group of trains.
+         * This will set up a call the given trains, and make a DGNA containing the TSI of each successfully set up train, and also the individual subscribers given.
+         * It will then call the resulting group.
+         * 
+         * If only one train is given, or only one train succeeds in the setup (and there are no individual subscribers) a direct call will be made to the train.
+         * 
+         * @return the overall result of the operation, including the result of each specific train
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::TrainRadioException if the DGNA or radio call failed
+         * 
+         * @param trainList    A list of trains that the call will go to
+         * @param individualSubscribers    These are the non-train subscribers that will be included in the DGNA.
+         * @param override    Whether to send a request or an override
+         * @param callType    The type of radio call to make (eg acknowledged/unacknowledged)
+         * This can be overridden by the train agent if the given type does not match the call that will be made (ie Single call is given and a group will be called)
+         * @param callPriority    The call priority for the radio call
+         * @param sessionId    The operator making the call
+         */
+        DriverCallResult makeDgnaDriverCall(in ITrainCommonCorba::TrainList trainList,
+										in ItsiList individualSubscribers, 
+										in boolean override, 
+										in TA_Base_Bus::IRadioSessionCorbaDef::ECallType callType, 
+										in TA_Base_Bus::IRadioSessionCorbaDef::ECallPriority callPriority, 
+										in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::TrainRadioException);
+
+        /**
+         * Sets up a call to a train or a group of trains.
+         * This will set up a call the given trains, and when successful call the group tsi given.
+         * 
+         * @return the overall result of the operation, including the result of each specific train
+         * 
+         * @exception TA_Base_Core::OperationModeException If the agent is not in the control state
+         * @exception TA_Base_Core::AccessDeniedException If the operator does not have the correct rights or duty to perform this operation
+         * @exception ITrainExceptionsCorba::InvalidParameterException if one of the options given for the operation is erroneous
+         * @exception ITrainExceptionsCorba::GroupInUseException if the given group TSI is in use
+         * @exception ITrainExceptionsCorba::TrainRadioException if the DGNA or radio call failed
+         * 
+         * @param trainList    A list of trains that the call will go to
+         * @param groupTsi    This is the TSI of the group to call. If this is not specified, and more than one train is given then a DGNA will be used.
+         * @param override    Whether to send a request or an override
+         * @param callType    The type of radio call to make (eg acknowledged/unacknowledged)
+         * This can be overridden by the train agent if the given type does not match the call that will be made (ie Single call is given and a group will be called)
+         * @param callPriority    The call priority for the radio call
+         * @param sessionId    The operator making the call
+         */
+        DriverCallResult makeStaticGroupDriverCall(in ITrainCommonCorba::TrainList trainList,
+                                                   in string groupTsi, 
+                                                   in boolean override,
+                                                   in TA_Base_Bus::IRadioSessionCorbaDef::ECallType callType, 
+                                                   in TA_Base_Bus::IRadioSessionCorbaDef::ECallPriority callPriority, 
+                                                   in string sessionId)
+        	raises (TA_Base_Core::OperationModeException,
+					TA_Base_Core::AccessDeniedException,
+					ITrainExceptionsCorba::InvalidParameterException,
+					ITrainExceptionsCorba::GroupInUseException,
+					ITrainExceptionsCorba::TrainRadioException);
+
+    };
+
+};
+
+#endif

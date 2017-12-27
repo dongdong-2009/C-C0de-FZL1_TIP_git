@@ -1,0 +1,101 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/security/duty_agent/IDL/src/IDutyAgentPeerCorbaDef.idl $
+// @author:  Gregg Kirkpatrick
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Duty Agent IDL interface for all remote peers.
+//
+
+#ifndef IDUTYAGENTPEERCORBADEF_H_INCLUDED
+#define IDUTYAGENTPEERCORBADEF_H_INCLUDED
+
+#include <core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl>
+#include <bus/security/duty_agent/IDL/src/DutyAgentTypeCorbaDef.idl>
+#include <bus/security/authentication_agent/IDL/src/IAuthenticationAgentCorbaDef.idl>
+
+module TA_Base_Bus
+{
+	interface IDutyAgentPeerCorbaDef
+	{
+		void peerSessionBegin( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerSessionOverrideBegin( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerSessionOverrideEnd( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerSessionEnd( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session,
+			in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerGetTransferableRegions( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in boolean checkSubs )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+		
+		void peerGetTransferableSubsystems( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerTransferRegions( out DutyAgentTypeCorbaDef::DaDutySequence dutyState, in DutyAgentTypeCorbaDef::SessionId user,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in DutyAgentTypeCorbaDef::KeySequence regions )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Even though this is a peer method, the tree is still required as a given peer may control
+		// more than one region.
+		void peerTransferSubsystems( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in DutyAgentTypeCorbaDef::SubsystemTreeSequence subsystems, in DutyAgentTypeCorbaDef::ActionId action)
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// A simple state snapshot
+		void peerGetState( out DutyAgentTypeCorbaDef::DaDutySequence dutyState )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerGetSessionState(in DutyAgentTypeCorbaDef::SessionId session, out DutyAgentTypeCorbaDef::DaDutySequence dutyState )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		void peerGetSubsystemState( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,in DutyAgentTypeCorbaDef::KeySequence subsystems )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+
+		// If the subsystem sequence is empty then this method will degrade subsystems
+		void peerDegradeSubsystems( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+			in DutyAgentTypeCorbaDef::SessionId session, in DutyAgentTypeCorbaDef::KeySequence subsystems )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Get the duty for a session/region/subsystem combination
+		void peerGetDuty( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+		   in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session, in DutyAgentTypeCorbaDef::Key region,
+		   in DutyAgentTypeCorbaDef::Key subsystem )
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+
+		// Find ANY exclusive duty the specified session may have
+		void peerGetExclusiveDuty( out DutyAgentTypeCorbaDef::DaDutySequence dutyState,
+		   in TA_Base_Bus::IAuthenticationAgentCorbaDef::SessionInfoCorbaDef session	)
+			raises( TA_Base_Core::BadParameterException, TA_Base_Core::DatabaseErrorException,
+					TA_Base_Core::OperationModeException, DutyAgentTypeCorbaDef::UnhandledException );
+	};
+
+};
+#endif //IDUTYAGENTPEERCORBADEF

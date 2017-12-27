@@ -1,0 +1,277 @@
+/**
+  * The source code in this file is the property of 
+  * Combuilder PTE LTD and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/3001_TIP_NEW/TA_BASE/transactive/core/event/IDL/src/EventDetailCorbaDef.idl $
+  * @author:  Noel R. Tajanlangit
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/10/04 14:20:17 $
+  * Last modified by:  $Author: lu.xiangmei $
+  * 
+  * Interface definition for event messages which contains all the necessary information 
+  * for an event in transactive system.
+  */
+
+
+#if !defined(__EVENT_DETAIL_CORBA_DEF_INCLUDED__)
+#define __EVENT_DETAIL_CORBA_DEF_INCLUDED__
+
+
+#include "core/message/IDL/src/GenericMessageCorbaDef.idl"
+
+module TA_Base_Core
+{
+	struct EvSequenceNumber
+	{
+		/**
+		 * High order sequence increments when low order reach maximun and reset
+		 */
+		unsigned long ulHighOrder;
+
+		/**
+		 * Low order sequence increments for every event receive in the agent
+		 */
+		unsigned long ulLowOrder;
+	};
+
+	struct EventDetailCorbaDef
+	{
+		/**
+		 * Unique identifier for the event data
+		 */
+		string eventID;
+
+		/**
+		 * Indicates the source db table of the event
+		 */
+		string sourceTable;
+
+		/** 
+		 * Create time the same with the source table
+		 */
+		TA_Base_Core::MillisecondTime createTime;
+
+		/**
+		 * sub systemkey derived from the source table
+		 */
+		unsigned long subsystemKey;
+
+		/**
+		 * physical sub system derived from the source table
+		 */
+		long physicalSubsystemKey;
+
+		/**
+		 * location key 
+		 */
+		unsigned long locationKey;
+
+		/**
+		 * Severity key
+		 */
+		unsigned long severityKey;
+
+		/**
+		 * Severity name
+		 */
+		string severityname;
+
+		/**
+		 * Asset name
+		 */
+		string assetname;
+
+		/**
+		 * description
+		 */
+		string description;
+
+		/**
+		 * Event type key
+		 */
+		unsigned long eventTypeKey;
+
+		/**
+		 * Event type name
+		 */
+		string eventTypeName;
+
+		/**
+		 * Alarm ID
+		 */
+		string alarmID;
+
+		/**
+		 * Alarm Type key
+		 */
+		unsigned long alarmTypeKey;
+
+		/**
+		 * value
+		 */
+		string value;
+
+		/**
+		 * Maintenance Management State
+		 */
+		string mms;
+
+		/**
+		 * Decision Support State
+		 */
+		string decisionSupportState;
+
+		/**
+		 * avalance state
+		 */
+		string avalanceState;
+
+		/**
+		 * operator key
+		 */
+		unsigned long operatorKey;
+
+		/**
+		 * operator key
+		 */
+		string operatorName;
+
+		/**
+		 * alarm comment
+		 */
+		string alarmComment;
+
+		/**
+		 * Event Level
+		 */
+		unsigned long eventLevel;
+
+		/**
+		 * Alarm Acknowledge by
+		 */
+		string alarmAckedBy;
+
+		/**
+		 * alarm status
+		 */
+		string alarmStatus;
+		
+		/**
+		 * Session ID
+		 */
+		string sessionID;
+
+		/**
+		 * session location
+		 */
+		unsigned long sessionLocation;
+
+		/**
+		 * profile ID
+		 */
+		long profileID;
+
+		/**
+		 * action ID
+		 */
+		unsigned long actionID;
+
+		/**
+		 * Operator mode
+		 */
+		string operatorMode;
+
+		/**
+		 * entity key
+		 */
+		unsigned long entitykey;
+
+		/**
+		 * avalance head ID
+		 */
+		string avlheadID;
+
+		/**
+		 * system key
+		 */
+		unsigned long systemKey;
+
+		/**
+		 * Event Sequence
+		 */
+		EvSequenceNumber eventSequence;
+
+	};
+
+	typedef sequence<octet> octetSeq;
+	struct EventSerializeCorbaDef
+	{
+		/**
+		 * Unique identifier for the event data
+		 */
+		string eventID;
+
+		/** 
+		 * Create time the same with the source table
+		 */
+		TA_Base_Core::MillisecondTime createTime;
+
+		/**
+		 * serialized data for event
+		 */
+		octetSeq eventDetail;
+
+		/**
+		 * determines if entity information of this event is valid
+		 */
+		boolean entityInfoValid;
+		
+		/**
+		 * determines if session information of this event is valid
+		 */
+		boolean sessionInfoValid;
+	};
+
+
+	struct EventInfoCorbaDef 
+	{
+		/**
+		 * determines if entity information of this event is valid
+		 */
+		boolean isEntityInfoValid;
+		
+		/**
+		 * determines if session information of this event is valid
+		 */
+		boolean isSessionInfoValid;
+	
+		/**
+		 * detail event information
+		 */
+		EventDetailCorbaDef eventDetail;
+	};
+
+	struct EvDataPkgCorbaDef
+	{
+		/**
+		 * actual data length
+		 */
+		unsigned long ulDataSize;
+
+		/**
+		 * serialized data for event
+		 */
+		octetSeq eventDetail;
+	};
+
+	typedef sequence<EventDetailCorbaDef> EventSequence;
+	
+	typedef sequence<EventSerializeCorbaDef> EventSzSequence;
+
+	typedef sequence<EventInfoCorbaDef> EventInfoSequence;
+}; //module TA_Base_Core
+
+
+#endif //__EVENT_DETAIL_CORBA_DEF_INCLUDED__

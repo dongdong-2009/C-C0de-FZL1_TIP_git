@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'ATSBridgeUtil'
+		'ATSBridgeUtil.DLL'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}

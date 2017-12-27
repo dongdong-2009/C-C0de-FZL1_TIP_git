@@ -1,0 +1,57 @@
+#if !defined(DatalogAgentCorbaDef__IDL_INCLUDED_)
+#define DatalogAgentCorbaDef__IDL_INCLUDED_
+
+/**
+  * The source code in this file is the property of 
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/4669_Review_Branch/TA_BASE/transactive/core/alarm/IDL/src/DatalogAgentCorbaDef.idl $
+  * @author:  luohuirong
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2010/12/13 11:17:43 $
+  * Last modified by:  $Author: luohuirong$
+  * 
+  * This is the interface to the DatalogAgent
+  */
+
+#include "core/datalog/IDL/src/DataLogMessageCorbaDef.idl"
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+
+module TA_Base_Core
+{
+        const string DATALOG_AGENT_NAME = "/datalog/DataLogAgent";
+
+        interface DataLogAgentCorbaDef
+        {
+
+            exception DataLogException
+            {
+                string reason;
+            };
+
+			//void callTest(in string inStr);
+
+            /**
+              * getAllDataLogSync
+              *
+              * This method returns the last time to loggin data
+              * for a specific entity.
+              *
+              * @param The entity key
+              *
+              * @return All currently open and/or unacknowledged alarms
+            */
+			DataLogSyncSequence getAllDataLogSync()
+				raises( OperationModeException, DataLogException );
+            
+			
+             
+        };
+
+
+}; // module TA_Base_Core
+
+#endif // !defined(DatalogAgentCorbaDef_496EB579_3332_4356_AD38_4BDA6D3642B7__INCLUDED_)

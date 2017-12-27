@@ -1,0 +1,33 @@
+#if !defined(ExceptionsCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)
+#define ExceptionsCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_
+
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution in any form.
+  *
+  * Source:    $File: //depot/GZL6_TIP/TA_BASE/transactive/bus/cctv_gzl9/video_switch_agent/IDL/src/ExceptionsCorbaDef.idl $
+  * @author:   Katherine Thomson
+  * @version:  $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2012/06/12 13:35:44 $
+  * Last modified by:  $Author: builder $
+  *
+  * Defines the exceptions for the Video Switch Agent.
+  */
+
+module TA_Base_Bus_GZL9
+{
+	exception VideoSwitchAgentException
+	{
+		string what;							// A message describing the reason for the exception.
+	};
+
+    exception VideoInputLockException
+    {
+        string what;							// A message describing the reason for the exception.
+    };
+
+}; // TA_Base_Bus
+ 
+#endif // !defined(ExceptionsCorbaDef_BDE6E42B_B294_4e78_BE77_3ECED963A0C1__INCLUDED_)
+       

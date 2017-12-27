@@ -1,0 +1,165 @@
+//
+// The source code in this file is the property of
+// Ripple Systems and is not for redistribution
+// in any form.
+//
+// Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/radio/RadioAgentCorbaDef_4712/idl/src/IRadioDirectoryCorbaDef.idl $
+// @author:  Andy Parker
+// @version: $Revision: #1 $
+//
+// Last modification: $DateTime: 2015/01/19 17:43:23 $
+// Last modified by:  $Author: CM $
+//
+// Radio Subscriber Directory IDL interface.
+//
+#include "core/exceptions/IDL/src/CommonExceptionsCorbaDef.idl"
+
+module TA_Base_Bus_4712
+{
+
+	interface IRadioDirectoryCorbaDef
+	{
+		// Exception Types
+		exception radioDirectoryError
+		{
+			string what;
+		};
+
+		//*************************
+		// Subscriber Information *
+		//*************************
+
+		exception radioInvalidSubscriberException
+		{
+		};
+
+		enum SubscriberType
+		{
+		    INDIVIDUAL_SUBSCRIBER,
+		    GROUP_SUBSCRIBER,
+		    PATCH_SUBSCRIBER
+		};
+
+		struct SubscriberDetails
+		{
+			string            TSI;
+			string            subscriberName;
+			string	          locationName;
+			long	          locationKey;
+			string            ownerTSI;        // Only populated for patch subscribers.
+			SubscriberType    type;
+		};
+
+		enum SubscriberNotificationType
+		{
+			NEW_SUBSCRIBER,
+			UPDATE_SUBSCRIBER,
+			DELETE_SUBSCRIBER,
+			SCAN_SUBSCRIBERS       // Sent out to notify clients that a synchronisation scan has completed.
+		};
+
+		struct SubscriberDetailsNotification  // This will be a system wide notification!
+		{
+			SubscriberNotificationType    notifyType;
+			SubscriberDetails             details;    // Not populated for SCAN_SUBSCRIBERS
+		};
+
+		typedef sequence<SubscriberDetails> SubscriberList;
+
+
+		// Returns a list of Groups
+		SubscriberList    getGroupSubscribers() raises (radioDirectoryError);
+
+		// Returns a list of PatchGroups
+		SubscriberList    getPatchSubscribers() raises (radioDirectoryError);
+
+		// Returns a list of Individuals regardless of memberships
+		SubscriberList    getIndividualSubscribers() raises (radioDirectoryError);
+
+		// Details for requested Subscriber
+		SubscriberDetails getSubscriberDetails(in string TSI) 
+		      raises (radioInvalidSubscriberException,radioDirectoryError);
+
+		// Returns a list of Individuals in a Group
+		SubscriberList    getGroupMembers(in string TSI) raises (radioDirectoryError);
+
+		// Returns a list of Individuals in a Patch Group
+		SubscriberList    getPatchMembers(in string TSI) raises (radioDirectoryError);
+
+		// Search by Subscriber Name
+		SubscriberList    searchSubscriber(in string searchTxt) raises (radioDirectoryError);
+
+		// Get the time and date of the last directory synchronisation
+		long getLastDirectorySynchronisationTime();
+
+		//*************
+		// Speed Dial *
+		//*************
+		
+		exception invalidSpeedDialSetException
+		{
+		};
+
+		struct SpeedDialEntry
+		{
+			string    label;		// Label to show on speed dial button
+			string    TSI;			// Number to call when activated
+			octet     position;     // Position of button in the set (0 to 255)
+		};
+
+		struct SpeedDialSet
+		{
+			string	 setName;
+			boolean  isSystem;
+			long     profileID;
+			long     operatorID;
+		};
+
+		enum EUserSetTypeMatch
+		{
+			PROFILE,
+			USER,
+			COMBINED
+		};
+
+		typedef sequence<SpeedDialEntry> SpeedDialList;
+
+		/**
+		 * getUserSetName
+		 *
+		 * Returns the name of the speed dial set associated with the specified user and profile combination
+		 *
+		 * @param sessionID The Session ID of the user for which to retrieve the set details
+		 */
+		string getUserSetName(in string sessionID,in EUserSetTypeMatch typeMatch);
+
+		SpeedDialList getSpeedDialSet(in string setName) raises (invalidSpeedDialSetException);
+
+		/*
+		 * This method will add (or update if existing) the speed dial set entry with
+		 * the new details supplied.
+		 */
+		void updateSpeedDialSet(in SpeedDialSet setDetails, in string sessionID);
+
+		/*
+		 * This method will add (or update if existing) the speed dial entry with
+		 * the new details supplied.
+		 */
+		void updateSpeedDial(in string setName, in SpeedDialEntry newEntry, in string sessionID) 
+		                     raises (invalidSpeedDialSetException);
+
+		// This structure will be sent out to all locations
+		// via a broadcast notification to advise of speed dial changes.
+		struct SpeedDialUpdateNotification
+		{
+			string          sessionID;    // Session performing update
+			SpeedDialEntry  updateEntry;  // New entry details
+		};
+
+		// FlexibleTimeoutNamedObject calls this method to calculate the
+		// timoeut value based on the current configuration
+		unsigned short getFlexibleTimeOutValue() raises (TA_Base_Core::OperationModeException);
+
+	}; // IRadioDirectoryCorbaDef
+}; // TA_Base_Bus
+

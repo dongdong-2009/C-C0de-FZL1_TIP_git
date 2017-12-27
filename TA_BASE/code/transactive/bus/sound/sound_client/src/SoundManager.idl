@@ -1,0 +1,78 @@
+/**
+  * The source code in this file is the property of
+  * Ripple Systems and is not for redistribution
+  * in any form.
+  *
+  * Source:   $File: //depot/TA_Common_V1_TIP/transactive/bus/sound/sound_client/src/SoundManager.idl $
+  * @author:  Justin Ebedes
+  * @version: $Revision: #1 $
+  *
+  * Last modification: $DateTime: 2015/01/19 17:43:23 $
+  * Last modified by:  $Author: CM $
+  *
+  * This IDL specifies the Sound Manager's COM interface.
+  *
+  */
+
+// This file will be processed by the MIDL tool to
+// produce the type library (SoundManager.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(FCA8CFA0-9E85-4924-A778-4563FEB7F841),
+	version(1.0),
+	helpstring("SoundManager 1.0 Type Library")
+]
+library SOUNDMANAGERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		object,
+		uuid(A03E7601-4386-4B87-9AC1-FDC81B2C163D),
+		dual,
+		helpstring("ISoundInterface Interface"),
+		pointer_default(unique)
+	]
+	interface ISoundInterface : IDispatch
+	{
+		// Mutators
+		[id(1), helpstring("method setPriority")]    HRESULT setPriority(BSTR category, int priority);
+		[id(2), helpstring("method setSilence")]     HRESULT setSilence(BSTR category, VARIANT_BOOL isSilenced);
+		[id(3), helpstring("method setSilenceAll")]  HRESULT setSilenceAll(VARIANT_BOOL isSilenced);
+		[id(4), helpstring("method joinCategories")] HRESULT joinCategories(BSTR primaryCategory, BSTR secondaryCategory);
+		
+		// Accessors
+		[id(5), helpstring("method isSilenced")]	HRESULT isSilenced(BSTR category, [out, retval] VARIANT_BOOL* isSilenced);
+		[id(6), helpstring("method isAllSilenced")] HRESULT isAllSilenced([out, retval] VARIANT_BOOL* isSilenced);
+	};
+
+
+	[
+		uuid(B1C9D994-E1A8-44da-B985-B72A3A9AF1EF),
+		helpstring("_ISoundInterfaceEvents Interface")
+	]
+	dispinterface _ISoundInterfaceEvents
+	{
+		properties:
+		methods:
+		[id(1), helpstring("method categorySilenced")] HRESULT categorySilenced([in] BSTR category, [in] VARIANT_BOOL isSilenced);
+		[id(2), helpstring("method allSilenced")]	   HRESULT allSilenced([in] VARIANT_BOOL isSilenced);
+	};
+
+	[
+		uuid(0F20771A-E29B-412C-B81E-147B97E32321),
+		helpstring("SoundInterface Class")
+	]
+	coclass SoundInterface
+	{
+		[default] interface ISoundInterface;
+		[default, source] dispinterface _ISoundInterfaceEvents;
+	};
+
+};
+
+

@@ -1,0 +1,20 @@
+#
+# $Source: /cvs/1TS-9999-T/code/transactive/app/notification_service/test_framework/makeAll,v $Source: /cvs/1TS-9999-T/code/transactive/app/notification_service/test_framework/makeAll,v $
+# $Revision: 1.1.2.1 $Revision: 1.1.2.1 $
+# $Date: 2004/03/29 10:43:44 $Date: 2004/03/29 10:43:44 $
+# $Author: alleni $Author: alleni $
+#
+
+PROJ_ROOT_DIR = ../../../..
+
+subsystem:
+	cd IDL && $(MAKE) $(MAKECMDGOALS)
+	cd AlarmConsumer && $(MAKE) $(MAKECMDGOALS)
+	cd AlarmSupplier && $(MAKE) $(MAKECMDGOALS)
+	cd CommsConsumer && $(MAKE) $(MAKECMDGOALS)
+	cd CommsSupplier && $(MAKE) $(MAKECMDGOALS)
+
+clean: subsystem
+
+all: subsystem
+

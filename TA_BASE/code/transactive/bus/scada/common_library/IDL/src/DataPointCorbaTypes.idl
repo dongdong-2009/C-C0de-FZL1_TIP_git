@@ -1,0 +1,243 @@
+#ifndef DataPointCorbaTypes_INCLUDED_
+#define DataPointCorbaTypes_INCLUDED_
+
+/**
+  * The source code in this file is the property of Ripple Systems and is not for redistribution in
+  * any form.
+  *
+  * Source:	$File: //depot/TA_Common_V1_TIP/transactive/bus/scada/common_library/IDL/src/DataPointCorbaTypes.idl $
+  * @author:	Bavo De Pauw
+  * @version:	$Revision: #2 $
+  *
+  * Last modification:	$DateTime: 2015/01/21 14:56:06 $
+  * Last modified by:	$Author: haijun.li $
+  *
+  * Description:
+  *
+  *	DataPoint CORBA interface, used to work with DataPoints
+  *
+  */
+
+#include "bus/scada/common_library/IDL/src/ScadaCorbaTypes.idl"
+
+module TA_Base_Bus
+{
+	module DataPointCorbaTypes
+	{
+		////////////////////////
+		// Structs and datatypes
+		////////////////////////
+		//
+		// Alarm states for a DataPoint
+		// this is use for both alarm type and alarm state
+		//
+		enum EDatapointAlarm
+		{
+			NoAlarm,			// no alarm has been raised only use for alarm state
+			OverScaleHighAlarm,	// OverScaleHi alarm has been raised
+			OverScaleLowAlarm,	// OverScaleLo alarm has been raised
+			VeryHighAlarm,		// HiHi alarm has been raised
+			HighAlarm,			// Hi alarm has been raised
+			LowAlarm,			// Lo alarm has been raised
+			VeryLowAlarm,		// LoLo alarm has been raised
+			TrueAlarm,			// True alarm has been raised
+			FalseAlarm,			// False alarm has been raised
+			GeneralAlarm		// Alarm raised by a derived state
+		};
+
+		enum EScadaAlarmAckState
+		{
+			ScadaAlarmNack,
+			ScadaAlarmAck,
+			ScadaAlarmNotPresent,
+			ScadaAlarmUnknown
+		};
+
+		// The state of the output command
+		enum EControlState
+		{
+			NoControl,					// no value is written
+			ControlWritten,				// the value is written to device
+			ControlPending,				// the output is waiting for confirmation
+			ControlConditionalSuccess,	// the output is conditionally successfull
+			ControlSuccess,				// the output is confirmed
+			ControlFailed,				// the output command failed...don't know why
+			ControlLccFailed,			// the output command failed because of LCC
+			ControlRccFailed,			// the output command failed because of RCC
+			ControlCommsFailed,			// the output command failed because of comms error
+
+			// 
+			// IEC 104 Protocol Control Operation
+			// 
+			ControlSelectCmdWritten,
+			ControlSelectCmdConfirm,
+			ControlSelectCmdConfirmTimeout,
+			ControlOperateCmdTimeout,
+			ControlExecCmdWritten,
+			ControlExecCmdConfirm,
+			ControlExecCmdSuccess,
+			ControlExecCmdSuccessTimeout,
+			ControlExecCmdConfirmTimeout,
+			ControlCancelCmdWritten,
+			ControlCancelCmdConfirm,
+			ControlCancelCmdConfirmTimeout,
+			ControlSelectCmdCfmNegative,
+			ControlExecCmdCfmNegative,
+			ControlCancelCmdCfmNegative,
+			ControlDeviceControlException
+		};
+
+
+
+		struct SControlState
+		{
+			EControlState	controlState;
+			unsigned long	triggerringDpKey;
+			string			triggerringDpValue;
+			string			lccResult;
+			boolean			rccResult;
+
+		};
+
+		// the actual settings of each alarm will fit in a struct like this
+		struct SAlarmProperty
+		{
+			EDatapointAlarm			type;		// the type of the alarm, eg HIHI, HI, LOLO, LO, TRUE, FALSE...
+			boolean					enabled;	// true to indicated the alarm is enabled, false otherwise
+			double					threshold;	// this value is the alarm threshold (only used for analogue alarms)
+			unsigned long			enumValue;	// this is the enum value for General Alarms
+		};
+
+		// A sequence of alarm properties
+		typedef sequence < SAlarmProperty > AlarmPropertySequence;
+
+		struct SCompleteDynamicSyncState
+		{
+			ScadaCorbaTypes::UTag				engValue;
+			EDatapointAlarm						alarmState;
+			EScadaAlarmAckState					alarmAckState;
+			AlarmPropertySequence				alarmProperties;
+			SControlState						controlState;			
+			ScadaCorbaTypes::SInhibitState		inhibitState;
+			ScadaCorbaTypes::SLastOperatorInfo	lastOperatorInfo;
+		};
+
+		enum EDynamicSyncUpdate
+		{
+			CompleteDynamicSyncStateUpdate,
+			ValueUpdate,
+			AlarmStateUpdate,
+			AlarmAckStateUpdate,
+			AlarmPropertiesUpdate,
+			ControlUpdate,
+			InhibitUpdate,
+			LastOperatorUpdate
+		};
+
+
+		union UDynamicSyncUpdate switch (EDynamicSyncUpdate)
+		{
+		case CompleteDynamicSyncStateUpdate: 
+			SCompleteDynamicSyncState			syncCompleteState;
+		
+		case ValueUpdate:
+			ScadaCorbaTypes::UTag				engValue;
+
+		case AlarmStateUpdate:
+			EDatapointAlarm						alarmState;
+
+		case AlarmAckStateUpdate:
+			EScadaAlarmAckState					alarmAckState;
+
+		case AlarmPropertiesUpdate:
+			AlarmPropertySequence				alarmProperties;
+
+		case ControlUpdate:
+			SControlState						controlState;
+
+		case InhibitUpdate:
+			ScadaCorbaTypes::SInhibitState		inhibitState;
+
+		case LastOperatorUpdate:
+			ScadaCorbaTypes::SLastOperatorInfo	lastOperatorInfo;
+		};
+
+		struct SDynamicSyncUpdate
+		{
+			unsigned long						dpKey;
+			UDynamicSyncUpdate					syncUpdate;
+		};
+		
+		typedef sequence < SDynamicSyncUpdate > DynamicSyncUpdateSequence;
+
+
+		////////////////////////
+		// Structs and datatypes for Display only
+		////////////////////////
+
+		// The value associated with a DataPoint. 
+        union UDataPointValue switch ( ScadaCorbaTypes::ETagType )
+        {
+            case ScadaCorbaTypes::AnalogueTagType:
+                double			floatValue;
+
+			case ScadaCorbaTypes::EnumTagType:
+				unsigned long	enumValue;
+
+            case ScadaCorbaTypes::BooleanTagType:
+                boolean			booleanValue;
+
+            case ScadaCorbaTypes::TextTagType:
+                ScadaCorbaTypes::ByteSequence	stringValue;
+        };
+
+		//todo: location key may required
+		struct DataPointDisplayState
+		{
+			unsigned long		entityKey;			// current entitykey of DataPoint
+			UDataPointValue		value;				// current value of DataPoint
+			unsigned long		dataPointStatus;	// quality status of the current value
+			boolean				alarmState;			// Alarm state of the current DataPoint
+			EScadaAlarmAckState alarmAckState;
+		};
+
+		// Update sequence
+		typedef sequence < DataPointDisplayState > DisplayStateSequence;
+
+		// TD18617, Added for control state synchronization
+		enum ECommandError
+		{
+			PermisionDenied,
+			OtherError
+		};
+
+		enum EControlCommandState	//This enum 
+		{
+			JustReceived,			
+			BeingExecuted,
+			CompletedWithError,
+			CompletedWithSuccess
+		};
+
+		struct DataPointWriteStateUpdate
+		{
+			unsigned long commandId;					//Id of the control command
+			unsigned long dpKey;						//Pkey of the datapoint
+			string sessionId;							//session id of the operator 
+			ScadaCorbaTypes::UTag	dpValue;					//Value of the datapoint to be written
+			boolean auditEventLoggingEnabled;			//Whether auditing is required.
+			unsigned long triggeringDpKey;				
+			string triggeringDpValue;
+
+			EControlCommandState controlCommandState;	//
+			EControlState controlState;					// 
+		};
+
+		typedef sequence <DataPointWriteStateUpdate> DataPointWriteStateUpdateSequence;
+
+
+	};
+};
+
+#endif
+
